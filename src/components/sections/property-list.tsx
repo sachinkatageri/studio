@@ -12,14 +12,14 @@ const properties = [
     id: 'wework',
     name: 'WeWork Vaishnavi Signature',
     location: 'in Bellandur, Hyderabad, Karnataka',
-    added: '4 December 2025',
+    pricePerSqFt: 120,
     type: 'Commercial',
   },
   {
     id: '91springboard',
     name: '91Springboard',
     location: 'in Jhandewalan, Delhi, Delhi',
-    added: '4 December 2025',
+    pricePerSqFt: 110,
     type: 'Commercial',
   },
   {
@@ -27,7 +27,7 @@ const properties = [
     name: 'Shop in Boduppal',
     location: 'in Boduppal, Medchal, Telangana',
     size: 100,
-    added: '29 November 2025',
+    pricePerSqFt: 95,
     type: 'Commercial',
   },
   {
@@ -35,7 +35,7 @@ const properties = [
     name: 'Restaurant',
     location: 'in Alwal, Medchal, Telangana',
     size: 1000,
-    added: '29 November 2025',
+    pricePerSqFt: 150,
     type: 'Commercial',
   },
   {
@@ -43,7 +43,7 @@ const properties = [
     name: 'Godown/Warehouse',
     location: 'in Moula Ali, Medchal, Telangana',
     size: 2000,
-    added: '29 November 2025',
+    pricePerSqFt: 80,
     type: 'Commercial',
   },
    {
@@ -53,6 +53,7 @@ const properties = [
     price: 'Starting from $500,000',
     status: 'Ready to move',
     type: 'Residential',
+    pricePerSqFt: 250,
   },
   {
     id: 'project-2',
@@ -61,6 +62,7 @@ const properties = [
     price: 'Starting from $750,000',
     status: 'New Launch',
     type: 'Residential',
+    pricePerSqFt: 300,
   },
 ];
 
@@ -88,7 +90,8 @@ const PropertyCard = ({ property }: { property: typeof properties[0]}) => {
           <p className="text-sm text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
           {property.size && <p className="text-sm text-muted-foreground">Size: {property.size} sq. yd.</p>}
-          <p className="text-xs text-muted-foreground/80 mt-1">Added on: {property.added}</p>
+           {/* @ts-ignore */}
+          {property.pricePerSqFt && <p className="text-sm font-semibold text-primary mt-1">₹{property.pricePerSqFt} Per Sq.ft Per Month</p>}
         </div>
       </CardContent>
     </Card>
