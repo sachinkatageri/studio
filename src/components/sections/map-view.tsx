@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from '@/components/ui/button';
@@ -11,6 +12,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetFooter
 import { Separator } from '@/components/ui/separator';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export default function MapView() {
   const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false);
@@ -38,14 +40,13 @@ export default function MapView() {
         </div>
       </div>
       <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
-        <div className="hidden md:flex items-center space-x-2 bg-background p-2 rounded-md shadow-lg">
-          <Checkbox id="commercial-desktop" />
-          <Label htmlFor="commercial-desktop" className="text-sm font-medium">Commercial</Label>
-        </div>
-        <div className="hidden md:flex items-center space-x-2 bg-background p-2 rounded-md shadow-lg">
-          <Checkbox id="residential-desktop" />
-          <Label htmlFor="residential-desktop" className="text-sm font-medium">Residential</Label>
-        </div>
+        <Tabs defaultValue="all" className="hidden md:block">
+          <TabsList>
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="commercial">Commercial</TabsTrigger>
+            <TabsTrigger value="residential">Residential</TabsTrigger>
+          </TabsList>
+        </Tabs>
         <Sheet open={isFilterSheetOpen} onOpenChange={setIsFilterSheetOpen}>
           <SheetTrigger asChild>
             <Button variant="secondary" className="shadow-lg">
@@ -61,7 +62,7 @@ export default function MapView() {
             <div className="flex-grow overflow-y-auto pr-6 space-y-8">
               <div className="space-y-4">
                 <h4 className="font-semibold text-lg">Type</h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 md:hidden">
                   <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2">
                     <Label htmlFor="commercial-filter" className="text-sm">Commercial</Label>
                     <Checkbox id="commercial-filter" />
@@ -71,6 +72,13 @@ export default function MapView() {
                     <Checkbox id="residential-filter" />
                   </div>
                 </div>
+                 <Tabs defaultValue="all" className="block md:hidden">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="all">All</TabsTrigger>
+                    <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                    <TabsTrigger value="residential">Residential</TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
               <Separator />
               <div className="space-y-4">
