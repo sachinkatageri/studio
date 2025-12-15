@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
 import MobileToolbar from '@/components/layout/mobile-toolbar';
 import Footer from '@/components/layout/footer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -19,11 +20,15 @@ export default function Home() {
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>('map');
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const handleFilterClick = () => {
     setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
     if (!isSidebarOpen) {
       setIsSidebarOpen(true);
+    }
+    if (isMobile) {
+      setMobileView('list');
     }
   };
 
