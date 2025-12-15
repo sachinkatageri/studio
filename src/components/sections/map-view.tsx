@@ -1,10 +1,16 @@
+
 "use client";
 
 import { Button } from '@/components/ui/button';
-import { Layers, List } from 'lucide-react';
+import { Layers, List, PanelLeft } from 'lucide-react';
 import Image from 'next/image';
 
-export default function MapView() {
+interface MapViewProps {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+export default function MapView({ isSidebarOpen, toggleSidebar }: MapViewProps) {
 
   return (
     <div className="relative h-full w-full">
@@ -24,8 +30,8 @@ export default function MapView() {
        </div>
       
        <div className="absolute bottom-24 left-4 z-10 flex flex-col gap-2">
-         <Button variant="secondary" size="icon" className="shadow-lg">
-           <List />
+         <Button variant="secondary" size="icon" className="shadow-lg" onClick={toggleSidebar}>
+           <PanelLeft className="h-5 w-5" />
          </Button>
        </div>
 
