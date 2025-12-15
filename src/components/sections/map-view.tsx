@@ -2,7 +2,8 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
-import { Layers, List, PanelLeft } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Layers, PanelLeft, Search } from 'lucide-react';
 import Image from 'next/image';
 
 interface MapViewProps {
@@ -23,6 +24,17 @@ export default function MapView({ isSidebarOpen, toggleSidebar }: MapViewProps) 
         data-ai-hint="satellite map"
       />
       
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md">
+        <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search for property, project, or builder..."
+              className="w-full pl-10 h-12 text-foreground shadow-lg"
+            />
+        </div>
+      </div>
+
        <div className="absolute top-20 left-4 z-10 flex flex-col gap-2">
          <Button variant="secondary" size="icon" className="shadow-lg">
            <Layers />

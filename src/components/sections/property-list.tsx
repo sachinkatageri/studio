@@ -1,19 +1,11 @@
+
 "use client";
 
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Input } from '../ui/input';
-import { ArrowRight, Search, SlidersHorizontal } from 'lucide-react';
-import { useState } from 'react';
-import { Button } from '../ui/button';
-import { Checkbox } from '../ui/checkbox';
-import { Label } from '../ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Separator } from '../ui/separator';
-import { Slider } from '../ui/slider';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '../ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 const properties = [
   {
@@ -104,8 +96,6 @@ const PropertyCard = ({ property }: { property: typeof properties[0]}) => {
 }
 
 export default function PropertyList() {
-    const [budget, setBudget] = useState([0, 30]);
-    const [size, setSize] = useState([0, 50000]);
 
     return (
     <div className="flex flex-col h-full bg-card">
@@ -114,21 +104,13 @@ export default function PropertyList() {
             <h2 className="text-xl font-bold">Properties</h2>
             <p className="text-sm text-muted-foreground">7 properties found</p>
         </div>
-        <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search properties..."
-              className="w-full pl-10 h-10 bg-background"
-            />
-          </div>
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="commercial">Commercial</TabsTrigger>
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
-            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 240px)'}}>
+            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 180px)'}}>
                 <TabsContent value="all">
                     <div className="p-2 space-y-2">
                         {properties.map((property) => (
