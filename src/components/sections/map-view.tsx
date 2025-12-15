@@ -1,11 +1,19 @@
 
+
 "use client";
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -54,11 +62,23 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
          </Button>
        </div>
       
-       <div className="absolute bottom-24 left-4 z-10 flex flex-col gap-2">
-         <Button variant="secondary" size="icon" className="shadow-lg" onClick={toggleSidebar}>
-           <PanelLeft className="h-5 w-5" />
-         </Button>
-       </div>
+       <TooltipProvider>
+        <div className={cn(
+            "absolute top-1/2 -translate-y-1/2 z-10 transition-all duration-300",
+            isSidebarOpen ? "left-0" : "left-0"
+            )}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="secondary" size="icon" className="rounded-l-none h-20 w-8 p-1" onClick={toggleSidebar}>
+                        {isSidebarOpen ? <ChevronLeft className="h-6 w-6" /> : <ChevronRight className="h-6 w-6" />}
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                    <p>{isSidebarOpen ? "Collapse side panel" : "Expand side panel"}</p>
+                </TooltipContent>
+            </Tooltip>
+        </div>
+       </TooltipProvider>
 
     </div>
   );
