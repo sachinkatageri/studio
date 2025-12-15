@@ -1,10 +1,9 @@
 
-
 "use client";
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -13,7 +12,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Separator } from '../ui/separator';
+import { useState } from 'react';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -22,17 +23,34 @@ interface MapViewProps {
   areFiltersApplied: boolean;
 }
 
+type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
+
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied }: MapViewProps) {
+  const [mapType, setMapType] = useState<MapType>('hybrid');
+
+  const mapImages = {
+    default: 'https://picsum.photos/seed/map-default/1920/1080',
+    satellite: 'https://picsum.photos/seed/map-satellite/1920/1080',
+    hybrid: 'https://picsum.photos/seed/map/1920/1080',
+    terrain: 'https://picsum.photos/seed/map-terrain/1920/1080'
+  };
+
+  const mapHints = {
+    default: 'street map',
+    satellite: 'satellite imagery',
+    hybrid: 'satellite map',
+    terrain: 'terrain map'
+  };
 
   return (
     <div className="relative h-full w-full">
       <Image
-        src="https://picsum.photos/seed/map/1920/1080"
+        src={mapImages[mapType]}
         alt="Map of Bengaluru"
         layout="fill"
         objectFit="cover"
         className="z-0"
-        data-ai-hint="satellite map"
+        data-ai-hint={mapHints[mapType]}
       />
       
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md">
@@ -56,10 +74,38 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
       </div>
 
-       <div className="absolute top-20 left-4 z-10 flex flex-col gap-2">
-         <Button variant="secondary" size="icon" className="shadow-lg">
-           <Layers />
-         </Button>
+       <div className="absolute bottom-4 left-4 z-10 flex flex-col gap-2">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+                <Layers />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-60 p-2">
+                <div className="space-y-1">
+                    <h3 className="px-2 py-1.5 text-sm font-semibold">Map Type</h3>
+                    <div className="space-y-1">
+                        <Button variant={mapType === 'default' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('default')}>
+                            <Map className="mr-2 h-4 w-4" /> Default {mapType === 'default' && <Check className="ml-auto h-4 w-4" />}
+                        </Button>
+                        <Button variant={mapType === 'satellite' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('satellite')}>
+                            <Satellite className="mr-2 h-4 w-4" /> Satellite {mapType === 'satellite' && <Check className="ml-auto h-4 w-4" />}
+                        </Button>
+                        <Button variant={mapType === 'hybrid' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('hybrid')}>
+                            <Globe className="mr-2 h-4 w-4" /> Hybrid {mapType === 'hybrid' && <Check className="ml-auto h-4 w-4" />}
+                        </Button>
+                        <Button variant={mapType === 'terrain' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('terrain')}>
+                            <Mountain className="mr-2 h-4 w-4" /> Terrain {mapType === 'terrain' && <Check className="ml-auto h-4 w-4" />}
+                        </Button>
+                    </div>
+                    <Separator className="my-2" />
+                    <h3 className="px-2 py-1.5 text-sm font-semibold">Layers</h3>
+                    <Button variant='ghost' className="w-full justify-start">
+                        <TrafficCone className="mr-2 h-4 w-4" /> Traffic
+                    </Button>
+                </div>
+            </PopoverContent>
+          </Popover>
        </div>
       
        <TooltipProvider>
