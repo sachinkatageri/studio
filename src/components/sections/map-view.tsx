@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from '@/components/ui/button';
@@ -29,16 +28,7 @@ export default function MapView() {
         className="z-0"
         data-ai-hint="satellite map"
       />
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md px-4 sm:max-w-lg">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            type="text"
-            placeholder="Search Location"
-            className="w-full pl-10 h-12 shadow-lg"
-          />
-        </div>
-      </div>
+      
       <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
         <Tabs defaultValue="all" className="hidden md:block">
           <TabsList>
