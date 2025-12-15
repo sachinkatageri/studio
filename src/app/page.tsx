@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex flex-col h-screen bg-background">
         <Header />
         <div className="flex flex-1 overflow-hidden">
-          <Sidebar side="left" className="w-96 hidden md:flex flex-col border-r">
+          <Sidebar side="left" className="hidden md:flex flex-col border-r w-96">
              <SidebarContent>
                 <PropertyList />
              </SidebarContent>
