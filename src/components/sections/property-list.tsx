@@ -99,34 +99,34 @@ export default function PropertyList() {
 
     return (
     <div className="flex flex-col h-full bg-card">
-      <div className="p-4 border-b space-y-4">
-        <div>
-            <h2 className="text-xl font-bold">Properties</h2>
-            <p className="text-sm text-muted-foreground">7 properties found</p>
-        </div>
+      <div className="p-4 border-b">
           <Tabs defaultValue="all" className="w-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="commercial">Commercial</TabsTrigger>
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
-            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 180px)'}}>
+            <div className="py-4">
+                <h2 className="text-xl font-bold">Properties</h2>
+                <p className="text-sm text-muted-foreground">7 properties found</p>
+            </div>
+            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 220px)'}}>
                 <TabsContent value="all">
-                    <div className="p-2 space-y-2">
+                    <div className="space-y-2">
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="commercial">
-                    <div className="p-2 space-y-2">
+                    <div className="space-y-2">
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="residential">
-                     <div className="p-2 space-y-2">
+                     <div className="space-y-2">
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
