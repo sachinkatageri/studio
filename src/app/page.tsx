@@ -11,7 +11,7 @@ import MobileToolbar from '@/components/layout/mobile-toolbar';
 import Footer from '@/components/layout/footer';
 
 type SidebarView = 'list' | 'filters';
-type MobileView = 'list' | 'map';
+export type MobileView = 'list' | 'map';
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -84,7 +84,7 @@ export default function Home() {
             />
           </main>
         </div>
-        <Footer />
+        <Footer mobileView={mobileView} setMobileView={setMobileView} />
       </div>
   );
 }
