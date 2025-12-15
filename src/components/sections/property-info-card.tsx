@@ -6,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
-import { X, Phone, MessageSquare, Briefcase, Share2, Diamond, Navigation } from 'lucide-react';
+import { X, Phone, MessageSquare, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 
@@ -14,6 +14,35 @@ interface PropertyInfoCardProps {
   propertyId: string;
   onClose: () => void;
 }
+
+const amenityIcons: { [key: string]: React.ReactNode } = {
+  'High-Speed WiFi': <Wifi className="h-4 w-4" />,
+  'Meeting Rooms': <Users className="h-4 w-4" />,
+  'Printing': <Printer className="h-4 w-4" />,
+  'Coffee Bar': <Coffee className="h-4 w-4" />,
+  '24/7 Access': <Clock className="h-4 w-4" />,
+  'Event Space': <Presentation className="h-4 w-4" />,
+  'Game Zone': <Gamepad2 className="h-4 w-4" />,
+  'Free Tea & Coffee': <Coffee className="h-4 w-4" />,
+  'Main Road Facing': <Car className="h-4 w-4" />,
+  'Ample Parking': <Car className="h-4 w-4" />,
+  'Power Backup': <Zap className="h-4 w-4" />,
+  'Full Kitchen': <Utensils className="h-4 w-4" />,
+  'Seating Area': <Armchair className="h-4 w-4" />,
+  'Restrooms': <Home className="h-4 w-4" />,
+  'Valet Parking': <Car className="h-4 w-4" />,
+  'Loading Dock': <Warehouse className="h-4 w-4" />,
+  '24/7 Security': <ShieldCheck className="h-4 w-4" />,
+  'High Ceilings': <Home className="h-4 w-4" />,
+  'Swimming Pool': <Home className="h-4 w-4" />, // Placeholder
+  'Gym': <Home className="h-4 w-4" />, // Placeholder
+  'Clubhouse': <Home className="h-4 w-4" />, // Placeholder
+  'Private Garden': <Home className="h-4 w-4" />, // Placeholder
+  'Community Park': <Home className="h-4 w-4" />, // Placeholder
+  'Jogging Track': <Home className="h-4 w-4" />, // Placeholder
+  'Gated Community': <ShieldCheck className="h-4 w-4" />,
+};
+
 
 export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
@@ -74,7 +103,10 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
             <div className="flex flex-wrap gap-2">
                 {/* @ts-ignore */}
                 {property.amenities?.map((amenity: string) => (
-                    <Badge key={amenity} variant="outline" className="font-normal">{amenity}</Badge>
+                    <Badge key={amenity} variant="outline" className="font-normal flex items-center gap-2">
+                        {amenityIcons[amenity] || <Home className="h-4 w-4" />}
+                        {amenity}
+                    </Badge>
                 ))}
             </div>
         </div>
