@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image-1",
+      "description": "Modern building architecture at dusk",
+      "imageUrl": "https://images.unsplash.com/photo-1614595737683-1740e41bfaac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzY1NzM2NDY4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern architecture"
+    },
+    {
+      "id": "project-1",
+      "description": "Luxury apartment building exterior",
+      "imageUrl": "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bHV4dXJ5JTIwYXBhcnRtZW50fGVufDB8fHx8MTc2NTc5MDk4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury apartment"
+    },
+    {
+      "id": "project-2",
+      "description": "Suburban family home with a garden",
+      "imageUrl": "https://images.unsplash.com/photo-1610569244414-5e7453a447a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzdWJ1cmJhbiUyMGhvbWV8ZW58MHx8fHwxNzY1Nzk5MTM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "suburban home"
+    },
+    {
+      "id": "project-3",
+      "description": "Skyscraper in a modern city",
+      "imageUrl": "https://images.unsplash.com/photo-1648653606244-6413d32d19d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaXR5JTIwc2t5c2NyYXBlcnxlbnwwfHx8fDE3NjU3OTkxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city skyscraper"
+    }
+  ]
 }
