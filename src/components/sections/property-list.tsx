@@ -107,10 +107,9 @@ export default function PropertyList() {
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
             <div className="py-4">
-                <h2 className="text-xl font-bold">Properties</h2>
                 <p className="text-sm text-muted-foreground">7 properties found</p>
             </div>
-            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 220px)'}}>
+            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 180px)'}}>
                 <TabsContent value="all">
                     <div className="space-y-2">
                         {properties.map((property) => (
