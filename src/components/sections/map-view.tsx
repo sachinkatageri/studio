@@ -1,9 +1,8 @@
-
 "use client";
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal } from 'lucide-react';
 import Image from 'next/image';
 
 interface MapViewProps {
@@ -25,13 +24,18 @@ export default function MapView({ isSidebarOpen, toggleSidebar }: MapViewProps) 
       />
       
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md">
-        <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search for property, project, or builder..."
-              className="w-full pl-10 h-12 text-foreground shadow-lg"
-            />
+        <div className="relative flex items-center gap-2">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search for property, project, or builder..."
+                className="w-full pl-10 h-12 text-foreground shadow-lg"
+              />
+            </div>
+            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 flex-shrink-0">
+              <SlidersHorizontal />
+            </Button>
         </div>
       </div>
 
