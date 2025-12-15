@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from '@/components/ui/button';
@@ -8,9 +9,10 @@ import Image from 'next/image';
 interface MapViewProps {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
+  onFilterClick: () => void;
 }
 
-export default function MapView({ isSidebarOpen, toggleSidebar }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick }: MapViewProps) {
 
   return (
     <div className="relative h-full w-full">
@@ -33,7 +35,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar }: MapViewProps) 
                 className="w-full pl-10 h-12 text-foreground shadow-lg"
               />
             </div>
-            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 flex-shrink-0">
+            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 flex-shrink-0" onClick={onFilterClick}>
               <SlidersHorizontal />
             </Button>
         </div>
