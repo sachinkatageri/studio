@@ -37,6 +37,9 @@ export default function Home() {
 
   const handleSelectProperty = (propertyId: string) => {
     setSelectedPropertyId(propertyId);
+    if (window.innerWidth < 768) { // md breakpoint
+      setMobileView('map');
+    }
   }
 
   const handleCloseInfoCard = () => {
@@ -50,7 +53,7 @@ export default function Home() {
         <div className="flex flex-1 overflow-hidden">
           <aside className={cn(
             "flex-col border-r transition-all duration-300",
-            "hidden md:flex",
+            "md:flex",
             isSidebarOpen ? "w-[30%]" : "w-0",
             mobileView === 'list' ? 'flex w-full' : 'hidden'
           )}>
@@ -61,7 +64,7 @@ export default function Home() {
           </aside>
           <main className={cn(
             "relative transition-all duration-300",
-            "hidden md:block",
+            "md:block",
             isSidebarOpen ? "w-[70%]" : "w-full",
             mobileView === 'map' ? 'block w-full' : 'hidden'
             )}>

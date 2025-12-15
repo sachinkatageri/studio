@@ -16,6 +16,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Separator } from '../ui/separator';
 import { useState } from 'react';
 import { PropertyInfoCard } from './property-info-card';
+import { PropertyDetailsSheet } from './property-details-sheet';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -30,6 +32,7 @@ type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
 
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
+  const isMobile = useIsMobile();
 
   const mapImages = {
     default: 'https://picsum.photos/seed/map-default/1920/1080',
@@ -56,7 +59,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         data-ai-hint={mapHints[mapType]}
       />
       
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md px-4 md:px-0">
         <div className="relative flex items-center gap-2">
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -130,10 +133,14 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        </TooltipProvider>
 
-       {selectedPropertyId && (
+       {selectedPropertyId && !isMobile && (
         <div className="absolute bottom-4 right-4 z-10">
           <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
         </div>
+       )}
+       
+       {isMobile && (
+          <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
        )}
 
     </div>
