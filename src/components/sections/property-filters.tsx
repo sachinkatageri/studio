@@ -13,7 +13,7 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '../ui/slider';
-import { Input } from '../ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 interface PropertyFiltersProps {
   onBack: () => void;
@@ -74,29 +74,39 @@ export default function PropertyFilters({ onBack }: PropertyFiltersProps) {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Price Range</CardTitle>
-          </CardHeader>
-          <CardContent className='pt-2'>
-            <Slider defaultValue={[25, 75]} />
-             <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                <span>$100k</span>
-                <span>$2M</span>
-              </div>
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+            <h3 className="font-semibold">Budget (In Crores)</h3>
+            <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                    <Label>Range:</Label>
+                    <span className="text-sm font-medium">₹0cr - ₹30cr</span>
+                </div>
+                <Slider defaultValue={[0, 30]} max={100} step={1} />
+            </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Area (sq. ft.)</CardTitle>
-          </CardHeader>
-          <CardContent className="flex items-center gap-2">
-            <Input type="number" placeholder="Min" />
-            <span>-</span>
-            <Input type="number" placeholder="Max" />
-          </CardContent>
-        </Card>
+        <div className="space-y-4">
+            <div className="flex items-center gap-4">
+              <h3 className="font-semibold">Size</h3>
+              <Select defaultValue="sq-yards">
+                <SelectTrigger className="w-[150px]">
+                  <SelectValue placeholder="Select unit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="sq-yards">Square Yards</SelectItem>
+                  <SelectItem value="sq-ft">Square Feet</SelectItem>
+                  <SelectItem value="acres">Acres</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                    <Label>Range:</Label>
+                    <span className="text-sm font-medium">0 - 50,000 sq yd</span>
+                </div>
+                <Slider defaultValue={[0, 50000]} max={100000} step={100} />
+            </div>
+        </div>
         
         <Card>
           <CardHeader>
