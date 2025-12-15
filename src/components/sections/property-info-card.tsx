@@ -6,9 +6,22 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
-import { X, Phone, MessageSquare, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home } from 'lucide-react';
+import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
+
+const WhatsAppIcon = () => (
+    <svg
+      role="img"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4 fill-current"
+    >
+      <title>WhatsApp</title>
+      <path d="M12.04 2.016c-5.523 0-10 4.477-10 10s4.477 10 10 10c1.554 0 3.045-.356 4.378-1.004l4.58 1.005-1.04-4.47c.72-1.39 1.12-3.01 1.12-4.71s-4.478-9.82-10.038-9.82zm4.19 12.06c-.195.345-.78.64-1.12.72-.29.07-.66.1-1.07-.06-.8-.31-1.59-.72-2.24-1.22s-1.15-1.1-1.6-1.8c-.13-.21-.26-.44-.35-.67-.36-.91-.18-1.42.15-1.8.1-.12.23-.15.34-.15.11 0 .22 0 .31.01.1.01.15.02.24.11.16.15.25.38.28.42.06.1.08.23.01.37-.1.21-.15.33-.24.43-.09.1-.18.2-.26.3-.08.08-.16.17-.06.31.08.13.33.56.73.94.55.51 1.05.81 1.4.92.17.05.28.04.38-.02.1-.06.41-.49.52-.66.11-.17.22-.18.37-.11.16.07.95.45 1.12.53s.27.12.31.18.06.27.01.52z" />
+    </svg>
+);
+
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -89,7 +102,15 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
         {/* @ts-ignore */}
         {property.size && <p className="text-sm "><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
 
-        <p className="text-sm"><span className="font-semibold">Posted by:</span> Owner</p>
+        <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                <span className="font-semibold">{property.rating}</span>
+                <span className="text-muted-foreground">({property.reviews} reviews)</span>
+            </div>
+            <p><span className="font-semibold">Posted by:</span> Owner</p>
+        </div>
+        
 
         <Separator />
         
@@ -116,13 +137,20 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
                 <Phone className="mr-2 h-4 w-4" /> Call
             </Button>
             <Button variant="outline" className="flex-1">
-                <MessageSquare className="mr-2 h-4 w-4" /> Message
+                <WhatsAppIcon /> WhatsApp
             </Button>
         </div>
         
         <Button variant="default" className="w-full">
             View Details
         </Button>
+        
+        <div className="text-center">
+            <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
+                <AlertTriangle className="h-3 w-3 mr-1" />
+                Report this property
+            </Button>
+        </div>
 
       </CardContent>
     </Card>

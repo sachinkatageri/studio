@@ -18,7 +18,9 @@ export const properties = [
     type: 'Commercial',
     about: 'A vibrant co-working space in the heart of the tech hub, offering flexible office solutions for startups and enterprises.',
     amenities: ['High-Speed WiFi', 'Meeting Rooms', 'Printing', 'Coffee Bar'],
-    status: 'Available'
+    status: 'Available',
+    rating: 4.8,
+    reviews: 120
   },
   {
     id: '91springboard',
@@ -28,7 +30,9 @@ export const properties = [
     type: 'Commercial',
     about: 'Collaborative and inspiring workspace designed to foster innovation and networking among professionals.',
     amenities: ['24/7 Access', 'Event Space', 'Game Zone', 'Free Tea & Coffee'],
-    status: 'Available'
+    status: 'Available',
+    rating: 4.5,
+    reviews: 88
   },
   {
     id: 'shop-boduppal',
@@ -39,7 +43,9 @@ export const properties = [
     type: 'Commercial',
     about: 'Prime retail space located on a busy street, perfect for a small business or a boutique store.',
     amenities: ['Main Road Facing', 'Ample Parking', 'Power Backup'],
-    status: 'For Rent'
+    status: 'For Rent',
+    rating: 4.2,
+    reviews: 15
   },
   {
     id: 'restaurant-alwal',
@@ -50,7 +56,9 @@ export const properties = [
     type: 'Commercial',
     about: 'A fully-equipped restaurant space in a popular dining area, ready for immediate operation.',
     amenities: ['Full Kitchen', 'Seating Area', 'Restrooms', 'Valet Parking'],
-    status: 'For Lease'
+    status: 'For Lease',
+    rating: 4.6,
+    reviews: 45
   },
   {
     id: 'godown-moula-ali',
@@ -61,7 +69,9 @@ export const properties = [
     type: 'Commercial',
     about: 'Spacious and secure warehouse facility suitable for storage and logistics, with easy access to major highways.',
     amenities: ['Loading Dock', '24/7 Security', 'High Ceilings'],
-    status: 'Available'
+    status: 'Available',
+    rating: 4.0,
+    reviews: 10
   },
    {
     id: 'project-1',
@@ -73,6 +83,8 @@ export const properties = [
     pricePerSqFt: 250,
     about: 'Modern living in the city center with breathtaking views and world-class amenities.',
     amenities: ['Swimming Pool', 'Gym', 'Clubhouse', '24/7 Security'],
+    rating: 4.9,
+    reviews: 250
   },
   {
     id: 'project-2',
@@ -84,6 +96,8 @@ export const properties = [
     pricePerSqFt: 300,
     about: 'Luxurious villas nestled in nature, offering a peaceful and upscale lifestyle.',
     amenities: ['Private Garden', 'Community Park', 'Jogging Track', 'Gated Community'],
+    rating: 4.7,
+    reviews: 95
   },
 ];
 
