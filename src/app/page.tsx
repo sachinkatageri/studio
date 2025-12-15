@@ -7,13 +7,16 @@ import PropertyList from '@/components/sections/property-list';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
+import MobileToolbar from '@/components/layout/mobile-toolbar';
 
 type SidebarView = 'list' | 'filters';
+type MobileView = 'list' | 'map';
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [sidebarView, setSidebarView] = useState<SidebarView>('list');
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
+  const [mobileView, setMobileView] = useState<MobileView>('map');
 
   const handleFilterClick = () => {
     setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
@@ -34,20 +37,24 @@ export default function Home() {
   return (
       <div className="flex flex-col h-screen bg-background">
         <Header />
+        <MobileToolbar mobileView={mobileView} setMobileView={setMobileView} />
         <div className="flex flex-1 overflow-hidden">
           <aside className={cn(
-            "hidden md:flex flex-col border-r transition-all duration-300",
-            isSidebarOpen ? "w-[30%]" : "w-0"
+            "flex-col border-r transition-all duration-300",
+            "hidden md:flex",
+            isSidebarOpen ? "w-[30%]" : "w-0",
+            mobileView === 'list' ? 'flex w-full' : 'hidden'
           )}>
-            {isSidebarOpen && (
-              sidebarView === 'list' 
+            {sidebarView === 'list' 
                 ? <PropertyList /> 
                 : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
-            )}
+            }
           </aside>
           <main className={cn(
             "relative transition-all duration-300",
-            isSidebarOpen ? "w-[70%]" : "w-full"
+            "hidden md:block",
+            isSidebarOpen ? "w-[70%]" : "w-full",
+            mobileView === 'map' ? 'block w-full' : 'hidden'
             )}>
             <MapView 
               isSidebarOpen={isSidebarOpen} 
