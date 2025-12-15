@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { PropertyInfoCard } from './property-info-card';
 import { PropertyDetailsSheet } from './property-details-sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { properties } from './property-list';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -26,11 +27,22 @@ interface MapViewProps {
   areFiltersApplied: boolean;
   selectedPropertyId: string | null;
   onCloseInfoCard: () => void;
+  onMarkerClick: (id: string) => void;
 }
 
 type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard }: MapViewProps) {
+const propertyPositions = [
+  { id: 'wework', top: '35%', left: '40%' },
+  { id: '91springboard', top: '50%', left: '60%' },
+  { id: 'shop-boduppal', top: '65%', left: '30%' },
+  { id: 'restaurant-alwal', top: '25%', left: '70%' },
+  { id: 'godown-moula-ali', top: '80%', left: '50%' },
+  { id: 'project-1', top: '45%', left: '20%' },
+  { id: 'project-2', top: '60%', left: '80%' },
+];
+
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
   const isMobile = useIsMobile();
 
@@ -59,6 +71,36 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         data-ai-hint={mapHints[mapType]}
       />
       
+      {propertyPositions.map(pos => {
+        const property = properties.find(p => p.id === pos.id);
+        if (!property) return null;
+        return (
+          <TooltipProvider key={pos.id}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div 
+                  className="absolute z-10 -translate-x-1/2 -translate-y-full cursor-pointer" 
+                  style={{ top: pos.top, left: pos.left }}
+                  onClick={() => onMarkerClick(pos.id)}
+                >
+                  <div className="flex items-center gap-1 bg-background p-1 rounded-full shadow-lg">
+                    <MapPin className={cn(
+                      "h-5 w-5",
+                      selectedPropertyId === pos.id ? 'text-white fill-primary' : 'text-primary fill-current'
+                    )} />
+                    <span className="text-xs font-bold pr-2 whitespace-nowrap">₹{property.pricePerSqFt}</span>
+                  </div>
+                  <div className="w-2 h-2 bg-primary rounded-full mx-auto shadow-lg"></div>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{property.name}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        );
+      })}
+
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md px-4 md:px-0">
         <div className="relative flex items-center gap-2">
             <div className="relative w-full">

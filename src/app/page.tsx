@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
 import MobileToolbar from '@/components/layout/mobile-toolbar';
+import Footer from '@/components/layout/footer';
 
 type SidebarView = 'list' | 'filters';
 type MobileView = 'list' | 'map';
@@ -40,6 +41,10 @@ export default function Home() {
     if (window.innerWidth < 768) { // md breakpoint
       setMobileView('map');
     }
+  }
+  
+  const handleMarkerClick = (propertyId: string) => {
+    setSelectedPropertyId(propertyId);
   }
 
   const handleCloseInfoCard = () => {
@@ -75,9 +80,11 @@ export default function Home() {
               areFiltersApplied={areFiltersApplied}
               selectedPropertyId={selectedPropertyId}
               onCloseInfoCard={handleCloseInfoCard}
+              onMarkerClick={handleMarkerClick}
             />
           </main>
         </div>
+        <Footer />
       </div>
   );
 }

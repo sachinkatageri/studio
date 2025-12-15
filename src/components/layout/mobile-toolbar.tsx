@@ -17,7 +17,7 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
       <div className="flex items-center gap-2">
         <span className="text-sm text-muted-foreground">Sort by:</span>
         <Select defaultValue="builtup-area">
-          <SelectTrigger className="w-[180px] h-9">
+          <SelectTrigger className="w-auto h-9">
             <SelectValue placeholder="Sort by" />
           </SelectTrigger>
           <SelectContent>
@@ -27,24 +27,6 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
             <SelectItem value="newest">Newest First</SelectItem>
           </SelectContent>
         </Select>
-      </div>
-      <div className="flex items-center border rounded-md">
-        <Button 
-            variant={mobileView === 'list' ? 'secondary' : 'ghost'} 
-            size="icon" 
-            className="h-9 w-9 rounded-r-none border-r"
-            onClick={() => setMobileView('list')}
-        >
-          <List className="h-5 w-5" />
-        </Button>
-        <Button 
-            variant={mobileView === 'map' ? 'secondary' : 'ghost'} 
-            size="icon" 
-            className="h-9 w-9 rounded-l-none"
-            onClick={() => setMobileView('map')}
-        >
-          <MapPin className={cn("h-5 w-5", mobileView === 'map' ? 'text-primary' : 'text-muted-foreground')} />
-        </Button>
       </div>
     </div>
   );
