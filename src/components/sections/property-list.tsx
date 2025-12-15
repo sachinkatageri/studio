@@ -16,6 +16,9 @@ export const properties = [
     location: 'in Bellandur, Hyderabad, Karnataka',
     pricePerSqFt: 120,
     type: 'Commercial',
+    about: 'A vibrant co-working space in the heart of the tech hub, offering flexible office solutions for startups and enterprises.',
+    amenities: ['High-Speed WiFi', 'Meeting Rooms', 'Printing', 'Coffee Bar'],
+    status: 'Available'
   },
   {
     id: '91springboard',
@@ -23,6 +26,9 @@ export const properties = [
     location: 'in Jhandewalan, Delhi, Delhi',
     pricePerSqFt: 110,
     type: 'Commercial',
+    about: 'Collaborative and inspiring workspace designed to foster innovation and networking among professionals.',
+    amenities: ['24/7 Access', 'Event Space', 'Game Zone', 'Free Tea & Coffee'],
+    status: 'Available'
   },
   {
     id: 'shop-boduppal',
@@ -31,6 +37,9 @@ export const properties = [
     size: 100,
     pricePerSqFt: 95,
     type: 'Commercial',
+    about: 'Prime retail space located on a busy street, perfect for a small business or a boutique store.',
+    amenities: ['Main Road Facing', 'Ample Parking', 'Power Backup'],
+    status: 'For Rent'
   },
   {
     id: 'restaurant-alwal',
@@ -39,6 +48,9 @@ export const properties = [
     size: 1000,
     pricePerSqFt: 150,
     type: 'Commercial',
+    about: 'A fully-equipped restaurant space in a popular dining area, ready for immediate operation.',
+    amenities: ['Full Kitchen', 'Seating Area', 'Restrooms', 'Valet Parking'],
+    status: 'For Lease'
   },
   {
     id: 'godown-moula-ali',
@@ -47,6 +59,9 @@ export const properties = [
     size: 2000,
     pricePerSqFt: 80,
     type: 'Commercial',
+    about: 'Spacious and secure warehouse facility suitable for storage and logistics, with easy access to major highways.',
+    amenities: ['Loading Dock', '24/7 Security', 'High Ceilings'],
+    status: 'Available'
   },
    {
     id: 'project-1',
@@ -56,6 +71,8 @@ export const properties = [
     status: 'Ready to move',
     type: 'Residential',
     pricePerSqFt: 250,
+    about: 'Modern living in the city center with breathtaking views and world-class amenities.',
+    amenities: ['Swimming Pool', 'Gym', 'Clubhouse', '24/7 Security'],
   },
   {
     id: 'project-2',
@@ -65,6 +82,8 @@ export const properties = [
     status: 'New Launch',
     type: 'Residential',
     pricePerSqFt: 300,
+    about: 'Luxurious villas nestled in nature, offering a peaceful and upscale lifestyle.',
+    amenities: ['Private Garden', 'Community Park', 'Jogging Track', 'Gated Community'],
   },
 ];
 

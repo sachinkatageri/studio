@@ -6,8 +6,9 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
-import { X, Phone, MessageSquare } from 'lucide-react';
+import { X, Phone, MessageSquare, Briefcase, Share2, Diamond, Navigation } from 'lucide-react';
 import { Badge } from '../ui/badge';
+import { Separator } from '../ui/separator';
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -21,10 +22,10 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
   if (!property) return null;
 
   return (
-    <Card className="w-80 shadow-2xl">
+    <Card className="w-96 shadow-2xl">
       <CardHeader className="p-0 relative">
         {propertyImage && (
-          <div className="relative h-40 w-full">
+          <div className="relative h-48 w-full">
             <Image
               src={propertyImage.imageUrl}
               alt={propertyImage.description}
@@ -37,15 +38,22 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
         <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white hover:text-white rounded-full h-8 w-8" onClick={onClose}>
           <X className="h-4 w-4" />
         </Button>
-        <div className="absolute bottom-0 left-0 p-3 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
-          <CardTitle className="text-lg font-bold text-white">{property.name}</CardTitle>
-          <p className="text-sm text-neutral-300">{property.location}</p>
+        <div className="absolute top-2 left-2 flex gap-2">
+            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                <Navigation className='h-4 w-4' />
+            </Button>
+            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                <Share2 className='h-4 w-4' />
+            </Button>
+        </div>
+        <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
+          <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
+          <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
         </div>
       </CardHeader>
-      <CardContent className="p-4 space-y-3">
+      <CardContent className="p-4 space-y-4">
         <div className="flex justify-between items-center">
-          <p className="text-lg font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
-          {/* @ts-ignore */}
+          <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
           {property.status && <Badge variant="secondary">{property.status}</Badge>}
         </div>
         
@@ -53,6 +61,23 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
         {property.size && <p className="text-sm "><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
 
         <p className="text-sm"><span className="font-semibold">Posted by:</span> Owner</p>
+
+        <Separator />
+        
+        <div>
+            <h4 className="text-sm font-semibold mb-2">About</h4>
+            <p className="text-sm text-muted-foreground">{property.about}</p>
+        </div>
+
+        <div>
+            <h4 className="text-sm font-semibold mb-2">Amenities</h4>
+            <div className="flex flex-wrap gap-2">
+                {/* @ts-ignore */}
+                {property.amenities?.map((amenity: string) => (
+                    <Badge key={amenity} variant="outline" className="font-normal">{amenity}</Badge>
+                ))}
+            </div>
+        </div>
 
         <div className="flex gap-2 pt-2">
             <Button className="flex-1">
@@ -62,6 +87,10 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
                 <MessageSquare className="mr-2 h-4 w-4" /> Message
             </Button>
         </div>
+        
+        <Button variant="default" className="w-full">
+            View Details
+        </Button>
 
       </CardContent>
     </Card>
