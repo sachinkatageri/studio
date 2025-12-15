@@ -72,42 +72,39 @@ export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsShe
 
   return (
     <Sheet open={!!propertyId} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[90vh] flex flex-col">
-        <SheetHeader className="relative -mx-6 -mt-6">
-          {propertyImage && (
-            <div className="relative h-48 w-full">
-              <Image
-                src={propertyImage.imageUrl}
-                alt={propertyImage.description}
-                fill
-                className="object-cover"
-                data-ai-hint={propertyImage.imageHint}
-              />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            </div>
-          )}
-           <div className="absolute top-4 right-4 flex gap-2">
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
-                <Navigation className='h-4 w-4' />
-            </Button>
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
-                <Share2 className='h-4 w-4' />
-            </Button>
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
-                <Heart className='h-4 w-4' />
-            </Button>
-        </div>
-          <div className="absolute bottom-0 left-0 p-4">
-            {property && (
-                <>
+      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0">
+        {property && (
+          <>
+            <SheetHeader className="relative shrink-0">
+              {propertyImage && (
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={propertyImage.imageUrl}
+                    alt={propertyImage.description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={propertyImage.imageHint}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                </div>
+              )}
+              <div className="absolute top-4 right-4 flex gap-2">
+                <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
+                    <Navigation className='h-4 w-4' />
+                </Button>
+                <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
+                    <Share2 className='h-4 w-4' />
+                </Button>
+                <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white'>
+                    <Heart className='h-4 w-4' />
+                </Button>
+              </div>
+              <div className="absolute bottom-0 left-0 p-4">
                 <SheetTitle className="text-2xl text-white">{property.name}</SheetTitle>
                 <SheetDescription className="text-neutral-300">{property.location}</SheetDescription>
-                </>
-            )}
-          </div>
-        </SheetHeader>
-        {property && (
-            <div className="flex-1 overflow-y-auto space-y-4 py-4">
+              </div>
+            </SheetHeader>
+            <div className="flex-1 overflow-y-auto space-y-4 p-4">
                 <div className="flex justify-between items-center">
                     <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
                     {property.status && <Badge variant="secondary" className="text-base">{property.status}</Badge>}
@@ -145,28 +142,28 @@ export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsShe
                         ))}
                     </div>
                 </div>
-
-                <div className="pt-4 space-y-2">
-                  <div className="flex gap-2">
-                      <Button className="flex-1 text-lg py-6">
-                          <Phone className="mr-2 h-5 w-5" /> Call
-                      </Button>
-                      <Button variant="outline" className="flex-1 text-lg py-6">
-                          <WhatsAppIcon /> WhatsApp
-                      </Button>
-                  </div>
-                  <Button variant="default" className="w-full text-lg py-6">
-                    View Details
-                  </Button>
-                </div>
                 
-                <div className="text-center">
+                 <div className="text-center">
                   <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
                       <AlertTriangle className="h-3 w-3 mr-1" />
                       Report this property
                   </Button>
               </div>
             </div>
+            <div className="p-4 border-t bg-background space-y-2 sticky bottom-0">
+                <div className="flex gap-2">
+                    <Button className="flex-1 text-lg py-6">
+                        <Phone className="mr-2 h-5 w-5" /> Call
+                    </Button>
+                    <Button variant="outline" className="flex-1 text-lg py-6">
+                        <WhatsAppIcon /> WhatsApp
+                    </Button>
+                </div>
+                <Button variant="default" className="w-full text-lg py-6">
+                  View Details
+                </Button>
+            </div>
+          </>
         )}
       </SheetContent>
     </Sheet>
