@@ -23,6 +23,36 @@
       "description": "Skyscraper in a modern city",
       "imageUrl": "https://images.unsplash.com/photo-1648653606244-6413d32d19d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjaXR5JTIwc2t5c2NyYXBlcnxlbnwwfHx8fDE3NjU3OTkxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "city skyscraper"
+    },
+    {
+      "id": "wework",
+      "description": "Modern open-plan office interior of a WeWork",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-b413da4baf72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y293b3JraW5nJTIwc3BhY2V8ZW58MHx8fHwxNzY1NzM3NDU2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coworking space"
+    },
+    {
+      "id": "91springboard",
+      "description": "Collaborative workspace at 91Springboard",
+      "imageUrl": "https://images.unsplash.com/photo-1587702068694-a909ef4aa346?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvZmZpY2UlMjBpbnRlcmlvcnxlbnwwfHx8fDE3NjU3MzY2ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "office interior"
+    },
+    {
+      "id": "shop-boduppal",
+      "description": "Interior of a retail shop in Boduppal",
+      "imageUrl": "https://images.unsplash.com/photo-1481437156560-3205f6a55735?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZXRhaWwlMjBzdG9yZXxlbnwwfHx8fDE3NjU4MDEwMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "retail store"
+    },
+    {
+      "id": "restaurant-alwal",
+      "description": "Dining area of a restaurant in Alwal",
+      "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyZXN0YXVyYW50JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY1NzQxMzgyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "restaurant interior"
+    },
+    {
+      "id": "godown-moula-ali",
+      "description": "Spacious warehouse interior in Moula Ali",
+      "imageUrl": "https://images.unsplash.com/photo-1587497256464-b72dd7ce9c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3YXJlaG91c2UlMjBzcGFjZXxlbnwwfHx8fDE3NjU4MDMwMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "warehouse space"
     }
   ]
 }
