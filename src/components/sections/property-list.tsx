@@ -5,7 +5,15 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Input } from '../ui/input';
-import { Search } from 'lucide-react';
+import { ArrowRight, Search, SlidersHorizontal } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Checkbox } from '../ui/checkbox';
+import { Label } from '../ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Separator } from '../ui/separator';
+import { Slider } from '../ui/slider';
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 
 const properties = [
   {
@@ -44,6 +52,9 @@ const properties = [
 ];
 
 export default function PropertyList() {
+    const [budget, setBudget] = useState([0, 30]);
+    const [size, setSize] = useState([0, 50000]);
+
     return (
     <div className="flex flex-col h-full bg-card">
       <div className="p-4 border-b space-y-4">
@@ -59,6 +70,84 @@ export default function PropertyList() {
               className="w-full pl-10 h-10 bg-background"
             />
           </div>
+      </div>
+      <div className="p-4 border-b">
+         <div className="flex-grow overflow-y-auto pr-2 space-y-6">
+              <div className="space-y-4">
+                <h4 className="font-semibold">Type</h4>
+                 <Tabs defaultValue="all">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="all">All</TabsTrigger>
+                    <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                    <TabsTrigger value="residential">Residential</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
+              <Separator />
+              <div className="space-y-4">
+                <h4 className="font-semibold">Listed By:</h4>
+                 <div className="flex flex-wrap gap-2">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox id="owner-filter" />
+                    <Label htmlFor="owner-filter" className="text-sm font-normal">Owner</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox id="agent-filter" />
+                    <Label htmlFor="agent-filter" className="text-sm font-normal">Agent</Label>
+                  </div>
+                   <div className="flex items-center space-x-2">
+                    <Checkbox id="buildersinfo-filter" />
+                    <Label htmlFor="buildersinfo-filter" className="text-sm font-normal">Buildersinfo</Label>
+                  </div>
+                </div>
+              </div>
+              <Separator />
+              <div className="space-y-4">
+                <h4 className="font-semibold">Budget <span className="text-sm font-normal text-muted-foreground">(In Crores)</span></h4>
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>₹{budget[0]}cr</span>
+                  <span>₹{budget[1]}cr</span>
+                </div>
+                <Slider
+                  min={0}
+                  max={30}
+                  step={1}
+                  value={budget}
+                  onValueChange={setBudget}
+                />
+              </div>
+              <Separator />
+               <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                    <h4 className="font-semibold">Size</h4>
+                    <Select defaultValue="sq-yd">
+                        <SelectTrigger className="w-[150px]">
+                            <SelectValue placeholder="Select unit" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="sq-yd">Square Yards</SelectItem>
+                            <SelectItem value="sq-ft">Square Feet</SelectItem>
+                            <SelectItem value="sq-m">Square Meters</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div className="flex justify-between text-sm text-muted-foreground">
+                  <span>{size[0].toLocaleString()} sq yd</span>
+                  <span>{size[1].toLocaleString()} sq yd</span>
+                </div>
+                <Slider
+                  min={0}
+                  max={50000}
+                  step={100}
+                  value={size}
+                  onValueChange={setSize}
+                />
+              </div>
+            </div>
+            <div className="mt-6 flex gap-2">
+              <Button variant="outline" className="w-full">Clear all</Button>
+              <Button className="w-full">Apply <ArrowRight className="ml-2 h-4 w-4" /></Button>
+            </div>
       </div>
       <ScrollArea className="flex-1">
         <div className="p-2 space-y-2">
