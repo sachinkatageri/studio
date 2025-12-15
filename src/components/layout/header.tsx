@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { Crown, Map, Building, Home, ArrowRight, Menu } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -10,13 +11,27 @@ export default function Header() {
           <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
         </Link>
         <nav className="hidden md:flex gap-6 items-center">
-          <Link href="#services" className="text-sm font-medium hover:text-primary transition-colors">Services</Link>
-          <Link href="#projects" className="text-sm font-medium hover:text-primary transition-colors">Projects</Link>
-          <Link href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</Link>
+          <Link href="#" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+            <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
+            Map-View
+          </Link>
+          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            Commercial
+          </Link>
+          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            Residential
+          </Link>
+           <Link href="#" className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Crown className="mr-2 h-4 w-4" />
+            Builders
+          </Link>
         </nav>
-        <Button asChild>
-          <Link href="#contact">Contact Us</Link>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button>Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
+          <Button variant="ghost" size="icon" className="md:hidden">
+            <Menu />
+          </Button>
+        </div>
       </div>
     </header>
   );
