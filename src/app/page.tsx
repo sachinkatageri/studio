@@ -13,12 +13,10 @@ export default function Home() {
       <div className="flex flex-col h-screen bg-background">
         <Header />
         <div className="flex flex-1 overflow-hidden">
-          <Sidebar side="left" className="w-96 hidden md:flex flex-col border-r">
-            <SidebarContent>
-              <PropertyList />
-            </SidebarContent>
-          </Sidebar>
-          <main className="flex-1 relative">
+          <aside className="w-[30%] hidden md:flex flex-col border-r">
+            <PropertyList />
+          </aside>
+          <main className="w-[70%] relative">
             <MapView />
           </main>
         </div>
