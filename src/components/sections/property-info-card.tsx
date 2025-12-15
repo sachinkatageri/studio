@@ -6,9 +6,10 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
-import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle } from 'lucide-react';
+import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
+import { formatDistanceToNow } from 'date-fns';
 
 const WhatsAppIcon = () => (
     <svg
@@ -62,6 +63,9 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
 
   if (!property) return null;
+  
+  // @ts-ignore
+  const postedDate = property.postedOn ? formatDistanceToNow(new Date(property.postedOn), { addSuffix: true }) : null;
 
   return (
     <Card className="w-96 shadow-2xl">
@@ -87,6 +91,9 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
             <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
                 <Share2 className='h-4 w-4' />
             </Button>
+            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                <Heart className='h-4 w-4' />
+            </Button>
         </div>
         <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
           <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
@@ -102,13 +109,15 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
         {/* @ts-ignore */}
         {property.size && <p className="text-sm "><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
 
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
             <div className="flex items-center gap-1">
                 <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                 <span className="font-semibold">{property.rating}</span>
                 <span className="text-muted-foreground">({property.reviews} reviews)</span>
             </div>
             <p><span className="font-semibold">Posted by:</span> Owner</p>
+             {/* @ts-ignore */}
+            {postedDate && <p><span className="font-semibold">Posted:</span> {postedDate}</p>}
         </div>
         
 

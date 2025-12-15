@@ -20,7 +20,8 @@ export const properties = [
     amenities: ['High-Speed WiFi', 'Meeting Rooms', 'Printing', 'Coffee Bar'],
     status: 'Available',
     rating: 4.8,
-    reviews: 120
+    reviews: 120,
+    postedOn: '2024-07-15'
   },
   {
     id: '91springboard',
@@ -32,7 +33,8 @@ export const properties = [
     amenities: ['24/7 Access', 'Event Space', 'Game Zone', 'Free Tea & Coffee'],
     status: 'Available',
     rating: 4.5,
-    reviews: 88
+    reviews: 88,
+    postedOn: '2024-07-12'
   },
   {
     id: 'shop-boduppal',
@@ -45,7 +47,8 @@ export const properties = [
     amenities: ['Main Road Facing', 'Ample Parking', 'Power Backup'],
     status: 'For Rent',
     rating: 4.2,
-    reviews: 15
+    reviews: 15,
+    postedOn: '2024-07-18'
   },
   {
     id: 'restaurant-alwal',
@@ -58,7 +61,8 @@ export const properties = [
     amenities: ['Full Kitchen', 'Seating Area', 'Restrooms', 'Valet Parking'],
     status: 'For Lease',
     rating: 4.6,
-    reviews: 45
+    reviews: 45,
+    postedOn: '2024-06-30'
   },
   {
     id: 'godown-moula-ali',
@@ -71,7 +75,8 @@ export const properties = [
     amenities: ['Loading Dock', '24/7 Security', 'High Ceilings'],
     status: 'Available',
     rating: 4.0,
-    reviews: 10
+    reviews: 10,
+    postedOn: '2024-07-05'
   },
    {
     id: 'project-1',
@@ -84,7 +89,8 @@ export const properties = [
     about: 'Modern living in the city center with breathtaking views and world-class amenities.',
     amenities: ['Swimming Pool', 'Gym', 'Clubhouse', '24/7 Security'],
     rating: 4.9,
-    reviews: 250
+    reviews: 250,
+    postedOn: '2024-07-20'
   },
   {
     id: 'project-2',
@@ -97,7 +103,8 @@ export const properties = [
     about: 'Luxurious villas nestled in nature, offering a peaceful and upscale lifestyle.',
     amenities: ['Private Garden', 'Community Park', 'Jogging Track', 'Gated Community'],
     rating: 4.7,
-    reviews: 95
+    reviews: 95,
+    postedOn: '2024-07-21'
   },
 ];
 
