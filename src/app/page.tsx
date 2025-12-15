@@ -17,6 +17,7 @@ export default function Home() {
   const [sidebarView, setSidebarView] = useState<SidebarView>('list');
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>('map');
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
 
   const handleFilterClick = () => {
     setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
@@ -34,6 +35,14 @@ export default function Home() {
     setSidebarView('list');
   }
 
+  const handleSelectProperty = (propertyId: string) => {
+    setSelectedPropertyId(propertyId);
+  }
+
+  const handleCloseInfoCard = () => {
+    setSelectedPropertyId(null);
+  }
+
   return (
       <div className="flex flex-col h-screen bg-background">
         <Header />
@@ -46,7 +55,7 @@ export default function Home() {
             mobileView === 'list' ? 'flex w-full' : 'hidden'
           )}>
             {sidebarView === 'list' 
-                ? <PropertyList /> 
+                ? <PropertyList onSelectProperty={handleSelectProperty} /> 
                 : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
             }
           </aside>
@@ -61,6 +70,8 @@ export default function Home() {
               toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
               onFilterClick={handleFilterClick}
               areFiltersApplied={areFiltersApplied}
+              selectedPropertyId={selectedPropertyId}
+              onCloseInfoCard={handleCloseInfoCard}
             />
           </main>
         </div>

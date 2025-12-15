@@ -15,17 +15,20 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '../ui/separator';
 import { useState } from 'react';
+import { PropertyInfoCard } from './property-info-card';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
   onFilterClick: () => void;
   areFiltersApplied: boolean;
+  selectedPropertyId: string | null;
+  onCloseInfoCard: () => void;
 }
 
 type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
 
   const mapImages = {
@@ -111,6 +114,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        <TooltipProvider>
         <div className={cn(
             "absolute top-1/2 -translate-y-1/2 z-10 transition-all duration-300",
+            "hidden md:block",
             isSidebarOpen ? "left-0" : "left-0"
             )}>
             <Tooltip>
@@ -125,6 +129,12 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             </Tooltip>
         </div>
        </TooltipProvider>
+
+       {selectedPropertyId && (
+        <div className="absolute bottom-4 right-4 z-10">
+          <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
+        </div>
+       )}
 
     </div>
   );
