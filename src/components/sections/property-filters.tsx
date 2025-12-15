@@ -54,6 +54,28 @@ export default function PropertyFilters({ onBack }: PropertyFiltersProps) {
 
         <Card>
           <CardHeader>
+            <CardTitle className="text-base">Listed By</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup defaultValue="all-listed">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="owner" id="r-owner" />
+                <Label htmlFor="r-owner">Owner</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="agent" id="r-agent" />
+                <Label htmlFor="r-agent">Agent</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="buildersinfo" id="r-buildersinfo" />
+                <Label htmlFor="r-buildersinfo">Buildersinfo</Label>
+              </div>
+            </RadioGroup>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
             <CardTitle className="text-base">Price Range</CardTitle>
           </CardHeader>
           <CardContent className='pt-2'>
