@@ -17,9 +17,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 
 interface PropertyFiltersProps {
   onBack: () => void;
+  onApplyFilters: () => void;
 }
 
-export default function PropertyFilters({ onBack }: PropertyFiltersProps) {
+export default function PropertyFilters({ onBack, onApplyFilters }: PropertyFiltersProps) {
   return (
     <div className="flex flex-col h-full bg-card p-4">
       <div className="flex items-center gap-2 pb-4 border-b">
@@ -129,7 +130,7 @@ export default function PropertyFilters({ onBack }: PropertyFiltersProps) {
         </Card>
       </div>
       <div className="pt-4 border-t mt-auto">
-        <Button className="w-full">Apply Filters</Button>
+        <Button className="w-full" onClick={onApplyFilters}>Apply Filters</Button>
       </div>
     </div>
   );

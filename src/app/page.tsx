@@ -13,6 +13,7 @@ type SidebarView = 'list' | 'filters';
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [sidebarView, setSidebarView] = useState<SidebarView>('list');
+  const [areFiltersApplied, setAreFiltersApplied] = useState(false);
 
   const handleFilterClick = () => {
     setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
@@ -22,6 +23,11 @@ export default function Home() {
   };
 
   const handleBackToList = () => {
+    setSidebarView('list');
+  }
+
+  const handleApplyFilters = () => {
+    setAreFiltersApplied(true);
     setSidebarView('list');
   }
 
@@ -36,7 +42,7 @@ export default function Home() {
             {isSidebarOpen && (
               sidebarView === 'list' 
                 ? <PropertyList /> 
-                : <PropertyFilters onBack={handleBackToList} />
+                : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
             )}
           </aside>
           <main className={cn(
@@ -47,6 +53,7 @@ export default function Home() {
               isSidebarOpen={isSidebarOpen} 
               toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
               onFilterClick={handleFilterClick}
+              areFiltersApplied={areFiltersApplied}
             />
           </main>
         </div>

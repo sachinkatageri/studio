@@ -5,14 +5,16 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Layers, PanelLeft, Search, SlidersHorizontal } from 'lucide-react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
   toggleSidebar: () => void;
   onFilterClick: () => void;
+  areFiltersApplied: boolean;
 }
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied }: MapViewProps) {
 
   return (
     <div className="relative h-full w-full">
@@ -35,7 +37,12 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick }:
                 className="w-full pl-10 h-12 text-foreground shadow-lg"
               />
             </div>
-            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 flex-shrink-0" onClick={onFilterClick}>
+            <Button 
+              variant={areFiltersApplied ? "default" : "secondary"} 
+              size="icon" 
+              className="shadow-lg h-12 w-12 flex-shrink-0" 
+              onClick={onFilterClick}
+            >
               <SlidersHorizontal />
             </Button>
         </div>
