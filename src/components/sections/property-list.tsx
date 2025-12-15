@@ -72,7 +72,7 @@ const residentialProperties = properties.filter(p => p.type === 'Residential');
 const PropertyCard = ({ property }: { property: typeof properties[0]}) => {
   const propertyImage = PlaceHolderImages.find(p => p.id === property.id);
   return (
-    <Card key={property.id} className="overflow-hidden group hover:bg-muted/50 cursor-pointer shadow-none border-0">
+    <Card key={property.id} className="overflow-hidden group hover:bg-muted/50 cursor-pointer shadow-none border-0 border-b rounded-none">
       <CardContent className="p-3 flex gap-3 items-start">
           <div className="relative h-24 w-24 rounded-md overflow-hidden shrink-0">
           {propertyImage && (
@@ -112,23 +112,23 @@ export default function PropertyList() {
             <div className="py-4">
                 <p className="text-sm text-muted-foreground">7 properties found</p>
             </div>
-            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 180px)'}}>
+            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 240px)'}}>
                 <TabsContent value="all">
-                    <div className="space-y-2">
+                    <div className="-mx-4">
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="commercial">
-                    <div className="space-y-2">
+                    <div className="-mx-4">
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="residential">
-                     <div className="space-y-2">
+                     <div className="-mx-4">
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} />
                         ))}
