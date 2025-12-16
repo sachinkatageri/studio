@@ -196,21 +196,23 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 }
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
-    <div className="grid grid-cols-2 gap-2">
-        {images.map((image, index) => (
-            <div key={image.id} className={cn(
-                "relative aspect-video overflow-hidden rounded-lg",
-                index === 0 && 'col-span-2 row-span-2 aspect-[4/3]',
-            )}>
-                <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                    data-ai-hint={image.hint}
-                />
-            </div>
-        ))}
+    <div className="w-full max-w-[60%] mx-auto">
+        <div className="grid grid-cols-2 gap-2">
+            {images.map((image, index) => (
+                <div key={image.id} className={cn(
+                    "relative aspect-video overflow-hidden rounded-lg",
+                    index === 0 && 'col-span-2 row-span-2 aspect-[4/3]',
+                )}>
+                    <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={image.hint}
+                    />
+                </div>
+            ))}
+        </div>
     </div>
 );
 
