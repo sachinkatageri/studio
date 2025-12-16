@@ -24,7 +24,7 @@ interface PropertyDetailsSheetProps {
 }
 
 const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
+    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
 );
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
@@ -165,18 +165,18 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                   </Button>
               </div>
             </div>
-            <div className="p-4 border-t bg-background space-y-2 sticky bottom-0">
+            <div className="p-4 border-t bg-background sticky bottom-0">
                 <div className="flex gap-2">
-                    <Button className="flex-1 text-lg py-6">
-                        <Phone className="mr-2 h-5 w-5" /> Call
+                    <Button variant="outline" size="icon" className="h-14 w-14">
+                        <Phone className="h-6 w-6" />
                     </Button>
-                    <Button variant="outline" className="flex-1 text-lg py-6">
-                        <WhatsAppIcon /> WhatsApp
+                    <Button variant="outline" size="icon" className="h-14 w-14">
+                        <WhatsAppIcon />
+                    </Button>
+                    <Button variant="default" className="flex-1 text-lg py-6" onClick={() => onViewDetails(property.id)}>
+                        View Details
                     </Button>
                 </div>
-                <Button variant="default" className="w-full text-lg py-6" onClick={() => onViewDetails(property.id)}>
-                  View Details
-                </Button>
             </div>
           </>
         )}
