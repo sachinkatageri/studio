@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, MoreVertical, User, Settings, LogOut } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Settings, LogOut } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import {
   DropdownMenu,
@@ -18,7 +18,7 @@ import {
 export default function Header() {
   return (
     <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b">
-      <div className="container mx-auto flex justify-between items-center py-2 px-4 sm:px-6 lg:px-8">
+      <div className="w-full flex justify-between items-center py-2 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
@@ -45,7 +45,7 @@ export default function Header() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="hidden sm:inline-flex">
-                <MoreVertical />
+                <Menu />
                 <span className="sr-only">Open user menu</span>
               </Button>
             </DropdownMenuTrigger>
