@@ -196,7 +196,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 }
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
-    <div className="w-full max-w-[80%] mx-auto">
+    <div className="w-full mx-auto">
         <div className="grid grid-cols-4 grid-rows-2 gap-2 aspect-[2/1]">
             {images.map((image, index) => (
                 <div key={image.id} className={cn(
@@ -541,9 +541,9 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <PropertyDocument />
                 </CardContent>
             </Card>
+            
+            <Separator />
+            <OurServices />
         </div>
     )
 }
-
-    
-    
