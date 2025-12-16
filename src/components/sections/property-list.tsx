@@ -158,21 +158,21 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
                 <p className="text-sm text-muted-foreground">6 properties found</p>
             </div>
             <ScrollArea className="flex-1 -mx-4" >
-                <TabsContent value="all">
+                <TabsContent value="all" className="mt-0">
                     <div className="px-4">
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
-                <TabsContent value="commercial">
+                <TabsContent value="commercial" className="mt-0">
                     <div className="px-4">
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
-                <TabsContent value="residential">
+                <TabsContent value="residential" className="mt-0">
                      <div className="px-4">
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
