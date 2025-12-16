@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Image from 'next/image';
@@ -178,7 +179,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
         <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
             <p>
-              Preliminary verification done. 
+              <span className="font-semibold text-foreground">Preliminary verification done.</span>
               <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
             </p>
             <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>

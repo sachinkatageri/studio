@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import {
@@ -13,7 +14,7 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check } from "lucide-react";
+import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check, ChevronRight } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
@@ -181,7 +182,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 
                  <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
                     <p>
-                      Preliminary verification done. 
+                      <span className="font-semibold text-foreground">Preliminary verification done.</span>
                       <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
                     </p>
                     <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
