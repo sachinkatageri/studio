@@ -1,3 +1,4 @@
+
 export const properties = [
     {
       id: 'wework',
@@ -120,6 +121,36 @@ export const properties = [
       "description": "Cozy nook with hanging chairs for relaxation.",
       "imageUrl": "https://picsum.photos/seed/gallery-5/600/800",
       "imageHint": "lounge area"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Reception desk in a modern office lobby.",
+      "imageUrl": "https://picsum.photos/seed/gallery-6/800/600",
+      "imageHint": "office reception"
+    },
+    {
+      "id": "gallery-7",
+      "description": "Dedicated desks in a quiet zone of the coworking space.",
+      "imageUrl": "https://picsum.photos/seed/gallery-7/800/600",
+      "imageHint": "dedicated desks"
+    },
+    {
+      "id": "gallery-8",
+      "description": "Phone booths for private calls.",
+      "imageUrl": "https://picsum.photos/seed/gallery-8/600/800",
+      "imageHint": "phone booth"
+    },
+    {
+      "id": "gallery-9",
+      "description": "Large conference room with video conferencing setup.",
+      "imageUrl": "https://picsum.photos/seed/gallery-9/800/600",
+      "imageHint": "conference room"
+    },
+    {
+      "id": "gallery-10",
+      "description": "Outdoor terrace with seating and city views.",
+      "imageUrl": "https://picsum.photos/seed/gallery-10/800/600",
+      "imageHint": "office terrace"
     }
   ]
   

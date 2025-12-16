@@ -50,11 +50,13 @@ const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange
 
 export default function PropertyImageGallery() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const imagesToShow = 5;
+    const remainingImages = propertyImageGallery.length - imagesToShow;
     
     return (
         <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[300px]">
-                {propertyImageGallery.slice(0, 5).map((image, index) => (
+                {propertyImageGallery.slice(0, imagesToShow).map((image, index) => (
                     <div
                         key={image.id}
                         className={cn(
@@ -85,7 +87,7 @@ export default function PropertyImageGallery() {
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
                 <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
-                    9+ more
+                    {remainingImages > 0 ? `${remainingImages}+ more` : 'View Gallery'}
                 </Button>
             </div>
             <ImageGalleryModal open={isModalOpen} onOpenChange={setIsModalOpen} />
