@@ -58,7 +58,7 @@ const UserMenuButton = () => (
                           <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Personalized experience</li>
                       </ul>
                   </div>
-                  <Button className="bg-green-500 hover:bg-green-600 text-white">Login</Button>
+                  <Button>Login</Button>
               </div>
             </div>
             <div className="flex-grow overflow-y-auto p-4 space-y-4">
