@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { X, ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
 
 interface VerificationProcessDialogProps {
   open: boolean;
@@ -57,7 +57,7 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
                 </SelectContent>
             </Select>
             <DialogClose asChild>
-                <button className="p-1 rounded-full hover:bg-muted">
+                <button className="p-1 rounded-full hover:bg-muted md:hidden">
                  <X className="h-5 w-5" />
                 </button>
             </DialogClose>
@@ -96,4 +96,3 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
     </Dialog>
   );
 }
-
