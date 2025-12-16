@@ -1,8 +1,9 @@
 
+
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
@@ -130,21 +131,31 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     )
 }
 
-const PropertyLayout = () => {
-    const layoutItems = [
+const PropertyLayout = ({ property }: { property: Property }) => {
+    const isCommercial = property.type === 'Commercial';
+
+    const residentialLayoutItems = [
       { icon: <Building className="h-5 w-5" />, label: 'Type', value: 'Apartment' },
       { icon: <Square className="h-5 w-5" />, label: 'Area', value: '1800 sqft' },
       { icon: <Bed className="h-5 w-5" />, label: 'Bedrooms', value: '3' },
       { icon: <Bath className="h-5 w-5" />, label: 'Bathrooms', value: '3' },
       { icon: <ParkingSquare className="h-5 w-5" />, label: 'Parking', value: '2 spots' },
     ];
+
+    const commercialLayoutItems = [
+        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '6-15' },
+        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '16-30' },
+        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '31-60' },
+    ];
   
+    const layoutItems = isCommercial ? commercialLayoutItems : residentialLayoutItems;
+
     return (
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isCommercial ? 'md:grid-cols-3' : 'md:grid-cols-4 lg:grid-cols-5'} gap-4`}>
           {layoutItems.map(item => (
-            <div key={item.label} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
+            <div key={item.value} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
               <div className="text-primary">{item.icon}</div>
               <p className="text-sm text-muted-foreground">{item.label}</p>
               <p className="font-semibold">{item.value}</p>
@@ -237,7 +248,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
 
             <Separator className="my-8" />
 
-            <PropertyLayout />
+            <PropertyLayout property={property} />
 
             <Separator className="my-8" />
 
