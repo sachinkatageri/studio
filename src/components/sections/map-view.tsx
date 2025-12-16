@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -19,6 +19,7 @@ import { PropertyInfoCard } from './property-info-card';
 import { PropertyDetailsSheet } from './property-details-sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
+import type { MobileView } from '@/app/page';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -29,6 +30,7 @@ interface MapViewProps {
   onCloseInfoCard: () => void;
   onMarkerClick: (id: string) => void;
   onViewDetails: (id: string) => void;
+  setMobileView?: (view: MobileView) => void;
 }
 
 type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
@@ -42,7 +44,7 @@ const propertyPositions = [
   { id: 'project-2', top: '60%', left: '80%' },
 ];
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
   const isMobile = useIsMobile();
 
@@ -189,19 +191,26 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        )}
 
        <div className="absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2">
-           <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
-                <Button variant="ghost" size="icon" className="h-12 w-12">
-                   <LocateFixed />
+            {isMobile ? (
+                <Button className="shadow-lg h-12 px-4" onClick={() => setMobileView?.('list')}>
+                    <List className="mr-2 h-5 w-5" />
+                    List View
                 </Button>
-                <Separator />
-                <Button variant="ghost" size="icon" className="h-12 w-12">
-                   <ZoomIn />
-                </Button>
-                <Separator />
-                <Button variant="ghost" size="icon" className="h-12 w-12">
-                   <ZoomOut />
-                </Button>
-           </div>
+            ) : (
+                <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                    <Button variant="ghost" size="icon" className="h-12 w-12">
+                       <LocateFixed />
+                    </Button>
+                    <Separator />
+                    <Button variant="ghost" size="icon" className="h-12 w-12">
+                       <ZoomIn />
+                    </Button>
+                    <Separator />
+                    <Button variant="ghost" size="icon" className="h-12 w-12">
+                       <ZoomOut />
+                    </Button>
+                </div>
+            )}
        </div>
        
        {isMobile && (

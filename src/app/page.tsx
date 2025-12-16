@@ -96,6 +96,7 @@ export default function Home() {
               onCloseInfoCard={handleCloseInfoCard}
               onMarkerClick={handleMarkerClick}
               onViewDetails={handleViewDetails}
+              setMobileView={setMobileView}
             />
           </main>
         </div>
@@ -103,3 +104,5 @@ export default function Home() {
       </div>
   );
 }
+
+    
