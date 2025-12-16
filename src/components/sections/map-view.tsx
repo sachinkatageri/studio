@@ -210,3 +210,5 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </div>
   );
 }
+
+    
