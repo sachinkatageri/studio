@@ -137,6 +137,15 @@ const UserMenuButton = () => (
 
             </div>
              <div className="p-4 border-t mt-auto space-y-4">
+                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                    <Link2Off className="h-5 w-5 text-muted-foreground" />
+                    <span className="font-medium">Privacy Policy</span>
+                </Link>
+                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                    <FileText className="h-5 w-5 text-muted-foreground" />
+                    <span className="font-medium">Terms & Conditions</span>
+                </Link>
+                <Separator />
                 <div>
                     <h3 className="font-medium mb-2 text-center text-sm">Follow on</h3>
                     <div className="flex items-center justify-center gap-4">
@@ -147,15 +156,6 @@ const UserMenuButton = () => (
                         ))}
                     </div>
                 </div>
-                <Separator />
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <Link2Off className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Privacy Policy</span>
-                </Link>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <FileText className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Terms & Conditions</span>
-                </Link>
             </div>
         </SheetContent>
     </Sheet>
