@@ -189,19 +189,17 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        )}
 
-       {selectedPropertyId && (
-        <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
-            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-                <LocateFixed />
-            </Button>
-            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-                <ZoomIn />
-            </Button>
-            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-                <ZoomOut />
-            </Button>
-        </div>
-       )}
+       <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+               <LocateFixed />
+           </Button>
+           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+               <ZoomIn />
+           </Button>
+           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+               <ZoomOut />
+           </Button>
+       </div>
        
        {isMobile && (
           <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
