@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Settings, LogOut, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, ChevronDown, Copy, X } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent } from '../ui/card';
@@ -48,33 +48,6 @@ const DesktopSheetMenu = () => (
                     <span className="font-medium">Our Verification Process</span>
                 </Link>
             </SheetClose>
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="contact-us" className="border-none">
-                    <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium" noFlex>
-                        <Headset className="h-5 w-5 text-muted-foreground" />
-                        <span>Contact Us</span>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2">
-                        <div className="flex justify-center items-center gap-4">
-                            <Link href="mailto:support@buildersinfo.in" className="text-muted-foreground hover:text-foreground">
-                                <Mail className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                <WhatsAppIcon />
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                <Linkedin className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                <Youtube className="h-5 w-5" />
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                <Instagram className="h-5 w-5" />
-                            </Link>
-                        </div>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
         </nav>
 
         <Card className="bg-yellow-100 border-yellow-200">
@@ -143,33 +116,6 @@ export default function Header() {
                             <span className="font-medium">Our Verification Process</span>
                         </Link>
                       </SheetClose>
-                      <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="contact-us" className="border-none">
-                            <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium" noFlex>
-                                 <Headset className="h-5 w-5 text-muted-foreground" />
-                                <span>Contact Us</span>
-                            </AccordionTrigger>
-                            <AccordionContent className="pt-2">
-                                <div className="flex justify-center items-center gap-4">
-                                    <Link href="mailto:support@buildersinfo.in" className="text-muted-foreground hover:text-foreground">
-                                        <Mail className="h-5 w-5" />
-                                    </Link>
-                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                        <WhatsAppIcon />
-                                    </Link>
-                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                        <Linkedin className="h-5 w-5" />
-                                    </Link>
-                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                        <Youtube className="h-5 w-5" />
-                                    </Link>
-                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
-                                        <Instagram className="h-5 w-5" />
-                                    </Link>
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
                   </nav>
 
                   <Card className="bg-yellow-100 border-yellow-200">
@@ -230,6 +176,3 @@ export default function Header() {
     </header>
   );
 }
-
-  
-    
