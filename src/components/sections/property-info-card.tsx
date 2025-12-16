@@ -6,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
-import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart } from 'lucide-react';
+import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 import { formatDistanceToNow } from 'date-fns';
@@ -61,6 +61,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
+  const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
 
   if (!property) return null;
   
@@ -100,7 +101,7 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
           <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
         </div>
       </CardHeader>
-      <CardContent className="p-4 space-y-4">
+      <CardContent className="p-4 space-y-4 max-h-[calc(100vh-25rem)] overflow-y-auto">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
           {property.status && <Badge variant="secondary">{property.status}</Badge>}
@@ -140,6 +141,28 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
                 ))}
             </div>
         </div>
+
+        <div>
+          <h4 className="text-sm font-semibold mb-2">Location</h4>
+          <div className="relative h-40 rounded-lg overflow-hidden">
+            {mapImage && (
+              <Image
+                src={mapImage.imageUrl}
+                alt={mapImage.description}
+                fill
+                className="object-cover"
+                data-ai-hint={mapImage.imageHint}
+              />
+            )}
+            <div className='absolute inset-0 bg-black/10 flex items-center justify-center'>
+                <Button variant="secondary">
+                    <MapPin className="mr-2 h-4 w-4" />
+                    View on map
+                </Button>
+            </div>
+          </div>
+        </div>
+
 
         <div className="flex gap-2 pt-2">
             <Button className="flex-1">

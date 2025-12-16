@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -176,10 +176,24 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        </TooltipProvider>
 
        {selectedPropertyId && !isMobile && (
-        <div className="absolute bottom-4 right-4 z-10">
+        <div className="absolute bottom-20 right-4 z-10">
           <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
         </div>
        )}
+
+       <div className="absolute bottom-20 right-4 z-10 flex-col gap-2 hidden md:flex">
+          <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+            <LocateFixed />
+          </Button>
+          <div className="flex flex-col gap-px rounded-lg shadow-lg overflow-hidden">
+            <Button variant="secondary" size="icon" className="h-12 w-12 rounded-none rounded-t-lg">
+                <ZoomIn />
+            </Button>
+            <Button variant="secondary" size="icon" className="h-12 w-12 rounded-none rounded-b-lg">
+                <ZoomOut />
+            </Button>
+          </div>
+       </div>
        
        {isMobile && (
           <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} />

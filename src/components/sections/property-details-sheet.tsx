@@ -13,7 +13,7 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi } from "lucide-react";
+import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { formatDistanceToNow } from "date-fns";
 
@@ -66,6 +66,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsSheetProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
+  const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
   
   // @ts-ignore
   const postedDate = property?.postedOn ? formatDistanceToNow(new Date(property.postedOn), { addSuffix: true }) : null;
@@ -141,6 +142,27 @@ export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsShe
                             </Badge>
                         ))}
                     </div>
+                </div>
+
+                <div>
+                  <h4 className="text-base font-semibold mb-2">Location</h4>
+                  <div className="relative h-40 rounded-lg overflow-hidden">
+                    {mapImage && (
+                      <Image
+                        src={mapImage.imageUrl}
+                        alt={mapImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={mapImage.imageHint}
+                      />
+                    )}
+                    <div className='absolute inset-0 bg-black/10 flex items-center justify-center'>
+                        <Button variant="secondary">
+                            <MapPin className="mr-2 h-4 w-4" />
+                            View on map
+                        </Button>
+                    </div>
+                  </div>
                 </div>
                 
                  <div className="text-center">

@@ -53,6 +53,12 @@
       "description": "Spacious warehouse interior in Moula Ali",
       "imageUrl": "https://images.unsplash.com/photo-1587497256464-b72dd7ce9c01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3YXJlaG91c2UlMjBzcGFjZXxlbnwwfHx8fDE3NjU4MDMwMTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "warehouse space"
+    },
+    {
+      "id": "map-location",
+      "description": "A close-up view of a city map showing streets and buildings.",
+      "imageUrl": "https://images.unsplash.com/photo-1446776899648-aa78eefe8ed0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjaXR5JTIwbWFwfGVufDB8fHx8MTc2NTgxMjE0N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city map"
     }
   ]
 }
