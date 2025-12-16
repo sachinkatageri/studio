@@ -83,31 +83,6 @@ const UserMenuButton = () => {
                     </div>
                     </div>
                     <div className="flex-grow overflow-y-auto p-4 space-y-4">
-                    <nav className="flex flex-col gap-1 md:hidden">
-                        <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <Map className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium">Map-View</span>
-                            </Link>
-                        </SheetClose>
-                        <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <span className="font-medium">Commercial</span>
-                            </Link>
-                        </SheetClose>
-                        <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <span className="font-medium">Residential</span>
-                            </Link>
-                        </SheetClose>
-                        <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <Crown className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium">Builders</span>
-                            </Link>
-                        </SheetClose>
-                        <Separator />
-                    </nav>
                     
                     <nav className="flex flex-col gap-1">
                         <SheetClose asChild>
