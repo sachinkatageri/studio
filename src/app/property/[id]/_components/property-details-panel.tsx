@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -341,8 +341,22 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-3xl font-bold">{property.name}</h1>
-                <p className="text-muted-foreground mt-1">{property.location}</p>
+                <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                        <h1 className="text-3xl font-bold">{property.name}</h1>
+                        <p className="text-muted-foreground mt-1">{property.location}</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="icon">
+                            <Heart className="h-6 w-6" />
+                            <span className="sr-only">Add to wishlist</span>
+                        </Button>
+                        <Button variant="ghost" size="icon">
+                            <Share2 className="h-6 w-6" />
+                            <span className="sr-only">Share</span>
+                        </Button>
+                    </div>
+                </div>
             </div>
             
             <div className="mt-4 flex flex-wrap gap-4 items-center">
