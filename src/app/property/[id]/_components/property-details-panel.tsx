@@ -5,7 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
@@ -18,10 +17,12 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
     'Power Backup': <Zap className="h-5 w-5 text-primary" />,
     '24/7 Security': <ShieldCheck className="h-5 w-5 text-primary" />,
     'Loading Dock': <Warehouse className="h-5 w-5 text-primary" />,
+    'Printing': <Check className="h-5 w-5 text-primary" />,
+    'Coffee Bar': <Check className="h-5 w-5 text-primary" />,
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
-    <div className="mt-8">
+    <div>
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         {/* @ts-ignore */}
         <p className="text-muted-foreground">{property.about}</p>
@@ -30,7 +31,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 
 
 const PropertyAmenities = ({ property }: { property: Property}) => (
-    <div className="mt-8">
+    <div>
         <h2 className="text-xl font-semibold mb-4">Amenities</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {property.amenities.map(amenity => (
@@ -242,7 +243,7 @@ const AdditionalPropertyDetails = () => {
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
-        <div>
+        <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold">{property.name}</h1>
                 <p className="text-muted-foreground mt-1">{property.location}</p>
@@ -282,84 +283,71 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <WhatsAppIcon /> WhatsApp
                 </Button>
             </div>
-
-            <Separator className="my-8" />
-
+            
+            <Separator />
             <PropertyOverview property={property} />
 
-            <Separator className="my-8" />
-            
+            <Separator />
             <PropertyAmenities property={property} />
+            
+            {/* @ts-ignore */}
+            {property.priceBreakdown && (
+                <>
+                    <Separator />
+                    <div>
+                        <h2 className="text-xl font-semibold mb-4">Pricing Details</h2>
+                        <PricingDetails property={property} />
+                    </div>
+                </>
+            )}
 
-            <Separator className="my-8" />
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
+                <PropertyLayout property={property} />
+            </div>
 
-            <Accordion type="single" collapsible className="w-full space-y-4">
-                {/* @ts-ignore */}
-                {property.priceBreakdown && (
-                    <AccordionItem value="pricing">
-                        <AccordionTrigger className="text-xl font-semibold">Pricing Details</AccordionTrigger>
-                        <AccordionContent>
-                            <PricingDetails property={property} />
-                        </AccordionContent>
-                    </AccordionItem>
-                )}
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Location & Landmark</h2>
+                <PropertyLocation />
+            </div>
 
-                <AccordionItem value="layout">
-                    <AccordionTrigger className="text-xl font-semibold">Property Layout</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyLayout property={property} />
-                    </AccordionContent>
-                </AccordionItem>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Opening Hours</h2>
+                <OpeningHours />
+            </div>
 
-                <AccordionItem value="location">
-                    <AccordionTrigger className="text-xl font-semibold">Location & Landmark</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyLocation />
-                    </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="opening-hours">
-                    <AccordionTrigger className="text-xl font-semibold">Opening Hours</AccordionTrigger>
-                    <AccordionContent>
-                        <OpeningHours />
-                    </AccordionContent>
-                </AccordionItem>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Property Details</h2>
+                <AdditionalPropertyDetails />
+            </div>
 
-                <AccordionItem value="additional-details">
-                    <AccordionTrigger className="text-xl font-semibold">Property Details</AccordionTrigger>
-                    <AccordionContent>
-                        <AdditionalPropertyDetails />
-                    </AccordionContent>
-                </AccordionItem>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Rating & Reviews</h2>
+                <PropertyReviews property={property} />
+            </div>
 
-                <AccordionItem value="reviews">
-                    <AccordionTrigger className="text-xl font-semibold">Rating & Reviews</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyReviews property={property} />
-                    </AccordionContent>
-                </AccordionItem>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Property Video</h2>
+                <PropertyVideo />
+            </div>
 
-                <AccordionItem value="video">
-                    <AccordionTrigger className="text-xl font-semibold">Property Video</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyVideo />
-                    </AccordionContent>
-                </AccordionItem>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Floor Plan</h2>
+                <PropertyPlan />
+            </div>
 
-                <AccordionItem value="plan">
-                    <AccordionTrigger className="text-xl font-semibold">Floor Plan</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyPlan />
-                    </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="document">
-                    <AccordionTrigger className="text-xl font-semibold">Property Document</AccordionTrigger>
-                    <AccordionContent>
-                        <PropertyDocument />
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Property Document</h2>
+                <PropertyDocument />
+            </div>
         </div>
     )
 }
