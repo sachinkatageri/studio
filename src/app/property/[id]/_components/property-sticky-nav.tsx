@@ -64,8 +64,8 @@ export function PropertyStickyNav() {
     const handleHorizontalScroll = () => {
         if (scrollViewportRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = scrollViewportRef.current;
-            setShowLeftArrow(scrollLeft > 0);
-            setShowRightArrow(scrollLeft < scrollWidth - clientWidth -1);
+            setShowLeftArrow(scrollLeft > 5);
+            setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 5);
         }
     }
 
@@ -74,11 +74,11 @@ export function PropertyStickyNav() {
         const scrollArea = scrollViewportRef.current;
         if (scrollArea) {
             scrollArea.addEventListener('scroll', handleHorizontalScroll);
-            handleHorizontalScroll();
         }
 
-        // Set initial activeId
+        // Set initial activeId and scroll state
         handleScroll();
+        handleHorizontalScroll();
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
@@ -87,6 +87,17 @@ export function PropertyStickyNav() {
             }
         };
     }, []);
+
+    useEffect(() => {
+        if (!scrollViewportRef.current || !activeId) return;
+
+        const activeTab = scrollViewportRef.current.querySelector(`[data-id="${activeId}"]`);
+        
+        if (activeTab) {
+            activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+        handleHorizontalScroll();
+    }, [activeId]);
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollViewportRef.current) {
@@ -101,21 +112,22 @@ export function PropertyStickyNav() {
                 'bg-background transition-all duration-300 z-30',
                 isSticky ? 'fixed top-16 left-0 right-0 shadow-md border-b' : 'absolute bottom-0 left-0 right-0 border-b'
             )}>
-                <div className="relative">
+                <div className="relative container mx-auto">
                     {showLeftArrow && (
                         <button 
                             onClick={() => scroll('left')}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
                         >
                             <ChevronLeft className="h-6 w-6 text-foreground" />
                         </button>
                     )}
                     <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="container mx-auto flex px-12">
+                        <div className="flex px-8">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
                                     href={item.href}
+                                    data-id={item.href.substring(1)}
                                     onClick={(e) => handleNavClick(e, item.href)}
                                     className={cn(
                                         'inline-block px-4 py-4 text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
@@ -133,7 +145,7 @@ export function PropertyStickyNav() {
                     {showRightArrow && (
                         <button 
                             onClick={() => scroll('right')}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
                         >
                             <ChevronRight className="h-6 w-6 text-foreground" />
                         </button>
