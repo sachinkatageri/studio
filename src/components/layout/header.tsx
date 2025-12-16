@@ -15,7 +15,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
-import { Separator } from '../ui/separator';
 import { Card, CardContent } from '../ui/card';
 
 const WhatsAppIcon = () => (
@@ -33,7 +32,7 @@ const WhatsAppIcon = () => (
 export default function Header() {
   return (
     <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b">
-      <div className="w-full flex justify-between items-center p-2 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
           <Sheet>
             <SheetTrigger asChild>
@@ -55,55 +54,54 @@ export default function Header() {
                   </SheetClose>
                 </div>
                 <div className="flex-grow overflow-y-auto p-4 space-y-4">
-                  <nav className="flex flex-col gap-2">
+                  <nav className="flex flex-col gap-1">
                       <SheetClose asChild>
                         <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                          <Info className="h-5 w-5" />
+                          <Info className="h-5 w-5 text-muted-foreground" />
                           <span className="font-medium">About Us</span>
                         </Link>
                       </SheetClose>
                       <SheetClose asChild>
                          <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <CheckSquare className="h-5 w-5" />
+                            <CheckSquare className="h-5 w-5 text-muted-foreground" />
                             <span className="font-medium">Our Verification Process</span>
                         </Link>
                       </SheetClose>
-                      <Accordion type="single" collapsible>
+                      <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="contact-us" className="border-none">
-                            <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline">
-                                 <Headset className="h-5 w-5" />
-                                <span className="font-medium">Contact Us</span>
+                            <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium">
+                                 <Headset className="h-5 w-5 text-muted-foreground" />
+                                <span>Contact Us</span>
                             </AccordionTrigger>
-                            <AccordionContent className="pt-2 pl-6 space-y-2">
-                                <div className="relative pl-4">
-                                  <div className="absolute left-0 top-0 bottom-0 w-px bg-border -translate-x-1/2"></div>
+                            <AccordionContent className="pt-2 pl-8 space-y-2">
+                                <div className="relative pl-4 border-l">
                                    <div className="space-y-4">
-                                        <div className="flex items-center gap-3 relative">
-                                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Mail className="h-5 w-5" />
+                                        <div className="flex items-center gap-3 relative -ml-1">
+                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
+                                            <Mail className="h-5 w-5 text-muted-foreground" />
                                             <Link href="mailto:support@buildersinfo.in" className="text-sm hover:underline">support@buildersinfo.in</Link>
                                             <Button variant="ghost" size="icon" className="h-7 w-7 ml-auto">
                                                 <Copy className="h-4 w-4" />
                                             </Button>
                                         </div>
-                                        <div className="flex items-center gap-3 relative">
-                                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
+                                        <div className="flex items-center gap-3 relative -ml-1">
+                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
                                             <WhatsAppIcon />
                                             <Link href="#" className="text-sm hover:underline">Whatsapp</Link>
                                         </div>
-                                         <div className="flex items-center gap-3 relative">
-                                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Linkedin className="h-5 w-5" />
+                                         <div className="flex items-center gap-3 relative -ml-1">
+                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
+                                            <Linkedin className="h-5 w-5 text-muted-foreground" />
                                             <Link href="#" className="text-sm hover:underline">LinkedIn</Link>
                                         </div>
-                                         <div className="flex items-center gap-3 relative">
-                                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Youtube className="h-5 w-5" />
+                                         <div className="flex items-center gap-3 relative -ml-1">
+                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
+                                            <Youtube className="h-5 w-5 text-muted-foreground" />
                                             <Link href="#" className="text-sm hover:underline">YouTube</Link>
                                         </div>
-                                         <div className="flex items-center gap-3 relative">
-                                            <div className="absolute -left-4 top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Instagram className="h-5 w-5" />
+                                         <div className="flex items-center gap-3 relative -ml-1">
+                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
+                                            <Instagram className="h-5 w-5 text-muted-foreground" />
                                             <Link href="#" className="text-sm hover:underline">Instagram</Link>
                                         </div>
                                    </div>
@@ -119,17 +117,17 @@ export default function Header() {
                             <h3 className="font-bold">Tag Along</h3>
                             <p className="text-sm">Buy Large Land Parcels with us, starting @ 4 Lakh/ Acre.</p>
                         </div>
-                        <Image src="https://picsum.photos/seed/tag-along/100/80" alt="Tag Along" width={100} height={80} className="rounded-md" data-ai-hint="land parcel map" />
+                        <Image src="https://picsum.photos/seed/tag-along/100/80" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" data-ai-hint="land parcel map" />
                     </CardContent>
                   </Card>
                 </div>
-                 <div className="p-4 border-t space-y-2">
+                 <div className="p-4 border-t mt-auto space-y-1">
                     <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                        <Link2Off className="h-5 w-5" />
+                        <Link2Off className="h-5 w-5 text-muted-foreground" />
                         <span className="font-medium">Privacy Policy</span>
                     </Link>
                     <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                        <FileText className="h-5 w-5" />
+                        <FileText className="h-5 w-5 text-muted-foreground" />
                         <span className="font-medium">Terms & Conditions</span>
                     </Link>
                 </div>
@@ -159,7 +157,7 @@ export default function Header() {
           <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hidden md:inline-flex">
                 <Menu />
                 <span className="sr-only">Open user menu</span>
               </Button>
@@ -187,3 +185,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
