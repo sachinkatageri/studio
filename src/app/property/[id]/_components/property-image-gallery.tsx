@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { Heart, Share2 } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 import { useState } from 'react';
 import {
   Dialog,
