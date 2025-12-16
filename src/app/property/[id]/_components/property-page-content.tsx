@@ -96,14 +96,6 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                     <div>
                         <PropertyContactForm />
-                        <div className="mt-4 flex gap-2">
-                            <Button className="flex-1 text-lg py-6">
-                                <Phone className="mr-2" /> Contact
-                            </Button>
-                            <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                                <WhatsAppIcon /> WhatsApp
-                            </Button>
-                        </div>
                     </div>
                 </div>
 
