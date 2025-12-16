@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2 } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 
 type Property = typeof properties[0];
 
@@ -379,7 +380,10 @@ const OurServices = () => {
 
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
+    const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
+
     return (
+        <>
         <div className="space-y-8">
             <div id="info">
                 <div className="flex justify-between items-start">
@@ -453,6 +457,26 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </div>
             
             <Separator />
+
+             <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
+              <div className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-foreground font-semibold">Preliminary verification done.</p>
+                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
+                    Know the Process
+                  </Button>
+                </div>
+              </div>
+               <div className="text-center border-t pt-4 mt-4">
+                  <p className="text-xs text-red-600 mb-2">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+                  <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
+                      <AlertTriangle className="h-4 w-4 mr-1" />
+                      Report this listing
+                  </Button>
+              </div>
+            </div>
+
             <PropertyOverview property={property} />
 
             <Separator />
@@ -566,6 +590,8 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <Separator />
             <OurServices />
         </div>
+        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
+        </>
     )
 }
 
