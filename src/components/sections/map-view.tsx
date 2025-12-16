@@ -133,8 +133,8 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        <div className="absolute bottom-4 left-4 z-10 flex flex-col gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-                <Layers />
+              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 bg-background/80 hover:bg-background">
+                <Layers className='text-foreground' />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-60 p-2">
