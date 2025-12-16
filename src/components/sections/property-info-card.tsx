@@ -164,18 +164,18 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         </div>
 
       </CardContent>
-      <CardFooter className="p-4 border-t bg-background space-y-2 flex-col items-stretch">
-        <div className="flex gap-2">
-            <Button className="flex-1">
-                <Phone className="mr-2 h-4 w-4" /> Call
+      <CardFooter className="p-4 border-t bg-background">
+        <div className="flex gap-2 w-full">
+            <Button size="icon" className="h-12 w-12">
+                <Phone />
             </Button>
-            <Button variant="outline" className="flex-1 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
-                <WhatsAppIcon /> WhatsApp
+            <Button variant="outline" size="icon" className="h-12 w-12 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
+                <WhatsAppIcon />
+            </Button>
+            <Button variant="default" className="flex-1 text-lg h-12" onClick={() => onViewDetails(property.id)}>
+                View Details
             </Button>
         </div>
-        <Button variant="default" className="w-full" onClick={() => onViewDetails(property.id)}>
-            View Details
-        </Button>
       </CardFooter>
     </Card>
   );

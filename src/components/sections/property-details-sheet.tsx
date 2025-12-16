@@ -173,7 +173,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                     <Button variant="outline" size="icon" className="h-14 w-14">
                         <WhatsAppIcon />
                     </Button>
-                    <Button variant="default" className="flex-1 text-lg py-6" onClick={() => onViewDetails(property.id)}>
+                    <Button variant="default" className="flex-1 text-lg h-14" onClick={() => onViewDetails(property.id)}>
                         View Details
                     </Button>
                 </div>
