@@ -76,9 +76,6 @@ export default function PropertyImageGallery() {
                 ))}
             </div>
              <div className="absolute top-4 right-4 flex gap-2">
-                <Button variant="secondary" size="icon" className="rounded-full bg-white/80 hover:bg-white text-foreground/80 hover:text-foreground">
-                    <Share2 className="h-4 w-4" />
-                </Button>
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
                 <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
