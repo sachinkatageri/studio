@@ -4,7 +4,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -52,7 +52,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   const mapImages = {
     default: 'https://picsum.photos/seed/map-default/1920/1080',
     satellite: 'https://picsum.photos/seed/map-satellite/1920/1080',
-    hybrid: 'https://images.unsplash.com/photo-1694610018733-1053fcfb5289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8Z2VvJTIwbWFwfGVufDB8fHx8MTc2NTg3NTEwMnww&ixlib=rb-4.1.0&q=80&w=1080',
+    hybrid: 'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/3:2/w_2560%2Cc_limit/GoogleMapTA.jpg',
     terrain: 'https://picsum.photos/seed/map-terrain/1920/1080'
   };
 
@@ -284,3 +284,5 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </div>
   );
 }
+
+    
