@@ -42,7 +42,7 @@ export function PropertyStickyNav() {
         }
         setActiveId(currentSectionId || 'info');
 
-        if (navRef.current && window.scrollY > navRef.current.offsetTop) {
+        if (navRef.current && window.scrollY > navRef.current.offsetTop - 64) { // 64px is header height
             setIsSticky(true);
         } else {
             setIsSticky(false);
@@ -107,50 +107,45 @@ export function PropertyStickyNav() {
     };
 
     return (
-        <div ref={navRef} className={cn('relative h-[65px]', isSticky && 'h-[65px]')}>
-            <div className={cn(
-                'bg-background transition-all duration-300 z-30',
-                isSticky ? 'fixed top-16 left-0 right-0 shadow-md border-b' : 'absolute bottom-0 left-0 right-0 border-b'
-            )}>
-                <div className="relative container mx-auto">
-                    {showLeftArrow && (
-                        <button 
-                            onClick={() => scroll('left')}
-                            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
-                        >
-                            <ChevronLeft className="h-6 w-6 text-foreground" />
-                        </button>
-                    )}
-                    <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex px-8">
-                            {navItems.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    data-id={item.href.substring(1)}
-                                    onClick={(e) => handleNavClick(e, item.href)}
-                                    className={cn(
-                                        'inline-block px-4 py-4 text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
-                                        activeId === item.href.substring(1)
-                                            ? 'border-primary text-primary'
-                                            : 'border-transparent text-muted-foreground hover:text-primary'
-                                    )}
-                                >
-                                    {item.label}
-                                </a>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" className="invisible" />
-                    </ScrollArea>
-                    {showRightArrow && (
-                        <button 
-                            onClick={() => scroll('right')}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
-                        >
-                            <ChevronRight className="h-6 w-6 text-foreground" />
-                        </button>
-                    )}
-                </div>
+        <div ref={navRef} className={cn('relative h-[65px] top-0 z-30 bg-background', isSticky && 'fixed top-16 left-0 right-0 shadow-md border-b')}>
+            <div className="relative container mx-auto">
+                {showLeftArrow && (
+                    <button 
+                        onClick={() => scroll('left')}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                    >
+                        <ChevronLeft className="h-6 w-6 text-foreground" />
+                    </button>
+                )}
+                <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
+                    <div className="flex px-8">
+                        {navItems.map((item) => (
+                            <a
+                                key={item.label}
+                                href={item.href}
+                                data-id={item.href.substring(1)}
+                                onClick={(e) => handleNavClick(e, item.href)}
+                                className={cn(
+                                    'inline-block px-4 py-4 text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
+                                    activeId === item.href.substring(1)
+                                        ? 'border-primary text-primary'
+                                        : 'border-transparent text-muted-foreground hover:text-primary'
+                                )}
+                            >
+                                {item.label}
+                            </a>
+                        ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" className="invisible" />
+                </ScrollArea>
+                {showRightArrow && (
+                    <button 
+                        onClick={() => scroll('right')}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                    >
+                        <ChevronRight className="h-6 w-6 text-foreground" />
+                    </button>
+                )}
             </div>
         </div>
     );

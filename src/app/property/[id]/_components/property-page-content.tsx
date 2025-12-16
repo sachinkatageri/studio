@@ -84,3 +84,4 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
     )
 }
 
+
