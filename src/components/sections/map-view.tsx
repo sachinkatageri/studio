@@ -18,7 +18,7 @@ import { useState } from 'react';
 import { PropertyInfoCard } from './property-info-card';
 import { PropertyDetailsSheet } from './property-details-sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { properties } from './property-list';
+import { properties } from '@/lib/properties';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -28,6 +28,7 @@ interface MapViewProps {
   selectedPropertyId: string | null;
   onCloseInfoCard: () => void;
   onMarkerClick: (id: string) => void;
+  onViewDetails: (id: string) => void;
 }
 
 type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
@@ -41,7 +42,7 @@ const propertyPositions = [
   { id: 'project-2', top: '60%', left: '80%' },
 ];
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
   const isMobile = useIsMobile();
 
@@ -123,7 +124,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             <SlidersHorizontal />
           </Button>
         </div>
-        <Button className="shadow-lg h-12 flex-shrink-0 hidden md:flex bg-accent text-accent-foreground hover:bg-accent/90">
+        <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-12 flex-shrink-0 hidden md:flex">
           <PlusCircle className="mr-2 h-5 w-5" /> List my land
         </Button>
     </div>
@@ -183,7 +184,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        {selectedPropertyId && !isMobile && (
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
-          <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
+          <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
         </div>
        )}
 
@@ -204,7 +205,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        </div>
        
        {isMobile && (
-          <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
+          <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
        )}
 
     </div>

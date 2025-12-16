@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { properties } from './property-list';
+import { properties } from '@/lib/properties';
 import { Button } from '../ui/button';
 import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin } from 'lucide-react';
 import { Badge } from '../ui/badge';
@@ -27,6 +27,7 @@ const WhatsAppIcon = () => (
 interface PropertyInfoCardProps {
   propertyId: string;
   onClose: () => void;
+  onViewDetails: (id: string) => void;
 }
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
@@ -58,7 +59,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 };
 
 
-export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps) {
+export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
@@ -180,7 +181,7 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
                 <WhatsAppIcon /> WhatsApp
             </Button>
         </div>
-        <Button variant="default" className="w-full">
+        <Button variant="default" className="w-full" onClick={() => onViewDetails(property.id)}>
             View Details
         </Button>
       </CardFooter>

@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Header from '@/components/layout/header';
@@ -10,6 +11,8 @@ import PropertyFilters from '@/components/sections/property-filters';
 import MobileToolbar from '@/components/layout/mobile-toolbar';
 import Footer from '@/components/layout/footer';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { properties } from '@/lib/properties';
+import { useRouter } from 'next/navigation';
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -19,8 +22,10 @@ export default function Home() {
   const [sidebarView, setSidebarView] = useState<SidebarView>('list');
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>('map');
-  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(properties[0]?.id || null);
   const isMobile = useIsMobile();
+  const router = useRouter();
+
 
   const handleFilterClick = () => {
     setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
@@ -55,6 +60,11 @@ export default function Home() {
   const handleCloseInfoCard = () => {
     setSelectedPropertyId(null);
   }
+  
+  const handleViewDetails = (propertyId: string) => {
+    router.push(`/property/${propertyId}`);
+  }
+
 
   return (
       <div className="flex flex-col h-screen bg-background">
@@ -68,7 +78,7 @@ export default function Home() {
             mobileView === 'list' ? 'flex w-full' : 'hidden'
           )}>
             {sidebarView === 'list' 
-                ? <PropertyList onSelectProperty={handleSelectProperty} /> 
+                ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId}/> 
                 : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
             }
           </aside>
@@ -86,6 +96,7 @@ export default function Home() {
               selectedPropertyId={selectedPropertyId}
               onCloseInfoCard={handleCloseInfoCard}
               onMarkerClick={handleMarkerClick}
+              onViewDetails={handleViewDetails}
             />
           </main>
         </div>

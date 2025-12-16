@@ -8,7 +8,7 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet"
-import { properties } from './property-list';
+import { properties } from '@/lib/properties';
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "../ui/badge";
@@ -20,6 +20,7 @@ import { formatDistanceToNow } from "date-fns";
 interface PropertyDetailsSheetProps {
   propertyId: string | null;
   onClose: () => void;
+  onViewDetails: (id: string) => void;
 }
 
 const WhatsAppIcon = () => (
@@ -63,7 +64,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 };
 
 
-export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsSheetProps) {
+export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
@@ -181,7 +182,7 @@ export function PropertyDetailsSheet({ propertyId, onClose }: PropertyDetailsShe
                         <WhatsAppIcon /> WhatsApp
                     </Button>
                 </div>
-                <Button variant="default" className="w-full text-lg py-6">
+                <Button variant="default" className="w-full text-lg py-6" onClick={() => onViewDetails(property.id)}>
                   View Details
                 </Button>
             </div>

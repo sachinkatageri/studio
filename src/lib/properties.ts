@@ -1,0 +1,125 @@
+export const properties = [
+    {
+      id: 'wework',
+      name: 'WeWork Vaishnavi Signature',
+      location: 'in Bellandur, Hyderabad, Karnataka',
+      pricePerSqFt: 120,
+      type: 'Commercial',
+      about: 'A vibrant co-working space in the heart of the tech hub, offering flexible office solutions for startups and enterprises.',
+      amenities: ['High-Speed WiFi', 'Meeting Rooms', 'Printing', 'Coffee Bar'],
+      status: 'Available',
+      rating: 4.8,
+      reviews: 120,
+      postedOn: '2024-07-15',
+      size: 5000,
+      price: '4,00,000',
+      priceBreakdown: [
+        { item: 'Rent/Month', value: '₹3,50,000' },
+        { item: 'Maintenance', value: '₹50,000', included: true },
+        { item: 'Security Deposit', value: '₹10,50,000' }
+      ]
+    },
+    {
+      id: '91springboard',
+      name: '91Springboard',
+      location: 'in Jhandewalan, Delhi, Delhi',
+      pricePerSqFt: 110,
+      type: 'Commercial',
+      about: 'Collaborative and inspiring workspace designed to foster innovation and networking among professionals.',
+      amenities: ['24/7 Access', 'Event Space', 'Game Zone', 'Free Tea & Coffee'],
+      status: 'Available',
+      rating: 4.5,
+      reviews: 88,
+      postedOn: '2024-07-12'
+    },
+    {
+      id: 'shop-boduppal',
+      name: 'Shop in Boduppal',
+      location: 'in Boduppal, Medchal, Telangana',
+      size: 100,
+      pricePerSqFt: 95,
+      type: 'Commercial',
+      about: 'Prime retail space located on a busy street, perfect for a small business or a boutique store.',
+      amenities: ['Main Road Facing', 'Ample Parking', 'Power Backup'],
+      status: 'For Rent',
+      rating: 4.2,
+      reviews: 15,
+      postedOn: '2024-07-18'
+    },
+    {
+      id: 'godown-moula-ali',
+      name: 'Godown/Warehouse',
+      location: 'in Moula Ali, Medchal, Telangana',
+      size: 2000,
+      pricePerSqFt: 80,
+      type: 'Commercial',
+      about: 'Spacious and secure warehouse facility suitable for storage and logistics, with easy access to major highways.',
+      amenities: ['Loading Dock', '24/7 Security', 'High Ceilings'],
+      status: 'Available',
+      rating: 4.0,
+      reviews: 10,
+      postedOn: '2024-07-05'
+    },
+     {
+      id: 'project-1',
+      name: 'Azure Urban Residences',
+      location: 'Metropolis, CA',
+      price: 'Starting from $500,000',
+      status: 'Ready to move',
+      type: 'Residential',
+      pricePerSqFt: 250,
+      about: 'Modern living in the city center with breathtaking views and world-class amenities.',
+      amenities: ['Swimming Pool', 'Gym', 'Clubhouse', '24/7 Security'],
+      rating: 4.9,
+      reviews: 250,
+      postedOn: '2024-07-20'
+    },
+    {
+      id: 'project-2',
+      name: 'Greenwood Villas',
+      location: 'Serene Valley, TX',
+      price: 'Starting from $750,000',
+      status: 'New Launch',
+      type: 'Residential',
+      pricePerSqFt: 300,
+      about: 'Luxurious villas nestled in nature, offering a peaceful and upscale lifestyle.',
+      amenities: ['Private Garden', 'Community Park', 'Jogging Track', 'Gated Community'],
+      rating: 4.7,
+      reviews: 95,
+      postedOn: '2024-07-21'
+    },
+  ];
+  
+  export const propertyImageGallery = [
+    {
+      "id": "gallery-1",
+      "description": "Bright and airy open-plan office with comfortable lounge seating.",
+      "imageUrl": "https://picsum.photos/seed/gallery-1/800/600",
+      "imageHint": "office lounge"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Modern kitchen and bar area in a coworking space.",
+      "imageUrl": "https://picsum.photos/seed/gallery-2/600/800",
+      "imageHint": "office kitchen"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Private office booth with a view of the city skyline.",
+      "imageUrl": "https://picsum.photos/seed/gallery-3/600/800",
+      "imageHint": "office booth"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Collaborative meeting area with a whiteboard and casual seating.",
+      "imageUrl": "https://picsum.photos/seed/gallery-4/800/600",
+      "imageHint": "meeting area"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Cozy nook with hanging chairs for relaxation.",
+      "imageUrl": "https://picsum.photos/seed/gallery-5/600/800",
+      "imageHint": "lounge area"
+    }
+  ]
+  
