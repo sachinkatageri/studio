@@ -97,17 +97,17 @@ export function PropertyStickyNav() {
                 'bg-background transition-all duration-300 z-30',
                 isSticky ? 'fixed top-16 left-0 right-0 shadow-md border-b' : 'absolute bottom-0 left-0 right-0 border-b'
             )}>
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div className="relative">
                     {showLeftArrow && (
                         <button 
                             onClick={() => scroll('left')}
-                            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
                         >
                             <ChevronLeft className="h-6 w-6 text-foreground" />
                         </button>
                     )}
                     <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex items-center px-8">
+                        <div className="flex items-center px-12 container mx-auto">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
@@ -129,7 +129,7 @@ export function PropertyStickyNav() {
                     {showRightArrow && (
                         <button 
                             onClick={() => scroll('right')}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
                         >
                             <ChevronRight className="h-6 w-6 text-foreground" />
                         </button>
