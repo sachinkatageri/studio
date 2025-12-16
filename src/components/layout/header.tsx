@@ -124,7 +124,7 @@ const UserMenuButton = () => (
 
               <Card>
                 <CardContent className="p-4 space-y-4">
-                    <h3 className="font-semibold text-center">Download Housing App</h3>
+                    <h3 className="font-semibold text-center">Download Builderinfo App</h3>
                     <div className="flex items-center justify-center gap-4">
                         <div className="flex flex-col gap-2">
                            <AppStoreButton />
