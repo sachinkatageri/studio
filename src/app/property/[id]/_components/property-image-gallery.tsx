@@ -46,7 +46,7 @@ export default function PropertyImageGallery() {
     
     return (
         <div className="relative">
-            <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[500px]">
+            <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[300px]">
                 {propertyImageGallery.slice(0, 5).map((image, index) => (
                     <div
                         key={image.id}
