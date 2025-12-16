@@ -1,4 +1,5 @@
 
+"use client";
 
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
@@ -417,4 +418,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
-
