@@ -186,21 +186,24 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                     <div>
-                      <p className="text-foreground">Preliminary verification done.</p>
+                      <p className="text-foreground font-semibold">Preliminary verification done.</p>
                       <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setShowDisclaimerDetails(!showDisclaimerDetails)}>
                         Know the Process
                       </Button>
                     </div>
                   </div>
                   {showDisclaimerDetails && (
-                    <>
-                        <p className="text-red-600">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                        <Separator className="my-4" />
+                    <div className="space-y-4 pt-2">
+                        <div className="grid grid-cols-2 gap-2">
+                            <Image src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/3:2/w_2560%2Cc_limit/GoogleMapTA.jpg" alt="Map 1" width={200} height={150} className="rounded-md object-cover w-full aspect-[4/3]" />
+                            <Image src="https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg" alt="Map 2" width={200} height={150} className="rounded-md object-cover w-full aspect-[4/3]" />
+                        </div>
+                        <p className="text-red-600 text-xs">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
                         <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
                             <AlertTriangle className="h-4 w-4 mr-1" />
                             Report this listing
                         </Button>
-                    </>
+                    </div>
                   )}
                 </div>
             </div>
