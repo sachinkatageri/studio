@@ -10,8 +10,13 @@ const navItems = [
     { label: 'Overview', href: '#overview' },
     { label: 'Amenities', href: '#amenities' },
     { label: 'Price Details', href: '#price-estimate' },
+    { label: 'Layout', href: '#layout' },
     { label: 'Location', href: '#locality' },
+    { label: 'Nearby', href: '#nearby' },
     { label: 'Ratings & Reviews', href: '#ratings-reviews' },
+    { label: 'Video', href: '#video' },
+    { label: 'Floor Plan', href: '#plan' },
+    { label: 'Documents', href: '#documents' },
     { label: 'About Developer', href: '#developer' },
 ];
 

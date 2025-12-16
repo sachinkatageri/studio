@@ -456,7 +456,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             )}
 
             <Separator />
-            <Card>
+            <Card id="layout">
                 <CardHeader>
                     <CardTitle className="text-xl">Property Layout</CardTitle>
                 </CardHeader>
@@ -476,7 +476,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
             
             <Separator />
-            <Card>
+            <Card id="nearby">
                 <CardHeader>
                     <CardTitle className="text-xl">Nearby Places</CardTitle>
                 </CardHeader>
@@ -516,7 +516,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card>
+            <Card id="video">
                 <CardHeader>
                     <CardTitle className="text-xl">Property Video</CardTitle>
                 </CardHeader>
@@ -526,7 +526,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card>
+            <Card id="plan">
                 <CardHeader>
                     <CardTitle className="text-xl">Floor Plan</CardTitle>
                 </CardHeader>
@@ -536,7 +536,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card>
+            <Card id="documents">
                 <CardHeader>
                     <CardTitle className="text-xl">Property Document</CardTitle>
                 </CardHeader>
