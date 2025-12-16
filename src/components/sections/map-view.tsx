@@ -3,7 +3,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -101,7 +101,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         );
       })}
 
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-md px-4 md:px-0">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4 md:px-0">
         <div className="relative flex items-center gap-2">
             <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -118,6 +118,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
               onClick={onFilterClick}
             >
               <SlidersHorizontal />
+            </Button>
+            <Button variant="secondary" className="shadow-lg h-12 flex-shrink-0 hidden md:flex">
+              <PlusCircle className="mr-2 h-5 w-5" /> List my land
             </Button>
         </div>
       </div>

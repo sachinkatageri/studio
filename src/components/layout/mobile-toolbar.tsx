@@ -1,7 +1,7 @@
 
 'use client';
 
-import { List, MapPin } from 'lucide-react';
+import { List, MapPin, PlusCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { cn } from '@/lib/utils';
@@ -28,6 +28,10 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
           </SelectContent>
         </Select>
       </div>
+      <Button variant="outline" size="sm">
+        <PlusCircle className="mr-2 h-4 w-4" />
+        List
+      </Button>
     </div>
   );
 }
