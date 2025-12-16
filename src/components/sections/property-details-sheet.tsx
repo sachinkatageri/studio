@@ -195,19 +195,13 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                       </Button>
                     </div>
                   </div>
-                  {showDisclaimerDetails && (
-                    <div className="space-y-4 pt-2">
-                        <div className="grid grid-cols-2 gap-2">
-                            <Image src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/3:2/w_2560%2Cc_limit/GoogleMapTA.jpg" alt="Map 1" width={200} height={150} className="rounded-md object-cover w-full aspect-[4/3]" />
-                            <Image src="https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg" alt="Map 2" width={200} height={150} className="rounded-md object-cover w-full aspect-[4/3]" />
-                        </div>
-                        <p className="text-red-600 text-xs">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                        <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
-                            <AlertTriangle className="h-4 w-4 mr-1" />
-                            Report this listing
-                        </Button>
-                    </div>
-                  )}
+                   <div className="text-center border-t pt-4 mt-4">
+                      <p className="text-xs text-red-600 mb-2">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+                      <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
+                          <AlertTriangle className="h-4 w-4 mr-1" />
+                          Report this listing
+                      </Button>
+                  </div>
                 </div>
             </div>
             <div className="p-4 border-t bg-background sticky bottom-0">
