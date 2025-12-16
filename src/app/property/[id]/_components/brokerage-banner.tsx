@@ -4,12 +4,12 @@ import Link from 'next/link'
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
-        <Image src="https://www.buildersinfo.in/assets/app-store.png" alt="Download on the App Store" width={144} height={48} />
+        <Image src="https://c.housingcdn.com/demand/s/client/common/assets/app-store.10009972.png" alt="Download on the App Store" width={144} height={48} />
     </Link>
 )
 const PlayStoreButton = () => (
     <Link href="#" className="inline-block">
-        <Image src="https://www.buildersinfo.in/assets/play-store.png" alt="Get it on Google Play" width={144} height={48} />
+        <Image src="https://c.housingcdn.com/demand/s/client/common/assets/google-play.2c209e8c.png" alt="Get it on Google Play" width={144} height={48} />
     </Link>
 )
 
