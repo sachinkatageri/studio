@@ -83,14 +83,20 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                   style={{ top: pos.top, left: pos.left }}
                   onClick={() => onMarkerClick(pos.id)}
                 >
-                  <div className="flex items-center gap-1 bg-background p-1 rounded-full shadow-lg">
+                  <div className={cn(
+                      "flex items-center gap-1 p-1 rounded-full shadow-lg transition-colors",
+                      selectedPropertyId === pos.id ? 'bg-primary text-primary-foreground' : 'bg-background'
+                    )}>
                     <MapPin className={cn(
                       "h-5 w-5",
-                      selectedPropertyId === pos.id ? 'text-white fill-primary' : 'text-primary fill-current'
+                      selectedPropertyId === pos.id ? 'text-white fill-white' : 'text-primary fill-current'
                     )} />
                     <span className="text-xs font-bold pr-2 whitespace-nowrap">₹{property.pricePerSqFt}</span>
                   </div>
-                  <div className="w-2 h-2 bg-primary rounded-full mx-auto shadow-lg"></div>
+                  <div className={cn(
+                    "w-2 h-2 rounded-full mx-auto shadow-lg",
+                    selectedPropertyId === pos.id ? "bg-primary" : "bg-background"
+                    )}></div>
                 </div>
               </TooltipTrigger>
               <TooltipContent>
@@ -179,21 +185,22 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        </TooltipProvider>
 
        {selectedPropertyId && !isMobile && (
-        <div className="absolute bottom-20 right-4 z-10">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
           <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
         </div>
        )}
 
-       <div className="absolute bottom-20 right-4 z-10 flex-col gap-2 hidden md:flex">
-          <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-            <LocateFixed />
+       <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+          <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 bg-background/80 hover:bg-background">
+            <LocateFixed className='text-foreground' />
           </Button>
-          <div className="flex flex-col gap-px rounded-lg shadow-lg overflow-hidden">
-            <Button variant="secondary" size="icon" className="h-12 w-12 rounded-none rounded-t-lg">
-                <ZoomIn />
+          <div className="flex flex-col gap-px rounded-lg shadow-lg overflow-hidden bg-background/80">
+            <Button variant="ghost" size="icon" className="h-12 w-12 rounded-none rounded-t-lg hover:bg-background">
+                <ZoomIn className='text-foreground' />
             </Button>
-            <Button variant="secondary" size="icon" className="h-12 w-12 rounded-none rounded-b-lg">
-                <ZoomOut />
+            <Separator className="bg-border/50" />
+            <Button variant="ghost" size="icon" className="h-12 w-12 rounded-none rounded-b-lg hover:bg-background">
+                <ZoomOut className='text-foreground' />
             </Button>
           </div>
        </div>
