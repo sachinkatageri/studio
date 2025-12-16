@@ -178,27 +178,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
         </div>
 
-        <div>
-          <h4 className="text-sm font-semibold mb-2">Location</h4>
-          <div className="relative h-40 rounded-lg overflow-hidden">
-            {mapImage && (
-              <Image
-                src={mapImage.imageUrl}
-                alt={mapImage.description}
-                fill
-                className="object-cover"
-                data-ai-hint={mapImage.imageHint}
-              />
-            )}
-            <div className='absolute inset-0 bg-black/10 flex items-center justify-center'>
-                <Button variant="secondary">
-                    <MapPin className="mr-2 h-4 w-4" />
-                    View on map
-                </Button>
-            </div>
-          </div>
-        </div>
-
         <div className="text-center">
             <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
                 <AlertTriangle className="h-3 w-3 mr-1" />
@@ -238,4 +217,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </Card>
   );
 }
-
