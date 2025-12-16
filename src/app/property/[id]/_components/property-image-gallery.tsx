@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { Camera, Grid2x2, Heart, Share2 } from 'lucide-react';
+import { Camera, Grid2x2, Heart, MessageCircle, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import {
   Dialog,
@@ -53,11 +53,7 @@ export default function PropertyImageGallery() {
                         className={cn(
                             'relative overflow-hidden rounded-lg',
                             index === 0 && 'md:col-span-2 md:row-span-2',
-                            index === 1 && 'md:col-span-1',
-                            index === 2 && 'md:col-span-1',
-                            index === 3 && 'md:col-span-1',
-                            index === 4 && 'md:col-span-1',
-                            'col-span-1'
+                            index > 0 && 'col-span-1',
                         )}
                     >
                         <Image
@@ -76,6 +72,9 @@ export default function PropertyImageGallery() {
                 </Button>
                 <Button variant="secondary" size="icon" className="rounded-full bg-white/80 hover:bg-white">
                     <Heart className="h-4 w-4" />
+                </Button>
+                <Button variant="secondary" size="icon" className="rounded-full bg-white/80 hover:bg-white">
+                    <MessageCircle className="h-4 w-4" />
                 </Button>
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
