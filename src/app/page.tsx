@@ -68,37 +68,39 @@ export default function Home() {
   return (
       <div className="flex flex-col h-screen bg-background">
         <Header />
-        <MobileToolbar mobileView={mobileView} setMobileView={setMobileView} />
-        <div className="flex flex-1 overflow-hidden">
-          <aside className={cn(
-            "flex-col border-r transition-all duration-300",
-            "md:flex",
-            isSidebarOpen ? "w-[30%]" : "w-0",
-            mobileView === 'list' ? 'flex w-full' : 'hidden'
-          )}>
-            {sidebarView === 'list' 
-                ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
-                : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
-            }
-          </aside>
-          <main className={cn(
-            "relative transition-all duration-300",
-            "md:block",
-            isSidebarOpen ? "w-[70%]" : "w-full",
-            mobileView === 'map' ? 'block w-full' : 'hidden'
+        <div className="flex flex-col flex-1 md:flex-row overflow-hidden">
+          <MobileToolbar mobileView={mobileView} setMobileView={setMobileView} />
+          <div className="flex flex-1 overflow-hidden">
+            <aside className={cn(
+              "flex-col border-r transition-all duration-300",
+              "md:flex",
+              isSidebarOpen ? "w-[30%]" : "w-0",
+              mobileView === 'list' ? 'flex w-full' : 'hidden'
             )}>
-            <MapView 
-              isSidebarOpen={isSidebarOpen} 
-              toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-              onFilterClick={handleFilterClick}
-              areFiltersApplied={areFiltersApplied}
-              selectedPropertyId={selectedPropertyId}
-              onCloseInfoCard={handleCloseInfoCard}
-              onMarkerClick={handleMarkerClick}
-              onViewDetails={handleViewDetails}
-              setMobileView={setMobileView}
-            />
-          </main>
+              {sidebarView === 'list' 
+                  ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
+                  : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
+              }
+            </aside>
+            <main className={cn(
+              "relative transition-all duration-300",
+              "md:block",
+              isSidebarOpen ? "w-[70%]" : "w-full",
+              mobileView === 'map' ? 'block w-full' : 'hidden'
+              )}>
+              <MapView 
+                isSidebarOpen={isSidebarOpen} 
+                toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+                onFilterClick={handleFilterClick}
+                areFiltersApplied={areFiltersApplied}
+                selectedPropertyId={selectedPropertyId}
+                onCloseInfoCard={handleCloseInfoCard}
+                onMarkerClick={handleMarkerClick}
+                onViewDetails={handleViewDetails}
+                setMobileView={setMobileView}
+              />
+            </main>
+          </div>
         </div>
         <Footer />
       </div>
