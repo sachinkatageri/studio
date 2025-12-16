@@ -39,8 +39,8 @@ const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
-                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
                 </Carousel>
             </DialogContent>
         </Dialog>
