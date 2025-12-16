@@ -133,8 +133,8 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        <div className="absolute bottom-4 left-4 z-10 flex flex-col gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 bg-background/80 hover:bg-background">
-                <Layers className='text-foreground' />
+              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+                <Layers />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-60 p-2">
@@ -189,20 +189,19 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        )}
 
-       <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
-          <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 bg-background/80 hover:bg-background">
-            <LocateFixed className='text-foreground' />
-          </Button>
-          <div className="flex flex-col gap-px rounded-lg shadow-lg overflow-hidden bg-background/80">
-            <Button variant="ghost" size="icon" className="h-12 w-12 rounded-none rounded-t-lg hover:bg-background">
-                <ZoomIn className='text-foreground' />
+       {selectedPropertyId && (
+        <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+                <LocateFixed />
             </Button>
-            <Separator className="bg-border/50" />
-            <Button variant="ghost" size="icon" className="h-12 w-12 rounded-none rounded-b-lg hover:bg-background">
-                <ZoomOut className='text-foreground' />
+            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+                <ZoomIn />
             </Button>
-          </div>
-       </div>
+            <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+                <ZoomOut />
+            </Button>
+        </div>
+       )}
        
        {isMobile && (
           <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} />
