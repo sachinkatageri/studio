@@ -3,11 +3,12 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
+import Link from 'next/link';
 
 type Property = typeof properties[0];
 
@@ -178,6 +179,25 @@ const PropertyPlan = () => (
     </div>
 );
 
+const PropertyDocument = () => (
+    <div>
+        <Card>
+            <CardContent className="p-4 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                    <FileText className="h-8 w-8 text-primary" />
+                    <div>
+                        <p className="font-semibold">Property Brochure.pdf</p>
+                        <p className="text-sm text-muted-foreground">2.5 MB</p>
+                    </div>
+                </div>
+                <Button asChild variant="outline">
+                    <Link href="/sample.pdf" target="_blank" download>View PDF</Link>
+                </Button>
+            </CardContent>
+        </Card>
+    </div>
+);
+
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
         <div>
@@ -216,7 +236,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 <Button className="flex-1 text-lg py-6">
                     <Phone className="mr-2" /> Contact
                 </Button>
-                <Button variant="outline" className="flex-1 text-lg py-6">
+                <Button variant="outline" className="flex-1 text-lg py-6 border-green-500 text-green-500 hover:bg-green-500 hover:text-white">
                     <WhatsAppIcon /> WhatsApp
                 </Button>
             </div>
@@ -271,9 +291,16 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </AccordionItem>
 
                 <AccordionItem value="plan">
-                    <AccordionTrigger className="text-xl font-semibold">Property Plan</AccordionTrigger>
+                    <AccordionTrigger className="text-xl font-semibold">Floor Plan</AccordionTrigger>
                     <AccordionContent>
                         <PropertyPlan />
+                    </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="document">
+                    <AccordionTrigger className="text-xl font-semibold">Property Document</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyDocument />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
