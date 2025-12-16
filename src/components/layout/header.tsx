@@ -38,12 +38,6 @@ const DesktopSheetMenu = () => (
         <nav className="flex flex-col gap-1">
             <SheetClose asChild>
                 <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                <User className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">Profile</span>
-                </Link>
-            </SheetClose>
-            <SheetClose asChild>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
                 <Info className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">About Us</span>
                 </Link>
@@ -104,18 +98,6 @@ const DesktopSheetMenu = () => (
                 <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
                     <FileText className="h-5 w-5 text-muted-foreground" />
                     <span className="font-medium">Terms & Conditions</span>
-                </Link>
-            </SheetClose>
-            <SheetClose asChild>
-                 <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <Settings className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Settings</span>
-                </Link>
-            </SheetClose>
-             <SheetClose asChild>
-                 <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <LogOut className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Log out</span>
                 </Link>
             </SheetClose>
         </div>
@@ -250,3 +232,4 @@ export default function Header() {
 }
 
   
+    
