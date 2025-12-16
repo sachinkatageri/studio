@@ -109,21 +109,21 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4 md:px-0">
         <div className="relative flex items-center gap-2">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
               <Input
                 type="text"
                 placeholder="Search for property, project, or builder..."
-                className="w-full pl-10 h-12 text-foreground shadow-lg"
+                className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
               />
+              <Button 
+                variant={areFiltersApplied ? "default" : "ghost"} 
+                size="icon" 
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
+                onClick={onFilterClick}
+              >
+                <SlidersHorizontal />
+              </Button>
             </div>
-            <Button 
-              variant={areFiltersApplied ? "default" : "secondary"} 
-              size="icon" 
-              className="shadow-lg h-12 w-12 flex-shrink-0" 
-              onClick={onFilterClick}
-            >
-              <SlidersHorizontal />
-            </Button>
             <Button variant="secondary" className="shadow-lg h-12 flex-shrink-0 hidden md:flex">
               <PlusCircle className="mr-2 h-5 w-5" /> List my land
             </Button>
@@ -210,5 +210,3 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </div>
   );
 }
-
-    
