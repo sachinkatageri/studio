@@ -9,7 +9,7 @@ import { Button } from '../ui/button';
 import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin, Check } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
-import { formatDistanceToNow } from 'date-fns';
+import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const WhatsAppIcon = () => (
@@ -59,7 +59,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   if (!property) return null;
   
   // @ts-ignore
-  const postedDate = property.postedOn ? formatDistanceToNow(new Date(property.postedOn), { addSuffix: true }) : null;
+  const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
   return (
     <Card className="w-96 shadow-2xl flex flex-col max-h-[calc(100vh-6rem)]">
@@ -153,7 +153,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
             <p><span className="font-semibold">Posted by:</span> Owner</p>
              {/* @ts-ignore */}
-            {postedDate && <p><span className="font-semibold">Posted:</span> {postedDate}</p>}
+            {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
         </div>
         
 

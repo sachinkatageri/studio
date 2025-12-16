@@ -15,7 +15,7 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check } from "lucide-react";
 import { Separator } from "../ui/separator";
-import { formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 interface PropertyDetailsSheetProps {
@@ -60,10 +60,9 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
-  const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
   
   // @ts-ignore
-  const postedDate = property?.postedOn ? formatDistanceToNow(new Date(property.postedOn), { addSuffix: true }) : null;
+  const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
   return (
     <Sheet open={!!propertyId} onOpenChange={(open) => !open && onClose()}>
@@ -154,7 +153,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                         <span className="text-muted-foreground">({property.reviews} reviews)</span>
                     </div>
                     <p><span className="font-semibold">Posted by:</span> Owner</p>
-                    {postedDate && <p><span className="font-semibold">Posted:</span> {postedDate}</p>}
+                    {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
                 </div>
                 
                 {/* @ts-ignore */}
@@ -180,26 +179,6 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                     </div>
                 </div>
 
-                <div>
-                  <h4 className="text-base font-semibold mb-2">Location</h4>
-                  <div className="relative h-40 rounded-lg overflow-hidden">
-                    {mapImage && (
-                      <Image
-                        src={mapImage.imageUrl}
-                        alt={mapImage.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={mapImage.imageHint}
-                      />
-                    )}
-                    <div className='absolute inset-0 bg-black/10 flex items-center justify-center'>
-                        <Button variant="secondary">
-                            <MapPin className="mr-2 h-4 w-4" />
-                            View on map
-                        </Button>
-                    </div>
-                  </div>
-                </div>
                 
                  <div className="text-center border-t pt-4 mt-4">
                   <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
