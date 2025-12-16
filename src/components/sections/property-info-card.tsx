@@ -6,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { properties } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin, Check } from 'lucide-react';
+import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin, Check, ChevronRight } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 import { format } from "date-fns";
@@ -123,9 +123,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
               <Tooltip>
                 <TooltipTrigger>
-                  <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700">
-                    <Check className="w-3 h-3 mr-1" />
-                    Verified
+                  <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700 p-1 rounded-full h-auto">
+                    <Check className="w-3 h-3" />
                   </Badge>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -177,10 +176,15 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
         </div>
 
-        <div className="text-center border-t pt-4 mt-4">
-            <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
+        <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
+            <p>
+              Preliminary verification done. 
+              <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
+            </p>
+            <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+            <Button variant="link" className="text-xs p-0 h-auto text-red-500">
                 <AlertTriangle className="h-3 w-3 mr-1" />
-                Report this property
+                Report this listing
             </Button>
         </div>
 

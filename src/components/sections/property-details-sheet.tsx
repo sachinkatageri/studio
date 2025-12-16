@@ -126,9 +126,8 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
-                           <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700">
-                            <Check className="w-3 h-3 mr-1" />
-                            Verified
+                           <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700 p-1 rounded-full h-auto">
+                            <Check className="w-3 h-3" />
                           </Badge>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -180,12 +179,17 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 </div>
 
                 
-                 <div className="text-center border-t pt-4 mt-4">
-                  <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
-                      <AlertTriangle className="h-3 w-3 mr-1" />
-                      Report this property
-                  </Button>
-              </div>
+                 <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
+                    <p>
+                      Preliminary verification done. 
+                      <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
+                    </p>
+                    <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+                    <Button variant="link" className="text-xs p-0 h-auto text-red-500">
+                        <AlertTriangle className="h-3 w-3 mr-1" />
+                        Report this listing
+                    </Button>
+                </div>
             </div>
             <div className="p-4 border-t bg-background sticky bottom-0">
                 <div className="flex gap-2">
