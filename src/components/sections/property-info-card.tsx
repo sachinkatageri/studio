@@ -13,6 +13,7 @@ import { Separator } from '../ui/separator';
 import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from 'react';
+import { VerificationProcessDialog } from '../layout/verification-process-dialog';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
@@ -58,6 +59,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const [showDisclaimerDetails, setShowDisclaimerDetails] = useState(false);
+  const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
 
   if (!property) return null;
   
@@ -65,6 +67,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
   return (
+    <>
     <Card className="w-96 shadow-2xl flex flex-col max-h-[calc(100vh-6rem)]">
         <TooltipProvider>
       <CardHeader className="p-0 relative">
@@ -184,7 +187,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setShowDisclaimerDetails(!showDisclaimerDetails)}>
+                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
                     Know the Process
                   </Button>
                 </div>
@@ -234,5 +237,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </CardFooter>
       </TooltipProvider>
     </Card>
+    <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
+    </>
   );
 }

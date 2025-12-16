@@ -19,6 +19,7 @@ import { Separator } from "../ui/separator";
 import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from "react";
+import { VerificationProcessDialog } from "../layout/verification-process-dialog";
 
 interface PropertyDetailsSheetProps {
   propertyId: string | null;
@@ -63,11 +64,13 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const [showDisclaimerDetails, setShowDisclaimerDetails] = useState(false);
+  const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
   
   // @ts-ignore
   const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
   return (
+    <>
     <Sheet open={!!propertyId} onOpenChange={(open) => !open && onClose()}>
       <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0">
         <SheetHeader>
@@ -187,7 +190,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                     <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                     <div>
                       <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                      <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setShowDisclaimerDetails(!showDisclaimerDetails)}>
+                      <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
                         Know the Process
                       </Button>
                     </div>
@@ -240,5 +243,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
         )}
       </SheetContent>
     </Sheet>
+    <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
+    </>
   )
 }
