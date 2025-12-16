@@ -106,34 +106,32 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         );
       })}
 
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-full max-w-lg px-4 md:px-0">
-        <div className="relative flex items-center gap-2">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
-              <Input
-                type="text"
-                placeholder="Search for property, project, or builder..."
-                className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
-              />
-              <Button 
-                variant={areFiltersApplied ? "default" : "ghost"} 
-                size="icon" 
-                className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
-                onClick={onFilterClick}
-              >
-                <SlidersHorizontal />
-              </Button>
-            </div>
-            <Button variant="secondary" className="shadow-lg h-12 flex-shrink-0 hidden md:flex">
-              <PlusCircle className="mr-2 h-5 w-5" /> List my land
-            </Button>
+      <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center gap-2">
+        <div className="relative flex-1 max-w-lg">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+          <Input
+            type="text"
+            placeholder="Search for property, project, or builder..."
+            className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
+          />
+          <Button 
+            variant={areFiltersApplied ? "default" : "ghost"} 
+            size="icon" 
+            className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
+            onClick={onFilterClick}
+          >
+            <SlidersHorizontal />
+          </Button>
         </div>
-      </div>
+        <Button variant="secondary" className="shadow-lg h-12 flex-shrink-0 hidden md:flex">
+          <PlusCircle className="mr-2 h-5 w-5" /> List my land
+        </Button>
+    </div>
 
-       <div className="absolute bottom-4 left-4 z-10 flex flex-col gap-2">
+       <div className="absolute bottom-4 left-4 z-10">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
+              <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border">
                 <Layers />
               </Button>
             </PopoverTrigger>
@@ -189,16 +187,20 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        )}
 
-       <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
-           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-               <LocateFixed />
-           </Button>
-           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-               <ZoomIn />
-           </Button>
-           <Button variant="secondary" size="icon" className="shadow-lg h-12 w-12">
-               <ZoomOut />
-           </Button>
+       <div className="absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2">
+           <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                <Button variant="ghost" size="icon" className="h-12 w-12">
+                   <LocateFixed />
+                </Button>
+                <Separator />
+                <Button variant="ghost" size="icon" className="h-12 w-12">
+                   <ZoomIn />
+                </Button>
+                <Separator />
+                <Button variant="ghost" size="icon" className="h-12 w-12">
+                   <ZoomOut />
+                </Button>
+           </div>
        </div>
        
        {isMobile && (
