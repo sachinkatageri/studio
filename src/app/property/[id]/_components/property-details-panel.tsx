@@ -3,11 +3,13 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2 } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
+import React, { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 type Property = typeof properties[0];
 
@@ -82,6 +84,69 @@ const PropertyLocation = () => (
     </div>
 )
 
+const nearbyData = {
+    school: [
+        { name: 'Global International School', distance: '1.2 km' },
+        { name: 'Oakridge International School', distance: '2.5 km' },
+        { name: 'Delhi Public School', distance: '3.0 km' },
+    ],
+    hospital: [
+        { name: 'Apollo Hospital', distance: '0.8 km' },
+        { name: 'Care Hospital', distance: '1.5 km' },
+        { name: 'MaxCure Hospital', distance: '2.1 km' },
+    ],
+    hotel: [
+        { name: 'Taj Deccan', distance: '4.0 km' },
+        { name: 'Marriott Hyderabad', distance: '5.5 km' },
+        { name: 'The Park Hyderabad', distance: '6.0 km' },
+    ],
+    business: [
+        { name: 'Infosys Campus', distance: '3.5 km' },
+        { name: 'Google Office', distance: '4.2 km' },
+        { name: 'TCS Synergy Park', distance: '5.0 km' },
+    ],
+};
+
+type NearbyCategory = keyof typeof nearbyData;
+
+const NearbyPlaces = () => {
+    const [activeCategory, setActiveCategory] = useState<NearbyCategory>('school');
+
+    const categories: { id: NearbyCategory, label: string, icon: React.ReactNode }[] = [
+        { id: 'school', label: 'Schools', icon: <School className="h-5 w-5" /> },
+        { id: 'hospital', label: 'Hospitals', icon: <Hospital className="h-5 w-5" /> },
+        { id: 'hotel', label: 'Hotels', icon: <Hotel className="h-5 w-5" /> },
+        { id: 'business', label: 'Businesses', icon: <Briefcase className="h-5 w-5" /> },
+    ];
+
+    return (
+        <div>
+            <div className="flex flex-wrap gap-2 mb-4">
+                {categories.map(category => (
+                    <Button 
+                        key={category.id} 
+                        variant={activeCategory === category.id ? 'default' : 'outline'}
+                        onClick={() => setActiveCategory(category.id)}
+                        className="flex items-center gap-2"
+                    >
+                        {category.icon}
+                        <span>{category.label}</span>
+                    </Button>
+                ))}
+            </div>
+            <ul className="space-y-2">
+                {nearbyData[activeCategory].map(item => (
+                    <li key={item.name} className="flex justify-between p-2 rounded-md hover:bg-muted">
+                        <span className="font-medium">{item.name}</span>
+                        <span className="text-muted-foreground">{item.distance}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+
 const PropertyReviews = ({ property }: { property: Property }) => {
     const totalReviews = 50;
     const ratings = [
@@ -128,37 +193,32 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 }
 
 const PropertyLayout = ({ property }: { property: Property }) => {
-    const isCommercial = property.type === 'Commercial';
-  
-    const residentialLayoutItems = [
-      { icon: <Building className="h-5 w-5 text-primary" />, label: 'Type', value: 'Apartment' },
-      { icon: <Square className="h-5 w-5 text-primary" />, label: 'Area', value: '1800 sqft' },
-      { icon: <Bed className="h-5 w-5 text-primary" />, label: 'Bedrooms', value: '3' },
-      { icon: <Bath className="h-5 w-5 text-primary" />, label: 'Bathrooms', value: '3' },
-      { icon: <ParkingSquare className="h-5 w-5 text-primary" />, label: 'Parking', value: '2 spots' },
-      { icon: <Armchair className="h-5 w-5 text-primary" />, label: 'Furnishing', value: 'Furnished' },
+    const images = [
+        { id: 1, src: "https://picsum.photos/seed/layout-1/800/600", alt: "Living Area", hint: "living room" },
+        { id: 2, src: "https://picsum.photos/seed/layout-2/800/600", alt: "Bedroom", hint: "bedroom" },
+        { id: 3, src: "https://picsum.photos/seed/layout-3/800/600", alt: "Kitchen", hint: "kitchen" },
+        { id: 4, src: "https://picsum.photos/seed/layout-4/800/600", alt: "Bathroom", hint: "bathroom" },
     ];
-  
-    const commercialLayoutItems = [
-      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '6-15' },
-      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '16-30' },
-      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '31-60' },
-    ];
-  
-    const layoutItems = isCommercial ? commercialLayoutItems : residentialLayoutItems;
   
     return (
-        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isCommercial ? 'md:grid-cols-3' : 'md:grid-cols-4 lg:grid-cols-3'} gap-4`}>
-          {layoutItems.map((item, index) => (
-            <div key={index} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
-              {item.icon}
-              <p className="text-sm text-muted-foreground">{item.label}</p>
-              <p className="font-semibold">{item.value}</p>
+        <div className="grid grid-cols-2 gap-2">
+          {images.map((image, index) => (
+            <div key={image.id} className={cn(
+                "relative aspect-video overflow-hidden rounded-lg",
+                index === 0 && 'col-span-2 row-span-2 aspect-[4/3]',
+            )}>
+              <Image 
+                src={image.src} 
+                alt={image.alt} 
+                fill 
+                className="object-cover"
+                data-ai-hint={image.hint}
+               />
             </div>
           ))}
         </div>
     );
-  };
+};
   
 
 const PropertyVideo = () => (
@@ -279,7 +339,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 <Button className="flex-1 text-lg py-6">
                     <Phone className="mr-2" /> Contact
                 </Button>
-                <Button variant="outline" className="flex-1 text-lg py-6 border-green-500 text-green-500 hover:bg-green-500 hover:text-white">
+                <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                     <WhatsAppIcon /> WhatsApp
                 </Button>
             </div>
@@ -311,6 +371,12 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <div>
                 <h2 className="text-xl font-semibold mb-4">Location & Landmark</h2>
                 <PropertyLocation />
+            </div>
+            
+            <Separator />
+            <div>
+                <h2 className="text-xl font-semibold mb-4">Nearby Places</h2>
+                <NearbyPlaces />
             </div>
 
             <Separator />
@@ -351,3 +417,4 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
