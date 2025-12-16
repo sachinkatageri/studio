@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from 'next/link';
@@ -164,7 +165,7 @@ export default function Header() {
           <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <Sheet>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:inline-flex">
+                <Button variant="ghost" size="icon" className="hidden md:inline-flex">
                     <Menu />
                     <span className="sr-only">Open user menu</span>
                 </Button>
