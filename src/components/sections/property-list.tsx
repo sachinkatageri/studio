@@ -39,8 +39,11 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
             />
           )}
         </div>
-        <div className="flex flex-col gap-1">
-          <h3 className="font-semibold text-base leading-tight">{property.name}</h3>
+        <div className="flex flex-col gap-1 flex-1">
+            <div className="flex items-center gap-2">
+                <h3 className="font-semibold text-base leading-tight">{property.name}</h3>
+                <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
+            </div>
           <p className="text-sm text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
           {property.size && <p className="text-sm text-muted-foreground">Size: {property.size} sq. yd.</p>}
