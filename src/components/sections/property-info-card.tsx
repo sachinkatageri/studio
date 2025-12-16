@@ -7,11 +7,12 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { properties } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin, Check, ChevronRight } from 'lucide-react';
+import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin, Check, ChevronRight, CheckCircle } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { useState } from 'react';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
@@ -56,6 +57,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
+  const [showDisclaimerDetails, setShowDisclaimerDetails] = useState(false);
 
   if (!property) return null;
   
@@ -177,17 +179,27 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
         </div>
 
-        <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
-            <p>
-              <span className="font-semibold text-foreground">Preliminary verification done.</span>
-              <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
-            </p>
-            <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-            <Button variant="link" className="text-xs p-0 h-auto text-red-500">
-                <AlertTriangle className="h-3 w-3 mr-1" />
-                Report this listing
-            </Button>
-        </div>
+        <div className="text-sm text-muted-foreground space-y-2">
+              <div className="flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-foreground">Preliminary verification done.</p>
+                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setShowDisclaimerDetails(!showDisclaimerDetails)}>
+                    Know the Process
+                  </Button>
+                </div>
+              </div>
+              {showDisclaimerDetails && (
+                <>
+                    <p className="text-red-600">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+                    <Separator className="my-4" />
+                    <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
+                        <AlertTriangle className="h-4 w-4 mr-1" />
+                        Report this listing
+                    </Button>
+                </>
+              )}
+            </div>
 
       </CardContent>
       <CardFooter className="p-4 border-t bg-background">

@@ -14,10 +14,11 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check, ChevronRight } from "lucide-react";
+import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check, ChevronRight, CheckCircle } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { useState } from "react";
 
 interface PropertyDetailsSheetProps {
   propertyId: string | null;
@@ -61,6 +62,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
+  const [showDisclaimerDetails, setShowDisclaimerDetails] = useState(false);
   
   // @ts-ignore
   const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
@@ -180,16 +182,26 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 </div>
 
                 
-                 <div className="text-center border-t pt-4 mt-4 text-xs text-muted-foreground space-y-2">
-                    <p>
-                      <span className="font-semibold text-foreground">Preliminary verification done.</span>
-                      <Button variant="link" className="text-xs p-0 h-auto ml-1">Know the Process</Button>
-                    </p>
-                    <p>The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                    <Button variant="link" className="text-xs p-0 h-auto text-red-500">
-                        <AlertTriangle className="h-3 w-3 mr-1" />
-                        Report this listing
-                    </Button>
+                 <div className="text-sm text-muted-foreground space-y-2">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                    <div>
+                      <p className="text-foreground">Preliminary verification done.</p>
+                      <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setShowDisclaimerDetails(!showDisclaimerDetails)}>
+                        Know the Process
+                      </Button>
+                    </div>
+                  </div>
+                  {showDisclaimerDetails && (
+                    <>
+                        <p className="text-red-600">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
+                        <Separator className="my-4" />
+                        <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
+                            <AlertTriangle className="h-4 w-4 mr-1" />
+                            Report this listing
+                        </Button>
+                    </>
+                  )}
                 </div>
             </div>
             <div className="p-4 border-t bg-background sticky bottom-0">
