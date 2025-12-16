@@ -54,8 +54,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
 
     return (
         <div className="bg-background">
-            <main className="container mx-auto px-0 sm:px-6 lg:px-8 pt-14 md:pt-8 pb-8">
-                <div className="px-4 sm:px-0">
+            <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8 pb-8">
+                <div className="px-4 sm:px-0 pt-14 md:pt-0">
                   <Breadcrumb property={property} />
                 </div>
                 <PropertyImageGallery />
@@ -83,5 +83,3 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         </div>
     )
 }
-
-

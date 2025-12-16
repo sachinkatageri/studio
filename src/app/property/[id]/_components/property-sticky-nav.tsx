@@ -30,7 +30,7 @@ export function PropertyStickyNav() {
 
     const handleScroll = () => {
         const sections = navItems.map(item => document.querySelector(item.href));
-        const scrollPosition = window.scrollY + 150;
+        const scrollPosition = window.scrollY + 180; // Adjusted for both headers
 
         let currentSectionId = '';
         for (let i = sections.length - 1; i >= 0; i--) {
@@ -42,7 +42,11 @@ export function PropertyStickyNav() {
         }
         setActiveId(currentSectionId || 'info');
 
-        if (navRef.current && window.scrollY > navRef.current.offsetTop - 64) { // 64px is header height
+        const topNavHeight = 64; // main header height
+        const mobileNavHeight = 56; // mobile nav height
+        const totalNavHeight = window.innerWidth < 768 ? topNavHeight + mobileNavHeight : topNavHeight;
+        
+        if (navRef.current && window.scrollY > navRef.current.offsetTop - totalNavHeight) {
             setIsSticky(true);
         } else {
             setIsSticky(false);
@@ -53,7 +57,12 @@ export function PropertyStickyNav() {
         e.preventDefault();
         const targetElement = document.querySelector(href);
         if (targetElement) {
-            const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - 120;
+            const topNavHeight = 64; // main header height
+            const mobileNavHeight = 56; // mobile nav height
+            const tabsHeight = 65;
+            const totalNavHeight = window.innerWidth < 768 ? topNavHeight + mobileNavHeight + tabsHeight : topNavHeight + tabsHeight;
+
+            const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight + 10;
             window.scrollTo({
                 top: topOffset,
                 behavior: 'smooth'
@@ -107,8 +116,8 @@ export function PropertyStickyNav() {
     };
 
     return (
-        <div ref={navRef} className={cn('relative h-[65px] top-0 z-30 bg-background', isSticky && 'fixed top-16 left-0 right-0 shadow-md border-b')}>
-            <div className="relative container mx-auto">
+        <div ref={navRef} className={cn('relative h-[65px] bg-background top-0 z-30', isSticky && 'fixed top-16 md:top-16 left-0 right-0 shadow-md border-b', isSticky && 'md:top-16 top-[120px]')}>
+            <div className="relative container mx-auto flex items-center">
                 {showLeftArrow && (
                     <button 
                         onClick={() => scroll('left')}
