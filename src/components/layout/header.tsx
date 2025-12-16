@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
+import { ThemeToggleButton } from '../theme-toggle';
 
 const WhatsAppIcon = () => (
     <svg
@@ -108,6 +109,7 @@ export default function Header() {
         </nav>
         
         <div className="flex items-center gap-2">
+            <ThemeToggleButton />
           <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <Sheet>
             <SheetTrigger asChild>
