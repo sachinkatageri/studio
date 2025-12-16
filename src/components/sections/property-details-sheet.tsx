@@ -13,7 +13,7 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin } from "lucide-react";
+import { Phone, Share2, Navigation, Heart, AlertTriangle, Star, Home, ShieldCheck, Warehouse, Armchair, Utensils, Zap, Car, Gamepad2, Presentation, Clock, Coffee, Printer, Users, Wifi, MapPin, Check } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { formatDistanceToNow } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
@@ -118,7 +118,22 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 </TooltipProvider>
               </div>
               <div className="absolute bottom-0 left-0 p-4">
-                <SheetTitle className="text-2xl text-white">{property.name}</SheetTitle>
+                 <div className="flex items-center gap-2">
+                    <SheetTitle className="text-2xl text-white">{property.name}</SheetTitle>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger>
+                           <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700">
+                            <Check className="w-3 h-3 mr-1" />
+                            Verified
+                          </Badge>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Preliminary verification done.</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                </div>
                 <SheetDescription className="text-neutral-300">{property.location}</SheetDescription>
               </div>
             </SheetHeader>
