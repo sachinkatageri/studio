@@ -11,7 +11,7 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Phone } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Phone, Bookmark, Share2, CornerUpRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -55,10 +55,31 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     )
 }
 
+const StickyFooter = ({ property }: { property: typeof properties[0] }) => {
+    return (
+        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-background border-t z-40 p-2">
+            <div className="flex justify-between items-center">
+                <div className="text-xs">
+                    {/* @ts-ignore */}
+                    <p className="font-semibold">{property.size} Sq.Feet plot for sale in {property.location}</p>
+                     {/* @ts-ignore */}
+                    <p>for {property.price} lakhs @ {property.pricePerSqFt}/ Sq.Feet</p>
+                </div>
+                <div className="flex items-center gap-1">
+                    <Button variant="ghost" size="icon"><Bookmark className="h-5 w-5" /></Button>
+                    <Button variant="ghost" size="icon"><Share2 className="h-5 w-5" /></Button>
+                    <Button variant="ghost" size="icon"><CornerUpRight className="h-5 w-5" /></Button>
+                    <Button className="bg-yellow-400 text-black hover:bg-yellow-500">Contact Agent</Button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
 
     return (
-        <div className="bg-background">
+        <div className="bg-background pb-20 md:pb-0">
             <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8 pb-8">
                 <div className="px-4 sm:px-0 pt-14 md:pt-0">
                   <Breadcrumb property={property} />
@@ -93,6 +114,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             <BrokerageBanner />
             <SiteFooter />
+            <StickyFooter property={property} />
         </div>
     )
 }
