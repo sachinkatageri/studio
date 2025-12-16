@@ -56,11 +56,11 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <Breadcrumb property={property} />
                 <PropertyImageGallery />
+            </main>
+            
+            <PropertyStickyNav />
 
-                <div className="mt-8">
-                    <PropertyStickyNav />
-                </div>
-
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
                         <PropertyDetailsPanel property={property} />
@@ -73,8 +73,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <div className="mt-16">
                     <SimilarProperties />
                 </div>
-
             </main>
+            
             <BrokerageBanner />
             <SiteFooter />
         </div>
