@@ -118,7 +118,7 @@ const UserMenuButton = () => (
                         <h3 className="font-bold">Tag Along</h3>
                         <p className="text-sm">Buy Large Land Parcels with us, starting @ 4 Lakh/ Acre.</p>
                     </div>
-                    <Image src="https://picsum.photos/seed/tag-along/100/80" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" data-ai-hint="land parcel map" />
+                    <Image src="https://www.buildersinfo.in/tag-along-pic.svg" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" />
                 </CardContent>
               </Card>
 
@@ -130,7 +130,7 @@ const UserMenuButton = () => (
                            <AppStoreButton />
                            <PlayStoreButton />
                         </div>
-                        <Image src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxxciUyMGNvZGUlMjB8ZW58MHx8fHwxNzY1ODg5MTkzfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
+                        <Image src="https://c.housingcdn.com/demand/s/client/common/assets/qr-code.f143ed3a.png" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
                     </div>
                 </CardContent>
               </Card>
