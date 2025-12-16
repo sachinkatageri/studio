@@ -3,7 +3,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
@@ -198,6 +198,48 @@ const PropertyDocument = () => (
     </div>
 );
 
+
+const OpeningHours = () => (
+    <ul className="space-y-2 text-sm">
+        <li className="flex justify-between">
+            <span className="text-muted-foreground">Monday - Friday</span>
+            <span>9:00 AM - 6:00 PM</span>
+        </li>
+        <li className="flex justify-between">
+            <span className="text-muted-foreground">Saturday</span>
+            <span>Closed</span>
+        </li>
+        <li className="flex justify-between">
+            <span className="text-muted-foreground">Sunday</span>
+            <span>Closed</span>
+        </li>
+    </ul>
+);
+
+const AdditionalPropertyDetails = () => {
+    const details = [
+        { label: 'Category', value: 'Commercial' },
+        { label: 'Property Type', value: 'Techpark' },
+        { label: 'Under Management', value: 'Yes' },
+        { label: 'Available Floors', value: '10th' },
+        { label: 'Office Space Solutions', value: 'Floor 10th' },
+        { label: 'Facilities', value: '4W PARKING, 2W PARKING' },
+        { label: 'Builder Name', value: 'A' },
+    ];
+
+    return (
+        <ul className="space-y-3 text-sm">
+            {details.map(detail => (
+                <li key={detail.label} className="flex justify-between">
+                    <span className="text-muted-foreground">{detail.label}</span>
+                    <span className="font-medium">{detail.value}</span>
+                </li>
+            ))}
+        </ul>
+    );
+};
+
+
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
         <div>
@@ -273,6 +315,20 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <AccordionTrigger className="text-xl font-semibold">Location & Landmark</AccordionTrigger>
                     <AccordionContent>
                         <PropertyLocation />
+                    </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="opening-hours">
+                    <AccordionTrigger className="text-xl font-semibold">Opening Hours</AccordionTrigger>
+                    <AccordionContent>
+                        <OpeningHours />
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="additional-details">
+                    <AccordionTrigger className="text-xl font-semibold">Property Details</AccordionTrigger>
+                    <AccordionContent>
+                        <AdditionalPropertyDetails />
                     </AccordionContent>
                 </AccordionItem>
 
