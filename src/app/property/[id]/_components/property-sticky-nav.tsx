@@ -8,11 +8,11 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 const navItems = [
     { label: 'Overview', href: '#overview' },
-    { label: 'Price Estimate', href: '#price-estimate' },
     { label: 'Amenities', href: '#amenities' },
-    { label: 'Ratings and Reviews', href: '#ratings-reviews' },
-    { label: 'Locality', href: '#locality' },
-    { label: 'Developer', href: '#developer' },
+    { label: 'Price Details', href: '#price-estimate' },
+    { label: 'Location', href: '#locality' },
+    { label: 'Ratings & Reviews', href: '#ratings-reviews' },
+    { label: 'About Developer', href: '#developer' },
 ];
 
 export function PropertyStickyNav() {
