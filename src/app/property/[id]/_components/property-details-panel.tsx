@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -11,6 +12,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type Property = typeof properties[0];
 
@@ -193,31 +195,64 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     )
 }
 
-const PropertyLayout = ({ property }: { property: Property }) => {
-    const images = [
-        { id: 1, src: "https://picsum.photos/seed/layout-1/800/600", alt: "Living Area", hint: "living room" },
-        { id: 2, src: "https://picsum.photos/seed/layout-2/800/600", alt: "Bedroom", hint: "bedroom" },
-        { id: 3, src: "https://picsum.photos/seed/layout-3/800/600", alt: "Kitchen", hint: "kitchen" },
-        { id: 4, src: "https://picsum.photos/seed/layout-4/800/600", alt: "Bathroom", hint: "bathroom" },
-    ];
-  
-    return (
-        <div className="grid grid-cols-2 gap-2">
-          {images.map((image, index) => (
+const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
+    <div className="grid grid-cols-2 gap-2">
+        {images.map((image, index) => (
             <div key={image.id} className={cn(
                 "relative aspect-video overflow-hidden rounded-lg",
                 index === 0 && 'col-span-2 row-span-2 aspect-[4/3]',
             )}>
-              <Image 
-                src={image.src} 
-                alt={image.alt} 
-                fill 
-                className="object-cover"
-                data-ai-hint={image.hint}
-               />
+                <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={image.hint}
+                />
             </div>
-          ))}
-        </div>
+        ))}
+    </div>
+);
+
+const PropertyLayout = ({ property }: { property: Property }) => {
+    const layouts = {
+        small: [
+            { id: 1, src: "https://picsum.photos/seed/layout-small-1/800/600", alt: "Small office layout", hint: "small office" },
+            { id: 2, src: "https://picsum.photos/seed/layout-small-2/800/600", alt: "Small meeting room", hint: "small meeting room" },
+            { id: 3, src: "https://picsum.photos/seed/layout-small-3/800/600", alt: "Compact workspace", hint: "compact workspace" },
+            { id: 4, src: "https://picsum.photos/seed/layout-small-4/800/600", alt: "Focused work area", hint: "work area" },
+        ],
+        medium: [
+            { id: 1, src: "https://picsum.photos/seed/layout-medium-1/800/600", alt: "Medium office layout", hint: "medium office" },
+            { id: 2, src: "https://picsum.photos/seed/layout-medium-2/800/600", alt: "Team collaboration space", hint: "team space" },
+            { id: 3, src: "https://picsum.photos/seed/layout-medium-3/800/600", alt: "Open plan office", hint: "open office" },
+            { id: 4, src: "https://picsum.photos/seed/layout-medium-4/800/600", alt: "Brainstorming room", hint: "brainstorming room" },
+        ],
+        large: [
+            { id: 1, src: "https://picsum.photos/seed/layout-large-1/800/600", alt: "Large office layout", hint: "large office" },
+            { id: 2, src: "https://picsum.photos/seed/layout-large-2/800/600", alt: "Corporate office space", hint: "corporate office" },
+            { id: 3, src: "https://picsum.photos/seed/layout-large-3/800/600", alt: "Expansive workspace", hint: "expansive workspace" },
+            { id: 4, src: "https://picsum.photos/seed/layout-large-4/800/600", alt: "Executive suite", hint: "executive suite" },
+        ],
+    };
+
+    return (
+        <Tabs defaultValue="small">
+            <TabsList className="grid w-full grid-cols-3 mb-4">
+                <TabsTrigger value="small">6-15 Seats</TabsTrigger>
+                <TabsTrigger value="medium">16-30 Seats</TabsTrigger>
+                <TabsTrigger value="large">31-60 Seats</TabsTrigger>
+            </TabsList>
+            <TabsContent value="small">
+                <LayoutImageGallery images={layouts.small} />
+            </TabsContent>
+            <TabsContent value="medium">
+                <LayoutImageGallery images={layouts.medium} />
+            </TabsContent>
+            <TabsContent value="large">
+                <LayoutImageGallery images={layouts.large} />
+            </TabsContent>
+        </Tabs>
     );
 };
   
@@ -355,66 +390,108 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             {property.priceBreakdown && (
                 <>
                     <Separator />
-                    <div>
-                        <h2 className="text-xl font-semibold mb-4">Pricing Details</h2>
-                        <PricingDetails property={property} />
-                    </div>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-xl">Pricing Details</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <PricingDetails property={property} />
+                        </CardContent>
+                    </Card>
                 </>
             )}
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
-                <PropertyLayout property={property} />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Layout</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyLayout property={property} />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Location & Landmark</h2>
-                <PropertyLocation />
-            </div>
+             <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Location & Landmark</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyLocation />
+                </CardContent>
+            </Card>
             
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Nearby Places</h2>
-                <NearbyPlaces />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Nearby Places</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <NearbyPlaces />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Opening Hours</h2>
-                <OpeningHours />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Opening Hours</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <OpeningHours />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Property Details</h2>
-                <AdditionalPropertyDetails />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Details</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <AdditionalPropertyDetails />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Rating & Reviews</h2>
-                <PropertyReviews property={property} />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Rating & Reviews</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyReviews property={property} />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Property Video</h2>
-                <PropertyVideo />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Video</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyVideo />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Floor Plan</h2>
-                <PropertyPlan />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Floor Plan</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyPlan />
+                </CardContent>
+            </Card>
 
             <Separator />
-            <div>
-                <h2 className="text-xl font-semibold mb-4">Property Document</h2>
-                <PropertyDocument />
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Document</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyDocument />
+                </CardContent>
+            </Card>
         </div>
     )
 }
+
+    
