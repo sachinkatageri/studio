@@ -60,38 +60,23 @@ const DesktopSheetMenu = () => (
                         <Headset className="h-5 w-5 text-muted-foreground" />
                         <span>Contact Us</span>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pl-8 space-y-2">
-                        <div className="relative pl-4 border-l">
-                        <div className="space-y-4">
-                                <div className="flex items-center gap-3 relative -ml-1">
-                                    <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                    <Mail className="h-5 w-5 text-muted-foreground" />
-                                    <Link href="mailto:support@buildersinfo.in" className="text-sm hover:underline">support@buildersinfo.in</Link>
-                                    <Button variant="ghost" size="icon" className="h-7 w-7 ml-auto">
-                                        <Copy className="h-4 w-4" />
-                                    </Button>
-                                </div>
-                                <div className="flex items-center gap-3 relative -ml-1">
-                                    <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                    <WhatsAppIcon />
-                                    <Link href="#" className="text-sm hover:underline">Whatsapp</Link>
-                                </div>
-                                <div className="flex items-center gap-3 relative -ml-1">
-                                    <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                    <Linkedin className="h-5 w-5 text-muted-foreground" />
-                                    <Link href="#" className="text-sm hover:underline">LinkedIn</Link>
-                                </div>
-                                <div className="flex items-center gap-3 relative -ml-1">
-                                    <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                    <Youtube className="h-5 w-5 text-muted-foreground" />
-                                    <Link href="#" className="text-sm hover:underline">YouTube</Link>
-                                </div>
-                                <div className="flex items-center gap-3 relative -ml-1">
-                                    <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                    <Instagram className="h-5 w-5 text-muted-foreground" />
-                                    <Link href="#" className="text-sm hover:underline">Instagram</Link>
-                                </div>
-                        </div>
+                    <AccordionContent className="pt-2">
+                        <div className="flex justify-center items-center gap-4">
+                            <Link href="mailto:support@buildersinfo.in" className="text-muted-foreground hover:text-foreground">
+                                <Mail className="h-5 w-5" />
+                            </Link>
+                            <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                <WhatsAppIcon />
+                            </Link>
+                            <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                <Linkedin className="h-5 w-5" />
+                            </Link>
+                            <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                <Youtube className="h-5 w-5" />
+                            </Link>
+                            <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                <Instagram className="h-5 w-5" />
+                            </Link>
                         </div>
                     </AccordionContent>
                 </AccordionItem>
@@ -182,38 +167,23 @@ export default function Header() {
                                  <Headset className="h-5 w-5 text-muted-foreground" />
                                 <span>Contact Us</span>
                             </AccordionTrigger>
-                            <AccordionContent className="pt-2 pl-8 space-y-2">
-                                <div className="relative pl-4 border-l">
-                                   <div className="space-y-4">
-                                        <div className="flex items-center gap-3 relative -ml-1">
-                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Mail className="h-5 w-5 text-muted-foreground" />
-                                            <Link href="mailto:support@buildersinfo.in" className="text-sm hover:underline">support@buildersinfo.in</Link>
-                                            <Button variant="ghost" size="icon" className="h-7 w-7 ml-auto">
-                                                <Copy className="h-4 w-4" />
-                                            </Button>
-                                        </div>
-                                        <div className="flex items-center gap-3 relative -ml-1">
-                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <WhatsAppIcon />
-                                            <Link href="#" className="text-sm hover:underline">Whatsapp</Link>
-                                        </div>
-                                         <div className="flex items-center gap-3 relative -ml-1">
-                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Linkedin className="h-5 w-5 text-muted-foreground" />
-                                            <Link href="#" className="text-sm hover:underline">LinkedIn</Link>
-                                        </div>
-                                         <div className="flex items-center gap-3 relative -ml-1">
-                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Youtube className="h-5 w-5 text-muted-foreground" />
-                                            <Link href="#" className="text-sm hover:underline">YouTube</Link>
-                                        </div>
-                                         <div className="flex items-center gap-3 relative -ml-1">
-                                            <div className="absolute -left-[1.1rem] top-1/2 -translate-y-1/2 h-px w-3 bg-border"></div>
-                                            <Instagram className="h-5 w-5 text-muted-foreground" />
-                                            <Link href="#" className="text-sm hover:underline">Instagram</Link>
-                                        </div>
-                                   </div>
+                            <AccordionContent className="pt-2">
+                                <div className="flex justify-center items-center gap-4">
+                                    <Link href="mailto:support@buildersinfo.in" className="text-muted-foreground hover:text-foreground">
+                                        <Mail className="h-5 w-5" />
+                                    </Link>
+                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                        <WhatsAppIcon />
+                                    </Link>
+                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                        <Linkedin className="h-5 w-5" />
+                                    </Link>
+                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                        <Youtube className="h-5 w-5" />
+                                    </Link>
+                                    <Link href="#" className="text-muted-foreground hover:text-foreground">
+                                        <Instagram className="h-5 w-5" />
+                                    </Link>
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
@@ -278,5 +248,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
