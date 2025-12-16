@@ -9,6 +9,9 @@ const footerLinks = {
     "Terms & Conditions": "#",
     "Privacy Policy": "#",
     "Disclaimer": "#",
+    "Services": "#",
+    "Hand Holding": "#",
+    "Tag Along": "#",
 }
 
 const socialLinks = [
