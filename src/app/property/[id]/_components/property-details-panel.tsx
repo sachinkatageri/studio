@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 type Property = typeof properties[0];
 
@@ -195,26 +196,25 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
     <div className="w-full mx-auto">
-        <div className="grid grid-cols-4 grid-rows-2 gap-2 aspect-[2/1]">
-            {images.map((image, index) => (
-                <div key={image.id} className={cn(
-                    "relative overflow-hidden rounded-lg",
-                    index === 0 && 'col-span-2 row-span-2',
-                    index === 1 && 'col-span-1 row-span-1',
-                    index === 2 && 'col-span-1 row-span-1',
-                    index === 3 && 'col-span-1 row-span-1',
-                    index === 4 && 'col-span-1 row-span-1',
-                )}>
-                    <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={image.hint}
-                    />
-                </div>
-            ))}
-        </div>
+        <Carousel>
+            <CarouselContent>
+                {images.map((image) => (
+                    <CarouselItem key={image.id}>
+                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={image.hint}
+                            />
+                        </div>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
+        </Carousel>
     </div>
 );
 
@@ -568,3 +568,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
