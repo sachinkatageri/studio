@@ -96,7 +96,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
             </ScrollArea>
         </Tabs>
       </div>
-      <div className="md:hidden p-4 border-t sticky bottom-16">
+      <div className="md:hidden p-4 border-t sticky bottom-16 bg-background">
         <Button className="w-full" onClick={() => setMobileView('map')}>
           <Map className="mr-2 h-4 w-4" />
           Map View
