@@ -5,7 +5,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -46,16 +46,20 @@ const UserMenuButton = () => (
             </Button>
         </SheetTrigger>
         <SheetContent side="right" className="w-full max-w-sm p-0 flex flex-col">
-           <div className="flex items-center justify-between p-4 border-b">
-              <Link href="#" className="flex items-center gap-2 font-semibold">
-                <User className="h-6 w-6 rounded-full bg-muted p-1" />
-                <span>Login</span>
-              </Link>
-              <SheetClose asChild>
-                <Button variant="ghost" size="icon">
-                    <X className="h-5 w-5" />
-                </Button>
-              </SheetClose>
+           <div className="p-4 bg-muted/50">
+              <div className="flex items-center gap-4">
+                  <div className="bg-primary/20 rounded-full p-2">
+                    <User className="h-10 w-10 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                      <h3 className="font-bold text-lg">Hello 👋</h3>
+                      <ul className="text-sm text-muted-foreground mt-1 space-y-1">
+                          <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Easy Contact with sellers</li>
+                          <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Personalized experience</li>
+                      </ul>
+                  </div>
+                  <Button className="bg-green-500 hover:bg-green-600 text-white">Login</Button>
+              </div>
             </div>
             <div className="flex-grow overflow-y-auto p-4 space-y-4">
               <nav className="flex flex-col gap-1 md:hidden">
