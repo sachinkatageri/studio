@@ -130,7 +130,7 @@ const UserMenuButton = () => (
                            <AppStoreButton />
                            <PlayStoreButton />
                         </div>
-                        <Image src="https://picsum.photos/seed/qr-code/100/100" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
+                        <Image src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxxciUyMGNvZGUlMjB8ZW58MHx8fHwxNzY1ODg5MTkzfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
                     </div>
                 </CardContent>
               </Card>
