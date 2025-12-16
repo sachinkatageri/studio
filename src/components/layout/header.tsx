@@ -5,10 +5,11 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent } from '../ui/card';
+import { Separator } from '../ui/separator';
 
 const WhatsAppIcon = () => (
     <svg
@@ -128,6 +129,33 @@ export default function Header() {
                   </SheetClose>
                 </div>
                 <div className="flex-grow overflow-y-auto p-4 space-y-4">
+                  <nav className="flex flex-col gap-1">
+                      <SheetClose asChild>
+                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                          <Map className="h-5 w-5 text-muted-foreground" />
+                          <span className="font-medium">Map-View</span>
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                          <span className="font-medium">Commercial</span>
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                          <span className="font-medium">Residential</span>
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                          <Crown className="h-5 w-5 text-muted-foreground" />
+                          <span className="font-medium">Builders</span>
+                        </Link>
+                      </SheetClose>
+                  </nav>
+
+                  <Separator />
+                  
                   <nav className="flex flex-col gap-1">
                       <SheetClose asChild>
                         <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
