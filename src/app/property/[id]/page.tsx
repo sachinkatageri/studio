@@ -31,8 +31,12 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <OurServices />
-        <SimilarProperties />
+        <div className="mt-16">
+          <OurServices />
+        </div>
+        <div className="mt-16">
+         <SimilarProperties />
+        </div>
         
       </main>
       <BrokerageBanner />
