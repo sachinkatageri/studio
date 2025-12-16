@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Header from '@/components/layout/header';
@@ -100,7 +99,7 @@ export default function Home() {
             />
           </main>
         </div>
-        <Footer mobileView={mobileView} setMobileView={setMobileView} />
+        <Footer />
       </div>
   );
 }
