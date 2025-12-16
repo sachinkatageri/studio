@@ -5,7 +5,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -15,61 +15,25 @@ const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
 );
 
-const DesktopSheetMenu = () => (
-    <SheetContent side="right" className="w-full max-w-sm p-0 flex flex-col">
-        <div className="flex items-center justify-between p-4 border-b">
-        <Link href="#" className="flex items-center gap-2 font-semibold">
-            <User className="h-6 w-6 rounded-full bg-muted p-1" />
-            <span>Login</span>
-        </Link>
-        <SheetClose asChild>
-            <Button variant="ghost" size="icon">
-                <X className="h-5 w-5" />
-            </Button>
-        </SheetClose>
-        </div>
-        <div className="flex-grow overflow-y-auto p-4 space-y-4">
-        <nav className="flex flex-col gap-1">
-            <SheetClose asChild>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                <Info className="h-5 w-5 text-muted-foreground" />
-                <span className="font-medium">About Us</span>
-                </Link>
-            </SheetClose>
-            <SheetClose asChild>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <CheckSquare className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Our Verification Process</span>
-                </Link>
-            </SheetClose>
-        </nav>
+const AppStoreButton = () => (
+    <Link href="#" className="inline-block">
+        <Image src="https://www.buildersinfo.in/assets/app-store.png" alt="Download on the App Store" width={120} height={40} />
+    </Link>
+)
+const PlayStoreButton = () => (
+    <Link href="#" className="inline-block">
+        <Image src="https://www.buildersinfo.in/assets/play-store.png" alt="Get it on Google Play" width={120} height={40} />
+    </Link>
+)
 
-        <Card className="bg-yellow-100 border-yellow-200">
-            <CardContent className="p-4 flex items-center gap-4">
-                <div>
-                    <h3 className="font-bold">Tag Along</h3>
-                    <p className="text-sm">Buy Large Land Parcels with us, starting @ 4 Lakh/ Acre.</p>
-                </div>
-                <Image src="https://picsum.photos/seed/tag-along/100/80" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" data-ai-hint="land parcel map" />
-            </CardContent>
-        </Card>
-        </div>
-        <div className="p-4 border-t mt-auto space-y-1">
-            <SheetClose asChild>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <Link2Off className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Privacy Policy</span>
-                </Link>
-            </SheetClose>
-            <SheetClose asChild>
-                <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                    <FileText className="h-5 w-5 text-muted-foreground" />
-                    <span className="font-medium">Terms & Conditions</span>
-                </Link>
-            </SheetClose>
-        </div>
-    </SheetContent>
-);
+const socialLinks = [
+    { icon: <Facebook className="h-5 w-5" />, href: "#" },
+    { icon: <Twitter className="h-5 w-5" />, href: "#" },
+    { icon: <Instagram className="h-5 w-5" />, href: "#" },
+    { icon: <Linkedin className="h-5 w-5" />, href: "#" },
+    { icon: <Youtube className="h-5 w-5" />, href: "#" },
+]
+
 
 const UserMenuButton = () => (
     <Sheet>
@@ -133,6 +97,15 @@ const UserMenuButton = () => (
                         <span className="font-medium">Our Verification Process</span>
                     </Link>
                   </SheetClose>
+                   <SheetClose asChild>
+                     <Link href="#" className="flex items-center justify-between p-2 rounded-lg hover:bg-muted">
+                        <div className="flex items-center gap-3">
+                            <HelpCircle className="h-5 w-5 text-muted-foreground" />
+                            <span className="font-medium">Visit Help Center</span>
+                        </div>
+                        <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                    </Link>
+                  </SheetClose>
               </nav>
 
               <Card className="bg-yellow-100 border-yellow-200 dark:bg-yellow-900/50 dark:border-yellow-800/50">
@@ -144,8 +117,33 @@ const UserMenuButton = () => (
                     <Image src="https://picsum.photos/seed/tag-along/100/80" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" data-ai-hint="land parcel map" />
                 </CardContent>
               </Card>
+
+              <Card>
+                <CardContent className="p-4 space-y-4">
+                    <h3 className="font-semibold text-center">Download Housing App</h3>
+                    <div className="flex items-center justify-center gap-4">
+                        <div className="flex flex-col gap-2">
+                           <AppStoreButton />
+                           <PlayStoreButton />
+                        </div>
+                        <Image src="https://picsum.photos/seed/qr-code/100/100" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
+                    </div>
+                </CardContent>
+              </Card>
+
             </div>
-             <div className="p-4 border-t mt-auto space-y-1">
+             <div className="p-4 border-t mt-auto space-y-4">
+                <div>
+                    <h3 className="font-medium mb-2 text-center text-sm">Follow on</h3>
+                    <div className="flex items-center justify-center gap-4">
+                        {socialLinks.map((link, i) => (
+                            <Link key={i} href={link.href} className="text-muted-foreground hover:text-primary">
+                                {link.icon}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+                <Separator />
                 <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
                     <Link2Off className="h-5 w-5 text-muted-foreground" />
                     <span className="font-medium">Privacy Policy</span>
