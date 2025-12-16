@@ -147,8 +147,8 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
 
     return (
     <div className="flex flex-col h-full bg-card">
-      <div className="p-4 border-b flex flex-col flex-1">
-          <Tabs defaultValue="all" className="w-full flex flex-col flex-1">
+      <div className="p-4 border-b flex flex-col flex-1 min-h-0">
+          <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="commercial">Commercial</TabsTrigger>
@@ -157,7 +157,7 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
             <div className="py-4">
                 <p className="text-sm text-muted-foreground">6 properties found</p>
             </div>
-            <ScrollArea className="flex-1 -mx-4" >
+            <ScrollArea className="flex-1 -mx-4">
                 <TabsContent value="all" className="mt-0">
                     <div className="px-4">
                         {properties.map((property) => (
