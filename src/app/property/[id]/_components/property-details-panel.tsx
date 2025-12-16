@@ -27,7 +27,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
-    <div>
+    <div id="overview">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         {/* @ts-ignore */}
         <p className="text-muted-foreground">{property.about}</p>
@@ -36,7 +36,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 
 
 const PropertyAmenities = ({ property }: { property: Property}) => (
-    <div>
+    <div id="amenities">
         <h2 className="text-xl font-semibold mb-4">Amenities</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {property.amenities.map(amenity => (
@@ -158,7 +158,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     ];
     
     return (
-        <div>
+        <div id="ratings-reviews">
             <div className="flex justify-between items-center mb-4">
                 <p>Overall rating based on {totalReviews} reviews.</p>
                 <Button variant="outline">Rate property</Button>
@@ -331,14 +331,16 @@ const AdditionalPropertyDetails = () => {
     ];
 
     return (
-        <ul className="space-y-3 text-sm">
-            {details.map(detail => (
-                <li key={detail.label} className="flex justify-between">
-                    <span className="text-muted-foreground">{detail.label}</span>
-                    <span className="font-medium">{detail.value}</span>
-                </li>
-            ))}
-        </ul>
+        <div id="developer">
+            <ul className="space-y-3 text-sm">
+                {details.map(detail => (
+                    <li key={detail.label} className="flex justify-between">
+                        <span className="text-muted-foreground">{detail.label}</span>
+                        <span className="font-medium">{detail.value}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 
@@ -442,7 +444,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             {property.priceBreakdown && (
                 <>
                     <Separator />
-                    <Card>
+                    <Card id="price-estimate">
                         <CardHeader>
                             <CardTitle className="text-xl">Pricing Details</CardTitle>
                         </CardHeader>
@@ -464,7 +466,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-             <Card>
+             <Card id="locality">
                 <CardHeader>
                     <CardTitle className="text-xl">Location & Landmark</CardTitle>
                 </CardHeader>
