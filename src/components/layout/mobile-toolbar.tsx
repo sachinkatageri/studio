@@ -1,7 +1,7 @@
 
 'use client';
 
-import { ArrowUpDown, List, MapPin } from 'lucide-react';
+import { ArrowUpDown, List, MapPin, PlusCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { SortSheet } from './sort-sheet';
@@ -16,11 +16,14 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
     <div className="md:hidden flex items-center justify-between p-2 border-b bg-background">
       <div className="flex items-center gap-2">
         <SortSheet>
-          <Button variant="outline" size="sm" className="h-9">
-            <ArrowUpDown className="mr-2 h-4 w-4" />
-            Sort
+          <Button variant="outline" size="icon" className="h-9 w-9">
+            <ArrowUpDown className="h-4 w-4" />
           </Button>
         </SortSheet>
+         <Button variant="outline" size="sm" className="h-9">
+            <PlusCircle className="mr-2 h-4 w-4" />
+            List Property
+          </Button>
       </div>
       <div className="p-1 bg-muted rounded-lg flex items-center">
         <Button
