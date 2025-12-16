@@ -22,7 +22,7 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
         </SortSheet>
          <Button variant="outline" size="sm" className="h-9">
             <PlusCircle className="mr-2 h-4 w-4" />
-            List Property
+            List
           </Button>
       </div>
       <div className="p-1 bg-muted rounded-lg flex items-center">
