@@ -56,7 +56,7 @@ const DesktopSheetMenu = () => (
             </SheetClose>
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="contact-us" className="border-none">
-                    <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium">
+                    <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium" noFlex>
                         <Headset className="h-5 w-5 text-muted-foreground" />
                         <span>Contact Us</span>
                     </AccordionTrigger>
@@ -163,7 +163,7 @@ export default function Header() {
                       </SheetClose>
                       <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="contact-us" className="border-none">
-                            <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium">
+                            <AccordionTrigger className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted hover:no-underline font-medium" noFlex>
                                  <Headset className="h-5 w-5 text-muted-foreground" />
                                 <span>Contact Us</span>
                             </AccordionTrigger>
@@ -248,3 +248,5 @@ export default function Header() {
     </header>
   );
 }
+
+  
