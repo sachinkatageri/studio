@@ -15,7 +15,7 @@ const PlayStoreButton = () => (
 
 export default function BrokerageBanner() {
     return (
-        <section className="bg-blue-50 mt-16">
+        <section className="bg-muted mt-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 items-center gap-8">
                     <div className="py-12">

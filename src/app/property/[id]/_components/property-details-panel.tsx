@@ -213,10 +213,10 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </div>
 
             <div className="mt-6 flex gap-2">
-                <Button className="flex-1 bg-green-500 hover:bg-green-600 text-lg py-6">
+                <Button className="flex-1 text-lg py-6">
                     <Phone className="mr-2" /> Contact
                 </Button>
-                <Button variant="outline" className="flex-1 text-lg py-6 text-green-600 border-green-600 hover:bg-green-600 hover:text-white">
+                <Button variant="outline" className="flex-1 text-lg py-6">
                     <WhatsAppIcon /> WhatsApp
                 </Button>
             </div>

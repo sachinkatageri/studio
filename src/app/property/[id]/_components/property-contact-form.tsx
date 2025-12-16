@@ -67,7 +67,7 @@ export default function PropertyContactForm() {
   }
 
   return (
-    <Card className="w-full sticky top-24 bg-blue-50 border-blue-200">
+    <Card className="w-full sticky top-24 bg-muted/50 border">
       <CardHeader>
         <CardTitle className="text-xl font-headline">Interested in this property?</CardTitle>
       </CardHeader>
