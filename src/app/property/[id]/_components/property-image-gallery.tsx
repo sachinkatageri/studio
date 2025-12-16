@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { Camera, Grid2x2, Heart, MessageCircle, Share2 } from 'lucide-react';
+import { Grid2x2, Heart, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import {
   Dialog,
@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 
 const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
@@ -22,19 +23,25 @@ const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange
                 <DialogHeader>
                     <DialogTitle>Property Gallery</DialogTitle>
                 </DialogHeader>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-2 overflow-y-auto flex-1 pr-2">
-                    {propertyImageGallery.map(image => (
-                        <div key={image.id} className="relative aspect-video w-full overflow-hidden rounded-md">
-                            <Image
-                                src={image.imageUrl}
-                                alt={image.description}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={image.imageHint}
-                            />
-                        </div>
-                    ))}
-                </div>
+                <Carousel className="w-full h-full flex-1">
+                    <CarouselContent className="h-full">
+                        {propertyImageGallery.map(image => (
+                            <CarouselItem key={image.id}>
+                                <div className="relative h-full w-full overflow-hidden rounded-md">
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={image.description}
+                                        fill
+                                        className="object-contain"
+                                        data-ai-hint={image.imageHint}
+                                    />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2" />
+                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2" />
+                </Carousel>
             </DialogContent>
         </Dialog>
     )
