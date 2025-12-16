@@ -18,18 +18,9 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
     <div className="md:hidden flex items-center justify-between p-2 border-b bg-background">
       <div className="flex items-center gap-2">
         <SortSheet>
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" className="h-9 w-9">
-                            <ArrowUpDown className="h-4 w-4" />
-                        </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">
-                        <p>Sort</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
+          <Button variant="outline" size="icon" className="h-9 w-9">
+            <ArrowUpDown className="h-4 w-4" />
+          </Button>
         </SortSheet>
          <Button variant="outline" size="sm" className="h-9">
             <PlusCircle className="mr-2 h-4 w-4" />
