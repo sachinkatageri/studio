@@ -23,11 +23,14 @@ interface PropertyFiltersProps {
 export default function PropertyFilters({ onBack, onApplyFilters }: PropertyFiltersProps) {
   return (
     <div className="flex flex-col h-full bg-card p-4">
-      <div className="flex items-center gap-2 pb-4 border-b">
-        <Button variant="ghost" size="icon" onClick={onBack}>
-          <ArrowLeft className="h-5 w-5" />
-        </Button>
-        <h2 className="text-lg font-semibold">Filters</h2>
+      <div className="flex items-center justify-between gap-2 pb-4 border-b">
+        <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" onClick={onBack}>
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <h2 className="text-lg font-semibold">Filters</h2>
+        </div>
+        <Button variant="link" className="text-primary p-0 h-auto">Clear all</Button>
       </div>
 
       <div className="flex-1 overflow-y-auto space-y-6 p-2 mt-4">
