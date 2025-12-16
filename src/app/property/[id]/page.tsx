@@ -7,7 +7,6 @@ import PropertyContactForm from './_components/property-contact-form';
 import BrokerageBanner from './_components/brokerage-banner';
 import SiteFooter from './_components/site-footer';
 import SimilarProperties from './_components/similar-properties';
-import OurServices from './_components/our-services';
 
 export default function PropertyPage({ params }: { params: { id: string } }) {
   const property = properties.find(p => p.id === params.id);
@@ -31,9 +30,6 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <div className="mt-16">
-          <OurServices />
-        </div>
         <div className="mt-16">
          <SimilarProperties />
         </div>

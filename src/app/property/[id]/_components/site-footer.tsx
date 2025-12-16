@@ -2,14 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone } from "lucide-react"
 
-const footerLinks = {
+const companyLinks = {
     "About Us": "#",
     "Contact Us": "#",
     "Our Verification Process": "#",
     "Terms & Conditions": "#",
     "Privacy Policy": "#",
     "Disclaimer": "#",
-    "Services": "#",
+}
+
+const serviceLinks = {
     "Hand Holding": "#",
     "Tag Along": "#",
 }
@@ -26,8 +28,8 @@ export default function SiteFooter() {
     return (
         <footer className="bg-background border-t">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div className="space-y-4 md:col-span-2">
                         <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={150} height={40} />
                         <p className="text-sm text-muted-foreground">
                             India's first brokerage-free real estate discovery platform.
@@ -36,7 +38,7 @@ export default function SiteFooter() {
                     <div>
                         <h3 className="font-semibold mb-4">Company</h3>
                         <ul className="space-y-2">
-                           {Object.entries(footerLinks).map(([text, href]) => (
+                           {Object.entries(companyLinks).map(([text, href]) => (
                                 <li key={text}>
                                     <Link href={href} className="text-sm text-muted-foreground hover:text-primary">
                                         {text}
@@ -46,15 +48,16 @@ export default function SiteFooter() {
                         </ul>
                     </div>
                     <div>
-                        <h3 className="font-semibold mb-4">Contact</h3>
-                        <div className="space-y-2 text-sm">
-                            <a href="mailto:support@buildersinfo.in" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
-                                <Mail className="h-4 w-4" /> support@buildersinfo.in
-                            </a>
-                            <a href="tel:+919876543210" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
-                                <Phone className="h-4 w-4" /> +91 987 654 3210
-                            </a>
-                        </div>
+                        <h3 className="font-semibold mb-4">Services</h3>
+                        <ul className="space-y-2">
+                           {Object.entries(serviceLinks).map(([text, href]) => (
+                                <li key={text}>
+                                    <Link href={href} className="text-sm text-muted-foreground hover:text-primary">
+                                        {text}
+                                    </Link>
+                                </li>
+                           ))}
+                        </ul>
                     </div>
                     <div>
                         <h3 className="font-semibold mb-4">Follow Us</h3>
@@ -64,6 +67,15 @@ export default function SiteFooter() {
                                     {link.icon}
                                 </Link>
                             ))}
+                        </div>
+                         <div className="mt-4 space-y-2 text-sm">
+                            <h3 className="font-semibold mb-2">Contact</h3>
+                            <a href="mailto:support@buildersinfo.in" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
+                                <Mail className="h-4 w-4" /> support@buildersinfo.in
+                            </a>
+                            <a href="tel:+919876543210" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
+                                <Phone className="h-4 w-4" /> +91 987 654 3210
+                            </a>
                         </div>
                     </div>
                 </div>
