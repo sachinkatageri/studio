@@ -133,30 +133,31 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 
 const PropertyLayout = ({ property }: { property: Property }) => {
     const isCommercial = property.type === 'Commercial';
-
+  
     const residentialLayoutItems = [
-      { icon: <Building className="h-5 w-5" />, label: 'Type', value: 'Apartment' },
-      { icon: <Square className="h-5 w-5" />, label: 'Area', value: '1800 sqft' },
-      { icon: <Bed className="h-5 w-5" />, label: 'Bedrooms', value: '3' },
-      { icon: <Bath className="h-5 w-5" />, label: 'Bathrooms', value: '3' },
-      { icon: <ParkingSquare className="h-5 w-5" />, label: 'Parking', value: '2 spots' },
+      { icon: <Building className="h-5 w-5 text-primary" />, label: 'Type', value: 'Apartment' },
+      { icon: <Square className="h-5 w-5 text-primary" />, label: 'Area', value: '1800 sqft' },
+      { icon: <Bed className="h-5 w-5 text-primary" />, label: 'Bedrooms', value: '3' },
+      { icon: <Bath className="h-5 w-5 text-primary" />, label: 'Bathrooms', value: '3' },
+      { icon: <ParkingSquare className="h-5 w-5 text-primary" />, label: 'Parking', value: '2 spots' },
+      { icon: <Armchair className="h-5 w-5 text-primary" />, label: 'Furnishing', value: 'Furnished' },
     ];
-
+  
     const commercialLayoutItems = [
-        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '6-15' },
-        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '16-30' },
-        { icon: <Users className="h-5 w-5" />, label: 'Seats', value: '31-60' },
+      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '6-15' },
+      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '16-30' },
+      { icon: <Users className="h-5 w-5 text-primary" />, label: 'Seats', value: '31-60' },
     ];
   
     const layoutItems = isCommercial ? commercialLayoutItems : residentialLayoutItems;
-
+  
     return (
       <div className="mt-8">
         <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
-        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isCommercial ? 'md:grid-cols-3' : 'md:grid-cols-4 lg:grid-cols-5'} gap-4`}>
-          {layoutItems.map(item => (
-            <div key={item.value} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
-              <div className="text-primary">{item.icon}</div>
+        <div className={`grid grid-cols-2 sm:grid-cols-3 ${isCommercial ? 'md:grid-cols-3' : 'md:grid-cols-4 lg:grid-cols-3'} gap-4`}>
+          {layoutItems.map((item, index) => (
+            <div key={index} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
+              {item.icon}
               <p className="text-sm text-muted-foreground">{item.label}</p>
               <p className="font-semibold">{item.value}</p>
             </div>
@@ -164,7 +165,8 @@ const PropertyLayout = ({ property }: { property: Property }) => {
         </div>
       </div>
     );
-  }
+  };
+  
 
 const PropertyVideo = () => (
     <div className="mt-8">
