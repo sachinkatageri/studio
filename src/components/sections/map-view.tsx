@@ -49,7 +49,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   const mapImages = {
     default: 'https://picsum.photos/seed/map-default/1920/1080',
     satellite: 'https://picsum.photos/seed/map-satellite/1920/1080',
-    hybrid: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxnb29nbGUlMjBtYXB8ZW58MHx8fHwxNzY1ODc0NjQyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    hybrid: 'https://images.unsplash.com/photo-1694610018733-1053fcfb5289?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8Z2VvJTIwbWFwfGVufDB8fHx8MTc2NTg3NTEwMnww&ixlib=rb-4.1.0&q=80&w=1080',
     terrain: 'https://picsum.photos/seed/map-terrain/1920/1080'
   };
 
