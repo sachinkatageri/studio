@@ -68,9 +68,13 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
   return (
     <Sheet open={!!propertyId} onOpenChange={(open) => !open && onClose()}>
       <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0">
+        <SheetHeader>
+          <SheetTitle className="sr-only">Property Details</SheetTitle>
+          <SheetDescription className="sr-only">Details for the selected property.</SheetDescription>
+        </SheetHeader>
         {property && (
           <>
-            <SheetHeader className="relative shrink-0">
+            <div className="relative shrink-0">
               {propertyImage && (
                 <div className="relative h-48 w-full">
                   <Image
@@ -119,7 +123,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
               </div>
               <div className="absolute bottom-0 left-0 p-4">
                  <div className="flex items-center gap-2">
-                    <SheetTitle className="text-2xl text-white">{property.name}</SheetTitle>
+                    <h2 className="text-2xl text-white font-bold">{property.name}</h2>
                     <TooltipProvider>
                       <Tooltip>
                         <TooltipTrigger>
@@ -134,9 +138,9 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                       </Tooltip>
                     </TooltipProvider>
                 </div>
-                <SheetDescription className="text-neutral-300">{property.location}</SheetDescription>
+                <p className="text-neutral-300">{property.location}</p>
               </div>
-            </SheetHeader>
+            </div>
             <div className="flex-1 overflow-y-auto space-y-4 p-4">
                 <div className="flex justify-between items-center">
                     <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
@@ -197,7 +201,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                   </div>
                 </div>
                 
-                 <div className="text-center">
+                 <div className="text-center border-t pt-4 mt-4">
                   <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
                       <AlertTriangle className="h-3 w-3 mr-1" />
                       Report this property

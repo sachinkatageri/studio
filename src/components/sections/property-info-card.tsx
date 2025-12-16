@@ -55,7 +55,6 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
-  const mapImage = PlaceHolderImages.find(p => p.id === 'map-location');
 
   if (!property) return null;
   
@@ -178,7 +177,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
         </div>
 
-        <div className="text-center">
+        <div className="text-center border-t pt-4 mt-4">
             <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
                 <AlertTriangle className="h-3 w-3 mr-1" />
                 Report this property
