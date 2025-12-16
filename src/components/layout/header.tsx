@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { ThemeToggleButton } from '../theme-toggle';
@@ -61,6 +61,12 @@ const UserMenuButton = () => {
                     </Tooltip>
                 </TooltipProvider>
                 <SheetContent side="right" className="w-full sm:w-[400px] p-0 flex flex-col rounded-l-lg">
+                <SheetHeader className="sr-only">
+                  <SheetTitle>User Menu</SheetTitle>
+                  <SheetDescription>
+                    Access your profile, settings, and other user-specific options.
+                  </SheetDescription>
+                </SheetHeader>
                 <div className="p-4 bg-muted/50">
                     <div className="flex items-center gap-4">
                         <div className="bg-primary/20 rounded-full p-2">

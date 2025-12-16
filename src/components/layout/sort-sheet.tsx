@@ -8,6 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -30,6 +31,7 @@ export function SortSheet({ children }: { children: React.ReactNode }) {
       <SheetContent side="bottom" className="rounded-t-lg">
         <SheetHeader className="text-left">
           <SheetTitle>Sort by</SheetTitle>
+          <SheetDescription className="sr-only">Select a sort option for the property list.</SheetDescription>
         </SheetHeader>
         <RadioGroup value={selectedValue} onValueChange={setSelectedValue} className="mt-4 space-y-1">
           {sortOptions.map(option => (
