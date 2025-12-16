@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -25,13 +26,13 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     const lastUpdated = property.postedOn ? format(new Date(property.postedOn), 'PPP') : 'N/A';
     
     return (
-        <div className="mb-4">
+        <div className="md:mb-4">
             {/* Mobile header */}
-            <div className="md:hidden flex items-center gap-2">
+            <div className="md:hidden flex items-center gap-2 h-14 bg-background border-b px-4 fixed top-16 left-0 right-0 z-40">
                 <Button variant="ghost" size="icon" onClick={() => router.back()}>
                     <ArrowLeft />
                 </Button>
-                <h1 className="text-lg font-semibold">Properties</h1>
+                <h1 className="text-lg font-semibold truncate">Properties</h1>
             </div>
 
             {/* Desktop header */}
@@ -53,8 +54,10 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
 
     return (
         <div className="bg-background">
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <Breadcrumb property={property} />
+            <main className="container mx-auto px-0 sm:px-6 lg:px-8 pt-14 md:pt-8 pb-8">
+                <div className="px-4 sm:px-0">
+                  <Breadcrumb property={property} />
+                </div>
                 <PropertyImageGallery />
             </main>
             
@@ -80,3 +83,4 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         </div>
     )
 }
+
