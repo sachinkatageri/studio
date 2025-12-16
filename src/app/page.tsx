@@ -77,7 +77,7 @@ export default function Home() {
             mobileView === 'list' ? 'flex w-full' : 'hidden'
           )}>
             {sidebarView === 'list' 
-                ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId}/> 
+                ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
                 : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
             }
           </aside>

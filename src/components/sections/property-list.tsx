@@ -8,6 +8,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
+import type { MobileView } from '@/app/page';
+import { Button } from '../ui/button';
+import { Map } from 'lucide-react';
 
 
 const commercialProperties = properties.filter(p => p.type === 'Commercial');
@@ -52,9 +55,10 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
 interface PropertyListProps {
   onSelectProperty: (propertyId: string) => void;
   selectedPropertyId: string | null;
+  setMobileView: (view: MobileView) => void;
 }
 
-export default function PropertyList({ onSelectProperty, selectedPropertyId }: PropertyListProps) {
+export default function PropertyList({ onSelectProperty, selectedPropertyId, setMobileView }: PropertyListProps) {
     return (
     <div className="flex flex-col h-full bg-card">
       <div className="p-4 border-b flex flex-col flex-1 min-h-0">
@@ -91,6 +95,12 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId }: P
                 </TabsContent>
             </ScrollArea>
         </Tabs>
+      </div>
+      <div className="md:hidden p-4 border-t sticky bottom-16">
+        <Button className="w-full" onClick={() => setMobileView('map')}>
+          <Map className="mr-2 h-4 w-4" />
+          Map View
+        </Button>
       </div>
     </div>
   );
