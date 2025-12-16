@@ -147,8 +147,8 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
 
     return (
     <div className="flex flex-col h-full bg-card">
-      <div className="p-4 border-b">
-          <Tabs defaultValue="all" className="w-full">
+      <div className="p-4 border-b flex flex-col flex-1">
+          <Tabs defaultValue="all" className="w-full flex flex-col flex-1">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="commercial">Commercial</TabsTrigger>
@@ -157,23 +157,23 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
             <div className="py-4">
                 <p className="text-sm text-muted-foreground">6 properties found</p>
             </div>
-            <ScrollArea className="flex-1" style={{height: 'calc(100vh - 240px)'}}>
+            <ScrollArea className="flex-1 -mx-4" >
                 <TabsContent value="all">
-                    <div className="-mx-4">
+                    <div className="px-4">
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="commercial">
-                    <div className="-mx-4">
+                    <div className="px-4">
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="residential">
-                     <div className="-mx-4">
+                     <div className="px-4">
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={handleSelect} isSelected={selectedId === property.id} />
                         ))}
