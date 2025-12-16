@@ -52,7 +52,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   const mapImages = {
     default: 'https://picsum.photos/seed/map-default/1920/1080',
     satellite: 'https://picsum.photos/seed/map-satellite/1920/1080',
-    hybrid: 'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/3:2/w_2560%2Cc_limit/GoogleMapTA.jpg',
+    hybrid: 'https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg',
     terrain: 'https://picsum.photos/seed/map-terrain/1920/1080'
   };
 

@@ -52,6 +52,12 @@ const nextConfig: NextConfig = {
         hostname: 'media.wired.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
