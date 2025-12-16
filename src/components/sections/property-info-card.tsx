@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { properties } from './property-list';
 import { Button } from '../ui/button';
 import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Presentation, Gamepad2, Car, Zap, Utensils, Armchair, Warehouse, ShieldCheck, Home, Star, AlertTriangle, Heart, MapPin } from 'lucide-react';
@@ -69,7 +69,7 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
   const postedDate = property.postedOn ? formatDistanceToNow(new Date(property.postedOn), { addSuffix: true }) : null;
 
   return (
-    <Card className="w-96 shadow-2xl">
+    <Card className="w-96 shadow-2xl flex flex-col max-h-[calc(100vh-6rem)]">
       <CardHeader className="p-0 relative">
         {propertyImage && (
           <div className="relative h-48 w-full">
@@ -101,7 +101,7 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
           <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
         </div>
       </CardHeader>
-      <CardContent className="p-4 space-y-4 max-h-[calc(100vh-25rem)] overflow-y-auto">
+      <CardContent className="p-4 space-y-4 overflow-y-auto flex-1">
         <div className="flex justify-between items-center">
           <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
           {property.status && <Badge variant="secondary">{property.status}</Badge>}
@@ -163,20 +163,6 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
           </div>
         </div>
 
-
-        <div className="flex gap-2 pt-2">
-            <Button className="flex-1">
-                <Phone className="mr-2 h-4 w-4" /> Call
-            </Button>
-            <Button variant="outline" className="flex-1">
-                <WhatsAppIcon /> WhatsApp
-            </Button>
-        </div>
-        
-        <Button variant="default" className="w-full">
-            View Details
-        </Button>
-        
         <div className="text-center">
             <Button variant="link" className="text-xs text-muted-foreground h-auto p-0">
                 <AlertTriangle className="h-3 w-3 mr-1" />
@@ -185,6 +171,21 @@ export function PropertyInfoCard({ propertyId, onClose }: PropertyInfoCardProps)
         </div>
 
       </CardContent>
+      <CardFooter className="p-4 border-t bg-background space-y-2 flex-col items-stretch">
+        <div className="flex gap-2">
+            <Button className="flex-1">
+                <Phone className="mr-2 h-4 w-4" /> Call
+            </Button>
+            <Button variant="outline" className="flex-1 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
+                <WhatsAppIcon /> WhatsApp
+            </Button>
+        </div>
+        <Button variant="default" className="w-full">
+            View Details
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
+
+    
