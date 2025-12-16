@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -494,4 +494,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
     )
 }
 
+    
     
