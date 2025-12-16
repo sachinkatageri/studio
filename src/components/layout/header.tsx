@@ -84,6 +84,30 @@ export default function Header() {
     <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
+          </Link>
+        </div>
+
+        <nav className="hidden md:flex gap-6 items-center">
+          <Link href="#" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+            <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
+            Map-View
+          </Link>
+          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            Commercial
+          </Link>
+          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            Residential
+          </Link>
+           <Link href="#" className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Crown className="mr-2 h-4 w-4" />
+            Builders
+          </Link>
+        </nav>
+        
+        <div className="flex items-center gap-2">
+          <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -91,7 +115,7 @@ export default function Header() {
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-full max-w-sm p-0 flex flex-col">
+            <SheetContent side="right" className="w-full max-w-sm p-0 flex flex-col">
                <div className="flex items-center justify-between p-4 border-b">
                   <Link href="#" className="flex items-center gap-2 font-semibold">
                     <User className="h-6 w-6 rounded-full bg-muted p-1" />
@@ -141,28 +165,6 @@ export default function Header() {
                 </div>
             </SheetContent>
           </Sheet>
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
-          </Link>
-        </div>
-        <nav className="hidden md:flex gap-6 items-center">
-          <Link href="#" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-            <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
-            Map-View
-          </Link>
-          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Commercial
-          </Link>
-          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Residential
-          </Link>
-           <Link href="#" className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            <Crown className="mr-2 h-4 w-4" />
-            Builders
-          </Link>
-        </nav>
-        <div className="flex items-center gap-2">
-          <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <Sheet>
             <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="hidden md:inline-flex">
