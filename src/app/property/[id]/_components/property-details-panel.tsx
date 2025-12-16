@@ -3,7 +3,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
@@ -52,36 +52,30 @@ const WhatsAppIcon = () => (
 const PricingDetails = ({ property }: { property: Property}) => (
     // @ts-ignore
     property.priceBreakdown && (
-    <div className="mt-8">
-        <Accordion type="single" collapsible defaultValue="pricing">
-        <AccordionItem value="pricing">
-            <AccordionTrigger className="text-xl font-semibold">Pricing Details</AccordionTrigger>
-            <AccordionContent>
-            <ul className="space-y-2 text-sm">
+        <ul className="space-y-2 text-sm">
+            {/* @ts-ignore */}
+            {property.priceBreakdown.map(item => (
+            <li key={item.item} className="flex justify-between">
+                <span className="text-muted-foreground">{item.item}</span>
+                <div className="flex items-center gap-2">
                 {/* @ts-ignore */}
-                {property.priceBreakdown.map(item => (
-                <li key={item.item} className="flex justify-between">
-                    <span className="text-muted-foreground">{item.item}</span>
-                    <div className="flex items-center gap-2">
-                    {/* @ts-ignore */}
-                    {item.included && <Badge variant="secondary">Included</Badge>}
-                    <span>{item.value}</span>
-                    </div>
-                </li>
-                ))}
-            </ul>
-            </AccordionContent>
-        </AccordionItem>
-        </Accordion>
-    </div>
+                {item.included && <Badge variant="secondary">Included</Badge>}
+                <span>{item.value}</span>
+                </div>
+            </li>
+            ))}
+        </ul>
     )
 )
 
 const PropertyLocation = () => (
-    <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Location & Landmark</h2>
-        <div className="relative h-80 w-full rounded-lg overflow-hidden">
-            <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
+    <div className="relative h-80 w-full rounded-lg overflow-hidden">
+        <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
+        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <Button variant="secondary">
+                <MapPin className="mr-2 h-4 w-4" />
+                View on Map
+            </Button>
         </div>
     </div>
 )
@@ -97,10 +91,10 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     ];
     
     return (
-        <div className="mt-8">
+        <div>
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">Rating & Reviews</h2>
-                <Button variant="outline">Rate this property</Button>
+                <p>Overall rating based on {totalReviews} reviews.</p>
+                <Button variant="outline">Rate property</Button>
             </div>
             <Card>
                 <CardContent className="p-6">
@@ -116,7 +110,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                         <div className="md:col-span-2">
                            {ratings.map(r => (
                                 <div key={r.star} className="flex items-center gap-2">
-                                    <span className="text-sm">{r.star} star</span>
+                                    <span className="text-sm w-12">{r.star} star</span>
                                     <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
                                         <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
                                     </div>
@@ -152,8 +146,6 @@ const PropertyLayout = ({ property }: { property: Property }) => {
     const layoutItems = isCommercial ? commercialLayoutItems : residentialLayoutItems;
   
     return (
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
         <div className={`grid grid-cols-2 sm:grid-cols-3 ${isCommercial ? 'md:grid-cols-3' : 'md:grid-cols-4 lg:grid-cols-3'} gap-4`}>
           {layoutItems.map((item, index) => (
             <div key={index} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
@@ -163,33 +155,26 @@ const PropertyLayout = ({ property }: { property: Property }) => {
             </div>
           ))}
         </div>
-      </div>
     );
   };
   
 
 const PropertyVideo = () => (
-    <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Property Videos</h2>
-        <div className="aspect-video w-full rounded-lg overflow-hidden">
-            <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            ></iframe>
-        </div>
+    <div className="aspect-video w-full rounded-lg overflow-hidden">
+        <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+        ></iframe>
     </div>
 );
 
 const PropertyPlan = () => (
-    <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Property Plan</h2>
-        <div className="relative aspect-video w-full rounded-lg overflow-hidden border">
-            <Image src="https://picsum.photos/seed/floor-plan/1000/600" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
-        </div>
+    <div className="relative aspect-video w-full rounded-lg overflow-hidden border">
+        <Image src="https://picsum.photos/seed/floor-plan/1000/600" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
     </div>
 );
 
@@ -245,29 +230,53 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <PropertyAmenities property={property} />
 
             <Separator className="my-8" />
-            
-            <PricingDetails property={property} />
 
-            <Separator className="my-8" />
+            <Accordion type="single" collapsible className="w-full space-y-4">
+                {/* @ts-ignore */}
+                {property.priceBreakdown && (
+                    <AccordionItem value="pricing">
+                        <AccordionTrigger className="text-xl font-semibold">Pricing Details</AccordionTrigger>
+                        <AccordionContent>
+                            <PricingDetails property={property} />
+                        </AccordionContent>
+                    </AccordionItem>
+                )}
 
-            <PropertyLayout property={property} />
+                <AccordionItem value="layout">
+                    <AccordionTrigger className="text-xl font-semibold">Property Layout</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyLayout property={property} />
+                    </AccordionContent>
+                </AccordionItem>
 
-            <Separator className="my-8" />
+                <AccordionItem value="location">
+                    <AccordionTrigger className="text-xl font-semibold">Location & Landmark</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyLocation />
+                    </AccordionContent>
+                </AccordionItem>
 
-            <PropertyLocation />
+                <AccordionItem value="reviews">
+                    <AccordionTrigger className="text-xl font-semibold">Rating & Reviews</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyReviews property={property} />
+                    </AccordionContent>
+                </AccordionItem>
 
-            <Separator className="my-8" />
+                <AccordionItem value="video">
+                    <AccordionTrigger className="text-xl font-semibold">Property Video</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyVideo />
+                    </AccordionContent>
+                </AccordionItem>
 
-            <PropertyReviews property={property} />
-
-            <Separator className="my-8" />
-
-            <PropertyVideo />
-
-            <Separator className="my-8" />
-
-            <PropertyPlan />
-
+                <AccordionItem value="plan">
+                    <AccordionTrigger className="text-xl font-semibold">Property Plan</AccordionTrigger>
+                    <AccordionContent>
+                        <PropertyPlan />
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </div>
     )
 }
