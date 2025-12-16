@@ -1,7 +1,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import Image from 'next/image';
@@ -17,10 +17,18 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
     'Loading Dock': <Warehouse className="h-5 w-5 text-primary" />,
   };
   
+const PropertyOverview = ({ property }: { property: Property}) => (
+    <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Overview</h2>
+        {/* @ts-ignore */}
+        <p className="text-muted-foreground">{property.about}</p>
+    </div>
+)
 
-const PropertyHighlights = ({ property }: { property: Property}) => (
-    <div className="mt-6">
-        <h2 className="text-xl font-semibold mb-4">Highlights</h2>
+
+const PropertyAmenities = ({ property }: { property: Property}) => (
+    <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Amenities</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {property.amenities.map(amenity => (
                 <div key={amenity} className="flex items-center gap-3">
@@ -69,7 +77,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 
 const PropertyLocation = () => (
     <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Location</h2>
+        <h2 className="text-xl font-semibold mb-4">Location & Landmark</h2>
         <div className="relative h-80 w-full rounded-lg overflow-hidden">
             <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         </div>
@@ -89,7 +97,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     return (
         <div className="mt-8">
             <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">Ratings & Reviews</h2>
+                <h2 className="text-xl font-semibold">Rating & Reviews</h2>
                 <Button variant="outline">Rate this property</Button>
             </div>
             <Card>
@@ -120,6 +128,31 @@ const PropertyReviews = ({ property }: { property: Property }) => {
         </div>
     )
 }
+
+const PropertyLayout = () => {
+    const layoutItems = [
+      { icon: <Building className="h-5 w-5" />, label: 'Type', value: 'Apartment' },
+      { icon: <Square className="h-5 w-5" />, label: 'Area', value: '1800 sqft' },
+      { icon: <Bed className="h-5 w-5" />, label: 'Bedrooms', value: '3' },
+      { icon: <Bath className="h-5 w-5" />, label: 'Bathrooms', value: '3' },
+      { icon: <ParkingSquare className="h-5 w-5" />, label: 'Parking', value: '2 spots' },
+    ];
+  
+    return (
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Property Layout</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {layoutItems.map(item => (
+            <div key={item.label} className="p-4 border rounded-lg flex flex-col items-center justify-center gap-2 text-center">
+              <div className="text-primary">{item.icon}</div>
+              <p className="text-sm text-muted-foreground">{item.label}</p>
+              <p className="font-semibold">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
 const PropertyVideo = () => (
     <div className="mt-8">
@@ -181,14 +214,30 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </div>
 
             <Separator className="my-8" />
-            
-            <PropertyHighlights property={property} />
 
+            <PropertyOverview property={property} />
+
+            <Separator className="my-8" />
+            
+            <PropertyAmenities property={property} />
+
+            <Separator className="my-8" />
+            
             <PricingDetails property={property} />
+
+            <Separator className="my-8" />
+
+            <PropertyLayout />
+
+            <Separator className="my-8" />
 
             <PropertyLocation />
 
+            <Separator className="my-8" />
+
             <PropertyReviews property={property} />
+
+            <Separator className="my-8" />
 
             <PropertyVideo />
 
