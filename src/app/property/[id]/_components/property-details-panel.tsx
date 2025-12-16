@@ -196,12 +196,15 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 }
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
-    <div className="w-full max-w-[60%] mx-auto">
-        <div className="grid grid-cols-2 gap-2">
+    <div className="w-full max-w-[80%] mx-auto">
+        <div className="grid grid-cols-4 grid-rows-2 gap-2 aspect-[2/1]">
             {images.map((image, index) => (
                 <div key={image.id} className={cn(
-                    "relative aspect-video overflow-hidden rounded-lg",
-                    index === 0 && 'col-span-2 row-span-2 aspect-[4/3]',
+                    "relative overflow-hidden rounded-lg",
+                    index === 0 && 'col-span-2 row-span-2',
+                    index === 1 && 'col-span-1 row-span-1',
+                    index === 2 && 'col-span-1 row-span-1',
+                    index === 3 && 'col-span-2 row-span-1',
                 )}>
                     <Image
                         src={image.src}
@@ -337,6 +340,38 @@ const AdditionalPropertyDetails = () => {
         </ul>
     );
 };
+
+const OurServices = () => {
+    const services = [
+      {
+        title: 'Hand Holding',
+        description: 'Guidance at every step, from selection to possession.',
+      },
+      {
+        title: 'Tag Along',
+        description: 'Invest in large land parcels with us, starting from ₹4 Lakh/Acre.',
+      },
+    ];
+  
+    return (
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Our Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {services.map(service => (
+            <Card key={service.title}>
+              <CardHeader>
+                <CardTitle className="text-lg">{service.title}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground">{service.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  };
+  
 
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
