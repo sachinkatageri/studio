@@ -23,13 +23,13 @@ interface VerificationProcessDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const Step = ({ number, title, children }: { number: number, title: string, children: React.ReactNode }) => (
+const Step = ({ number, title, children, isLast = false }: { number: number, title: string, children: React.ReactNode, isLast?: boolean }) => (
     <div className="flex gap-4">
         <div className="flex flex-col items-center">
             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted text-muted-foreground font-bold">
                 {number}
             </div>
-            {number === 1 && <div className="w-px h-full border-l border-dashed my-2"></div>}
+            {!isLast && <div className="w-px h-full border-l border-dashed my-2"></div>}
         </div>
         <div>
             <h4 className="font-semibold text-lg">{title}</h4>
@@ -82,13 +82,31 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
                                 <li>Owner Name</li>
                             </ul>
                         </Step>
-                        <Step number={2} title="Location">
+                        <Step number={2} title="Location" isLast={true}>
                             <p>Match land location with the corresponding survey number on cadastral maps. Access maps via the Dishank app using district, taluk, hobli and village details.</p>
                         </Step>
                     </div>
                 </TabsContent>
-                <TabsContent value="land">
-                    <p className="text-muted-foreground text-center py-8">Land verification process will be updated soon.</p>
+                <TabsContent value="land" className="mt-6">
+                    <div className="space-y-6">
+                        <Step number={1} title="Land Credentials">
+                            <p>Verifying land credentials against online records in Bhoomi Online Portal</p>
+                            <h5 className="font-semibold text-foreground mt-4 mb-2">Credentials:</h5>
+                            <ul className="list-disc pl-5 space-y-1">
+                                <li>Owner Name</li>
+                                <li>Extent size</li>
+                                <li>Survey Number and Hissa Number</li>
+                                <li>Land Nature</li>
+                                <li>Court Stay</li>
+                            </ul>
+                        </Step>
+                        <Step number={2} title="Location">
+                            <p>Match land location with the corresponding survey number on cadastral maps. Access maps via the Dishank app using district, taluk, hobli and village details.</p>
+                        </Step>
+                        <Step number={3} title="Prohibited / Restricted Lands" isLast={true}>
+                            <p>Check on Bhoomi Online Portal for any restricted category flags</p>
+                        </Step>
+                    </div>
                 </TabsContent>
             </Tabs>
         </div>
