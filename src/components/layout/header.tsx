@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/s
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { ThemeToggleButton } from '../theme-toggle';
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -37,15 +38,24 @@ const socialLinks = [
 
 const UserMenuButton = () => (
     <Sheet>
-        <SheetTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm">
-                <Menu className="h-5 w-5" />
-                <div className="bg-muted rounded-full p-1">
-                   <User className="h-5 w-5 text-primary" />
-                </div>
-            </Button>
-        </SheetTrigger>
-        <SheetContent side="right" className="w-full max-w-sm p-0 flex flex-col">
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <SheetTrigger asChild>
+                        <Button variant="outline" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm">
+                            <Menu className="h-5 w-5" />
+                            <div className="bg-muted rounded-full p-1">
+                               <User className="h-5 w-5 text-primary" />
+                            </div>
+                        </Button>
+                    </SheetTrigger>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>User Menu</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+        <SheetContent side="right" className="w-full sm:w-[400px] p-0 flex flex-col">
            <div className="p-4 bg-muted/50">
               <div className="flex items-center gap-4">
                   <div className="bg-primary/20 rounded-full p-2">

@@ -13,6 +13,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Property = typeof properties[0];
 
@@ -386,16 +387,32 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <h1 className="text-3xl font-bold">{property.name}</h1>
                         <p className="text-muted-foreground mt-1">{property.location}</p>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon">
-                            <Heart className="h-6 w-6" />
-                            <span className="sr-only">Add to wishlist</span>
-                        </Button>
-                        <Button variant="ghost" size="icon">
-                            <Share2 className="h-6 w-6" />
-                            <span className="sr-only">Share</span>
-                        </Button>
-                    </div>
+                    <TooltipProvider>
+                        <div className="flex items-center gap-2">
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="ghost" size="icon">
+                                        <Heart className="h-6 w-6" />
+                                        <span className="sr-only">Add to wishlist</span>
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Add to wishlist</p>
+                                </TooltipContent>
+                            </Tooltip>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="ghost" size="icon">
+                                        <Share2 className="h-6 w-6" />
+                                        <span className="sr-only">Share</span>
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Share</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </div>
+                    </TooltipProvider>
                 </div>
             
             

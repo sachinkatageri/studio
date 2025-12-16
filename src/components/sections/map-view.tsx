@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { Button } from '@/components/ui/button';
@@ -117,14 +118,23 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             placeholder="Search for property, project, or builder..."
             className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
           />
-          <Button 
-            variant={areFiltersApplied ? "default" : "ghost"} 
-            size="icon" 
-            className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
-            onClick={onFilterClick}
-          >
-            <SlidersHorizontal />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button 
+                        variant={areFiltersApplied ? "default" : "ghost"} 
+                        size="icon" 
+                        className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
+                        onClick={onFilterClick}
+                    >
+                        <SlidersHorizontal />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Filters</p>
+                </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </div>
       <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
@@ -135,14 +145,23 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             placeholder="Search for property, project, or builder..."
             className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
           />
-          <Button 
-            variant={areFiltersApplied ? "default" : "ghost"} 
-            size="icon" 
-            className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
-            onClick={onFilterClick}
-          >
-            <SlidersHorizontal />
-          </Button>
+          <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button 
+                        variant={areFiltersApplied ? "default" : "ghost"} 
+                        size="icon" 
+                        className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
+                        onClick={onFilterClick}
+                    >
+                        <SlidersHorizontal />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Filters</p>
+                </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-12 flex-shrink-0 hidden md:flex">
           <PlusCircle className="mr-2 h-5 w-5" /> List Property
@@ -151,11 +170,20 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className="absolute bottom-4 left-4 z-10">
           <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="ghost" size="icon" className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border">
-                <Layers className="text-foreground" />
-              </Button>
-            </PopoverTrigger>
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <PopoverTrigger asChild>
+                          <Button variant="ghost" size="icon" className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border">
+                            <Layers className="text-foreground" />
+                          </Button>
+                        </PopoverTrigger>
+                    </TooltipTrigger>
+                    <TooltipContent side="right">
+                        <p>Map Layers</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
             <PopoverContent className="w-60 p-2">
                 <div className="space-y-1">
                     <h3 className="px-2 py-1.5 text-sm font-semibold">Map Type</h3>
@@ -210,19 +238,42 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className="absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2">
             {!isMobile && (
-                <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
-                    <Button variant="ghost" size="icon" className="h-12 w-12">
-                       <LocateFixed />
-                    </Button>
-                    <Separator />
-                    <Button variant="ghost" size="icon" className="h-12 w-12">
-                       <ZoomIn />
-                    </Button>
-                    <Separator />
-                    <Button variant="ghost" size="icon" className="h-12 w-12">
-                       <ZoomOut />
-                    </Button>
-                </div>
+                <TooltipProvider>
+                    <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-12 w-12">
+                                   <LocateFixed />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="left">
+                                <p>My Location</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Separator />
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-12 w-12">
+                                   <ZoomIn />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="left">
+                                <p>Zoom In</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Separator />
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-12 w-12">
+                                   <ZoomOut />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="left">
+                                <p>Zoom Out</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </TooltipProvider>
             )}
        </div>
        

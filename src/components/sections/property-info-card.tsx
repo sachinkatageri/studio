@@ -10,6 +10,7 @@ import { X, Phone, Share2, Navigation, Wifi, Users, Printer, Coffee, Clock, Pres
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 import { formatDistanceToNow } from 'date-fns';
+import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
@@ -63,6 +64,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
   return (
     <Card className="w-96 shadow-2xl flex flex-col max-h-[calc(100vh-6rem)]">
+        <TooltipProvider>
       <CardHeader className="p-0 relative">
         {propertyImage && (
           <div className="relative h-48 w-full">
@@ -75,19 +77,47 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             />
           </div>
         )}
-        <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white hover:text-white rounded-full h-8 w-8" onClick={onClose}>
-          <X className="h-4 w-4" />
-        </Button>
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white hover:text-white rounded-full h-8 w-8" onClick={onClose}>
+                  <X className="h-4 w-4" />
+                </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+                <p>Close</p>
+            </TooltipContent>
+        </Tooltip>
         <div className="absolute top-2 left-2 flex gap-2">
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
-                <Navigation className='h-4 w-4' />
-            </Button>
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
-                <Share2 className='h-4 w-4' />
-            </Button>
-            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
-                <Heart className='h-4 w-4' />
-            </Button>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                        <Navigation className='h-4 w-4' />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Get Directions</p>
+                </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                        <Share2 className='h-4 w-4' />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Share</p>
+                </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full'>
+                        <Heart className='h-4 w-4' />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Add to Wishlist</p>
+                </TooltipContent>
+            </Tooltip>
         </div>
         <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
           <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
@@ -166,17 +196,32 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </CardContent>
       <CardFooter className="p-4 border-t bg-background">
         <div className="flex gap-2 w-full">
-            <Button size="icon" className="h-12 w-12">
-                <Phone />
-            </Button>
-            <Button variant="outline" size="icon" className="h-12 w-12 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
-                <WhatsAppIcon />
-            </Button>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button size="icon" className="h-12 w-12">
+                        <Phone />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Call</p>
+                </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" className="h-12 w-12 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
+                        <WhatsAppIcon />
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>WhatsApp</p>
+                </TooltipContent>
+            </Tooltip>
             <Button variant="default" className="flex-1 text-lg h-12" onClick={() => onViewDetails(property.id)}>
                 View Details
             </Button>
         </div>
       </CardFooter>
+      </TooltipProvider>
     </Card>
   );
 }
