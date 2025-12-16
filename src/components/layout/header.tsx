@@ -146,15 +146,13 @@ const UserMenuButton = () => (
                     <span className="font-medium">Terms & Conditions</span>
                 </Link>
                 <Separator />
-                <div>
-                    <h3 className="font-medium mb-2 text-center text-sm">Follow on</h3>
-                    <div className="flex items-center justify-center gap-4">
-                        {socialLinks.map((link, i) => (
-                            <Link key={i} href={link.href} className="text-muted-foreground hover:text-primary">
-                                {link.icon}
-                            </Link>
-                        ))}
-                    </div>
+                <div className="flex items-center justify-center gap-4">
+                    <h3 className="font-medium text-sm">Follow on</h3>
+                    {socialLinks.map((link, i) => (
+                        <Link key={i} href={link.href} className="text-muted-foreground hover:text-primary">
+                            {link.icon}
+                        </Link>
+                    ))}
                 </div>
             </div>
         </SheetContent>
