@@ -17,7 +17,7 @@ import {
 const MainImage = () => {
     const mainImage = propertyImageGallery[0];
     return (
-        <div className="relative aspect-[16/9] md:aspect-auto w-full h-full overflow-hidden md:rounded-l-lg">
+        <div className="relative w-full h-[250px] md:h-full overflow-hidden md:rounded-l-lg">
             <Image
                 src={mainImage.imageUrl}
                 alt={mainImage.description}
@@ -32,9 +32,9 @@ const MainImage = () => {
 const SideImages = () => {
     const sideImages = propertyImageGallery.slice(1, 3);
     return (
-        <div className="flex-col gap-2 hidden md:flex">
+        <div className="hidden md:flex flex-col gap-2">
             {sideImages.map((image, index) => (
-                 <div key={image.id} className={`relative aspect-[16/9] w-full h-full overflow-hidden ${index === 0 ? 'rounded-tr-lg' : ''} ${index === sideImages.length - 1 ? 'rounded-br-lg' : ''}`}>
+                 <div key={image.id} className={`relative w-full h-full overflow-hidden ${index === 0 ? 'rounded-tr-lg' : ''} ${index === sideImages.length - 1 ? 'rounded-br-lg' : ''}`}>
                     <Image
                         src={image.imageUrl}
                         alt={image.description}
@@ -79,11 +79,15 @@ export default function PropertyImageGallery() {
     
     return (
         <div className="relative">
-             <div className="md:grid md:grid-cols-2 md:gap-2 md:h-[500px]">
-                <MainImage />
-                <SideImages />
+             <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-1 gap-2 md:h-[500px]">
+                <div className="md:row-span-1">
+                    <MainImage />
+                </div>
+                <div className="md:row-span-1">
+                    <SideImages />
+                </div>
             </div>
-            <div className="absolute top-4 right-4 flex gap-2 md:hidden">
+            <div className="absolute top-4 right-4 flex gap-2">
                 <Button variant="secondary" size="icon" className="rounded-full bg-white/80 hover:bg-white">
                     <Share2 className="h-4 w-4" />
                 </Button>
