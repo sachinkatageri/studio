@@ -22,7 +22,8 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
+        <DialogHeader className="items-center">
+          <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} className="mb-4" />
           <DialogTitle className="text-2xl font-bold">Login</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
