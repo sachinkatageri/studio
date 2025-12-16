@@ -31,7 +31,7 @@ const WhatsAppIcon = () => (
 
 export default function Header() {
   return (
-    <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b">
+    <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
           <Sheet>
@@ -157,7 +157,7 @@ export default function Header() {
           <Button className="hidden sm:inline-flex">Login <ArrowRight className="ml-2 h-4 w-4" /></Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+              <Button variant="ghost" size="icon" className="md:inline-flex">
                 <Menu />
                 <span className="sr-only">Open user menu</span>
               </Button>
