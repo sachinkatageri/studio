@@ -1,3 +1,4 @@
+
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -168,7 +169,16 @@ const PropertyVideo = () => (
             ></iframe>
         </div>
     </div>
-)
+);
+
+const PropertyPlan = () => (
+    <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Property Plan</h2>
+        <div className="relative aspect-video w-full rounded-lg overflow-hidden border">
+            <Image src="https://picsum.photos/seed/floor-plan/1000/600" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
+        </div>
+    </div>
+);
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
@@ -240,6 +250,10 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <Separator className="my-8" />
 
             <PropertyVideo />
+
+            <Separator className="my-8" />
+
+            <PropertyPlan />
 
         </div>
     )
