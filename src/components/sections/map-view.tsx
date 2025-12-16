@@ -125,7 +125,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
           </Button>
         </div>
         <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-12 flex-shrink-0 hidden md:flex">
-          <PlusCircle className="mr-2 h-5 w-5" /> List my land
+          <PlusCircle className="mr-2 h-5 w-5" /> List my property
         </Button>
     </div>
 
@@ -211,3 +211,5 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </div>
   );
 }
+
+    
