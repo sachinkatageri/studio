@@ -123,7 +123,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             <SlidersHorizontal />
           </Button>
         </div>
-        <Button variant="secondary" className="shadow-lg h-12 flex-shrink-0 hidden md:flex">
+        <Button className="shadow-lg h-12 flex-shrink-0 hidden md:flex bg-accent text-accent-foreground hover:bg-accent/90">
           <PlusCircle className="mr-2 h-5 w-5" /> List my land
         </Button>
     </div>
@@ -132,7 +132,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="ghost" size="icon" className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border">
-                <Layers />
+                <Layers className="text-foreground" />
               </Button>
             </PopoverTrigger>
             <PopoverContent className="w-60 p-2">
