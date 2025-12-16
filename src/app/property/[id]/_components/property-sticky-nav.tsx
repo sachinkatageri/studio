@@ -17,7 +17,6 @@ const navItems = [
     { label: 'Video', href: '#video' },
     { label: 'Floor Plan', href: '#plan' },
     { label: 'Documents', href: '#documents' },
-    { label: 'About Developer', href: '#developer' },
 ];
 
 export function PropertyStickyNav() {
