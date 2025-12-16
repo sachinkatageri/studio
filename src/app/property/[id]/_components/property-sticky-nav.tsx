@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 const navItems = [
+    { label: 'Info', href: '#info' },
     { label: 'Overview', href: '#overview' },
     { label: 'Amenities', href: '#amenities' },
     { label: 'Price Details', href: '#price-estimate' },
@@ -21,7 +22,7 @@ const navItems = [
 
 export function PropertyStickyNav() {
     const [isSticky, setIsSticky] = useState(false);
-    const [activeId, setActiveId] = useState('');
+    const [activeId, setActiveId] = useState('info');
     const scrollViewportRef = useRef<HTMLDivElement>(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
@@ -39,7 +40,7 @@ export function PropertyStickyNav() {
                 break;
             }
         }
-        setActiveId(currentSectionId);
+        setActiveId(currentSectionId || 'info');
 
         if (navRef.current && window.scrollY > navRef.current.offsetTop) {
             setIsSticky(true);
@@ -76,6 +77,9 @@ export function PropertyStickyNav() {
             handleHorizontalScroll();
         }
 
+        // Set initial activeId
+        handleScroll();
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
              if (scrollArea) {
@@ -107,7 +111,7 @@ export function PropertyStickyNav() {
                         </button>
                     )}
                     <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex items-center px-12 container mx-auto">
+                        <div className="container mx-auto flex px-12">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}

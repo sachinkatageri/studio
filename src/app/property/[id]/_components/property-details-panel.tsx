@@ -380,7 +380,7 @@ const OurServices = () => {
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
         <div className="space-y-8">
-            <div>
+            <div id="info">
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <h1 className="text-3xl font-bold">{property.name}</h1>
@@ -397,7 +397,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         </Button>
                     </div>
                 </div>
-            </div>
+            
             
             <div className="mt-4 flex flex-wrap gap-4 items-center">
                 <p className="text-2xl font-bold text-primary">
@@ -432,6 +432,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                     <WhatsAppIcon /> WhatsApp
                 </Button>
+            </div>
             </div>
             
             <Separator />
