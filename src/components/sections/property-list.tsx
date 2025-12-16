@@ -51,20 +51,6 @@ export const properties = [
     postedOn: '2024-07-18'
   },
   {
-    id: 'restaurant-alwal',
-    name: 'Restaurant',
-    location: 'in Alwal, Medchal, Telangana',
-    size: 1000,
-    pricePerSqFt: 150,
-    type: 'Commercial',
-    about: 'A fully-equipped restaurant space in a popular dining area, ready for immediate operation.',
-    amenities: ['Full Kitchen', 'Seating Area', 'Restrooms', 'Valet Parking'],
-    status: 'For Lease',
-    rating: 4.6,
-    reviews: 45,
-    postedOn: '2024-06-30'
-  },
-  {
     id: 'godown-moula-ali',
     name: 'Godown/Warehouse',
     location: 'in Moula Ali, Medchal, Telangana',
@@ -169,7 +155,7 @@ export default function PropertyList({ onSelectProperty }: PropertyListProps) {
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
             <div className="py-4">
-                <p className="text-sm text-muted-foreground">7 properties found</p>
+                <p className="text-sm text-muted-foreground">6 properties found</p>
             </div>
             <ScrollArea className="flex-1" style={{height: 'calc(100vh - 240px)'}}>
                 <TabsContent value="all">

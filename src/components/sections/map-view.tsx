@@ -36,7 +36,6 @@ const propertyPositions = [
   { id: 'wework', top: '35%', left: '40%' },
   { id: '91springboard', top: '50%', left: '60%' },
   { id: 'shop-boduppal', top: '65%', left: '30%' },
-  { id: 'restaurant-alwal', top: '25%', left: '70%' },
   { id: 'godown-moula-ali', top: '80%', left: '50%' },
   { id: 'project-1', top: '45%', left: '20%' },
   { id: 'project-2', top: '60%', left: '80%' },
