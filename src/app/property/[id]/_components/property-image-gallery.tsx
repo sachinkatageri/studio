@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { Grid2x2, Heart, Share2 } from 'lucide-react';
+import { Heart, Share2 } from 'lucide-react';
 import { useState } from 'react';
 import {
   Dialog,
@@ -85,8 +85,7 @@ export default function PropertyImageGallery() {
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
                 <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
-                    <Grid2x2 className="mr-2 h-4 w-4" />
-                    Show all photos
+                    9+ more
                 </Button>
             </div>
             <ImageGalleryModal open={isModalOpen} onOpenChange={setIsModalOpen} />
