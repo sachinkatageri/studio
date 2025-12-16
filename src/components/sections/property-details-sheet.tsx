@@ -129,18 +129,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
               <div className="absolute bottom-0 left-0 p-4">
                  <div className="flex items-center gap-2">
                     <h2 className="text-2xl text-white font-bold">{property.name}</h2>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>
-                           <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700 p-1 rounded-full h-auto">
-                            <Check className="w-3 h-3" />
-                          </Badge>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Preliminary verification done.</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
+                    <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} />
                 </div>
                 <p className="text-neutral-300">{property.location}</p>
               </div>
@@ -185,7 +174,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 </div>
 
                 
-                 <div className="text-sm text-muted-foreground space-y-2">
+                 <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                     <div>

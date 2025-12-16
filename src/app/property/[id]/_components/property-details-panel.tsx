@@ -388,7 +388,10 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <div id="info">
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
-                        <h1 className="text-3xl font-bold">{property.name}</h1>
+                        <div className="flex items-center gap-2">
+                           <h1 className="text-3xl font-bold">{property.name}</h1>
+                           <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={28} height={28} />
+                        </div>
                         <p className="text-muted-foreground mt-1">{property.location}</p>
                     </div>
                     <TooltipProvider>

@@ -127,16 +127,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
           <div className="flex items-center gap-2">
             <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
-              <Tooltip>
-                <TooltipTrigger>
-                  <Badge variant="secondary" className="text-xs bg-green-100 text-green-800 border-green-200 dark:bg-green-900/50 dark:text-green-200 dark:border-green-700 p-1 rounded-full h-auto">
-                    <Check className="w-3 h-3" />
-                  </Badge>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Preliminary verification done.</p>
-                </TooltipContent>
-              </Tooltip>
+            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} />
           </div>
           <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
         </div>
@@ -182,7 +173,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
         </div>
 
-        <div className="text-sm text-muted-foreground space-y-2">
+        <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
               <div className="flex items-start gap-2">
                 <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
                 <div>
