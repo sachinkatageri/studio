@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, User } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
