@@ -11,51 +11,94 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Search, Phone, MoreVertical, Share2, Heart, Check, Building2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
+import { useIsMobile } from '@/hooks/use-mobile';
+import Image from 'next/image';
+import { Badge } from '@/components/ui/badge';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
 }
 
-const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
+const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
+    return (
+        <div className="md:hidden flex items-center justify-between gap-2 h-16 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40">
+            <div className='flex items-center gap-1'>
+                <Button variant="ghost" size="icon" onClick={() => router.back()}>
+                    <ArrowLeft />
+                </Button>
+                <h1 className="text-lg font-semibold truncate">{property.name}</h1>
+            </div>
+            <div className='flex items-center'>
+                <Button variant="ghost" size="icon">
+                    <Search className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon">
+                    <Phone className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon">
+                    <MoreVertical className="h-5 w-5" />
+                </Button>
+            </div>
+        </div>
+    );
+};
+
+const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     // @ts-ignore
     const lastUpdated = property.postedOn ? format(new Date(property.postedOn), 'PPP') : 'N/A';
     
     return (
-        <div className="md:mb-4">
-            {/* Mobile header */}
-            <div className="md:hidden flex items-center gap-2 h-14 bg-background border-b px-4 fixed top-16 left-0 right-0 z-40">
-                <Button variant="ghost" size="icon" onClick={() => router.back()}>
-                    <ArrowLeft />
-                </Button>
-                <h1 className="text-lg font-semibold truncate">Properties</h1>
+        <div className="hidden md:flex justify-between items-center">
+            <div className="flex items-center text-sm text-muted-foreground">
+                <Link href="/" className="hover:text-primary">Home</Link>
+                <ChevronRight className="h-4 w-4 mx-1" />
+                <Link href="#" className="hover:text-primary">Properties</Link>
+                <ChevronRight className="h-4 w-4 mx-1" />
+                <span className="text-foreground font-medium truncate">{property.name}</span>
             </div>
-
-            {/* Desktop header */}
-            <div className="hidden md:flex justify-between items-center">
-                <div className="flex items-center text-sm text-muted-foreground">
-                    <Link href="/" className="hover:text-primary">Home</Link>
-                    <ChevronRight className="h-4 w-4 mx-1" />
-                    <Link href="#" className="hover:text-primary">Properties</Link>
-                    <ChevronRight className="h-4 w-4 mx-1" />
-                    <span className="text-foreground font-medium truncate">{property.name}</span>
-                </div>
-                 <p className="text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
-            </div>
+                <p className="text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
         </div>
     )
 }
 
+const PropertyIntro = ({ property }: { property: typeof properties[0] }) => (
+    <div className='px-4 md:hidden'>
+        <div className="flex justify-between items-start">
+            <div>
+                <p className="text-sm text-muted-foreground">Provident Housing Limited</p>
+                <h1 className="text-2xl font-bold">{property.name}</h1>
+                <p className="text-muted-foreground mt-1">{property.location}</p>
+            </div>
+            <div className="flex flex-col items-center gap-1 shrink-0">
+                <div className="relative h-16 w-16 rounded-lg overflow-hidden border">
+                    <Image src="https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg" alt="Mini map" fill className="object-cover" />
+                </div>
+                <Button variant="link" size="sm" className="p-0 h-auto text-primary">See on map <ChevronRight className="h-4 w-4 ml-1" /></Button>
+            </div>
+        </div>
+        <div className="mt-4">
+            <Badge variant="outline" className="text-base font-normal">
+                <Building2 className="mr-2 h-4 w-4" />
+                2, 3 BHK Apartments
+            </Badge>
+        </div>
+    </div>
+)
+
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
+    const isMobile = useIsMobile();
 
     return (
         <div className="bg-background pb-20 md:pb-0">
+            {isMobile ? <MobileHeader property={property} /> : <Header />}
+            
             <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8 pb-8">
-                <div className="px-4 sm:px-0 pt-14 md:pt-0">
+                <div className="px-4 sm:px-0 pt-16 md:pt-0">
                   <Breadcrumb property={property} />
                 </div>
                 <div className="md:mt-4">
@@ -63,9 +106,12 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 </div>
             </main>
             
-            <PropertyStickyNav />
+            {!isMobile && <PropertyStickyNav />}
 
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                 <div className='md:hidden -mt-4 mb-8'>
+                    <PropertyIntro property={property} />
+                </div>
                 <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
                         <PropertyDetailsPanel property={property} />
@@ -84,4 +130,21 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             <SiteFooter />
         </div>
     )
+}
+
+
+const Header = () => {
+  const router = useRouter();
+  // @ts-ignore
+  return (
+      <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
+        <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+          <div className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
+              <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
+            </Link>
+          </div>
+        </div>
+      </header>
+  )
 }

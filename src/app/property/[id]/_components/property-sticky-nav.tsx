@@ -43,10 +43,8 @@ export function PropertyStickyNav() {
         setActiveId(currentSectionId || 'info');
 
         const topNavHeight = 64; // main header height
-        const mobileNavHeight = 56; // mobile nav height
-        const totalNavHeight = window.innerWidth < 768 ? topNavHeight + mobileNavHeight : topNavHeight;
         
-        if (navRef.current && window.scrollY > navRef.current.offsetTop - totalNavHeight) {
+        if (navRef.current && window.scrollY > navRef.current.offsetTop - topNavHeight) {
             setIsSticky(true);
         } else {
             setIsSticky(false);
@@ -58,9 +56,8 @@ export function PropertyStickyNav() {
         const targetElement = document.querySelector(href);
         if (targetElement) {
             const topNavHeight = 64; // main header height
-            const mobileNavHeight = 56; // mobile nav height
             const tabsHeight = 65;
-            const totalNavHeight = window.innerWidth < 768 ? topNavHeight + mobileNavHeight + tabsHeight : topNavHeight + tabsHeight;
+            const totalNavHeight = topNavHeight + tabsHeight;
 
             const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight + 10;
             window.scrollTo({
@@ -116,7 +113,7 @@ export function PropertyStickyNav() {
     };
 
     return (
-        <div ref={navRef} className={cn('relative h-[65px] bg-background top-0 z-30', isSticky && 'fixed top-16 md:top-16 left-0 right-0 shadow-md border-b', isSticky && 'md:top-16 top-[120px]')}>
+        <div ref={navRef} className={cn('relative h-[65px] bg-background top-0 z-30', isSticky && 'fixed top-16 left-0 right-0 shadow-md border-b')}>
             <div className="relative container mx-auto flex items-center">
                 {showLeftArrow && (
                     <button 
