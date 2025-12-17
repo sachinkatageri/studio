@@ -109,9 +109,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {!isMobile && <PropertyStickyNav />}
 
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                 <div className='md:hidden -mt-4 mb-8'>
-                    <PropertyIntro property={property} />
-                </div>
+                 
                 <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
                         <PropertyDetailsPanel property={property} />
