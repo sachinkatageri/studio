@@ -23,6 +23,10 @@ type PropertyPageContentProps = {
     property: typeof properties[0];
 }
 
+const WhatsAppIcon = () => (
+    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+);
+
 const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
     return (
@@ -66,6 +70,19 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     )
 }
 
+const StickyFooter = ({ property }: { property: typeof properties[0] }) => (
+    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t z-40 p-2">
+        <div className="flex gap-2">
+            <Button className="flex-1 text-lg py-6">
+                <Phone className="mr-2" /> Contact
+            </Button>
+            <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <WhatsAppIcon /> WhatsApp
+            </Button>
+        </div>
+    </div>
+);
+
 
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
@@ -103,6 +120,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             <BrokerageBanner />
             <SiteFooter />
+            {isMobile && <StickyFooter property={property} />}
         </div>
     )
 }

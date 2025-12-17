@@ -423,7 +423,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </div>
             </div>
 
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 flex gap-2 md:hidden">
                 <Button className="flex-1 text-lg py-6">
                     <Phone className="mr-2" /> Contact
                 </Button>
