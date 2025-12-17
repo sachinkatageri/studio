@@ -30,7 +30,7 @@ export default function BrokerageBanner() {
                     </div>
                     <div className="relative h-full min-h-[300px] hidden md:block">
                         <Image 
-                            src="https://www.buildersinfo.in/assets/app-screen.png"
+                            src="https://i.ibb.co/v6CN21Pt/image-Photoroom.png"
                             alt="BuildersInfo App"
                             fill
                             className="object-contain object-bottom"
