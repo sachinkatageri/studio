@@ -50,6 +50,18 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     );
 };
 
+const MobileFooter = () => (
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t p-2">
+        <div className="flex gap-2">
+            <Button variant="outline" className="w-full h-12">Contact</Button>
+            <Button className="w-full h-12">
+                <WhatsAppIcon />
+                <span className="ml-2">WhatsApp</span>
+            </Button>
+        </div>
+    </div>
+)
+
 const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     // @ts-ignore
     const lastUpdated = property.postedOn ? format(new Date(property.postedOn), 'PPP') : 'N/A';
@@ -105,6 +117,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             <BrokerageBanner />
             <SiteFooter />
+            {isMobile && <MobileFooter />}
         </div>
     )
 }
