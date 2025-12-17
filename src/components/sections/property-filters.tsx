@@ -19,9 +19,10 @@ import { ScrollArea } from '../ui/scroll-area';
 interface PropertyFiltersProps {
   onBack: () => void;
   onApplyFilters: () => void;
+  onClearFilters: () => void;
 }
 
-export default function PropertyFilters({ onBack, onApplyFilters }: PropertyFiltersProps) {
+export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
   return (
     <div className="flex flex-col h-full bg-card">
       <div className="flex items-center justify-between gap-2 p-4 border-b">
@@ -31,7 +32,7 @@ export default function PropertyFilters({ onBack, onApplyFilters }: PropertyFilt
             </Button>
             <h2 className="text-lg font-semibold">Filters</h2>
         </div>
-        <Button variant="link" className="text-primary p-0 h-auto">Clear all</Button>
+        <Button variant="link" className="text-primary p-0 h-auto" onClick={onClearFilters}>Clear all</Button>
       </div>
 
       <ScrollArea className="flex-1">

@@ -44,6 +44,10 @@ export default function Home() {
     setAreFiltersApplied(true);
     setSidebarView('list');
   }
+  
+  const handleClearFilters = () => {
+    setAreFiltersApplied(false);
+  }
 
   const handleSelectProperty = (propertyId: string) => {
     setSelectedPropertyId(propertyId);
@@ -79,7 +83,7 @@ export default function Home() {
             )}>
               {sidebarView === 'list' 
                   ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
-                  : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} />
+                  : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
               }
             </aside>
             <main className={cn(
