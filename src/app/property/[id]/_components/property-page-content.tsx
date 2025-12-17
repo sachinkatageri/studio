@@ -15,7 +15,6 @@ import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -59,7 +58,9 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <div className="px-4 sm:px-0 pt-14 md:pt-0">
                   <Breadcrumb property={property} />
                 </div>
-                <PropertyImageGallery />
+                <div className="md:mt-4">
+                    <PropertyImageGallery />
+                </div>
             </main>
             
             <PropertyStickyNav />
