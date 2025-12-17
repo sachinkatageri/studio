@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, User } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -239,7 +239,7 @@ const ResidentReviews = () => {
                                     <div className="flex justify-between items-start">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                <User className="w-6 h-6 text-primary" />
+                                                <UserCheck className="w-6 h-6 text-primary" />
                                             </div>
                                             <div>
                                                 <p className="font-semibold">{review.name}</p>
@@ -369,7 +369,7 @@ const brochureImages = [
 
 const PropertyDocument = () => (
     <div>
-        <Carousel>
+        <Carousel className="w-full">
             <CarouselContent>
                 {brochureImages.map((image) => (
                     <CarouselItem key={image.id}>
@@ -385,15 +385,15 @@ const PropertyDocument = () => (
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                 <Button asChild variant="secondary" size="lg">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                 <Button asChild variant="secondary" size="lg" className="bg-white/90 hover:bg-white text-foreground">
                     <Link href="/sample.pdf" target="_blank">View Brochure</Link>
                 </Button>
             </div>
             <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
             <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
         </Carousel>
-        <Button asChild size="lg" className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white">
+        <Button asChild size="lg" className="w-full mt-4 bg-amber-500 hover:bg-amber-600 text-amber-900 font-bold">
             <Link href="/sample.pdf" target="_blank" download>
                 <Download className="mr-2 h-5 w-5" />
                 Download Brochure
@@ -484,7 +484,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
     return (
         <>
         <div className="space-y-8">
-            <div id="info">
+            <div id="info" className="md:pt-0 pt-4">
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <div className="flex items-center gap-2">
@@ -514,7 +514,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 {property.type === 'Commercial' && <Badge>Zero Brokerage</Badge>}
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-6">
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-6">
                 <div className="flex flex-col">
                     <span className="text-sm text-muted-foreground">Area</span>
                     {/* @ts-ignore */}
@@ -528,15 +528,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <span className="text-sm text-muted-foreground">Furnishing</span>
                     <span className="font-semibold">Furnished</span>
                 </div>
-            </div>
-
-            <div className="mt-6 flex gap-2 md:hidden">
-                <Button className="flex-1 text-lg py-6">
-                    <Phone className="mr-2" /> Contact
-                </Button>
-                <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <WhatsAppIcon /> WhatsApp
-                </Button>
             </div>
 
             </div>
