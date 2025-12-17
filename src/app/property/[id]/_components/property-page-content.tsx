@@ -42,13 +42,7 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                     <Search className="h-5 w-5" />
                 </Button>
                 <Button variant="ghost" size="icon">
-                    <Phone className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon">
                     <Share2 className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                    <MoreVertical className="h-5 w-5" />
                 </Button>
             </div>
         </div>
