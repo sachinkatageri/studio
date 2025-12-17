@@ -33,54 +33,26 @@ import { Terminal } from "lucide-react";
 import Header from "@/components/layout/header";
 
 const colors = [
-  { name: "background", bg: "bg-background", text: "text-foreground" },
-  { name: "foreground", bg: "bg-foreground", text: "text-background" },
-  { name: "card", bg: "bg-card", text: "text-card-foreground" },
-  { name: "card-foreground", bg: "bg-card-foreground", text: "text-card" },
-  { name: "popover", bg: "bg-popover", text: "text-popover-foreground" },
-  {
-    name: "popover-foreground",
-    bg: "bg-popover-foreground",
-    text: "text-popover",
-  },
-  { name: "primary", bg: "bg-primary", text: "text-primary-foreground" },
-  {
-    name: "primary-foreground",
-    bg: "bg-primary-foreground",
-    text: "text-primary",
-  },
-  { name: "secondary", bg: "bg-secondary", text: "text-secondary-foreground" },
-  {
-    name: "secondary-foreground",
-    bg: "bg-secondary-foreground",
-    text: "text-secondary",
-  },
-  { name: "muted", bg: "bg-muted", text: "text-muted-foreground" },
-  {
-    name: "muted-foreground",
-    bg: "bg-muted-foreground",
-    text: "text-muted",
-  },
-  { name: "accent", bg: "bg-accent", text: "text-accent-foreground" },
-  {
-    name: "accent-foreground",
-    bg: "bg-accent-foreground",
-    text: "text-accent",
-  },
-  {
-    name: "destructive",
-    bg: "bg-destructive",
-    text: "text-destructive-foreground",
-  },
-  {
-    name: "destructive-foreground",
-    bg: "bg-destructive-foreground",
-    text: "text-destructive",
-  },
-  { name: "border", bg: "bg-border", text: "text-foreground" },
-  { name: "input", bg: "bg-input", text: "text-foreground" },
-  { name: "ring", bg: "bg-ring", text: "text-primary-foreground" },
-];
+    { name: "background", bg: "bg-background", text: "text-foreground", code: "0 0% 100%" },
+    { name: "foreground", bg: "bg-foreground", text: "text-background", code: "240 10% 3.9%" },
+    { name: "card", bg: "bg-card", text: "text-card-foreground", code: "0 0% 100%" },
+    { name: "card-foreground", bg: "bg-card-foreground", text: "text-card", code: "240 10% 3.9%" },
+    { name: "popover", bg: "bg-popover", text: "text-popover-foreground", code: "0 0% 100%" },
+    { name: "popover-foreground", bg: "bg-popover-foreground", text: "text-popover", code: "240 10% 3.9%" },
+    { name: "primary", bg: "bg-primary", text: "text-primary-foreground", code: "212 90% 41%" },
+    { name: "primary-foreground", bg: "bg-primary-foreground", text: "text-primary", code: "0 0% 98%" },
+    { name: "secondary", bg: "bg-secondary", text: "text-secondary-foreground", code: "212 90% 61%" },
+    { name: "secondary-foreground", bg: "bg-secondary-foreground", text: "text-secondary", code: "0 0% 98%" },
+    { name: "muted", bg: "bg-muted", text: "text-muted-foreground", code: "240 4.8% 95.9%" },
+    { name: "muted-foreground", bg: "bg-muted-foreground", text: "text-muted", code: "240 3.8% 46.1%" },
+    { name: "accent", bg: "bg-accent", text: "text-accent-foreground", code: "41 93% 58%" },
+    { name: "accent-foreground", bg: "bg-accent-foreground", text: "text-accent", code: "240 10% 3.9%" },
+    { name: "destructive", bg: "bg-destructive", text: "text-destructive-foreground", code: "0 84.2% 60.2%" },
+    { name: "destructive-foreground", bg: "bg-destructive-foreground", text: "text-destructive", code: "0 0% 98%" },
+    { name: "border", bg: "bg-border", text: "text-foreground", code: "240 5.9% 90%" },
+    { name: "input", bg: "bg-input", text: "text-foreground", code: "240 5.9% 90%" },
+    { name: "ring", bg: "bg-ring", text: "text-primary-foreground", code: "212 90% 41%" },
+  ];
 
 const spacing = [
   { name: "p-0", size: "0px" },
@@ -164,6 +136,7 @@ export default function DesignSystemPage() {
                 </div>
                 <div className="mt-2 text-sm">
                   <p className="font-semibold">{color.name}</p>
+                  <p className="text-muted-foreground font-mono text-xs">{color.code}</p>
                 </div>
               </div>
             ))}
