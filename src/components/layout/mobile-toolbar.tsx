@@ -23,9 +23,8 @@ export default function MobileToolbar({ mobileView, setMobileView }: MobileToolb
           </Button>
           {mobileView === 'list' && (
             <SortSheet>
-              <Button variant="outline" size="sm" className="h-9">
-                <ArrowUpDown className="mr-2 h-4 w-4" />
-                Sort
+              <Button variant="outline" size="icon" className="h-9 w-9">
+                <ArrowUpDown className="h-4 w-4" />
               </Button>
             </SortSheet>
           )}
