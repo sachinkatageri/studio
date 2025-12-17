@@ -393,7 +393,7 @@ const PropertyDocument = () => (
             <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
             <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
         </Carousel>
-        <Button asChild size="lg" className="w-full mt-4 bg-amber-500 hover:bg-amber-600 text-amber-900 font-bold">
+        <Button asChild size="lg" className="w-full mt-4 bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
             <Link href="/sample.pdf" target="_blank" download>
                 <Download className="mr-2 h-5 w-5" />
                 Download Brochure
