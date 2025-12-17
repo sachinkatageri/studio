@@ -97,6 +97,51 @@ const spacing = [
   { name: "p-20", size: "5rem" },
 ];
 
+const typography = [
+    {
+      style: "Headline Extra Bold (h1)",
+      class: "text-4xl font-extrabold font-headline tracking-tight",
+      font: "Geist Sans",
+      size: "36px",
+    },
+    {
+      style: "Headline Bold (h2)",
+      class: "text-3xl font-bold font-headline",
+      font: "Geist Sans",
+      size: "30px",
+    },
+    {
+      style: "Headline Semibold (h3)",
+      class: "text-2xl font-semibold font-headline",
+      font: "Geist Sans",
+      size: "24px",
+    },
+    {
+      style: "Body Large",
+      class: "text-lg",
+      font: "Geist Sans",
+      size: "18px",
+    },
+    {
+      style: "Body Regular",
+      class: "",
+      font: "Geist Sans",
+      size: "16px",
+    },
+    {
+      style: "Body Small (muted)",
+      class: "text-sm text-muted-foreground",
+      font: "Geist Sans",
+      size: "14px",
+    },
+    {
+      style: "Code Font",
+      class: "font-code text-sm",
+      font: "Geist Mono",
+      size: "14px",
+    },
+  ];
+
 export default function DesignSystemPage() {
   return (
     <>
@@ -128,25 +173,32 @@ export default function DesignSystemPage() {
         {/* Typography */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold font-headline mb-6">Typography</h2>
-          <div className="space-y-4">
-            <h1 className="text-4xl font-extrabold font-headline tracking-tight">
-              Headline Extra Bold (h1)
-            </h1>
-            <h2 className="text-3xl font-bold font-headline">Headline Bold (h2)</h2>
-            <h3 className="text-2xl font-semibold">Headline Semibold (h3)</h3>
-            <p className="text-lg">
-              Body Large: The quick brown fox jumps over the lazy dog.
-            </p>
-            <p>
-              Body Regular: The quick brown fox jumps over the lazy dog.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Body Small (muted): The quick brown fox jumps over the lazy dog.
-            </p>
-            <p className="font-code text-sm">
-              Code Font: `console.log("Hello, World!")`
-            </p>
-          </div>
+          <Card>
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Style</TableHead>
+                        <TableHead>Example</TableHead>
+                        <TableHead>Font</TableHead>
+                        <TableHead>Size</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {typography.map(t => (
+                        <TableRow key={t.style}>
+                            <TableCell className="font-medium">{t.style}</TableCell>
+                            <TableCell>
+                                <p className={t.class}>
+                                    The quick brown fox jumps over the lazy dog.
+                                </p>
+                            </TableCell>
+                            <TableCell>{t.font}</TableCell>
+                            <TableCell>{t.size}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+          </Card>
         </section>
 
         {/* Components */}
