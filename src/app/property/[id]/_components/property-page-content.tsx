@@ -31,8 +31,8 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
     return (
         <div className="md:hidden flex items-center justify-between gap-2 h-16 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40">
-            <div className='flex items-center gap-1'>
-                <Button variant="ghost" size="icon" onClick={() => router.back()}>
+            <div className='flex items-center gap-1 min-w-0'>
+                <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0">
                     <ArrowLeft />
                 </Button>
                 <h1 className="text-lg font-semibold truncate">{property.name}</h1>
@@ -85,10 +85,10 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
     const isMobile = useIsMobile();
 
     return (
-        <div className="bg-background pb-20 md:pb-0">
+        <div className="bg-background">
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
-            <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8 pb-8">
+            <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8">
                 <div className="px-4 sm:px-0 pt-16 md:pt-0">
                   <Breadcrumb property={property} />
                 </div>
@@ -99,7 +99,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             {!isMobile && <PropertyStickyNav />}
 
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 md:py-8">
                  
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
