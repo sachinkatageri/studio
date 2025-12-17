@@ -394,32 +394,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         </div>
                         <p className="text-muted-foreground mt-1">{property.location}</p>
                     </div>
-                    <TooltipProvider>
-                        <div className="flex items-center gap-2">
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Button variant="ghost" size="icon">
-                                        <Heart className="h-6 w-6" />
-                                        <span className="sr-only">Add to wishlist</span>
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Add to wishlist</p>
-                                </TooltipContent>
-                            </Tooltip>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Button variant="ghost" size="icon">
-                                        <Share2 className="h-6 w-6" />
-                                        <span className="sr-only">Share</span>
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Share</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </div>
-                    </TooltipProvider>
                 </div>
             
             
@@ -597,5 +571,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </>
     )
 }
-
-    

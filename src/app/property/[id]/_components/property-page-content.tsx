@@ -66,29 +66,6 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     )
 }
 
-const PropertyIntro = ({ property }: { property: typeof properties[0] }) => (
-    <div className='px-4 md:hidden'>
-        <div className="flex justify-between items-start">
-            <div>
-                <p className="text-sm text-muted-foreground">Provident Housing Limited</p>
-                <h1 className="text-2xl font-bold">{property.name}</h1>
-                <p className="text-muted-foreground mt-1">{property.location}</p>
-            </div>
-            <div className="flex flex-col items-center gap-1 shrink-0">
-                <div className="relative h-16 w-16 rounded-lg overflow-hidden border">
-                    <Image src="https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg" alt="Mini map" fill className="object-cover" />
-                </div>
-                <Button variant="link" size="sm" className="p-0 h-auto text-primary">See on map <ChevronRight className="h-4 w-4 ml-1" /></Button>
-            </div>
-        </div>
-        <div className="mt-4">
-            <Badge variant="outline" className="text-base font-normal">
-                <Building2 className="mr-2 h-4 w-4" />
-                2, 3 BHK Apartments
-            </Badge>
-        </div>
-    </div>
-)
 
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
@@ -110,7 +87,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
 
             <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                  
-                <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
                         <PropertyDetailsPanel property={property} />
                     </div>
