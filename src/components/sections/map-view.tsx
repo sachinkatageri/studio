@@ -4,7 +4,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation, Building2, Home } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -77,6 +77,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       {propertyPositions.map(pos => {
         const property = properties.find(p => p.id === pos.id);
         if (!property) return null;
+
+        const MarkerIcon = property.type === 'Commercial' ? Building2 : Home;
+        
         return (
           <TooltipProvider key={pos.id}>
             <Tooltip>
@@ -90,9 +93,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                       "flex items-center gap-1 p-1 rounded-full shadow-lg transition-colors",
                       selectedPropertyId === pos.id ? 'bg-primary text-primary-foreground' : 'bg-background'
                     )}>
-                    <MapPin className={cn(
+                    <MarkerIcon className={cn(
                       "h-5 w-5",
-                      selectedPropertyId === pos.id ? 'text-white fill-white' : 'text-primary fill-current'
+                      selectedPropertyId === pos.id ? 'text-white' : 'text-primary'
                     )} />
                     <span className="text-xs font-bold pr-2 whitespace-nowrap">₹{property.pricePerSqFt}</span>
                   </div>
