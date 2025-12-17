@@ -18,7 +18,7 @@ import { useRouter } from 'next/navigation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Header from '@/components/layout/header';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -120,27 +120,4 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {isMobile && <MobileFooter />}
         </div>
     )
-}
-
-
-const Header = () => {
-  return (
-      <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
-        <div className="px-4 sm:px-6 lg:px-8 flex flex-col justify-between items-center h-auto py-2 gap-2">
-          <div className="flex items-center justify-between w-full">
-            <Link href="/" className="flex items-center gap-2 shrink-0">
-              <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
-            </Link>
-            {/* You can add user menu etc. here */}
-          </div>
-          <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="commercial">Commercial</TabsTrigger>
-              <TabsTrigger value="residential">Residential</TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
-      </header>
-  )
 }
