@@ -89,7 +89,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                     className="object-cover"
                     data-ai-hint={propertyImage.imageHint}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                 </div>
               )}
               <div className="absolute top-4 right-4 flex gap-2">
@@ -176,7 +176,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 
                  <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
                   <div className="flex items-start gap-2">
-                    <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
                     <div>
                       <p className="text-foreground font-semibold">Preliminary verification done.</p>
                       <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>

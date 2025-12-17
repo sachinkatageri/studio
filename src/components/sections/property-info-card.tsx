@@ -80,6 +80,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
               className="object-cover rounded-t-lg"
               data-ai-hint={propertyImage.imageHint}
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-t-lg" />
           </div>
         )}
         <Tooltip>
@@ -124,7 +125,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 </TooltipContent>
             </Tooltip>
         </div>
-        <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/80 to-transparent w-full rounded-b-lg">
+        <div className="absolute bottom-0 left-0 p-4 w-full">
           <div className="flex items-center gap-2">
             <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
             <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} />
@@ -175,7 +176,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
         <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
               <div className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
+                <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
                 <div>
                   <p className="text-foreground font-semibold">Preliminary verification done.</p>
                   <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
@@ -207,7 +208,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </Tooltip>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" className="h-12 w-12 border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white">
+                    <Button variant="outline" size="icon" className="h-12 w-12 border-primary text-primary hover:bg-primary hover:text-white">
                         <WhatsAppIcon />
                     </Button>
                 </TooltipTrigger>
