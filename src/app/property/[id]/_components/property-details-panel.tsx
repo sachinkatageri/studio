@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -284,22 +284,44 @@ const PropertyPlan = () => (
     </div>
 );
 
+const brochureImages = [
+    { id: 1, src: "https://picsum.photos/seed/brochure-1/800/600", alt: "Brochure page 1", hint: "brochure page" },
+    { id: 2, src: "https://picsum.photos/seed/brochure-2/800/600", alt: "Brochure page 2", hint: "brochure interior" },
+    { id: 3, src: "https://picsum.photos/seed/brochure-3/800/600", alt: "Brochure page 3", hint: "brochure layout" },
+];
+
 const PropertyDocument = () => (
     <div>
-        <Card>
-            <CardContent className="p-4 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <FileText className="h-8 w-8 text-primary" />
-                    <div>
-                        <p className="font-semibold">Property Brochure.pdf</p>
-                        <p className="text-sm text-muted-foreground">2.5 MB</p>
-                    </div>
-                </div>
-                <Button asChild variant="outline">
-                    <Link href="/sample.pdf" target="_blank" download>View PDF</Link>
+        <Carousel>
+            <CarouselContent>
+                {brochureImages.map((image) => (
+                    <CarouselItem key={image.id}>
+                        <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={image.hint}
+                            />
+                        </div>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                 <Button asChild variant="secondary" size="lg">
+                    <Link href="/sample.pdf" target="_blank">View Brochure</Link>
                 </Button>
-            </CardContent>
-        </Card>
+            </div>
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
+        </Carousel>
+        <Button asChild size="lg" className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white">
+            <Link href="/sample.pdf" target="_blank" download>
+                <Download className="mr-2 h-5 w-5" />
+                Download Brochure
+            </Link>
+        </Button>
     </div>
 );
 
@@ -394,6 +416,14 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         </div>
                         <p className="text-muted-foreground mt-1">{property.location}</p>
                     </div>
+                    <div className="hidden md:flex items-center gap-2">
+                        <Button variant="outline" size="icon">
+                            <Heart className="h-5 w-5" />
+                        </Button>
+                        <Button variant="outline" size="icon">
+                            <Share2 className="h-5 w-5" />
+                        </Button>
+                    </div>
                 </div>
             
             
@@ -421,6 +451,15 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <span className="text-sm text-muted-foreground">Furnishing</span>
                     <span className="font-semibold">Furnished</span>
                 </div>
+            </div>
+
+            <div className="mt-6 flex gap-2 md:hidden">
+                <Button className="flex-1 text-lg py-6">
+                    <Phone className="mr-2" /> Contact
+                </Button>
+                <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <WhatsAppIcon /> WhatsApp
+                </Button>
             </div>
 
             </div>

@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -30,7 +31,7 @@ const WhatsAppIcon = () => (
 const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
     return (
-        <div className="md:hidden flex items-center justify-between gap-2 h-16 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40">
+        <div className="md:hidden flex items-center justify-between gap-2 h-16 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40 border-b">
             <div className='flex items-center gap-1 min-w-0'>
                 <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0">
                     <ArrowLeft />
@@ -67,19 +68,6 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     )
 }
 
-const StickyFooter = ({ property }: { property: typeof properties[0] }) => (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-background border-t z-40 p-2">
-        <div className="flex gap-2">
-            <Button className="flex-1 text-lg py-6">
-                <Phone className="mr-2" /> Contact
-            </Button>
-            <Button variant="outline" className="flex-1 text-lg py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <WhatsAppIcon /> WhatsApp
-            </Button>
-        </div>
-    </div>
-);
-
 
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
@@ -99,13 +87,13 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             {!isMobile && <PropertyStickyNav />}
 
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-8 md:py-8">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
                  
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
                         <PropertyDetailsPanel property={property} />
                     </div>
-                    <div>
+                    <div className="hidden lg:block">
                         <PropertyContactForm />
                     </div>
                 </div>
@@ -117,23 +105,28 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             <BrokerageBanner />
             <SiteFooter />
-            {isMobile && <StickyFooter property={property} />}
         </div>
     )
 }
 
 
 const Header = () => {
-  const router = useRouter();
-  // @ts-ignore
   return (
       <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
-        <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-          <div className="flex items-center gap-2">
+        <div className="px-4 sm:px-6 lg:px-8 flex flex-col justify-between items-center h-auto py-2 gap-2">
+          <div className="flex items-center justify-between w-full">
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
             </Link>
+            {/* You can add user menu etc. here */}
           </div>
+          <Tabs defaultValue="all" className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="commercial">Commercial</TabsTrigger>
+              <TabsTrigger value="residential">Residential</TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
       </header>
   )
