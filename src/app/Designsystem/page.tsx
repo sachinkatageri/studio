@@ -1,0 +1,307 @@
+
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
+import Header from "@/components/layout/header";
+
+const colors = [
+  { name: "background", bg: "bg-background", text: "text-foreground" },
+  { name: "foreground", bg: "bg-foreground", text: "text-background" },
+  { name: "card", bg: "bg-card", text: "text-card-foreground" },
+  { name: "card-foreground", bg: "bg-card-foreground", text: "text-card" },
+  { name: "popover", bg: "bg-popover", text: "text-popover-foreground" },
+  {
+    name: "popover-foreground",
+    bg: "bg-popover-foreground",
+    text: "text-popover",
+  },
+  { name: "primary", bg: "bg-primary", text: "text-primary-foreground" },
+  {
+    name: "primary-foreground",
+    bg: "bg-primary-foreground",
+    text: "text-primary",
+  },
+  { name: "secondary", bg: "bg-secondary", text: "text-secondary-foreground" },
+  {
+    name: "secondary-foreground",
+    bg: "bg-secondary-foreground",
+    text: "text-secondary",
+  },
+  { name: "muted", bg: "bg-muted", text: "text-muted-foreground" },
+  {
+    name: "muted-foreground",
+    bg: "bg-muted-foreground",
+    text: "text-muted",
+  },
+  { name: "accent", bg: "bg-accent", text: "text-accent-foreground" },
+  {
+    name: "accent-foreground",
+    bg: "bg-accent-foreground",
+    text: "text-accent",
+  },
+  {
+    name: "destructive",
+    bg: "bg-destructive",
+    text: "text-destructive-foreground",
+  },
+  {
+    name: "destructive-foreground",
+    bg: "bg-destructive-foreground",
+    text: "text-destructive",
+  },
+  { name: "border", bg: "bg-border", text: "text-foreground" },
+  { name: "input", bg: "bg-input", text: "text-foreground" },
+  { name: "ring", bg: "bg-ring", text: "text-primary-foreground" },
+];
+
+const spacing = [
+  { name: "p-0", size: "0px" },
+  { name: "p-1", size: "0.25rem" },
+  { name: "p-2", size: "0.5rem" },
+  { name: "p-3", size: "0.75rem" },
+  { name: "p-4", size: "1rem" },
+  { name: "p-5", size: "1.25rem" },
+  { name: "p-6", size: "1.5rem" },
+  { name: "p-8", size: "2rem" },
+  { name: "p-10", size: "2.5rem" },
+  { name: "p-12", size: "3rem" },
+  { name: "p-16", size: "4rem" },
+  { name: "p-20", size: "5rem" },
+];
+
+export default function DesignSystemPage() {
+  return (
+    <>
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-4xl font-extrabold font-headline tracking-tight mb-8">
+          Design System
+        </h1>
+
+        {/* Colors */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold font-headline mb-6">Colors</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {colors.map((color) => (
+              <div key={color.name}>
+                <div
+                  className={`h-24 w-full rounded-lg border flex items-center justify-center ${color.bg}`}
+                >
+                  <span className={`${color.text}`}>Aa</span>
+                </div>
+                <div className="mt-2 text-sm">
+                  <p className="font-semibold">{color.name}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Typography */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold font-headline mb-6">Typography</h2>
+          <div className="space-y-4">
+            <h1 className="text-4xl font-extrabold font-headline tracking-tight">
+              Headline Extra Bold (h1)
+            </h1>
+            <h2 className="text-3xl font-bold font-headline">Headline Bold (h2)</h2>
+            <h3 className="text-2xl font-semibold">Headline Semibold (h3)</h3>
+            <p className="text-lg">
+              Body Large: The quick brown fox jumps over the lazy dog.
+            </p>
+            <p>
+              Body Regular: The quick brown fox jumps over the lazy dog.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Body Small (muted): The quick brown fox jumps over the lazy dog.
+            </p>
+            <p className="font-code text-sm">
+              Code Font: `console.log("Hello, World!")`
+            </p>
+          </div>
+        </section>
+
+        {/* Components */}
+        <section className="mb-12">
+          <h2 className="text-3xl font-bold font-headline mb-6">Components</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Buttons</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-4">
+                  <Button>Default</Button>
+                  <Button variant="secondary">Secondary</Button>
+                  <Button variant="destructive">Destructive</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="ghost">Ghost</Button>
+                  <Button variant="link">Link</Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Badges</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-4">
+                  <Badge>Default</Badge>
+                  <Badge variant="secondary">Secondary</Badge>
+                  <Badge variant="destructive">Destructive</Badge>
+                  <Badge variant="outline">Outline</Badge>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Alert</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Alert>
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>Heads up!</AlertTitle>
+                    <AlertDescription>
+                      You can add components to your app using the cli.
+                    </AlertDescription>
+                  </Alert>
+                </CardContent>
+              </Card>
+
+               <Card>
+                <CardHeader>
+                    <CardTitle>Accordion</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                            <AccordionContent>
+                            Yes. It adheres to the WAI-ARIA design pattern.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger>Is it styled?</AccordionTrigger>
+                            <AccordionContent>
+                            Yes. It comes with default styles that matches the other components&apos; aesthetic.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </CardContent>
+               </Card>
+            </div>
+
+            <div className="space-y-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Form Elements</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <Input placeholder="Input field" />
+                  <div className="flex items-center space-x-2">
+                    <Checkbox id="terms" />
+                    <label
+                      htmlFor="terms"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      Accept terms and conditions
+                    </label>
+                  </div>
+                  <RadioGroup defaultValue="comfortable">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="default" id="r1" />
+                      <Label htmlFor="r1">Default</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="comfortable" id="r2" />
+                      <Label htmlFor="r2">Comfortable</Label>
+                    </div>
+                  </RadioGroup>
+                  <div className="flex items-center space-x-2">
+                    <Switch id="airplane-mode" />
+                    <Label htmlFor="airplane-mode">Airplane Mode</Label>
+                  </div>
+                   <Slider defaultValue={[50]} max={100} step={1} />
+                </CardContent>
+              </Card>
+
+               <Card>
+                    <CardHeader>
+                        <CardTitle>Tooltip</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline">Hover me</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>This is a tooltip!</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
+                    </CardContent>
+               </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Spacing */}
+        <section>
+          <h2 className="text-3xl font-bold font-headline mb-6">Spacing</h2>
+          <Card>
+            <CardContent className="p-0">
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                        <TableHead>Class</TableHead>
+                        <TableHead>Size</TableHead>
+                        <TableHead>Example</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {spacing.map((s) => (
+                        <TableRow key={s.name}>
+                            <TableCell className="font-mono">{s.name}</TableCell>
+                            <TableCell>{s.size}</TableCell>
+                            <TableCell>
+                            <div className="bg-primary/20 h-6" style={{ width: s.size }}></div>
+                            </TableCell>
+                        </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </CardContent>
+          </Card>
+        </section>
+      </div>
+    </>
+  );
+}
