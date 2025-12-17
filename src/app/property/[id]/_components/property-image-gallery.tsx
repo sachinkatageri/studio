@@ -80,9 +80,6 @@ export default function PropertyImageGallery() {
 
                 <div className="absolute top-4 right-4 flex items-center gap-2">
                     <Button variant="secondary" size="icon" className="rounded-full bg-background/80 text-foreground hover:bg-background">
-                        <Share2 className="h-5 w-5" />
-                    </Button>
-                    <Button variant="secondary" size="icon" className="rounded-full bg-background/80 text-foreground hover:bg-background">
                         <Heart className="h-5 w-5" />
                     </Button>
                 </div>
