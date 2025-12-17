@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,6 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 type Property = typeof properties[0];
 
@@ -194,6 +195,82 @@ const PropertyReviews = ({ property }: { property: Property }) => {
         </div>
     )
 }
+
+const ResidentReviews = () => {
+    const reviews = [
+        {
+            name: 'Vedant Gupta',
+            role: 'Owner',
+            time: '11 months ago',
+            rating: 4.8,
+            good: 'The area has plenty of trees and this locality has so many garden park at wakable distance...',
+            bad: 'The metro station is away from our area and the problem is getting buses are not frequen...'
+        },
+        {
+            name: 'Kundan Singh',
+            role: 'Other',
+            time: '1 year ago',
+            rating: 4.5,
+            good: 'This is top notch locality with all the services and amenities available. Good place to live...',
+            bad: 'Some Challenges like water scarcity increase in summer season. A bit far from the city center...'
+        },
+        {
+            name: 'Priya Sharma',
+            role: 'Tenant',
+            time: '8 months ago',
+            rating: 5.0,
+            good: 'Absolutely love living here! The community is friendly and the management is very responsive.',
+            bad: 'Guest parking can be a bit challenging on weekends.'
+        }
+    ];
+
+    return (
+        <div>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h2>
+                <Button variant="link" className="text-primary">View All</Button>
+            </div>
+            <div className="relative">
+                <ScrollArea>
+                    <div className="flex space-x-4 pb-4">
+                        {reviews.map((review, index) => (
+                            <Card key={index} className="w-[320px] shrink-0">
+                                <CardContent className="p-4 space-y-3">
+                                    <div className="flex justify-between items-start">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                                <User className="w-6 h-6 text-primary" />
+                                            </div>
+                                            <div>
+                                                <p className="font-semibold">{review.name}</p>
+                                                <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                            </div>
+                                        </div>
+                                        <Badge className="bg-green-100 text-green-800 border-green-200">
+                                            {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                        </Badge>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <div>
+                                            <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
+                                            <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                            <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" />
+                </ScrollArea>
+            </div>
+        </div>
+    );
+};
+
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
     <div className="w-full mx-auto">
@@ -564,6 +641,9 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <PropertyReviews property={property} />
                 </CardContent>
             </Card>
+
+            <Separator />
+            <ResidentReviews />
 
             <Separator />
             <Card id="video">
