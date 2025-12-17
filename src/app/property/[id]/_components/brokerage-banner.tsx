@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -28,12 +29,13 @@ export default function BrokerageBanner() {
                             <PlayStoreButton />
                         </div>
                     </div>
-                    <div className="relative h-full min-h-[300px] hidden md:block">
+                    <div className="relative h-full min-h-[300px] hidden md:flex items-center justify-center">
                         <Image 
                             src="https://i.ibb.co/v6CN21Pt/image-Photoroom.png"
                             alt="BuildersInfo App"
-                            fill
-                            className="object-contain object-bottom"
+                            width={300}
+                            height={300}
+                            className="object-contain"
                         />
                     </div>
                 </div>
