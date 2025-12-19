@@ -114,6 +114,128 @@ const typography = [
     },
   ];
 
+const AllComponents = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-4">
+        <Card>
+            <CardHeader>
+            <CardTitle>Buttons</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+            <Button>Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="destructive">Destructive</Button>
+            <Button variant="outline">Outline</Button>
+            <Button variant="ghost">Ghost</Button>
+            <Button variant="link">Link</Button>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+            <CardTitle>Badges</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+            <Badge>Default</Badge>
+            <Badge variant="secondary">Secondary</Badge>
+            <Badge variant="destructive">Destructive</Badge>
+            <Badge variant="outline">Outline</Badge>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+            <CardTitle>Alert</CardTitle>
+            </CardHeader>
+            <CardContent>
+            <Alert>
+                <Terminal className="h-4 w-4" />
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                You can add components to your app using the cli.
+                </AlertDescription>
+            </Alert>
+            </CardContent>
+        </Card>
+
+        <Card>
+            <CardHeader>
+                <CardTitle>Accordion</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Accordion type="single" collapsible>
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                        <AccordionContent>
+                        Yes. It adheres to the WAI-ARIA design pattern.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger>Is it styled?</AccordionTrigger>
+                        <AccordionContent>
+                        Yes. It comes with default styles that matches the other components&apos; aesthetic.
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </CardContent>
+        </Card>
+        </div>
+
+        <div className="space-y-4">
+        <Card>
+            <CardHeader>
+            <CardTitle>Form Elements</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+            <Input placeholder="Input field" />
+            <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                htmlFor="terms"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                Accept terms and conditions
+                </label>
+            </div>
+            <RadioGroup defaultValue="comfortable">
+                <div className="flex items-center space-x-2">
+                <RadioGroupItem value="default" id="r1" />
+                <Label htmlFor="r1">Default</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                <RadioGroupItem value="comfortable" id="r2" />
+                <Label htmlFor="r2">Comfortable</Label>
+                </div>
+            </RadioGroup>
+            <div className="flex items-center space-x-2">
+                <Switch id="airplane-mode" />
+                <Label htmlFor="airplane-mode">Airplane Mode</Label>
+            </div>
+            <Slider defaultValue={[50]} max={100} step={1} />
+            </CardContent>
+        </Card>
+
+        <Card>
+                <CardHeader>
+                    <CardTitle>Tooltip</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="outline">Hover me</Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>This is a tooltip!</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                </CardContent>
+        </Card>
+        </div>
+    </div>
+);
+
 export default function DesignSystemPage() {
   return (
     <>
@@ -174,128 +296,18 @@ export default function DesignSystemPage() {
           </Card>
         </section>
 
-        {/* Components */}
+        {/* Components - Light Mode */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold font-headline mb-6">Components</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Buttons</CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-4">
-                  <Button>Default</Button>
-                  <Button variant="secondary">Secondary</Button>
-                  <Button variant="destructive">Destructive</Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="ghost">Ghost</Button>
-                  <Button variant="link">Link</Button>
-                </CardContent>
-              </Card>
+          <h2 className="text-3xl font-bold font-headline mb-6">Components (Light Mode)</h2>
+          <AllComponents />
+        </section>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>Badges</CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-4">
-                  <Badge>Default</Badge>
-                  <Badge variant="secondary">Secondary</Badge>
-                  <Badge variant="destructive">Destructive</Badge>
-                  <Badge variant="outline">Outline</Badge>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Alert</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Alert>
-                    <Terminal className="h-4 w-4" />
-                    <AlertTitle>Heads up!</AlertTitle>
-                    <AlertDescription>
-                      You can add components to your app using the cli.
-                    </AlertDescription>
-                  </Alert>
-                </CardContent>
-              </Card>
-
-               <Card>
-                <CardHeader>
-                    <CardTitle>Accordion</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes. It adheres to the WAI-ARIA design pattern.
-                            </AccordionContent>
-                        </AccordionItem>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Is it styled?</AccordionTrigger>
-                            <AccordionContent>
-                            Yes. It comes with default styles that matches the other components&apos; aesthetic.
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                </CardContent>
-               </Card>
+        {/* Components - Dark Mode */}
+        <section className="mb-12">
+            <div className="dark bg-background p-8 rounded-lg">
+                <h2 className="text-3xl font-bold font-headline mb-6 text-foreground">Components (Dark Mode)</h2>
+                <AllComponents />
             </div>
-
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Form Elements</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <Input placeholder="Input field" />
-                  <div className="flex items-center space-x-2">
-                    <Checkbox id="terms" />
-                    <label
-                      htmlFor="terms"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Accept terms and conditions
-                    </label>
-                  </div>
-                  <RadioGroup defaultValue="comfortable">
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="default" id="r1" />
-                      <Label htmlFor="r1">Default</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="comfortable" id="r2" />
-                      <Label htmlFor="r2">Comfortable</Label>
-                    </div>
-                  </RadioGroup>
-                  <div className="flex items-center space-x-2">
-                    <Switch id="airplane-mode" />
-                    <Label htmlFor="airplane-mode">Airplane Mode</Label>
-                  </div>
-                   <Slider defaultValue={[50]} max={100} step={1} />
-                </CardContent>
-              </Card>
-
-               <Card>
-                    <CardHeader>
-                        <CardTitle>Tooltip</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <Button variant="outline">Hover me</Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>This is a tooltip!</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
-                    </CardContent>
-               </Card>
-            </div>
-          </div>
         </section>
 
         {/* Spacing */}
