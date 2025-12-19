@@ -27,7 +27,7 @@ const socialLinks = [
 export default function SiteFooter() {
     return (
         <footer className="bg-background border-t">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                     <div className="space-y-4 md:col-span-2">
                         <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={150} height={40} />
@@ -79,7 +79,7 @@ export default function SiteFooter() {
                         </div>
                     </div>
                 </div>
-                <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
+                <div className="mt-6 border-t pt-6 text-center text-sm text-muted-foreground">
                     <p>&copy; {new Date().getFullYear()} BuildersInfo. All rights reserved.</p>
                 </div>
             </div>
