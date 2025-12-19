@@ -96,7 +96,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         <div className="absolute top-2 left-2 flex gap-2">
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-white hover:bg-neutral-100 text-foreground'>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
                         <Navigation className='h-4 w-4' />
                     </Button>
                 </TooltipTrigger>
@@ -106,7 +106,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </Tooltip>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-white hover:bg-neutral-100 text-foreground'>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
                         <Share2 className='h-4 w-4' />
                     </Button>
                 </TooltipTrigger>
@@ -116,7 +116,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </Tooltip>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-white hover:bg-neutral-100 text-foreground'>
+                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
                         <Heart className='h-4 w-4' />
                     </Button>
                 </TooltipTrigger>
