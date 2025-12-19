@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -10,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, 'use-state' from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -125,7 +124,25 @@ const NearbyPlaces = () => {
 
     return (
         <div>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="md:hidden">
+                 <ScrollArea className="w-full whitespace-nowrap">
+                    <div className="flex gap-2 mb-4">
+                        {categories.map(category => (
+                            <Button 
+                                key={category.id} 
+                                variant={activeCategory === category.id ? 'default' : 'outline'}
+                                onClick={() => setActiveCategory(category.id)}
+                                className="flex items-center gap-2"
+                            >
+                                {category.icon}
+                                <span>{category.label}</span>
+                            </Button>
+                        ))}
+                    </div>
+                    <ScrollBar orientation="horizontal" className="invisible" />
+                </ScrollArea>
+            </div>
+            <div className="hidden md:flex flex-wrap gap-2 mb-4">
                 {categories.map(category => (
                     <Button 
                         key={category.id} 
@@ -673,3 +690,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </>
     )
 }
+
+    
