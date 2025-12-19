@@ -162,7 +162,7 @@ const UserMenuButton = () => {
 export default function Header() {
   return (
     <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
-      <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
@@ -181,7 +181,7 @@ export default function Header() {
             Residential
           </Link>
            <Link href="#" className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            <Crown className="mr-2 h-4 w-4" />
+            <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
           </Link>
         </nav>

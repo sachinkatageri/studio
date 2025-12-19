@@ -31,7 +31,7 @@ const WhatsAppIcon = () => (
 const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
     return (
-        <div className="md:hidden flex items-center justify-between gap-2 h-16 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40 border-b">
+        <div className="md:hidden flex items-center justify-between gap-2 h-14 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40 border-b">
             <div className='flex items-center gap-1 min-w-0'>
                 <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0">
                     <ArrowLeft />

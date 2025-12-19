@@ -42,7 +42,7 @@ export function PropertyStickyNav() {
         }
         setActiveId(currentSectionId || 'info');
 
-        const topNavHeight = 64; // main header height
+        const topNavHeight = 56; // main header height (h-14)
         
         if (navRef.current && window.scrollY > navRef.current.offsetTop - topNavHeight) {
             setIsSticky(true);
@@ -55,7 +55,7 @@ export function PropertyStickyNav() {
         e.preventDefault();
         const targetElement = document.querySelector(href);
         if (targetElement) {
-            const topNavHeight = 64; // main header height
+            const topNavHeight = 56; // main header height (h-14)
             const tabsHeight = 65;
             const totalNavHeight = topNavHeight + tabsHeight;
 
@@ -113,7 +113,7 @@ export function PropertyStickyNav() {
     };
 
     return (
-        <div ref={navRef} className={cn('relative h-[65px] bg-background top-0 z-30', isSticky && 'fixed top-16 left-0 right-0 shadow-md border-b')}>
+        <div ref={navRef} className={cn('relative h-[65px] bg-background top-0 z-30', isSticky && 'fixed top-14 left-0 right-0 shadow-md border-b')}>
             <div className="relative container mx-auto flex items-center">
                 {showLeftArrow && (
                     <button 
