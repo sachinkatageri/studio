@@ -46,7 +46,7 @@ export function LayersDeclarationDialog({ open, onOpenChange, onProceed }: Layer
                 By using these layers, you acknowledge and accept these limitations. Click on info icon (in layers section) to know more about individual layers.
             </p>
         </div>
-        <Button onClick={handleProceed} className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-bold">
+        <Button onClick={handleProceed} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold">
             Proceed <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </DialogContent>

@@ -148,7 +148,7 @@ export function LayersSheet({ open, onOpenChange }: LayersSheetProps) {
                                      <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
                                         <div className={cn(
                                             "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
-                                            selectedLayers.includes(layer.name) ? "border-yellow-400 bg-yellow-100/50" : "border-gray-200 bg-gray-100/50"
+                                            selectedLayers.includes(layer.name) ? "border-accent bg-accent/20" : "border-muted bg-muted/50"
                                         )}>
                                             {layer.icon}
                                              {selectedLayers.includes(layer.name) && (
@@ -170,14 +170,14 @@ export function LayersSheet({ open, onOpenChange }: LayersSheetProps) {
                         <Badge 
                             variant={activeCity === 'Bengaluru' ? 'default' : 'outline'} 
                             onClick={() => setActiveCity('Bengaluru')}
-                            className={cn("cursor-pointer text-base px-4 py-1", activeCity === 'Bengaluru' && "bg-yellow-300 text-black hover:bg-yellow-400")}
+                            className={cn("cursor-pointer text-base px-4 py-1", activeCity === 'Bengaluru' && "bg-accent text-accent-foreground hover:bg-accent/90")}
                         >
                             Bengaluru
                         </Badge>
                          <Badge 
                             variant={activeCity === 'Hyderabad' ? 'default' : 'outline'} 
                             onClick={() => setActiveCity('Hyderabad')}
-                             className={cn("cursor-pointer text-base px-4 py-1", activeCity === 'Hyderabad' && "bg-yellow-300 text-black hover:bg-yellow-400")}
+                             className={cn("cursor-pointer text-base px-4 py-1", activeCity === 'Hyderabad' && "bg-accent text-accent-foreground hover:bg-accent/90")}
                         >
                             Hyderabad
                         </Badge>
@@ -187,12 +187,12 @@ export function LayersSheet({ open, onOpenChange }: LayersSheetProps) {
                              <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
                                 <div className={cn(
                                     "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
-                                    selectedLayers.includes(layer.name) ? "border-yellow-400 bg-yellow-100/50" : "border-gray-200 bg-gray-100/50"
+                                    selectedLayers.includes(layer.name) ? "border-accent bg-accent/20" : "border-muted bg-muted/50"
                                 )}>
                                     {layer.icon}
                                     {layer.premium && (
-                                        <div className="absolute -top-2 -right-2 bg-yellow-400 p-1 rounded-full shadow-md">
-                                            <Crown className="h-3 w-3 text-black" />
+                                        <div className="absolute -top-2 -right-2 bg-accent p-1 rounded-full shadow-md">
+                                            <Crown className="h-3 w-3 text-accent-foreground" />
                                         </div>
                                     )}
                                     {selectedLayers.includes(layer.name) && (
@@ -215,7 +215,7 @@ export function LayersSheet({ open, onOpenChange }: LayersSheetProps) {
         </ScrollArea>
         <div className="p-4 border-t mt-auto flex gap-4">
             <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-            <Button className="w-full bg-yellow-400 text-black hover:bg-yellow-500" onClick={handleApply}>
+            <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90" onClick={handleApply}>
                 Apply <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </div>
