@@ -155,11 +155,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         
 
         <Separator />
-        
-        <div>
-            <h4 className="text-sm font-semibold mb-2">About</h4>
-            <p className="text-sm text-muted-foreground">{property.about}</p>
-        </div>
 
         <div>
             <h4 className="text-sm font-semibold mb-2">Amenities</h4>

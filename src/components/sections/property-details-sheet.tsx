@@ -156,11 +156,6 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 <Separator />
                 
                 <div>
-                    <h4 className="text-base font-semibold mb-2">About</h4>
-                    <p className="text-sm text-muted-foreground">{property.about}</p>
-                </div>
-
-                <div>
                     <h4 className="text-base font-semibold mb-2">Amenities</h4>
                     <div className="flex flex-wrap gap-2">
                         {/* @ts-ignore */}
