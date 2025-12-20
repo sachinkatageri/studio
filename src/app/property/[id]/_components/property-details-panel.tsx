@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -247,43 +248,49 @@ const ResidentReviews = () => {
                 <h2 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h2>
                 <Button variant="link" className="text-primary">View All</Button>
             </div>
-            <div className="relative">
-                <ScrollArea>
-                    <div className="flex space-x-4 pb-4">
-                        {reviews.map((review, index) => (
-                            <Card key={index} className="w-[320px] shrink-0">
-                                <CardContent className="p-4 space-y-3">
-                                    <div className="flex justify-between items-start">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                <UserCheck className="w-6 h-6 text-primary" />
+             <Carousel className="w-full" opts={{
+                align: "start",
+                loop: true,
+             }}>
+                <CarouselContent className="-ml-4">
+                    {reviews.map((review, index) => (
+                        <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                             <div className="p-1">
+                                <Card>
+                                    <CardContent className="p-4 space-y-3">
+                                        <div className="flex justify-between items-start">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                                    <UserCheck className="w-6 h-6 text-primary" />
+                                                </div>
+                                                <div>
+                                                    <p className="font-semibold">{review.name}</p>
+                                                    <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                </div>
+                                            </div>
+                                            <Badge className="bg-green-100 text-green-800 border-green-200">
+                                                {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                            </Badge>
+                                        </div>
+                                        <div className="space-y-3">
+                                            <div>
+                                                <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
+                                                <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                             </div>
                                             <div>
-                                                <p className="font-semibold">{review.name}</p>
-                                                <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                                <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                             </div>
                                         </div>
-                                        <Badge className="bg-green-100 text-green-800 border-green-200">
-                                            {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                        </Badge>
-                                    </div>
-                                    <div className="space-y-3">
-                                        <div>
-                                            <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                            <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                            <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                </ScrollArea>
-            </div>
+                                    </CardContent>
+                                </Card>
+                             </div>
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
+            </Carousel>
         </div>
     );
 };
@@ -690,3 +697,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </>
     )
 }
+
+    
