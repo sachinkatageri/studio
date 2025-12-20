@@ -22,7 +22,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
-import { LayersSheet } from '../layout/layers-sheet';
+import { LayersDialog } from '../layout/layers-dialog';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -47,7 +47,7 @@ const propertyPositions = [
 
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView }: MapViewProps) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
-  const [isLayersSheetOpen, setIsLayersSheetOpen] = useState(false);
+  const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const mapImages = {
@@ -63,7 +63,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   }
 
   const handleDeclarationProceed = () => {
-    setIsLayersSheetOpen(true);
+    setIsLayersDialogOpen(true);
   }
 
   return (
@@ -183,16 +183,14 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <PopoverTrigger asChild>
-                          <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border"
-                            onClick={handleLayersClick}
-                           >
-                            <Layers className="text-foreground" />
-                          </Button>
-                        </PopoverTrigger>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border"
+                          onClick={handleLayersClick}
+                         >
+                          <Layers className="text-foreground" />
+                        </Button>
                     </TooltipTrigger>
                     <TooltipContent side="right">
                         <p>Map Layers</p>
@@ -281,9 +279,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       onOpenChange={setIsLayersDeclarationOpen}
       onProceed={handleDeclarationProceed}
     />
-    <LayersSheet
-        open={isLayersSheetOpen}
-        onOpenChange={setIsLayersSheetOpen}
+    <LayersDialog
+        open={isLayersDialogOpen}
+        onOpenChange={setIsLayersDialogOpen}
     />
     </>
   );
