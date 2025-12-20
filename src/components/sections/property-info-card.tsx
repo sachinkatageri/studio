@@ -39,6 +39,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   
   // @ts-ignore
   const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
+  
+  const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
+  const offerPrice = parseInt(offerPriceString, 10);
+  const beforePrice = Math.round(offerPrice * 1.15);
 
   return (
       <Card className="w-full max-w-4xl mx-auto shadow-xl bg-card border rounded-lg relative overflow-visible">
@@ -76,10 +80,21 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 <div className="col-span-4 p-4 flex flex-col justify-center">
                     <div className="space-y-3">
                          <div>
-                            <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt}<span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
+                            {property.price && (
+                                <div className="flex items-end gap-2">
+                                <p className="text-2xl font-bold text-primary">
+                                    {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                                </p>
+                                {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
+                                    <p className="text-base text-muted-foreground line-through">
+                                        ₹{beforePrice.toLocaleString('en-IN')}
+                                    </p>
+                                )}
+                                </div>
+                            )}
                         </div>
                         {/* @ts-ignore */}
-                        {property.size && <p><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
+                        {property.size && <p><span className="font-semibold">Size:</span> {property.size} sq. ft.</p>}
 
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
                             <div className="flex items-center gap-1">
@@ -87,7 +102,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                                 <span className="font-semibold">{property.rating}</span>
                                 <span className="text-muted-foreground">({property.reviews} reviews)</span>
                             </div>
-                            <p><span className="font-semibold">Posted by:</span> Owner</p>
                         </div>
 
                          {postedDate && <p className="text-sm"><span className="font-semibold">Date Added:</span> {postedDate}</p>}
