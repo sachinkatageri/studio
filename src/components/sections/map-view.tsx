@@ -21,6 +21,7 @@ import { PropertyDetailsSheet } from './property-details-sheet';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
+import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -47,6 +48,8 @@ const propertyPositions = [
 
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView }: MapViewProps) {
   const [mapType, setMapType] = useState<MapType>('hybrid');
+  const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
+  const [isLayersPopoverOpen, setIsLayersPopoverOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const mapImages = {
@@ -63,7 +66,16 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     terrain: 'terrain map'
   };
 
+  const handleLayersClick = () => {
+    setIsLayersDeclarationOpen(true);
+  }
+
+  const handleDeclarationProceed = () => {
+    setIsLayersPopoverOpen(true);
+  }
+
   return (
+    <>
     <div className="relative h-full w-full">
       <Image
         src={mapImages[mapType]}
@@ -175,12 +187,17 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
            "absolute left-4 z-10 transition-all duration-300",
            selectedPropertyId && !isMobile ? "bottom-[11rem]" : "bottom-4"
        )}>
-          <Popover>
+          <Popover open={isLayersPopoverOpen} onOpenChange={setIsLayersPopoverOpen}>
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <PopoverTrigger asChild>
-                          <Button variant="ghost" size="icon" className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border"
+                            onClick={handleLayersClick}
+                           >
                             <Layers className="text-foreground" />
                           </Button>
                         </PopoverTrigger>
@@ -291,6 +308,12 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        )}
 
     </div>
+    <LayersDeclarationDialog 
+      open={isLayersDeclarationOpen} 
+      onOpenChange={setIsLayersDeclarationOpen}
+      onProceed={handleDeclarationProceed}
+    />
+    </>
   );
 }
 
