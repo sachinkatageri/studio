@@ -136,7 +136,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
             <div className="p-4 space-y-6">
                 <Accordion type="single" collapsible defaultValue="item-1">
                     <AccordionItem value="item-1" className="border-b-0">
-                        <AccordionTrigger noFlex className="hover:no-underline">
+                        <AccordionTrigger noFlex className="hover:no-underline p-0">
                             <div className="p-3 rounded-lg bg-muted/50 flex-1 flex justify-between items-center">
                                 <span className="font-semibold">Karnataka</span>
                                 <ChevronDown className="h-5 w-5 transition-transform duration-200" />
@@ -152,7 +152,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
                                         )}>
                                             {layer.icon}
                                             {selectedLayers.includes(layer.name) && (
-                                                <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                                                <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-background">
                                                     <Check className="h-3 w-3 text-white" />
                                                 </div>
                                             )}
@@ -167,7 +167,9 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
                 
                 <div className="space-y-4">
                     <Badge 
-                        className="cursor-pointer text-base px-4 py-1 bg-primary text-primary-foreground hover:bg-primary/90"
+                        className="cursor-pointer text-base px-4 py-1"
+                        variant={activeCity === 'Bengaluru' ? 'default' : 'secondary'}
+                        onClick={() => setActiveCity('Bengaluru')}
                     >
                         Bengaluru
                     </Badge>
@@ -180,12 +182,12 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
                                 )}>
                                     {layer.icon}
                                     {layer.premium && (
-                                        <div className="absolute -top-2 -right-2 bg-amber-500 p-1 rounded-full shadow-md">
-                                            <Crown className="h-3 w-3 text-white fill-current" />
+                                        <div className="absolute top-0 right-0 bg-background rounded-bl-lg rounded-tr-md p-0.5">
+                                            <Crown className="h-3 w-3 text-amber-500 fill-current" />
                                         </div>
                                     )}
                                     {selectedLayers.includes(layer.name) && (
-                                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-background">
                                             <Check className="h-3 w-3 text-white" />
                                         </div>
                                     )}
@@ -202,7 +204,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
         </ScrollArea>
         <div className="p-4 border-t shrink-0 flex gap-4">
             <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={handleApply}>
+            <Button className="w-full" onClick={handleApply}>
                 Apply <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </div>
