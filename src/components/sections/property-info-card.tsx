@@ -121,18 +121,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
             <div className="text-center">
                 <p className="text-muted-foreground">Amenities</p>
-                 <div className="flex items-center justify-center gap-2 mt-1">
-                    {property.amenities.slice(0, 3).map((amenity) => (
-                        <Tooltip key={amenity}>
-                            <TooltipTrigger>
-                                <div className="flex items-center justify-center h-8 w-8 rounded-md bg-muted">
-                                    {amenityIcons[amenity] || <Check className="h-4 w-4" />}
-                                </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>{amenity}</p>
-                            </TooltipContent>
-                        </Tooltip>
+                <div className="flex flex-col items-center justify-center gap-2 mt-1">
+                    {property.amenities.slice(0, 2).map((amenity) => (
+                        <div key={amenity} className="flex items-center gap-2 text-xs">
+                            {amenityIcons[amenity] || <Check className="h-4 w-4" />}
+                            <span>{amenity}</span>
+                        </div>
                     ))}
                 </div>
             </div>
