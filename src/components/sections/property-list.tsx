@@ -46,9 +46,17 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
             </div>
           <p className="text-sm text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
-          {property.size && <p className="text-sm text-muted-foreground">Size: {property.size} sq. yd.</p>}
-           {/* @ts-ignore */}
-          {property.pricePerSqFt && <p className="text-sm font-semibold text-primary mt-1">₹{property.pricePerSqFt} Per Sq.ft Per Month</p>}
+          <div className="flex items-end gap-2 mt-1">
+              <p className="font-bold text-primary text-base">
+                  {/* @ts-ignore */}
+                  ₹{property.price}
+              </p>
+              {property.pricePerSqFt && (
+                  <p className="text-sm text-muted-foreground line-through">
+                      ₹{property.pricePerSqFt}/sq.ft
+                  </p>
+              )}
+          </div>
         </div>
       </CardContent>
     </Card>
