@@ -21,6 +21,7 @@ import { useState } from "react";
 import { VerificationProcessDialog } from "../layout/verification-process-dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface PropertyDetailsSheetProps {
   propertyId: string | null;
@@ -74,7 +75,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
 
     return (
         <>
-            <div className="flex-1 overflow-y-auto">
+            <ScrollArea className="flex-1">
                 <div className="relative shrink-0">
                 {propertyImage && (
                     <div className="relative h-48 w-full rounded-t-lg overflow-hidden">
@@ -183,8 +184,8 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                     </div>
                     </div>
                 </div>
-            </div>
-            <div className="p-4 border-t bg-background">
+            </ScrollArea>
+            <div className="p-4 border-t bg-background shrink-0">
                 <div className="flex gap-2">
                     <TooltipProvider>
                         <Tooltip>
@@ -253,3 +254,5 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
+
+    
