@@ -42,7 +42,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 const PropertyAmenities = ({ property }: { property: Property}) => (
     <div id="amenities">
         <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {property.amenities.map(amenity => (
                 <div key={amenity} className="flex flex-col items-center text-center gap-2">
                     <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-muted">
@@ -506,6 +506,11 @@ const OurServices = () => {
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
+    
+    const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
+    const offerPrice = parseInt(offerPriceString, 10);
+    const beforePrice = Math.round(offerPrice * 1.15);
+
 
     return (
         <>
@@ -533,12 +538,13 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <div className="mt-4 flex flex-wrap gap-4 items-center">
                 <div className="flex items-end gap-2">
                     <p className="text-2xl font-bold text-primary">
-                        {/* @ts-ignore */}
-                        ₹{property.price}
+                        {property.price && !property.price.startsWith('Starting') ? `₹${property.price}` : property.price}
                     </p>
-                    <p className="text-base text-muted-foreground line-through">
-                        ₹{/* @ts-ignore */ parseInt(property.price.replace(/,/g, '')) * 1.15 }
-                    </p>
+                    {property.price && !property.price.startsWith('Starting') && offerPrice > 0 && (
+                        <p className="text-base text-muted-foreground line-through">
+                            ₹{beforePrice.toLocaleString('en-IN')}
+                        </p>
+                    )}
                 </div>
                 <Badge variant="secondary">{property.status}</Badge>
                 {property.type === 'Commercial' && <Badge>Zero Brokerage</Badge>}

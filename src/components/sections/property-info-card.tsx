@@ -37,8 +37,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
   if (!property) return null;
 
-  const offerPrice = property.price ? parseInt(String(property.price).replace(/,/g, '')) : 0;
-  const beforePrice = offerPrice * 1.15;
+  const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
+  const offerPrice = parseInt(offerPriceString, 10);
+  const beforePrice = Math.round(offerPrice * 1.15);
   
   return (
       <Card className="w-full max-w-6xl mx-auto shadow-lg bg-card border rounded-lg">
@@ -111,12 +112,13 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                  {property.price && (
                     <div className="flex items-end justify-center gap-2">
                     <p className="font-bold text-primary text-base">
-                        {/* @ts-ignore */}
-                        ₹{property.price}
+                        {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
                     </p>
-                    <p className="text-sm text-muted-foreground line-through">
-                        ₹{beforePrice.toLocaleString('en-IN')}
-                    </p>
+                    {!property.price.startsWith('Starting') && offerPrice > 0 && (
+                      <p className="text-sm text-muted-foreground line-through">
+                          ₹{beforePrice.toLocaleString('en-IN')}
+                      </p>
+                    )}
                     </div>
                 )}
             </div>
@@ -157,4 +159,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </Card>
   );
 }
+
 
