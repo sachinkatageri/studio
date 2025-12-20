@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import {
@@ -147,7 +146,6 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                         {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
                     </div>
                     
-                    {/* @ts-ignore */}
                     {property.size && <p className="text-base"><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
                     
                     <div>
@@ -186,7 +184,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                     </div>
                 </div>
             </div>
-            <div className="p-4 border-t bg-background sticky bottom-0">
+            <div className="p-4 border-t bg-background">
                 <div className="flex gap-2">
                     <TooltipProvider>
                         <Tooltip>
