@@ -72,9 +72,14 @@ const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string |
     
     // @ts-ignore
     const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
+    
+    const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
+    const offerPrice = parseInt(offerPriceString, 10);
+    const beforePrice = Math.round(offerPrice * 1.15);
+
 
     return (
-      <div className="h-full w-full flex flex-col bg-card rounded-lg border overflow-hidden">
+      <div className="h-full w-full flex flex-col bg-card rounded-t-lg border-x border-t overflow-hidden">
         <ScrollArea className="flex-1 min-h-0">
           <div className="relative shrink-0">
             {propertyImage && (
@@ -152,14 +157,22 @@ const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string |
           </div>
           <div className="space-y-4 p-4">
             <div className="flex justify-between items-center">
-              {property.price ? (
-                  <p className="text-2xl font-bold text-primary">
-                    {/* @ts-ignore */}
-                    {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
-                  </p>
-              ) : (
-                <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
-              )}
+              <div>
+                {property.price ? (
+                    <div className="flex items-end gap-2">
+                        <p className="text-2xl font-bold text-primary">
+                            {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                        </p>
+                        {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
+                            <p className="text-base text-muted-foreground line-through">
+                                ₹{beforePrice.toLocaleString('en-IN')}
+                            </p>
+                        )}
+                    </div>
+                ) : (
+                  <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
+                )}
+              </div>
               {property.status && (
                 <Badge variant="secondary" className="text-base">
                   {property.status}
@@ -194,11 +207,10 @@ const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string |
             <div>
               <h4 className="text-base font-semibold mb-2">Amenities</h4>
               <div className="grid grid-cols-4 gap-4">
-                {/* @ts-ignore */}
                 {property.amenities?.slice(0, 4).map((amenity: string) => (
                   <div
                     key={amenity}
-                    className="flex flex-col items-center text-center gap-1"
+                    className="flex flex-col items-center text-center gap-2"
                   >
                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
                       {amenityIcons[amenity] || (
@@ -288,7 +300,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[85vh] max-h-[85vh] flex flex-col p-0 bg-transparent border-0">
+      <SheetContent side="bottom" className="h-[80vh] max-h-[80vh] flex flex-col p-0 bg-transparent border-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
