@@ -123,8 +123,8 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md w-full p-0">
-        <DialogHeader className="p-4 flex-row items-center justify-between border-b">
+      <DialogContent className="max-w-md w-full p-0 flex flex-col">
+        <DialogHeader className="p-4 flex-row items-center justify-between border-b shrink-0">
           <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
           <DialogClose asChild>
             <button className="p-1 rounded-full hover:bg-muted">
@@ -132,81 +132,79 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
             </button>
           </DialogClose>
         </DialogHeader>
-        <div className="flex-1 overflow-hidden flex flex-col">
-            <ScrollArea className="flex-1">
-                <div className="p-4 space-y-6">
-                    <Accordion type="single" collapsible defaultValue="item-1">
-                        <AccordionItem value="item-1" className="border-b-0">
-                            <AccordionTrigger noFlex className="hover:no-underline">
-                                <div className="p-3 rounded-lg bg-muted/50 flex-1 flex justify-between items-center">
-                                    <span className="font-semibold">Karnataka</span>
-                                    <ChevronDown className="h-5 w-5 transition-transform duration-200" />
-                                </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="pt-4">
-                                <div className="grid grid-cols-4 gap-4">
-                                    {layerGroups.karnataka.map(layer => (
-                                        <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
-                                            <div className={cn(
-                                                "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
-                                                selectedLayers.includes(layer.name) ? "border-accent bg-accent/10" : "border-transparent bg-muted/50"
-                                            )}>
-                                                {layer.icon}
-                                                {selectedLayers.includes(layer.name) && (
-                                                    <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
-                                                        <Check className="h-3 w-3 text-white" />
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <span className="text-xs font-medium">{layer.name}</span>
+        <ScrollArea className="flex-1 min-h-0">
+            <div className="p-4 space-y-6">
+                <Accordion type="single" collapsible defaultValue="item-1">
+                    <AccordionItem value="item-1" className="border-b-0">
+                        <AccordionTrigger noFlex className="hover:no-underline">
+                            <div className="p-3 rounded-lg bg-muted/50 flex-1 flex justify-between items-center">
+                                <span className="font-semibold">Karnataka</span>
+                                <ChevronDown className="h-5 w-5 transition-transform duration-200" />
+                            </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-4">
+                            <div className="grid grid-cols-4 gap-4">
+                                {layerGroups.karnataka.map(layer => (
+                                    <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
+                                        <div className={cn(
+                                            "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
+                                            selectedLayers.includes(layer.name) ? "border-primary bg-primary/10" : "border-transparent bg-muted/50"
+                                        )}>
+                                            {layer.icon}
+                                            {selectedLayers.includes(layer.name) && (
+                                                <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                                                    <Check className="h-3 w-3 text-white" />
+                                                </div>
+                                            )}
                                         </div>
-                                    ))}
-                                </div>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    
-                    <div className="space-y-4">
-                        <Badge 
-                            className="cursor-pointer text-base px-4 py-1 bg-accent text-accent-foreground hover:bg-accent/90"
-                        >
-                            Bengaluru
-                        </Badge>
-                        <div className="grid grid-cols-4 gap-4">
-                            {layerGroups.bengaluru.map(layer => (
-                                <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
-                                    <div className={cn(
-                                        "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
-                                        selectedLayers.includes(layer.name) ? "border-accent bg-accent/10" : "border-transparent bg-muted/50"
-                                    )}>
-                                        {layer.icon}
-                                        {layer.premium && (
-                                            <div className="absolute -top-2 -right-2 bg-accent p-1 rounded-full shadow-md">
-                                                <Crown className="h-3 w-3 text-accent-foreground fill-current" />
-                                            </div>
-                                        )}
-                                        {selectedLayers.includes(layer.name) && (
-                                            <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
-                                                <Check className="h-3 w-3 text-white" />
-                                            </div>
-                                        )}
+                                        <span className="text-xs font-medium">{layer.name}</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                        <span className="text-xs font-medium text-center">{layer.name}</span>
-                                        {layer.info && <Info className="h-3 w-3 text-muted-foreground" />}
-                                    </div>
+                                ))}
+                            </div>
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+                
+                <div className="space-y-4">
+                    <Badge 
+                        className="cursor-pointer text-base px-4 py-1 bg-primary text-primary-foreground hover:bg-primary/90"
+                    >
+                        Bengaluru
+                    </Badge>
+                    <div className="grid grid-cols-4 gap-4">
+                        {layerGroups.bengaluru.map(layer => (
+                            <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
+                                <div className={cn(
+                                    "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
+                                    selectedLayers.includes(layer.name) ? "border-primary bg-primary/10" : "border-transparent bg-muted/50"
+                                )}>
+                                    {layer.icon}
+                                    {layer.premium && (
+                                        <div className="absolute -top-2 -right-2 bg-amber-500 p-1 rounded-full shadow-md">
+                                            <Crown className="h-3 w-3 text-white fill-current" />
+                                        </div>
+                                    )}
+                                    {selectedLayers.includes(layer.name) && (
+                                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5">
+                                            <Check className="h-3 w-3 text-white" />
+                                        </div>
+                                    )}
                                 </div>
-                            ))}
-                        </div>
+                                <div className="flex items-center gap-1">
+                                    <span className="text-xs font-medium text-center">{layer.name}</span>
+                                    {layer.info && <Info className="h-3 w-3 text-muted-foreground" />}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </ScrollArea>
-            <div className="p-4 border-t mt-auto flex gap-4">
-                <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-                <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" onClick={handleApply}>
-                    Apply <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
             </div>
+        </ScrollArea>
+        <div className="p-4 border-t shrink-0 flex gap-4">
+            <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
+            <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground" onClick={handleApply}>
+                Apply <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
         </div>
       </DialogContent>
     </Dialog>
