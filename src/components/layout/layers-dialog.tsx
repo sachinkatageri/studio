@@ -15,6 +15,7 @@ import { Badge } from "../ui/badge";
 import { ScrollArea } from "../ui/scroll-area";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 interface LayersDialogProps {
   open: boolean;
@@ -123,14 +124,26 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md w-full p-0 flex flex-col">
+      <DialogContent className="max-h-[90vh] max-w-md w-full p-0 flex flex-col">
         <DialogHeader className="p-4 flex-row items-center justify-between border-b shrink-0">
-          <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
-          <DialogClose asChild>
-            <button className="p-1 rounded-full hover:bg-muted">
-              <X className="h-5 w-5" />
-            </button>
-          </DialogClose>
+            <div className="flex items-center gap-4">
+                <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
+                 <Select defaultValue="karnataka">
+                    <SelectTrigger className="w-auto border-none focus:ring-0 gap-2 font-semibold">
+                        <SelectValue placeholder="Select State" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="karnataka">Karnataka</SelectItem>
+                        <SelectItem value="telangana">Telangana</SelectItem>
+                        <SelectItem value="delhi">Delhi</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <DialogClose asChild>
+                <button className="p-1 rounded-full hover:bg-muted">
+                    <X className="h-5 w-5" />
+                </button>
+            </DialogClose>
         </DialogHeader>
         <ScrollArea className="flex-1 min-h-0">
             <div className="p-4 space-y-6">
@@ -204,7 +217,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
         </ScrollArea>
         <div className="p-4 border-t shrink-0 flex gap-4">
             <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-            <Button className="w-full" onClick={handleApply}>
+            <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" onClick={handleApply}>
                 Apply <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </div>
