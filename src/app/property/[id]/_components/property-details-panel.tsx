@@ -537,7 +537,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         ₹{property.price}
                     </p>
                     <p className="text-base text-muted-foreground line-through">
-                        ₹{property.pricePerSqFt}/sq.ft
+                        ₹{/* @ts-ignore */ parseInt(property.price.replace(/,/g, '')) * 1.15 }
                     </p>
                 </div>
                 <Badge variant="secondary">{property.status}</Badge>
