@@ -107,10 +107,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 <p className="text-muted-foreground">Price</p>
                 <p className="font-bold text-primary">₹{property.pricePerSqFt} <span className="font-normal text-muted-foreground">/sq.ft</span></p>
             </div>
-             <div className='text-center'>
-                <p className="text-muted-foreground">Size</p>
+            <div className='text-center'>
+                <p className="text-muted-foreground">Offer Price</p>
                 {/* @ts-ignore */}
-                <p className="font-semibold">{property.size} sq. yd.</p>
+                <p className="font-semibold text-primary/90">{property.price}</p>
             </div>
             <div className='text-center'>
                 <p className="text-muted-foreground">Rating</p>
