@@ -79,7 +79,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: { propertyId:
 
     return (
       <div className="h-full w-full flex flex-col">
-        <ScrollArea className="flex-1">
+        <ScrollArea className="flex-1 min-h-0">
           <div className="relative shrink-0">
             {propertyImage && (
               <div className="relative h-48 w-full rounded-t-lg overflow-hidden">
@@ -284,6 +284,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: { propertyId:
             </Button>
           </div>
         </div>
+        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
       </div>
     );
 }
@@ -295,7 +296,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0 bg-transparent border-0">
+      <SheetContent side="bottom" className="max-h-[90vh] h-auto flex flex-col p-0 bg-transparent border-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
@@ -323,7 +324,3 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
-
-    
-
-    
