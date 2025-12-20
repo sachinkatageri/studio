@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User, Coffee } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,13 +21,13 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 type Property = typeof properties[0];
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-    'High-Speed WiFi': <Wifi className="h-5 w-5 text-primary" />,
-    'Meeting Rooms': <Users className="h-5 w-5 text-primary" />,
-    'Power Backup': <Zap className="h-5 w-5 text-primary" />,
-    '24/7 Security': <ShieldCheck className="h-5 w-5 text-primary" />,
-    'Loading Dock': <Warehouse className="h-5 w-5 text-primary" />,
-    'Printing': <Check className="h-5 w-5 text-primary" />,
-    'Coffee Bar': <Check className="h-5 w-5 text-primary" />,
+    'High-Speed WiFi': <Wifi className="h-8 w-8 text-primary" />,
+    'Meeting Rooms': <Users className="h-8 w-8 text-primary" />,
+    'Power Backup': <Zap className="h-8 w-8 text-primary" />,
+    '24/7 Security': <ShieldCheck className="h-8 w-8 text-primary" />,
+    'Loading Dock': <Warehouse className="h-8 w-8 text-primary" />,
+    'Printing': <Check className="h-8 w-8 text-primary" />,
+    'Coffee Bar': <Coffee className="h-8 w-8 text-primary" />,
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
@@ -42,11 +42,13 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 const PropertyAmenities = ({ property }: { property: Property}) => (
     <div id="amenities">
         <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
             {property.amenities.map(amenity => (
-                <div key={amenity} className="flex items-center gap-3">
-                    {amenityIcons[amenity] || <Check className="h-5 w-5 text-primary" />}
-                    <span className="text-sm">{amenity}</span>
+                <div key={amenity} className="flex flex-col items-center text-center gap-2">
+                    <div className="flex items-center justify-center h-20 w-20 rounded-lg bg-muted">
+                        {amenityIcons[amenity] || <Check className="h-8 w-8 text-primary" />}
+                    </div>
+                    <span className="text-sm font-medium">{amenity}</span>
                 </div>
             ))}
         </div>
@@ -697,3 +699,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </>
     )
 }
+
+    
