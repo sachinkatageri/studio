@@ -36,6 +36,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
 
   if (!property) return null;
+
+  const offerPrice = property.price ? parseInt(String(property.price).replace(/,/g, '')) : 0;
+  const beforePrice = offerPrice * 1.15;
   
   return (
       <Card className="w-full max-w-6xl mx-auto shadow-lg bg-card border rounded-lg">
@@ -102,18 +105,20 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
           <Separator />
 
-          <div className="grid grid-cols-3 items-center gap-4 p-4 text-sm">
+          <div className="grid grid-cols-4 items-center gap-4 p-4 text-sm">
             <div className='text-center'>
                 <p className="text-muted-foreground">Price</p>
-                <div className="flex items-end justify-center gap-2">
+                 {property.price && (
+                    <div className="flex items-end justify-center gap-2">
                     <p className="font-bold text-primary text-base">
                         {/* @ts-ignore */}
                         ₹{property.price}
                     </p>
-                    <p className="text-muted-foreground line-through">
-                        ₹{property.pricePerSqFt}/sq.ft
+                    <p className="text-sm text-muted-foreground line-through">
+                        ₹{beforePrice.toLocaleString('en-IN')}
                     </p>
-                </div>
+                    </div>
+                )}
             </div>
             <div className='text-center'>
                 <p className="text-muted-foreground">Rating</p>
@@ -121,6 +126,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                   <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                   <span className="font-semibold">{property.rating} <span className="font-normal text-muted-foreground">({property.reviews})</span></span>
                 </div>
+            </div>
+            <div className="text-center">
+                <p className="text-muted-foreground">Size</p>
+                 {/* @ts-ignore */}
+                <p className="font-semibold">{property.size} sq.ft</p>
             </div>
             <div className="text-center">
                 <p className="text-muted-foreground mb-1">Amenities</p>
@@ -147,3 +157,4 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </Card>
   );
 }
+
