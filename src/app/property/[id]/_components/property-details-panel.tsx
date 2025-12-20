@@ -531,11 +531,15 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             
             
             <div className="mt-4 flex flex-wrap gap-4 items-center">
-                <p className="text-2xl font-bold text-primary">
-                    {/* @ts-ignore */}
-                    ₹{property.price}
-                    <span className="text-base text-muted-foreground font-normal"> (₹{property.pricePerSqFt}/sq.ft)</span>
-                </p>
+                <div className="flex items-end gap-2">
+                    <p className="text-2xl font-bold text-primary">
+                        {/* @ts-ignore */}
+                        ₹{property.price}
+                    </p>
+                    <p className="text-base text-muted-foreground line-through">
+                        ₹{property.pricePerSqFt}/sq.ft
+                    </p>
+                </div>
                 <Badge variant="secondary">{property.status}</Badge>
                 {property.type === 'Commercial' && <Badge>Zero Brokerage</Badge>}
             </div>
@@ -699,5 +703,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </>
     )
 }
+
+    
 
     
