@@ -215,7 +215,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
         </ScrollArea>
         <div className="p-4 border-t shrink-0 flex gap-4">
             <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-            <Button className="w-full" onClick={handleApply}>
+            <Button className="w-full" onClick={handleApply} disabled={selectedLayers.length === 0}>
                 Apply <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </div>
