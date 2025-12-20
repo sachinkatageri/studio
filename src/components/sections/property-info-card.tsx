@@ -151,9 +151,21 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
           </div>
         </TooltipProvider>
+        {property.amenities && property.amenities.length > 0 && (
+          <>
+            <Separator />
+            <div className="p-4 flex items-center justify-center gap-6">
+                {property.amenities.slice(0, 3).map((amenity) => (
+                    <div key={amenity} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {amenityIcons[amenity] || <Check className="h-4 w-4" />}
+                        <span>{amenity}</span>
+                    </div>
+                ))}
+            </div>
+          </>
+        )}
       </Card>
       <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </>
   );
 }
-
