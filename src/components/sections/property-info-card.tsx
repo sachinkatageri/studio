@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { properties } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, Phone, Wifi, Users, Printer, Star, Check, CheckCircle } from 'lucide-react';
+import { X, Phone, Wifi, Users, Printer, Star, Check, CheckCircle, Coffee } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { Separator } from '../ui/separator';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
@@ -24,10 +24,10 @@ interface PropertyInfoCardProps {
 }
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-  'High-Speed WiFi': <Wifi className="h-4 w-4" />,
-  'Meeting Rooms': <Users className="h-4 w-4" />,
-  'Printing': <Printer className="h-4 w-4" />,
-  'Coffee Bar': <Check className="h-4 w-4" />,
+  'High-Speed WiFi': <Wifi className="h-5 w-5 text-primary" />,
+  'Meeting Rooms': <Users className="h-5 w-5 text-primary" />,
+  'Printing': <Printer className="h-5 w-5 text-primary" />,
+  'Coffee Bar': <Coffee className="h-5 w-5 text-primary" />,
 };
 
 
@@ -125,7 +125,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     {property.amenities.slice(0, 3).map((amenity) => (
                         <Tooltip key={amenity}>
                             <TooltipTrigger>
-                                {amenityIcons[amenity] || <Check className="h-4 w-4" />}
+                                <div className="flex items-center justify-center h-8 w-8 rounded-md bg-muted">
+                                    {amenityIcons[amenity] || <Check className="h-4 w-4" />}
+                                </div>
                             </TooltipTrigger>
                             <TooltipContent>
                                 <p>{amenity}</p>
