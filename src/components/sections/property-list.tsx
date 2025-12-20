@@ -18,6 +18,9 @@ const residentialProperties = properties.filter(p => p.type === 'Residential');
 
 const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof properties[0], onSelect: (id: string) => void, isSelected: boolean}) => {
   const propertyImage = PlaceHolderImages.find(p => p.id === property.id);
+  const offerPrice = property.price ? parseInt(String(property.price).replace(/,/g, '')) : 0;
+  const beforePrice = offerPrice * 1.15;
+
   return (
     <Card 
       key={property.id} 
@@ -46,17 +49,17 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
             </div>
           <p className="text-sm text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
-          <div className="flex items-end gap-2 mt-1">
+          {property.price && (
+            <div className="flex items-end gap-2 mt-1">
               <p className="font-bold text-primary text-base">
                   {/* @ts-ignore */}
                   ₹{property.price}
               </p>
-              {property.pricePerSqFt && (
-                  <p className="text-sm text-muted-foreground line-through">
-                      ₹{property.pricePerSqFt}/sq.ft
-                  </p>
-              )}
-          </div>
+              <p className="text-sm text-muted-foreground line-through">
+                ₹{beforePrice.toLocaleString('en-IN')}
+              </p>
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
