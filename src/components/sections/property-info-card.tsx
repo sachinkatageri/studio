@@ -102,15 +102,18 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
           <Separator />
 
-          <div className="grid grid-cols-4 items-center gap-4 p-4 text-sm">
+          <div className="grid grid-cols-3 items-center gap-4 p-4 text-sm">
             <div className='text-center'>
                 <p className="text-muted-foreground">Price</p>
-                <p className="font-bold text-primary">₹{property.pricePerSqFt} <span className="font-normal text-muted-foreground">/sq.ft</span></p>
-            </div>
-            <div className='text-center'>
-                <p className="text-muted-foreground">Offer Price</p>
-                {/* @ts-ignore */}
-                <p className="font-semibold text-primary/90">{property.price}</p>
+                <div className="flex items-end justify-center gap-2">
+                    <p className="font-bold text-primary text-base">
+                        {/* @ts-ignore */}
+                        ₹{property.price}
+                    </p>
+                    <p className="text-muted-foreground line-through">
+                        ₹{property.pricePerSqFt}/sq.ft
+                    </p>
+                </div>
             </div>
             <div className='text-center'>
                 <p className="text-muted-foreground">Rating</p>
