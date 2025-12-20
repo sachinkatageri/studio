@@ -14,6 +14,7 @@ import { format } from "date-fns";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
+import { cn } from '@/lib/utils';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
@@ -58,167 +59,160 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
-  const [showDisclaimerDetails, setShowDisclaimerDetails] = useState(false);
   const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
 
   if (!property) return null;
   
-  // @ts-ignore
   const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
   return (
     <>
-    <Card className="w-96 shadow-2xl flex flex-col max-h-[calc(100vh-6rem)]">
+      <Card className="w-full max-w-4xl shadow-2xl flex max-h-[calc(100vh-6rem)] rounded-2xl">
         <TooltipProvider>
-      <CardHeader className="p-0 relative">
-        {propertyImage && (
-          <div className="relative h-48 w-full">
-            <Image
-              src={propertyImage.imageUrl}
-              alt={propertyImage.description}
-              fill
-              className="object-cover rounded-t-lg"
-              data-ai-hint={propertyImage.imageHint}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-t-lg" />
-          </div>
-        )}
-        <Tooltip>
-            <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white hover:text-white rounded-full h-8 w-8" onClick={onClose}>
-                  <X className="h-4 w-4" />
-                </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-                <p>Close</p>
-            </TooltipContent>
-        </Tooltip>
-        <div className="absolute top-2 left-2 flex gap-2">
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
-                        <Navigation className='h-4 w-4' />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Get Directions</p>
-                </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
-                        <Share2 className='h-4 w-4' />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Share</p>
-                </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background hover:bg-muted text-foreground'>
-                        <Heart className='h-4 w-4' />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Add to Wishlist</p>
-                </TooltipContent>
-            </Tooltip>
-        </div>
-        <div className="absolute bottom-0 left-0 p-4 w-full">
-          <div className="flex items-center gap-2">
-            <CardTitle className="text-xl font-bold text-white">{property.name}</CardTitle>
-            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} />
-          </div>
-          <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
-        </div>
-      </CardHeader>
-      <CardContent className="p-4 space-y-4 overflow-y-auto flex-1">
-        <div className="flex justify-between items-center">
-          <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
-          {property.status && <Badge variant="secondary">{property.status}</Badge>}
-        </div>
-        
-        {/* @ts-ignore */}
-        {property.size && <p className="text-sm "><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
+          <div className="flex w-full">
+            <div className="w-1/3 relative">
+                {propertyImage && (
+                    <Image
+                    src={propertyImage.imageUrl}
+                    alt={propertyImage.description}
+                    fill
+                    className="object-cover rounded-l-2xl"
+                    data-ai-hint={propertyImage.imageHint}
+                    />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-l-2xl" />
 
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-            <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                <span className="font-semibold">{property.rating}</span>
-                <span className="text-muted-foreground">({property.reviews} reviews)</span>
-            </div>
-            <p><span className="font-semibold">Posted by:</span> Owner</p>
-             {/* @ts-ignore */}
-            {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
-        </div>
-        
+                 <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-black/30 hover:bg-black/50 text-white hover:text-white rounded-full h-8 w-8" onClick={onClose}>
+                          <X className="h-4 w-4" />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Close</p>
+                    </TooltipContent>
+                </Tooltip>
 
-        <Separator />
-
-        <div>
-            <h4 className="text-sm font-semibold mb-2">Amenities</h4>
-            <div className="flex flex-wrap gap-2">
-                {/* @ts-ignore */}
-                {property.amenities?.map((amenity: string) => (
-                    <Badge key={amenity} variant="outline" className="font-normal flex items-center gap-2">
-                        {amenityIcons[amenity] || <Home className="h-4 w-4" />}
-                        {amenity}
-                    </Badge>
-                ))}
-            </div>
-        </div>
-
-        <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
-              <div className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
-                    Know the Process
-                  </Button>
+                <div className="absolute top-2 left-2 flex gap-2">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background/80 hover:bg-background/90 text-foreground'>
+                                <Navigation className='h-4 w-4' />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Get Directions</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background/80 hover:bg-background/90 text-foreground'>
+                                <Share2 className='h-4 w-4' />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Share</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="secondary" size="icon" className='h-8 w-8 rounded-full bg-background/80 hover:bg-background/90 text-foreground'>
+                                <Heart className='h-4 w-4' />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Add to Wishlist</p>
+                        </TooltipContent>
+                    </Tooltip>
                 </div>
-              </div>
-               <div className="text-center border-t pt-4 mt-4">
-                  <p className="text-xs text-red-600 mb-2">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                  <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
-                      <AlertTriangle className="h-4 w-4 mr-1" />
-                      Report this listing
-                  </Button>
-              </div>
+                <div className="absolute bottom-0 left-0 p-4 w-full">
+                  <div className="flex items-center gap-2">
+                    <CardTitle className="text-lg font-bold text-white">{property.name}</CardTitle>
+                    <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                  </div>
+                  <p className="text-sm text-neutral-300 mt-1">{property.location}</p>
+                </div>
             </div>
 
-      </CardContent>
-      <CardFooter className="p-4 border-t bg-background">
-        <div className="flex gap-2 w-full">
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button size="icon" className="h-12 w-12">
-                        <Phone />
+            <div className="w-2/3 flex flex-col">
+              <CardContent className="p-4 space-y-3 flex-1">
+                <div className="flex justify-between items-start">
+                    <div>
+                        <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-sm font-normal text-muted-foreground">/sq.ft</span></p>
+                        {property.size && <p className="text-sm "><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
+                    </div>
+                    {property.status && <Badge variant="secondary">{property.status}</Badge>}
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                    <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <span className="font-semibold">{property.rating}</span>
+                        <span className="text-muted-foreground">({property.reviews} reviews)</span>
+                    </div>
+                    <p><span className="font-semibold">Posted by:</span> Owner</p>
+                    {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
+                </div>
+                
+                <Separator />
+
+                <div>
+                    <h4 className="text-sm font-semibold mb-2">Amenities</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {property.amenities?.map((amenity: string) => (
+                            <Badge key={amenity} variant="outline" className="font-normal flex items-center gap-2">
+                                {amenityIcons[amenity] || <Home className="h-4 w-4" />}
+                                {amenity}
+                            </Badge>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="text-sm text-muted-foreground space-y-2 p-3 border rounded-lg">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
+                        <div>
+                        <p className="text-foreground font-semibold">Preliminary verification done.</p>
+                        <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
+                            Know the Process
+                        </Button>
+                        </div>
+                    </div>
+                </div>
+              </CardContent>
+
+              <CardFooter className="p-4 border-t bg-background rounded-b-2xl">
+                <div className="flex gap-2 w-full">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button size="icon" className="h-12 w-12">
+                                <Phone />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Call</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="outline" size="icon" className="h-12 w-12 border-primary text-primary hover:bg-primary hover:text-white">
+                                <WhatsAppIcon />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>WhatsApp</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Button variant="default" className="flex-1 text-lg h-12" onClick={() => onViewDetails(property.id)}>
+                        View Details
                     </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Call</p>
-                </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" className="h-12 w-12 border-primary text-primary hover:bg-primary hover:text-white">
-                        <WhatsAppIcon />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>WhatsApp</p>
-                </TooltipContent>
-            </Tooltip>
-            <Button variant="default" className="flex-1 text-lg h-12" onClick={() => onViewDetails(property.id)}>
-                View Details
-            </Button>
-        </div>
-      </CardFooter>
-      </TooltipProvider>
-    </Card>
-    <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
+                </div>
+              </CardFooter>
+            </div>
+          </div>
+        </TooltipProvider>
+      </Card>
+      <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </>
   );
 }
