@@ -67,9 +67,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
   return (
     <>
-      <Card className="w-full max-w-6xl mx-auto shadow-none bg-transparent border-0">
+      <Card className="w-full max-w-6xl mx-auto shadow-lg bg-card border rounded-lg">
         <TooltipProvider>
-          <div className="grid grid-cols-3 items-center gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4 p-4">
             {/* Section 1: Image and Title */}
             <div className="flex items-center gap-4">
                 <div className="relative h-24 w-24 rounded-lg overflow-hidden shrink-0">
@@ -93,7 +93,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             </div>
 
             {/* Section 2: Details */}
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center justify-center gap-6 text-sm border-x px-6">
                  <div>
                     <p className="text-muted-foreground">Price</p>
                     <p className="font-bold text-primary">₹{property.pricePerSqFt} <span className="font-normal text-muted-foreground">/sq.ft</span></p>
@@ -117,7 +117,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
             <div className="flex items-center gap-2 justify-self-end">
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" className="h-12 w-12 rounded-full">
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-full">
                             <Phone />
                         </Button>
                     </TooltipTrigger>
@@ -127,7 +127,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 </Tooltip>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" className="h-12 w-12 rounded-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white">
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-full border-green-500 text-green-500 hover:bg-green-500 hover:text-white">
                             <WhatsAppIcon />
                         </Button>
                     </TooltipTrigger>
@@ -135,12 +135,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <p>WhatsApp</p>
                     </TooltipContent>
                 </Tooltip>
-                <Button className="h-12 px-6 rounded-full" onClick={() => onViewDetails(property.id)}>
+                <Button className="h-11 px-6 rounded-full" onClick={() => onViewDetails(property.id)}>
                     View Details
                 </Button>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" className="rounded-full h-12 w-12" onClick={onClose}>
+                        <Button variant="ghost" size="icon" className="rounded-full h-11 w-11" onClick={onClose}>
                             <X className="h-5 w-5" />
                         </Button>
                     </TooltipTrigger>
@@ -156,3 +156,4 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </>
   );
 }
+
