@@ -70,14 +70,6 @@ const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string |
         return null;
     }
     
-    let beforePrice;
-    if (property.price && !String(property.price).startsWith('Starting from')) {
-        const offerPrice = parseInt(String(property.price).replace(/,/g, ''));
-        if (!isNaN(offerPrice)) {
-            beforePrice = offerPrice * 1.15;
-        }
-    }
-    
     // @ts-ignore
     const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
@@ -161,17 +153,10 @@ const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string |
           <div className="space-y-4 p-4">
             <div className="flex justify-between items-center">
               {property.price ? (
-                <div className="flex items-end gap-2">
                   <p className="text-2xl font-bold text-primary">
                     {/* @ts-ignore */}
                     {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
                   </p>
-                  {beforePrice && (
-                    <p className="text-base text-muted-foreground line-through">
-                      ₹{beforePrice.toLocaleString('en-IN')}
-                    </p>
-                  )}
-                </div>
               ) : (
                 <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
               )}
