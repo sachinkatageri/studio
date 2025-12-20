@@ -152,14 +152,6 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                         {property.size && <p className="text-base"><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>}
                         
                         <div>
-                            <h4 className="text-base font-semibold mb-2">About</h4>
-                            {/* @ts-ignore */}
-                            <p className="text-sm text-muted-foreground">{property.about}</p>
-                        </div>
-                        
-                        <Separator />
-                        
-                        <div>
                             <h4 className="text-base font-semibold mb-2">Amenities</h4>
                             <div className="flex flex-wrap gap-2">
                                 {/* @ts-ignore */}
@@ -235,7 +227,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0 bg-transparent border-0">
+      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0 bg-background/80 backdrop-blur-sm border-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
@@ -246,12 +238,12 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 align: 'center',
                 loop: true,
            }}>
-                <CarouselContent className="-ml-4 h-full">
+                <CarouselContent className="h-full">
                     {properties.map((property) => (
-                        <CarouselItem key={property.id} className="pl-4 basis-[90%] md:basis-1/3">
-                            <div className="p-1 h-full">
+                        <CarouselItem key={property.id} className="pt-12 basis-[90%] md:basis-1/3">
+                            <Card className="h-full overflow-hidden">
                                 <PropertySheetCard propertyId={property.id} onClose={onClose} onViewDetails={onViewDetails} />
-                            </div>
+                            </Card>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
