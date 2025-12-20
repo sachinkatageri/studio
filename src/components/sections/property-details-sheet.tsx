@@ -61,7 +61,7 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
   'Gated Community': <ShieldCheck className="h-5 w-5 text-primary" />,
 };
 
-const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: { propertyId: string | null; onClose: () => void; onViewDetails: (id: string) => void; }) => {
+const PropertySheetCard = ({ propertyId, onViewDetails }: { propertyId: string | null; onViewDetails: (id: string) => void; }) => {
     const property = properties.find(p => p.id === propertyId);
     const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
     const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
@@ -70,19 +70,23 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: { propertyId:
         return null;
     }
     
-    const offerPriceString = property.price ? String(property.price).replace(/,/g, '').replace('Starting from $', '') : '0';
-    const offerPrice = parseInt(offerPriceString);
-    const beforePrice = offerPrice * 1.15;
+    let beforePrice;
+    if (property.price && !String(property.price).startsWith('Starting from')) {
+        const offerPrice = parseInt(String(property.price).replace(/,/g, ''));
+        if (!isNaN(offerPrice)) {
+            beforePrice = offerPrice * 1.15;
+        }
+    }
     
     // @ts-ignore
     const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
     return (
-      <div className="h-full w-full flex flex-col">
+      <div className="h-full w-full flex flex-col bg-card rounded-lg border overflow-hidden">
         <ScrollArea className="flex-1 min-h-0">
           <div className="relative shrink-0">
             {propertyImage && (
-              <div className="relative h-48 w-full rounded-t-lg overflow-hidden">
+              <div className="relative h-48 w-full">
                 <Image
                   src={propertyImage.imageUrl}
                   alt={propertyImage.description}
@@ -159,11 +163,14 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: { propertyId:
               {property.price ? (
                 <div className="flex items-end gap-2">
                   <p className="text-2xl font-bold text-primary">
-                    ₹{property.price}
+                    {/* @ts-ignore */}
+                    {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
                   </p>
-                  <p className="text-base text-muted-foreground line-through">
-                     ₹{beforePrice.toLocaleString('en-IN')}
-                  </p>
+                  {beforePrice && (
+                    <p className="text-base text-muted-foreground line-through">
+                      ₹{beforePrice.toLocaleString('en-IN')}
+                    </p>
+                  )}
                 </div>
               ) : (
                 <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
@@ -296,7 +303,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="max-h-[90vh] h-auto flex flex-col p-0 bg-transparent border-0">
+      <SheetContent side="bottom" className="h-[85vh] max-h-[85vh] flex flex-col p-0 bg-transparent border-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
@@ -307,12 +314,10 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 align: 'center',
                 loop: true,
            }}>
-                <CarouselContent className="h-full">
+                <CarouselContent className="h-full pt-12">
                     {properties.map((property) => (
-                        <CarouselItem key={property.id} className="pt-12 basis-[90%] md:basis-1/3">
-                            <div className="h-full overflow-hidden bg-card rounded-lg border flex flex-col">
-                                <PropertySheetCard propertyId={property.id} onClose={onClose} onViewDetails={onViewDetails} />
-                            </div>
+                        <CarouselItem key={property.id} className="basis-[90%] md:basis-1/3">
+                            <PropertySheetCard propertyId={property.id} onViewDetails={onViewDetails} />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
@@ -324,3 +329,5 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
+
+    
