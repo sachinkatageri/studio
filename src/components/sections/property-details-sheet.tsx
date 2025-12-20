@@ -227,7 +227,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0 bg-background/80 backdrop-blur-sm border-0">
+      <SheetContent side="bottom" className="h-[90vh] flex flex-col p-0 bg-background border-0">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
@@ -241,9 +241,9 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 <CarouselContent className="h-full">
                     {properties.map((property) => (
                         <CarouselItem key={property.id} className="pt-12 basis-[90%] md:basis-1/3">
-                            <Card className="h-full overflow-hidden">
+                            <div className="h-full overflow-hidden bg-card rounded-lg border">
                                 <PropertySheetCard propertyId={property.id} onClose={onClose} onViewDetails={onViewDetails} />
-                            </Card>
+                            </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
@@ -255,5 +255,3 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
-
-    
