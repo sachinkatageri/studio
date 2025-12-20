@@ -22,6 +22,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
+import { LayersSheet } from '../layout/layers-sheet';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -35,8 +36,6 @@ interface MapViewProps {
   setMobileView?: (view: MobileView) => void;
 }
 
-type MapType = 'default' | 'satellite' | 'hybrid' | 'terrain';
-
 const propertyPositions = [
   { id: 'wework', top: '35%', left: '40%' },
   { id: '91springboard', top: '50%', left: '60%' },
@@ -47,23 +46,16 @@ const propertyPositions = [
 ];
 
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView }: MapViewProps) {
-  const [mapType, setMapType] = useState<MapType>('hybrid');
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
-  const [isLayersPopoverOpen, setIsLayersPopoverOpen] = useState(false);
+  const [isLayersSheetOpen, setIsLayersSheetOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const mapImages = {
-    default: 'https://picsum.photos/seed/map-default/1920/1080',
-    satellite: 'https://picsum.photos/seed/map-satellite/1920/1080',
     hybrid: 'https://i.pinimg.com/736x/e4/44/82/e4448285ad21f8c19b7d30d1fd740b71.jpg',
-    terrain: 'https://picsum.photos/seed/map-terrain/1920/1080'
   };
 
   const mapHints = {
-    default: 'street map',
-    satellite: 'satellite imagery',
     hybrid: 'satellite map',
-    terrain: 'terrain map'
   };
 
   const handleLayersClick = () => {
@@ -71,19 +63,19 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   }
 
   const handleDeclarationProceed = () => {
-    setIsLayersPopoverOpen(true);
+    setIsLayersSheetOpen(true);
   }
 
   return (
     <>
     <div className="relative h-full w-full">
       <Image
-        src={mapImages[mapType]}
+        src={mapImages.hybrid}
         alt="Map of Bengaluru"
         layout="fill"
         objectFit="cover"
         className="z-0"
-        data-ai-hint={mapHints[mapType]}
+        data-ai-hint={mapHints.hybrid}
       />
       
       {propertyPositions.map(pos => {
@@ -185,9 +177,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className={cn(
            "absolute left-4 z-10 transition-all duration-300",
-           selectedPropertyId && !isMobile ? "bottom-[11rem]" : "bottom-4"
+            selectedPropertyId && !isMobile ? "bottom-[9rem]" : "bottom-4"
        )}>
-          <Popover open={isLayersPopoverOpen} onOpenChange={setIsLayersPopoverOpen}>
+          <Popover>
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
@@ -207,30 +199,6 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
-            <PopoverContent className="w-60 p-2">
-                <div className="space-y-1">
-                    <h3 className="px-2 py-1.5 text-sm font-semibold">Map Type</h3>
-                    <div className="space-y-1">
-                        <Button variant={mapType === 'default' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('default')}>
-                            <Map className="mr-2 h-4 w-4" /> Default {mapType === 'default' && <Check className="ml-auto h-4 w-4" />}
-                        </Button>
-                        <Button variant={mapType === 'satellite' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('satellite')}>
-                            <Satellite className="mr-2 h-4 w-4" /> Satellite {mapType === 'satellite' && <Check className="ml-auto h-4 w-4" />}
-                        </Button>
-                        <Button variant={mapType === 'hybrid' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('hybrid')}>
-                            <Globe className="mr-2 h-4 w-4" /> Hybrid {mapType === 'hybrid' && <Check className="ml-auto h-4 w-4" />}
-                        </Button>
-                        <Button variant={mapType === 'terrain' ? 'secondary' : 'ghost'} className="w-full justify-start" onClick={() => setMapType('terrain')}>
-                            <Mountain className="mr-2 h-4 w-4" /> Terrain {mapType === 'terrain' && <Check className="ml-auto h-4 w-4" />}
-                        </Button>
-                    </div>
-                    <Separator className="my-2" />
-                    <h3 className="px-2 py-1.5 text-sm font-semibold">Layers</h3>
-                    <Button variant='ghost' className="w-full justify-start">
-                        <TrafficCone className="mr-2 h-4 w-4" /> Traffic
-                    </Button>
-                </div>
-            </PopoverContent>
           </Popover>
        </div>
       
@@ -261,7 +229,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className={cn(
            "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
-            selectedPropertyId && !isMobile ? "bottom-[11rem]" : "bottom-4"
+            selectedPropertyId && !isMobile ? "bottom-[9rem]" : "bottom-4"
         )}>
             {!isMobile && (
                 <TooltipProvider>
@@ -313,8 +281,10 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       onOpenChange={setIsLayersDeclarationOpen}
       onProceed={handleDeclarationProceed}
     />
+    <LayersSheet
+        open={isLayersSheetOpen}
+        onOpenChange={setIsLayersSheetOpen}
+    />
     </>
   );
 }
-
-    
