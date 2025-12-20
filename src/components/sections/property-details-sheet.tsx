@@ -34,31 +34,31 @@ const WhatsAppIcon = () => (
 );
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-  'High-Speed WiFi': <Wifi className="h-4 w-4" />,
-  'Meeting Rooms': <Users className="h-4 w-4" />,
-  'Printing': <Printer className="h-4 w-4" />,
-  'Coffee Bar': <Coffee className="h-4 w-4" />,
-  '24/7 Access': <Clock className="h-4 w-4" />,
-  'Event Space': <Presentation className="h-4 w-4" />,
-  'Game Zone': <Gamepad2 className="h-4 w-4" />,
-  'Free Tea & Coffee': <Coffee className="h-4 w-4" />,
-  'Main Road Facing': <Car className="h-4 w-4" />,
-  'Ample Parking': <Car className="h-4 w-4" />,
-  'Power Backup': <Zap className="h-4 w-4" />,
-  'Full Kitchen': <Utensils className="h-4 w-4" />,
-  'Seating Area': <Armchair className="h-4 w-4" />,
-  'Restrooms': <Home className="h-4 w-4" />,
-  'Valet Parking': <Car className="h-4 w-4" />,
-  'Loading Dock': <Warehouse className="h-4 w-4" />,
-  '24/7 Security': <ShieldCheck className="h-4 w-4" />,
-  'High Ceilings': <Home className="h-4 w-4" />,
-  'Swimming Pool': <Home className="h-4 w-4" />,
-  'Gym': <Home className="h-4 w-4" />,
-  'Clubhouse': <Home className="h-4 w-4" />,
-  'Private Garden': <Home className="h-4 w-4" />,
-  'Community Park': <Home className="h-4 w-4" />,
-  'Jogging Track': <Home className="h-4 w-4" />,
-  'Gated Community': <ShieldCheck className="h-4 w-4" />,
+  'High-Speed WiFi': <Wifi className="h-8 w-8 text-primary" />,
+  'Meeting Rooms': <Users className="h-8 w-8 text-primary" />,
+  'Printing': <Printer className="h-8 w-8 text-primary" />,
+  'Coffee Bar': <Coffee className="h-8 w-8 text-primary" />,
+  '24/7 Access': <Clock className="h-8 w-8 text-primary" />,
+  'Event Space': <Presentation className="h-8 w-8 text-primary" />,
+  'Game Zone': <Gamepad2 className="h-8 w-8 text-primary" />,
+  'Free Tea & Coffee': <Coffee className="h-8 w-8 text-primary" />,
+  'Main Road Facing': <Car className="h-8 w-8 text-primary" />,
+  'Ample Parking': <Car className="h-8 w-8 text-primary" />,
+  'Power Backup': <Zap className="h-8 w-8 text-primary" />,
+  'Full Kitchen': <Utensils className="h-8 w-8 text-primary" />,
+  'Seating Area': <Armchair className="h-8 w-8 text-primary" />,
+  'Restrooms': <Home className="h-8 w-8 text-primary" />,
+  'Valet Parking': <Car className="h-8 w-8 text-primary" />,
+  'Loading Dock': <Warehouse className="h-8 w-8 text-primary" />,
+  '24/7 Security': <ShieldCheck className="h-8 w-8 text-primary" />,
+  'High Ceilings': <Home className="h-8 w-8 text-primary" />,
+  'Swimming Pool': <Home className="h-8 w-8 text-primary" />,
+  'Gym': <Home className="h-8 w-8 text-primary" />,
+  'Clubhouse': <Home className="h-8 w-8 text-primary" />,
+  'Private Garden': <Home className="h-8 w-8 text-primary" />,
+  'Community Park': <Home className="h-8 w-8 text-primary" />,
+  'Jogging Track': <Home className="h-8 w-8 text-primary" />,
+  'Gated Community': <ShieldCheck className="h-8 w-8 text-primary" />,
 };
 
 const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) => {
@@ -153,13 +153,15 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                         
                         <div>
                             <h4 className="text-base font-semibold mb-2">Amenities</h4>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
                                 {/* @ts-ignore */}
                                 {property.amenities?.map((amenity: string) => (
-                                    <Badge key={amenity} variant="outline" className="font-normal flex items-center gap-2">
-                                        {amenityIcons[amenity] || <Home className="h-4 w-4" />}
-                                        {amenity}
-                                    </Badge>
+                                    <div key={amenity} className="flex flex-col items-center text-center gap-2">
+                                        <div className="flex items-center justify-center h-20 w-20 rounded-lg bg-muted">
+                                            {amenityIcons[amenity] || <Check className="h-8 w-8 text-primary" />}
+                                        </div>
+                                        <span className="text-sm font-medium">{amenity}</span>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -255,3 +257,5 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
+
+    
