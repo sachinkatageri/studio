@@ -74,7 +74,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
     const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
 
     return (
-        <>
+        <div className="h-full w-full flex flex-col">
             <ScrollArea className="flex-1">
                 <div className="relative shrink-0">
                 {propertyImage && (
@@ -215,14 +215,14 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                 </div>
             </div>
             <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
-        </>
+        </div>
     )
 }
 
 
 export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) {
   const open = !!propertyId;
-  const initialIndex = properties.findIndex(p => p.id === propertyId);
+  const initialIndex = open ? properties.findIndex(p => p.id === propertyId) : -1;
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
@@ -231,7 +231,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
         </SheetHeader>
-        {open && (
+        {open && initialIndex !== -1 && (
            <Carousel className="w-full h-full" opts={{
                 startIndex: initialIndex,
                 align: 'center',
@@ -254,5 +254,3 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
-
-    
