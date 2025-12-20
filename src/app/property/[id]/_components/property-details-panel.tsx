@@ -21,13 +21,13 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 type Property = typeof properties[0];
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-    'High-Speed WiFi': <Wifi className="h-8 w-8 text-primary" />,
-    'Meeting Rooms': <Users className="h-8 w-8 text-primary" />,
-    'Power Backup': <Zap className="h-8 w-8 text-primary" />,
-    '24/7 Security': <ShieldCheck className="h-8 w-8 text-primary" />,
-    'Loading Dock': <Warehouse className="h-8 w-8 text-primary" />,
-    'Printing': <Check className="h-8 w-8 text-primary" />,
-    'Coffee Bar': <Coffee className="h-8 w-8 text-primary" />,
+    'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
+    'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
+    'Power Backup': <Zap className="h-6 w-6 text-primary" />,
+    '24/7 Security': <ShieldCheck className="h-6 w-6 text-primary" />,
+    'Loading Dock': <Warehouse className="h-6 w-6 text-primary" />,
+    'Printing': <Check className="h-6 w-6 text-primary" />,
+    'Coffee Bar': <Coffee className="h-6 w-6 text-primary" />,
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
@@ -45,8 +45,8 @@ const PropertyAmenities = ({ property }: { property: Property}) => (
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
             {property.amenities.map(amenity => (
                 <div key={amenity} className="flex flex-col items-center text-center gap-2">
-                    <div className="flex items-center justify-center h-20 w-20 rounded-lg bg-muted">
-                        {amenityIcons[amenity] || <Check className="h-8 w-8 text-primary" />}
+                    <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-muted">
+                        {amenityIcons[amenity] || <Check className="h-6 w-6 text-primary" />}
                     </div>
                     <span className="text-sm font-medium">{amenity}</span>
                 </div>

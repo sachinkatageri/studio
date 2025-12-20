@@ -34,31 +34,31 @@ const WhatsAppIcon = () => (
 );
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-  'High-Speed WiFi': <Wifi className="h-8 w-8 text-primary" />,
-  'Meeting Rooms': <Users className="h-8 w-8 text-primary" />,
-  'Printing': <Printer className="h-8 w-8 text-primary" />,
-  'Coffee Bar': <Coffee className="h-8 w-8 text-primary" />,
-  '24/7 Access': <Clock className="h-8 w-8 text-primary" />,
-  'Event Space': <Presentation className="h-8 w-8 text-primary" />,
-  'Game Zone': <Gamepad2 className="h-8 w-8 text-primary" />,
-  'Free Tea & Coffee': <Coffee className="h-8 w-8 text-primary" />,
-  'Main Road Facing': <Car className="h-8 w-8 text-primary" />,
-  'Ample Parking': <Car className="h-8 w-8 text-primary" />,
-  'Power Backup': <Zap className="h-8 w-8 text-primary" />,
-  'Full Kitchen': <Utensils className="h-8 w-8 text-primary" />,
-  'Seating Area': <Armchair className="h-8 w-8 text-primary" />,
-  'Restrooms': <Home className="h-8 w-8 text-primary" />,
-  'Valet Parking': <Car className="h-8 w-8 text-primary" />,
-  'Loading Dock': <Warehouse className="h-8 w-8 text-primary" />,
-  '24/7 Security': <ShieldCheck className="h-8 w-8 text-primary" />,
-  'High Ceilings': <Home className="h-8 w-8 text-primary" />,
-  'Swimming Pool': <Home className="h-8 w-8 text-primary" />,
-  'Gym': <Home className="h-8 w-8 text-primary" />,
-  'Clubhouse': <Home className="h-8 w-8 text-primary" />,
-  'Private Garden': <Home className="h-8 w-8 text-primary" />,
-  'Community Park': <Home className="h-8 w-8 text-primary" />,
-  'Jogging Track': <Home className="h-8 w-8 text-primary" />,
-  'Gated Community': <ShieldCheck className="h-8 w-8 text-primary" />,
+  'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
+  'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
+  'Printing': <Printer className="h-6 w-6 text-primary" />,
+  'Coffee Bar': <Coffee className="h-6 w-6 text-primary" />,
+  '24/7 Access': <Clock className="h-6 w-6 text-primary" />,
+  'Event Space': <Presentation className="h-6 w-6 text-primary" />,
+  'Game Zone': <Gamepad2 className="h-6 w-6 text-primary" />,
+  'Free Tea & Coffee': <Coffee className="h-6 w-6 text-primary" />,
+  'Main Road Facing': <Car className="h-6 w-6 text-primary" />,
+  'Ample Parking': <Car className="h-6 w-6 text-primary" />,
+  'Power Backup': <Zap className="h-6 w-6 text-primary" />,
+  'Full Kitchen': <Utensils className="h-6 w-6 text-primary" />,
+  'Seating Area': <Armchair className="h-6 w-6 text-primary" />,
+  'Restrooms': <Home className="h-6 w-6 text-primary" />,
+  'Valet Parking': <Car className="h-6 w-6 text-primary" />,
+  'Loading Dock': <Warehouse className="h-6 w-6 text-primary" />,
+  '24/7 Security': <ShieldCheck className="h-6 w-6 text-primary" />,
+  'High Ceilings': <Home className="h-6 w-6 text-primary" />,
+  'Swimming Pool': <Home className="h-6 w-6 text-primary" />,
+  'Gym': <Home className="h-6 w-6 text-primary" />,
+  'Clubhouse': <Home className="h-6 w-6 text-primary" />,
+  'Private Garden': <Home className="h-6 w-6 text-primary" />,
+  'Community Park': <Home className="h-6 w-6 text-primary" />,
+  'Jogging Track': <Home className="h-6 w-6 text-primary" />,
+  'Gated Community': <ShieldCheck className="h-6 w-6 text-primary" />,
 };
 
 const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) => {
@@ -157,8 +157,8 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                                 {/* @ts-ignore */}
                                 {property.amenities?.map((amenity: string) => (
                                     <div key={amenity} className="flex flex-col items-center text-center gap-2">
-                                        <div className="flex items-center justify-center h-20 w-20 rounded-lg bg-muted">
-                                            {amenityIcons[amenity] || <Check className="h-8 w-8 text-primary" />}
+                                        <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-muted">
+                                            {amenityIcons[amenity] || <Check className="h-6 w-6 text-primary" />}
                                         </div>
                                         <span className="text-sm font-medium">{amenity}</span>
                                     </div>
