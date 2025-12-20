@@ -144,7 +144,7 @@ const PropertySheetCard = ({ propertyId, onClose, onViewDetails }: PropertyDetai
                                 <span className="font-semibold">{property.rating}</span>
                                 <span className="text-muted-foreground">({property.reviews} reviews)</span>
                             </div>
-                            <p><span className="font-semibold">Posted by:</span> Owner</p>
+                            
                             {postedDate && <p><span className="font-semibold">Date Added:</span> {postedDate}</p>}
                         </div>
                         
