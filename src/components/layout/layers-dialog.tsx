@@ -126,19 +126,19 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] max-w-md w-full p-0 flex flex-col">
         <DialogHeader className="p-4 flex-row items-center justify-between border-b shrink-0">
-            <div className="flex items-center gap-2">
-                <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
-                <Select defaultValue="karnataka">
-                    <SelectTrigger className="w-auto border-0 focus:ring-0 gap-1 font-semibold text-base bg-transparent">
-                        <SelectValue placeholder="Select State" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="karnataka">Karnataka</SelectItem>
-                        <SelectItem value="telangana">Telangana</SelectItem>
-                        <SelectItem value="delhi">Delhi</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+          <div className="flex items-center gap-4">
+            <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
+            <Select defaultValue="karnataka">
+                <SelectTrigger className="w-auto h-9 focus:ring-0 gap-1 font-semibold text-base">
+                    <SelectValue placeholder="Select State" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="karnataka">Karnataka</SelectItem>
+                    <SelectItem value="telangana">Telangana</SelectItem>
+                    <SelectItem value="delhi">Delhi</SelectItem>
+                </SelectContent>
+            </Select>
+          </div>
             <DialogClose asChild>
                 <Button variant="ghost" size="icon" className="h-8 w-8">
                     <X className="h-5 w-5" />
@@ -148,7 +148,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
         <ScrollArea className="flex-1 min-h-0">
             <div className="p-4 space-y-6">
                 <div className="space-y-4">
-                    <div className="grid grid-cols-4 gap-4">
+                     <div className="grid grid-cols-4 gap-4">
                         {layerGroups.karnataka.map(layer => (
                             <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
                                 <div className={cn(
@@ -168,46 +168,52 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
                     </div>
                 </div>
                 
-                <div className="space-y-4">
-                    <Badge 
-                        className="cursor-pointer text-base px-4 py-1"
-                        variant={activeCity === 'Bengaluru' ? 'default' : 'secondary'}
-                        onClick={() => setActiveCity('Bengaluru')}
-                    >
-                        Bengaluru
-                    </Badge>
-                    <div className="grid grid-cols-4 gap-4">
-                        {layerGroups.bengaluru.map(layer => (
-                            <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
-                                <div className={cn(
-                                    "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
-                                    selectedLayers.includes(layer.name) ? "border-primary bg-primary/10" : "border-transparent bg-muted"
-                                )}>
-                                    {layer.icon}
-                                    {layer.premium && (
-                                        <div className="absolute top-0 right-0 bg-background rounded-bl-lg rounded-tr-md p-0.5">
-                                            <Crown className="h-3 w-3 text-amber-500 fill-current" />
+                <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger className="p-0 hover:no-underline">
+                             <Badge 
+                                className="cursor-pointer text-base px-4 py-1"
+                                variant={activeCity === 'Bengaluru' ? 'default' : 'secondary'}
+                                onClick={() => setActiveCity('Bengaluru')}
+                            >
+                                Bengaluru
+                            </Badge>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-4">
+                            <div className="grid grid-cols-4 gap-4">
+                                {layerGroups.bengaluru.map(layer => (
+                                    <div key={layer.name} className="flex flex-col items-center gap-2 text-center" onClick={() => toggleLayer(layer.name)}>
+                                        <div className={cn(
+                                            "relative w-16 h-16 rounded-lg border-2 flex items-center justify-center cursor-pointer",
+                                            selectedLayers.includes(layer.name) ? "border-primary bg-primary/10" : "border-transparent bg-muted"
+                                        )}>
+                                            {layer.icon}
+                                            {layer.premium && (
+                                                <div className="absolute top-0 right-0 bg-background rounded-bl-lg rounded-tr-md p-0.5">
+                                                    <Crown className="h-3 w-3 text-amber-500 fill-current" />
+                                                </div>
+                                            )}
+                                            {selectedLayers.includes(layer.name) && (
+                                                <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-background">
+                                                    <Check className="h-3 w-3 text-white" />
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
-                                    {selectedLayers.includes(layer.name) && (
-                                        <div className="absolute -top-1 -right-1 bg-green-500 rounded-full p-0.5 border-2 border-background">
-                                            <Check className="h-3 w-3 text-white" />
+                                        <div className="flex items-center gap-1">
+                                            <span className="text-xs font-medium text-center">{layer.name}</span>
+                                            {layer.info && <Info className="h-3 w-3 text-muted-foreground" />}
                                         </div>
-                                    )}
-                                </div>
-                                <div className="flex items-center gap-1">
-                                    <span className="text-xs font-medium text-center">{layer.name}</span>
-                                    {layer.info && <Info className="h-3 w-3 text-muted-foreground" />}
-                                </div>
+                                    </div>
+                                ))}
                             </div>
-                        ))}
-                    </div>
-                </div>
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
             </div>
         </ScrollArea>
         <div className="p-4 border-t shrink-0 flex gap-4">
             <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
-            <Button className="w-full" onClick={handleApply}>
+            <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground" onClick={handleApply}>
                 Apply <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
         </div>
