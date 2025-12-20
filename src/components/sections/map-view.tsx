@@ -171,7 +171,10 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </Button>
     </div>
 
-       <div className="absolute bottom-4 left-4 z-10">
+       <div className={cn(
+           "absolute left-4 z-10 transition-all duration-300",
+           selectedPropertyId && !isMobile ? "bottom-[11rem]" : "bottom-4"
+       )}>
           <Popover>
             <TooltipProvider>
                 <Tooltip>
@@ -239,7 +242,10 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        )}
 
-       <div className="absolute bottom-4 right-4 z-10 flex flex-col items-center gap-2">
+       <div className={cn(
+           "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
+            selectedPropertyId && !isMobile ? "bottom-[11rem]" : "bottom-4"
+        )}>
             {!isMobile && (
                 <TooltipProvider>
                     <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
