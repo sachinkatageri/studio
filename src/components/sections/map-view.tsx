@@ -72,7 +72,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       <Image
         src={mapImages.hybrid}
         alt="Map of Bengaluru"
-        layout="fill"
+        fill
         objectFit="cover"
         className="z-0"
         data-ai-hint={mapHints.hybrid}
@@ -177,7 +177,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className={cn(
            "absolute left-4 z-10 transition-all duration-300",
-            selectedPropertyId && !isMobile ? "bottom-[9rem]" : "bottom-4"
+           "bottom-4",
+           isMobile && "bottom-20",
+           selectedPropertyId && !isMobile && "bottom-[9rem]"
        )}>
           <Popover>
             <TooltipProvider>
@@ -227,7 +229,9 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
        <div className={cn(
            "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
-            selectedPropertyId && !isMobile ? "bottom-[9rem]" : "bottom-4"
+            "bottom-4",
+            isMobile && "bottom-20",
+            selectedPropertyId && !isMobile && "bottom-[9rem]"
         )}>
             {!isMobile && (
                 <TooltipProvider>
