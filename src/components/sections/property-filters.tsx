@@ -84,7 +84,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
 
   return (
     <div className="flex flex-col h-full bg-card">
-      <div className="flex items-center justify-between gap-2 p-4 border-b shrink-0">
+      <div className="flex items-center justify-between gap-2 p-4 border-b shrink-0 sticky top-0 z-10 bg-card">
         <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" onClick={onBack}>
               <ArrowLeft className="h-5 w-5" />
