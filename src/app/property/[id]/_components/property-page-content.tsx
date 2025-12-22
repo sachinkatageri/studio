@@ -35,16 +35,16 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     return (
         <div className="md:hidden flex items-center justify-between gap-2 h-14 bg-background/80 backdrop-blur-sm px-2 fixed top-0 left-0 right-0 z-40 border-b">
             <div className='flex items-center gap-1 min-w-0'>
-                <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0">
-                    <ArrowLeft />
+                <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0 h-9 w-9">
+                    <ArrowLeft className="h-5 w-5" />
                 </Button>
-                <h1 className="text-base font-semibold truncate">{property.name}</h1>
+                <h1 className="text-sm font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="h-9 w-9">
                     <Search className="h-5 w-5" />
                 </Button>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="h-9 w-9">
                     <Share2 className="h-5 w-5" />
                 </Button>
             </div>

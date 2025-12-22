@@ -28,7 +28,7 @@ export default function Footer() {
 
   return (
     <footer className="md:hidden fixed bottom-0 z-40 w-full bg-background border-t shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
-      <div className="container mx-auto h-16 flex justify-around items-center">
+      <div className="container mx-auto h-14 flex justify-around items-center">
         {navItems.map((item) => (
           <Link
             key={item.id}

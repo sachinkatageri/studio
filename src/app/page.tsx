@@ -109,7 +109,7 @@ export default function Home() {
                         "bottom-20",
                          selectedPropertyId ? "bottom-[28rem]" : "bottom-20"
                     )}>
-                        <Button variant="secondary" className="shadow-lg">
+                        <Button variant="secondary" className="shadow-lg h-9 px-3">
                             <Menu className="mr-2 h-4 w-4" />
                             List View
                         </Button>

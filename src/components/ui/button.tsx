@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -49,7 +50,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       (child) => React.isValidElement(child) && child.type === Check
     );
 
-    const svgSize = hasCheckIcon ? "[&_svg]:size-4" : "[&_svg]:size-4";
+    const svgSize = hasCheckIcon ? "[&_svg]:size-4" : "md:[&_svg]:size-4 [&_svg]:size-5";
 
     return (
       <Comp
