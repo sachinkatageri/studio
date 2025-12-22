@@ -35,8 +35,12 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
     </Button>
 );
 
-const MultiSelectGrid = ({ options, selection, onToggle }: { options: string[], selection: string[], onToggle: (option: string) => void }) => (
-    <div className="grid grid-cols-3 gap-2">
+const MultiSelectGrid = ({ options, selection, onToggle, columns = 3 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
+    <div className={cn("grid gap-2", 
+        columns === 3 && "grid-cols-3",
+        columns === 4 && "grid-cols-4",
+        columns === 2 && "grid-cols-2"
+    )}>
         {options.map(option => (
             <ToggleButton key={option} selected={selection.includes(option)} onClick={() => onToggle(option)}>
                 {option}
@@ -45,8 +49,11 @@ const MultiSelectGrid = ({ options, selection, onToggle }: { options: string[], 
     </div>
 );
 
-const SingleSelectGrid = ({ options, selection, onSelect }: { options: string[], selection: string, onSelect: (option: string) => void }) => (
-     <div className="grid grid-cols-2 gap-2">
+const SingleSelectGrid = ({ options, selection, onSelect, columns = 2 }: { options: string[], selection: string, onSelect: (option: string) => void, columns?: number }) => (
+     <div className={cn("grid gap-2", 
+        columns === 3 && "grid-cols-3",
+        columns === 2 && "grid-cols-2"
+    )}>
         {options.map(option => (
             <ToggleButton key={option} selected={selection === option} onClick={() => onSelect(option)}>
                 {option}
@@ -62,12 +69,17 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [propertyType, setPropertyType] = useState<string[]>([]);
     const [propertyStatus, setPropertyStatus] = useState('Ready');
     const [furnishing, setFurnishing] = useState('Full');
+    const [parking, setParking] = useState<string[]>([]);
+
 
     const toggleBhkType = (bhk: string) => {
         setBhkType(prev => prev.includes(bhk) ? prev.filter(item => item !== bhk) : [...prev, bhk]);
     }
      const togglePropertyType = (type: string) => {
         setPropertyType(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
+    }
+     const toggleParking = (p: string) => {
+        setParking(prev => prev.includes(p) ? prev.filter(item => item !== p) : [...prev, p]);
     }
 
   return (
@@ -86,10 +98,10 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
         <div className="p-4 divide-y">
             <FilterSection title="Search Type">
                 <div className="flex bg-muted rounded-lg p-1">
-                    <Button variant="ghost" className="w-1/2 bg-background shadow-sm">
+                    <Button variant="ghost" className="w-1/2 bg-background shadow-sm text-sm">
                         <MapPin className="mr-2 h-4 w-4"/> Locality Search
                     </Button>
-                    <Button variant="ghost" className="w-1/2">
+                    <Button variant="ghost" className="w-1/2 text-sm">
                         <Train className="mr-2 h-4 w-4"/> Search along Metro
                     </Button>
                 </div>
@@ -130,6 +142,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     options={["Apartment", "Gated Community Villa", "Independent House", "Standalone Building"]}
                     selection={propertyType}
                     onToggle={togglePropertyType}
+                    columns={2}
                 />
             </FilterSection>
             
@@ -138,7 +151,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     <Slider defaultValue={[0, 10]} max={50} step={1} />
                     <div className="flex justify-between text-sm text-muted-foreground mt-2">
                         <span>₹0 Cr</span>
-                        <span>₹10 Cr</span>
+                        <span>₹10 Cr+</span>
                     </div>
                 </div>
             </FilterSection>
@@ -169,11 +182,11 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
             </FilterSection>
             
             <FilterSection title="Parking">
-                <div className="grid grid-cols-3 gap-2">
-                    <ToggleButton>1</ToggleButton>
-                    <ToggleButton>2</ToggleButton>
-                    <ToggleButton>3+</ToggleButton>
-                </div>
+                <MultiSelectGrid 
+                    options={["1", "2", "3+"]}
+                    selection={parking}
+                    onToggle={toggleParking}
+                />
             </FilterSection>
 
         </div>
