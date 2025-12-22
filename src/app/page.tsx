@@ -12,6 +12,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
 import { useRouter } from 'next/navigation';
 import { Drawer } from "vaul";
+import { Button } from '@/components/ui/button';
+import { X } from 'lucide-react';
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -22,6 +24,7 @@ export default function Home() {
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>('map');
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -53,6 +56,7 @@ export default function Home() {
     setSelectedPropertyId(propertyId);
     if (window.innerWidth < 768) { // md breakpoint
       setMobileView('map');
+      setIsDrawerOpen(false);
     }
   }
   
@@ -72,7 +76,7 @@ export default function Home() {
 
   if (isMobile) {
     return (
-      <Drawer.Root shouldScaleBackground>
+      <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
           <div className="flex-1 flex flex-col overflow-hidden">
@@ -94,9 +98,17 @@ export default function Home() {
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0">
-            <div className="p-4 bg-background rounded-t-[10px] flex-1">
-              <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-muted-foreground/20 mb-8" />
-              <div className="max-w-md mx-auto h-full">
+            <div className="p-4 bg-background rounded-t-[10px] flex-1 flex flex-col">
+              <div className="flex items-center justify-between mb-4">
+                <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-muted-foreground/20" />
+                <Drawer.Close asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <X className="h-4 w-4" />
+                  </Button>
+                </Drawer.Close>
+              </div>
+
+              <div className="flex-1 overflow-y-auto">
                 <PropertyList 
                   onSelectProperty={handleSelectProperty} 
                   selectedPropertyId={selectedPropertyId} 
