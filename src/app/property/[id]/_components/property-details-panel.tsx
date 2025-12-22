@@ -83,10 +83,6 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
     )
 }
 
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-);
-
 const PricingDetails = ({ property }: { property: Property}) => (
     // @ts-ignore
     property.priceBreakdown && (

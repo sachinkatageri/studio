@@ -27,10 +27,6 @@ type PropertyPageContentProps = {
     property: typeof properties[0];
 }
 
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-);
-
 const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
     const router = useRouter();
     return (
@@ -57,7 +53,7 @@ const MobileFooter = () => (
         <div className="flex gap-2">
             <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
             <Button className="w-full h-11 rounded-lg">
-                <WhatsAppIcon />
+                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
                 <span className="ml-2">WhatsApp</span>
             </Button>
         </div>

@@ -20,10 +20,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-);
-
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
         <Image src="https://c.housingcdn.com/demand/s/client/common/assets/app-store.10009972.png" alt="Download on the App Store" width={120} height={40} />

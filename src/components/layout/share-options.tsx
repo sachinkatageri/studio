@@ -18,11 +18,6 @@ import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Facebook, Twitter, Linkedin, Copy, Share2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import Image from "next/image";
-
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
-);
 
 const ShareContent = ({ url }: { url: string }) => {
     const { toast } = useToast();
@@ -36,7 +31,6 @@ const ShareContent = ({ url }: { url: string }) => {
     };
 
     const shareOptions = [
-        { name: 'WhatsApp', icon: <WhatsAppIcon />, href: `https://wa.me/?text=${encodeURIComponent(url)}` },
         { name: 'Facebook', icon: <Facebook className="h-6 w-6" />, href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}` },
         { name: 'Twitter', icon: <Twitter className="h-6 w-6" />, href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}` },
         { name: 'LinkedIn', icon: <Linkedin className="h-6 w-6" />, href: `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}` },

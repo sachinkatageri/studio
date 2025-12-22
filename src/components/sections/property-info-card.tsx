@@ -19,10 +19,6 @@ import { Check } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { ShareOptions } from '../layout/share-options';
 
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-);
-
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -236,7 +232,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <Tooltip>
                             <TooltipTrigger asChild>
                             <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
-                                <WhatsAppIcon />
+                                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
                             </Button>
                             </TooltipTrigger>
                             <TooltipContent>

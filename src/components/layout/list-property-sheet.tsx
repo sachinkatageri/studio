@@ -28,9 +28,6 @@ interface ListPropertySheetProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
-);
 
 const ListPropertyContent = () => (
     <div className="p-6 text-center flex flex-col items-center justify-center flex-1">
@@ -41,7 +38,7 @@ const ListPropertyContent = () => (
         </p>
         <Button asChild size="lg" className="w-full max-w-xs bg-green-500 hover:bg-green-600 text-white text-base font-bold h-14">
             <Link href="https://wa.me/919876543210" target="_blank">
-                <WhatsAppIcon />
+                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
                 <span className="ml-3">Contact on WhatsApp</span>
             </Link>
         </Button>
