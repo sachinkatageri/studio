@@ -79,7 +79,7 @@ export default function Home() {
       <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
-          <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden pt-14">
             <main className="relative flex-1">
               <MapView 
                 isSidebarOpen={isSidebarOpen} 
@@ -175,3 +175,5 @@ export default function Home() {
       </div>
   );
 }
+
+    

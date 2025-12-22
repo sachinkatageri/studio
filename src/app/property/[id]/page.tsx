@@ -11,8 +11,10 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="bg-background">
+    <div className="bg-background pt-14">
       <PropertyPageContent property={property} />
     </div>
   );
 }
+
+    

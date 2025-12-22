@@ -215,7 +215,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   return (
     <>
-    <header className="bg-background absolute top-0 z-40 w-full border-b">
+    <header className="bg-background fixed top-0 z-40 w-full border-b">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -297,3 +297,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
