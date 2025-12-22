@@ -62,7 +62,7 @@ function SurveyIcon() {
 function ListingsIcon() {
      return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="4" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" stroke-dasharray="4 4"/>
+            <rect x="4" y="4" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4"/>
             <circle cx="10" cy="10" r="1.5" fill="currentColor"/>
             <circle cx="16" cy="12" r="1.5" fill="currentColor"/>
             <circle cx="22" cy="10" r="1.5" fill="currentColor"/>
@@ -286,5 +286,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
     </Dialog>
   );
 }
+
+    
 
     
