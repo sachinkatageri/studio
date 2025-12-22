@@ -150,21 +150,21 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
 
             <ScrollArea className="flex-1 min-h-0">
                 <TabsContent value="all" className="mt-0">
-                    <div className="px-0">
+                    <div>
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="commercial" className="mt-0">
-                    <div className="px-0">
+                    <div>
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="residential" className="mt-0">
-                     <div className="px-0">
+                     <div>
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
