@@ -48,6 +48,7 @@ const propertyPositions = [
 export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView }: MapViewProps) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
+  const [isGpsActive, setIsGpsActive] = useState(false);
   const isMobile = useIsMobile();
 
   const mapImages = {
@@ -64,6 +65,11 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
 
   const handleDeclarationProceed = () => {
     setIsLayersDialogOpen(true);
+  }
+
+  const toggleGps = () => {
+    setIsGpsActive(prev => !prev);
+    // TODO: Add logic to actually get and track user location
   }
 
   return (
@@ -170,23 +176,28 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                 <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
                     <Tooltip>
                         <TooltipTrigger asChild>
+                            <Button 
+                                variant="ghost" 
+                                size="icon" 
+                                className="h-12 w-12" 
+                                onClick={toggleGps}
+                            >
+                               <LocateFixed className={cn(isGpsActive && "text-green-500")} />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>My Location</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Separator />
+                     <Tooltip>
+                        <TooltipTrigger asChild>
                             <Button variant="ghost" size="icon" className="h-12 w-12" onClick={handleLayersClick}>
                                 <Layers />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent side="left">
                             <p>Map Layers</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Separator />
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-12 w-12">
-                               <LocateFixed />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>My Location</p>
                         </TooltipContent>
                     </Tooltip>
                 </div>
