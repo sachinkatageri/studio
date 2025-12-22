@@ -69,15 +69,14 @@ export default function Home() {
 
 
   return (
-      <div className="flex flex-col h-screen bg-background">
+      <div className="flex flex-col h-screen bg-background md:h-auto">
         <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
-        <div className="flex flex-col flex-1 md:flex-row overflow-hidden">
-          <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
               "md:flex",
-              isSidebarOpen ? "w-[30%]" : "w-0",
-              mobileView === 'list' ? 'flex w-full' : 'hidden'
+              isSidebarOpen ? "w-full md:w-[30%]" : "w-0",
+              mobileView === 'list' ? 'flex h-full' : 'hidden'
             )}>
               {sidebarView === 'list' 
                   ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
@@ -85,9 +84,9 @@ export default function Home() {
               }
             </aside>
             <main className={cn(
-              "relative transition-all duration-300",
+              "relative transition-all duration-300 flex-1",
               "md:block",
-              isSidebarOpen ? "w-[70%]" : "w-full",
+              isSidebarOpen ? "md:w-[70%]" : "w-full",
               mobileView === 'map' ? 'block w-full' : 'hidden'
               )}>
               <MapView 
@@ -102,7 +101,6 @@ export default function Home() {
                 setMobileView={setMobileView}
               />
             </main>
-          </div>
         </div>
         <Footer />
       </div>
