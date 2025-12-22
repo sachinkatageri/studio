@@ -65,6 +65,7 @@ const SingleSelectGrid = ({ options, selection, onSelect, columns = 2 }: { optio
 
 
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
+    const [searchType, setSearchType] = useState<'locality' | 'metro'>('locality');
     const [lookingFor, setLookingFor] = useState('Full House');
     const [bhkType, setBhkType] = useState<string[]>([]);
     const [propertyType, setPropertyType] = useState<string[]>([]);
@@ -99,16 +100,33 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
         <div className="p-4 divide-y">
             <FilterSection title="Search Type">
                 <div className="flex bg-muted rounded-lg p-1 gap-1">
-                    <Button variant="ghost" className="w-1/2 bg-background shadow-sm text-xs px-2 h-auto py-2">
+                    <Button 
+                        variant="ghost" 
+                        className={cn(
+                            "w-1/2 text-xs px-2 h-auto py-2",
+                            searchType === 'locality' ? 'bg-background shadow-sm' : ''
+                        )}
+                        onClick={() => setSearchType('locality')}
+                    >
                         <MapPin className="mr-2 h-4 w-4"/> Locality
                     </Button>
-                    <Button variant="ghost" className="w-1/2 text-xs px-2 h-auto py-2">
+                    <Button 
+                        variant="ghost" 
+                        className={cn(
+                            "w-1/2 text-xs px-2 h-auto py-2",
+                            searchType === 'metro' ? 'bg-background shadow-sm' : ''
+                        )}
+                        onClick={() => setSearchType('metro')}
+                    >
                         <Train className="mr-2 h-4 w-4"/> Along Metro
                     </Button>
                 </div>
                 <div className="relative mt-3">
                     <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input placeholder="Search upto 3 localities or landmarks" className="pl-10 pr-10" />
+                    <Input 
+                        placeholder={searchType === 'locality' ? "Search upto 3 localities or landmarks" : "Search for metro stations"}
+                        className="pl-10 pr-10" 
+                    />
                      <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9">
                         <Locate className="h-5 w-5" />
                     </Button>
@@ -135,7 +153,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     options={["1 RK", "1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK"]}
                     selection={bhkType}
                     onToggle={toggleBhkType}
-                    columns={4}
+                    columns={3}
                 />
             </FilterSection>
 
