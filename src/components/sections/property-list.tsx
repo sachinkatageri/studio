@@ -47,19 +47,19 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
         </div>
         <div className="flex flex-col gap-1 flex-1">
             <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-base leading-tight">{property.name}</h3>
+                <h3 className="font-semibold text-sm leading-tight">{property.name}</h3>
                 <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
             </div>
-          <p className="text-sm text-muted-foreground">{property.location}</p>
+          <p className="text-xs text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
-          {property.size && <p className="text-sm text-muted-foreground">Size: {property.size} sq. yd.</p>}
+          {property.size && <p className="text-xs text-muted-foreground">Size: {property.size} sq. yd.</p>}
           {property.price && (
             <div className="flex items-end gap-2 mt-1">
-              <p className="font-bold text-primary text-base">
+              <p className="font-bold text-primary text-sm">
                   {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
               </p>
               {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
-                 <p className="text-sm text-muted-foreground line-through">
+                 <p className="text-xs text-muted-foreground line-through">
                     ₹{beforePrice.toLocaleString('en-IN')}
                 </p>
               )}
@@ -102,7 +102,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
         <div className="flex flex-col h-full bg-card">
             <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
                 <div className="p-4 pb-0 border-b shrink-0">
-                    <h2 className="text-xl font-bold">List View</h2>
+                    <h2 className="text-lg font-bold">List View</h2>
                     <TabsList className="grid w-full grid-cols-3 mt-4">
                         <TabsTrigger value="all">All</TabsTrigger>
                         <TabsTrigger value="commercial">Commercial</TabsTrigger>
@@ -127,7 +127,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     </ScrollArea>
 
                     <div className="flex justify-between items-center pb-2">
-                        <p className="text-sm text-muted-foreground">6 properties found</p>
+                        <p className="text-xs text-muted-foreground">6 properties found</p>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" size="sm">

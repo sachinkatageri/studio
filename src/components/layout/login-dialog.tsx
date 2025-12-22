@@ -43,12 +43,12 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
               </div>
               <Input id="phone" placeholder="" className="rounded-l-none" />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               We'll send you a 6-digit code to verify your number.
             </p>
           </div>
         </div>
-        <Button type="submit" size="lg" className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-base">
+        <Button type="submit" size="lg" className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
           Send OTP <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </DialogContent>

@@ -100,46 +100,46 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 </div>
                 <div className="absolute bottom-0 left-0 p-4">
                     <div className="flex items-center gap-2">
-                        <h2 className="text-2xl text-white font-bold">
+                        <h2 className="text-xl text-white font-bold">
                         {property.name}
                         </h2>
                         <Image
                         src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png"
                         alt="Verified"
-                        width={24}
-                        height={24}
+                        width={20}
+                        height={20}
                         />
                     </div>
-                    <p className="text-neutral-300">{property.location}</p>
+                    <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
             </div>
             <ScrollArea className="flex-1 min-h-0">
-                <div className="space-y-4 p-4">
+                <div className="space-y-4 p-4 text-sm">
                     <div className="flex justify-between items-center">
                     <div>
                         {property.price ? (
                             <div className="flex items-end gap-2">
-                                <p className="text-2xl font-bold text-primary">
+                                <p className="text-xl font-bold text-primary">
                                     {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
                                 </p>
                                 {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
-                                    <p className="text-base text-muted-foreground line-through">
+                                    <p className="text-xs text-muted-foreground line-through">
                                         ₹{beforePrice.toLocaleString('en-IN')}
                                     </p>
                                 )}
                             </div>
                         ) : (
-                        <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
+                        <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
                         )}
                     </div>
                     {property.status && (
-                        <Badge variant="secondary" className="text-base">
+                        <Badge variant="secondary">
                         {property.status}
                         </Badge>
                     )}
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                     <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                         <span className="font-semibold">{property.rating}</span>
@@ -157,14 +157,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     </div>
 
                     {property.size && (
-                    <p className="text-base">
+                    <p>
                         <span className="font-semibold">Size:</span> {property.size} sq.
                         yd.
                     </p>
                     )}
 
                     <div>
-                    <h4 className="text-base font-semibold mb-2">Amenities</h4>
+                    <h4 className="font-semibold mb-2">Amenities</h4>
                     <div className="grid grid-cols-4 gap-4">
                         {property.amenities?.slice(0, 4).map((amenity: string) => (
                         <div
@@ -183,9 +183,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     </div>
                     </div>
 
-                    <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
+                    <div className="text-xs text-muted-foreground space-y-2 p-3 border rounded-lg">
                     <div className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                         <div>
                         <p className="text-foreground font-semibold">
                             Preliminary verification done.
@@ -199,8 +199,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </Button>
                         </div>
                     </div>
-                    <div className="text-center border-t pt-4 mt-4">
-                        <p className="text-xs text-red-600 mb-2">
+                    <div className="text-center border-t pt-3 mt-3">
+                        <p className="text-red-600 mb-2">
                         The land location with survey number could not be verified due
                         to unavailability of cadastral maps.
                         </p>
@@ -222,8 +222,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="h-14 w-14 rounded-lg">
-                                <Phone className="h-6 w-6" />
+                            <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
+                                <Phone className="h-5 w-5" />
                             </Button>
                             </TooltipTrigger>
                             <TooltipContent>
@@ -232,7 +232,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </Tooltip>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="h-14 w-14 rounded-lg">
+                            <Button variant="outline" size="icon" className="h-12 w-12 rounded-lg">
                                 <WhatsAppIcon />
                             </Button>
                             </TooltipTrigger>
@@ -243,7 +243,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </TooltipProvider>
                         <Button
                         variant="default"
-                        className="flex-1 text-lg h-14 rounded-lg"
+                        className="flex-1 text-base h-12 rounded-lg"
                         onClick={() => onViewDetails(property.id)}
                         >
                         View Details
