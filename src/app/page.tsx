@@ -98,8 +98,8 @@ export default function Home() {
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40 z-50" />
           <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0 z-50">
-            <div className="p-4 bg-background rounded-t-[10px] flex-1 flex flex-col">
-              <div className="flex items-center justify-between mb-4">
+            <div className="p-0 bg-background rounded-t-[10px] flex-1 flex flex-col">
+              <div className="p-4 flex items-center justify-between mb-0 border-b">
                 <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-muted-foreground/20" />
                 <Drawer.Close asChild>
                   <Button variant="ghost" size="icon" className="h-8 w-8">
