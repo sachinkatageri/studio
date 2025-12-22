@@ -40,7 +40,7 @@ const MultiSelectGrid = ({ options, selection, onToggle, columns = 4 }: { option
         columns === 4 && "grid-cols-4",
         columns === 3 && "grid-cols-3",
         columns === 2 && "grid-cols-2",
-        columns === 1 && "grid-cols-1" // Added for single column layout
+        columns === 1 && "grid-cols-1"
     )}>
         {options.map(option => (
             <ToggleButton key={option} selected={selection.includes(option)} onClick={() => onToggle(option)}>
@@ -98,11 +98,11 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
       <ScrollArea className="flex-1 min-h-0">
         <div className="p-4 divide-y">
             <FilterSection title="Search Type">
-                <div className="flex flex-col sm:flex-row bg-muted rounded-lg p-1 gap-1">
-                    <Button variant="ghost" className="w-full sm:w-1/2 bg-background shadow-sm text-sm">
+                <div className="flex bg-muted rounded-lg p-1 gap-1">
+                    <Button variant="ghost" className="w-1/2 bg-background shadow-sm text-xs px-2 h-auto py-2">
                         <MapPin className="mr-2 h-4 w-4"/> Locality Search
                     </Button>
-                    <Button variant="ghost" className="w-full sm:w-1/2 text-sm">
+                    <Button variant="ghost" className="w-1/2 text-xs px-2 h-auto py-2">
                         <Train className="mr-2 h-4 w-4"/> Search along Metro
                     </Button>
                 </div>
