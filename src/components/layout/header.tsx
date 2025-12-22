@@ -213,7 +213,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       <div className="md:hidden px-4 pb-2 bg-transparent absolute top-14 left-0 right-0 z-20">
+       <div className="md:hidden px-4 pt-2 pb-2 bg-transparent absolute top-14 left-0 right-0 z-20">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
