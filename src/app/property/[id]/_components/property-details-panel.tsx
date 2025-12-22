@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User, Coffee } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User, Coffee, PlusCircle } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,10 +17,12 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
+import { allAmenities } from '@/lib/amenities';
 
 type Property = typeof properties[0];
 
-const amenityIcons: { [key: string]: React.ReactNode } = {
+export const amenityIcons: { [key: string]: React.ReactNode } = {
     'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
     'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
     'Power Backup': <Zap className="h-6 w-6 text-primary" />,
@@ -46,21 +48,39 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 )
 
 
-const PropertyAmenities = ({ property }: { property: Property}) => (
-    <div id="amenities">
-        <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-            {property.amenities.map(amenity => (
-                <div key={amenity} className="flex flex-col items-center text-center gap-2">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted">
-                        {amenityIcons[amenity] || <Check className="h-6 w-6 text-primary" />}
+const PropertyAmenities = ({ property }: { property: Property}) => {
+    const [isAmenitiesDialogOpen, setIsAmenitiesDialogOpen] = useState(false);
+    const amenitiesToShow = allAmenities.slice(0, 10);
+    const remainingCount = allAmenities.length - amenitiesToShow.length;
+
+    return (
+        <div id="amenities">
+            <h2 className="text-xl font-semibold mb-4">Amenities</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {amenitiesToShow.map(amenity => (
+                    <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
+                        <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted">
+                            {amenity.icon ? <amenity.icon className="h-6 w-6 text-primary" /> : <Check className="h-6 w-6 text-primary" />}
+                        </div>
+                        <span className="text-sm font-medium">{amenity.name}</span>
                     </div>
-                    <span className="text-sm font-medium">{amenity}</span>
-                </div>
-            ))}
+                ))}
+                 {remainingCount > 0 && (
+                    <div className="flex flex-col items-center text-center gap-2">
+                        <button 
+                            onClick={() => setIsAmenitiesDialogOpen(true)}
+                            className="flex items-center justify-center h-16 w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+                        >
+                            <PlusCircle className="h-6 w-6 text-primary" />
+                        </button>
+                        <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-sm font-medium hover:underline">+{remainingCount} More</button>
+                    </div>
+                 )}
+            </div>
+            <AmenitiesDialog open={isAmenitiesDialogOpen} onOpenChange={setIsAmenitiesDialogOpen} />
         </div>
-    </div>
-)
+    )
+}
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
