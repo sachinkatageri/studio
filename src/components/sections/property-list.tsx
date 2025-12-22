@@ -10,7 +10,9 @@ import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { Button } from '../ui/button';
-import { Map } from 'lucide-react';
+import { ArrowUpDown, Map } from 'lucide-react';
+import { SortSheet } from '../layout/sort-sheet';
+import { useState } from 'react';
 
 
 const commercialProperties = properties.filter(p => p.type === 'Commercial');
@@ -76,7 +78,17 @@ interface PropertyListProps {
   setMobileView: (view: MobileView) => void;
 }
 
+const quickFilterOptions = ['No Brokerage', 'Verified', 'Video'];
+
 export default function PropertyList({ onSelectProperty, selectedPropertyId, setMobileView }: PropertyListProps) {
+    const [quickFilters, setQuickFilters] = useState<string[]>([]);
+
+    const toggleQuickFilter = (filter: string) => {
+        setQuickFilters(prev => 
+            prev.includes(filter) ? prev.filter(f => f !== filter) : [...prev, filter]
+        );
+    }
+    
     return (
     <div className="flex flex-col h-full bg-card">
       <div className="p-4 border-b flex flex-col flex-1 min-h-0">
@@ -87,7 +99,28 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
             <div className="py-4">
-                <p className="text-sm text-muted-foreground">6 properties found</p>
+                <div className="flex justify-between items-center">
+                    <p className="text-sm text-muted-foreground">6 properties found</p>
+                    <SortSheet>
+                        <Button variant="ghost" size="sm">
+                            <ArrowUpDown className="mr-2 h-4 w-4" />
+                            Sort by
+                        </Button>
+                    </SortSheet>
+                </div>
+                 <div className="mt-2 flex flex-wrap gap-2">
+                    {quickFilterOptions.map(filter => (
+                        <Button 
+                            key={filter} 
+                            variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
+                            size="sm"
+                            onClick={() => toggleQuickFilter(filter)}
+                            className="rounded-full h-8"
+                        >
+                            {filter}
+                        </Button>
+                    ))}
+                </div>
             </div>
             <ScrollArea className="flex-1 -mx-4">
                 <TabsContent value="all" className="mt-0">

@@ -9,11 +9,15 @@ import {
   SheetTitle,
   SheetTrigger,
   SheetDescription,
+  SheetClose
 } from "@/components/ui/sheet";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from '../ui/button';
+import { X } from 'lucide-react';
 
 const sortOptions = [
+    { value: 'relevance', label: 'Relevance' },
     { value: 'builtup-area', label: 'Builtup Area High/Low' },
     { value: 'price-high-low', label: 'Price High/Low' },
     { value: 'price-low-high', label: 'Price Low/High' },
@@ -21,7 +25,7 @@ const sortOptions = [
 ];
 
 export function SortSheet({ children }: { children: React.ReactNode }) {
-  const [selectedValue, setSelectedValue] = useState('builtup-area');
+  const [selectedValue, setSelectedValue] = useState('relevance');
 
   return (
     <Sheet>
@@ -29,9 +33,13 @@ export function SortSheet({ children }: { children: React.ReactNode }) {
         {children}
       </SheetTrigger>
       <SheetContent side="bottom" className="rounded-t-lg">
-        <SheetHeader className="text-left">
+        <SheetHeader className="flex-row items-center justify-between text-left">
           <SheetTitle>Sort by</SheetTitle>
-          <SheetDescription className="sr-only">Select a sort option for the property list.</SheetDescription>
+           <SheetClose asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <X className="h-5 w-5" />
+                </Button>
+            </SheetClose>
         </SheetHeader>
         <RadioGroup value={selectedValue} onValueChange={setSelectedValue} className="mt-4 space-y-1">
           {sortOptions.map(option => (
