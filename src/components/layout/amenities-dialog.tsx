@@ -30,7 +30,7 @@ const groupedAmenities = allAmenities.reduce((acc, amenity) => {
 
 function AmenitiesContent() {
   return (
-    <ScrollArea className="h-[60vh]">
+    <ScrollArea className="h-full">
         <div className="p-6 pt-0 space-y-6">
             {Object.entries(groupedAmenities).map(([category, amenities]) => (
                 <div key={category}>
