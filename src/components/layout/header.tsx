@@ -245,12 +245,12 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       <div className="md:hidden px-4 pt-2 pb-4">
+       <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
                 <Input
                     placeholder={placeholder}
-                    className="pl-10 pr-20 h-12 bg-background/80 backdrop-blur-sm"
+                    className="pl-10 pr-20 h-12 bg-background/80 backdrop-blur-sm shadow-lg"
                 />
                 <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
                     <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
