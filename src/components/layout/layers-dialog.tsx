@@ -106,19 +106,8 @@ function HighwayIcon() {
 }
 
 
-const LayersContent = ({ onApply }: { onApply: () => void }) => {
-  const [selectedLayers, setSelectedLayers] = useState<string[]>(['Listings']);
-  const [activeCity, setActiveCity] = useState<string>('Bengaluru');
-
-  const toggleLayer = (name: string) => {
-    setSelectedLayers(prev => 
-        prev.includes(name) ? prev.filter(l => l !== name) : [...prev, name]
-    )
-  }
-
-  const handleClear = () => {
-      setSelectedLayers([]);
-  }
+const LayersContent = ({ onApply, onClear, selectedLayers, toggleLayer }: { onApply: () => void; onClear: () => void; selectedLayers: string[]; toggleLayer: (name: string) => void; }) => {
+    const [activeCity, setActiveCity] = useState<string>('Bengaluru');
 
   return (
     <>
@@ -190,8 +179,8 @@ const LayersContent = ({ onApply }: { onApply: () => void }) => {
             </Accordion>
         </div>
       </ScrollArea>
-      <div className="p-4 border-t shrink-0 flex gap-4">
-          <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
+      <div className="p-4 border-t shrink-0 flex gap-4 md:hidden">
+          <Button variant="outline" className="w-full" onClick={onClear}>Clear all</Button>
           <Button className="w-full" onClick={onApply} disabled={selectedLayers.length === 0}>
               Apply <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -203,6 +192,17 @@ const LayersContent = ({ onApply }: { onApply: () => void }) => {
 
 export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
   const isMobile = useIsMobile();
+  const [selectedLayers, setSelectedLayers] = useState<string[]>(['Listings']);
+
+  const toggleLayer = (name: string) => {
+    setSelectedLayers(prev => 
+        prev.includes(name) ? prev.filter(l => l !== name) : [...prev, name]
+    )
+  }
+
+  const handleClear = () => {
+      setSelectedLayers([]);
+  }
 
   const handleApply = () => {
       onOpenChange(false);
@@ -233,7 +233,12 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
             </DrawerClose>
           </DrawerHeader>
           <div className="flex-1 flex flex-col min-h-0">
-            <LayersContent onApply={handleApply} />
+            <LayersContent 
+              onApply={handleApply}
+              onClear={handleClear}
+              selectedLayers={selectedLayers}
+              toggleLayer={toggleLayer}
+             />
           </div>
         </DrawerContent>
       </Drawer>
@@ -263,8 +268,23 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
                 </Button>
             </DialogClose>
         </DialogHeader>
-        <LayersContent onApply={handleApply} />
+        <div className="flex-1 flex flex-col min-h-0">
+          <LayersContent 
+              onApply={handleApply}
+              onClear={handleClear}
+              selectedLayers={selectedLayers}
+              toggleLayer={toggleLayer}
+            />
+        </div>
+        <div className="p-4 border-t shrink-0 flex gap-4">
+          <Button variant="outline" className="w-full" onClick={handleClear}>Clear all</Button>
+          <Button className="w-full" onClick={handleApply} disabled={selectedLayers.length === 0}>
+              Apply <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+      </div>
       </DialogContent>
     </Dialog>
   );
 }
+
+    
