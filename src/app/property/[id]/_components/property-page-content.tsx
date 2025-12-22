@@ -38,7 +38,7 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                 <Button variant="ghost" size="icon" onClick={() => router.back()} className="shrink-0">
                     <ArrowLeft />
                 </Button>
-                <h1 className="text-lg font-semibold truncate">{property.name}</h1>
+                <h1 className="text-base font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
                 <Button variant="ghost" size="icon">
@@ -55,8 +55,8 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
 const MobileFooter = () => (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t p-2">
         <div className="flex gap-2">
-            <Button variant="outline" className="w-full h-12 rounded-lg">Contact</Button>
-            <Button className="w-full h-12 rounded-lg">
+            <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
+            <Button className="w-full h-11 rounded-lg">
                 <WhatsAppIcon />
                 <span className="ml-2">WhatsApp</span>
             </Button>

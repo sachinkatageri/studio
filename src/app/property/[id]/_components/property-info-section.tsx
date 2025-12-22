@@ -24,10 +24,10 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <div className="flex items-center gap-2">
-                           <h1 className="text-3xl font-bold">{property.name}</h1>
+                           <h1 className="text-xl md:text-3xl font-bold">{property.name}</h1>
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={28} height={28} />
                         </div>
-                        <p className="text-muted-foreground mt-1">{property.location}</p>
+                        <p className="text-muted-foreground mt-1 text-sm md:text-base">{property.location}</p>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
                         <Button variant="outline" size="icon">
@@ -42,11 +42,11 @@ export function PropertyInfoSection({ property }: { property: Property }) {
             
                 <div className="mt-4 flex flex-wrap gap-4 items-center">
                     <div className="flex items-end gap-2">
-                        <p className="text-2xl font-bold text-primary">
+                        <p className="text-xl md:text-2xl font-bold text-primary">
                             {property.price && !property.price.startsWith('Starting') ? `₹${property.price}` : property.price}
                         </p>
                         {property.price && !property.price.startsWith('Starting') && offerPrice > 0 && (
-                            <p className="text-base text-muted-foreground line-through">
+                            <p className="text-sm md:text-base text-muted-foreground line-through">
                                 ₹{beforePrice.toLocaleString('en-IN')}
                             </p>
                         )}
@@ -55,7 +55,7 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                     {property.type === 'Commercial' && <Badge>Zero Brokerage</Badge>}
                 </div>
 
-                <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-6 text-sm md:text-base">
                     <div className="flex flex-col">
                         <span className="text-sm text-muted-foreground">Area</span>
                         {/* @ts-ignore */}

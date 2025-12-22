@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogClose
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -73,12 +74,13 @@ export function ListPropertySheet({ open, onOpenChange }: ListPropertySheetProps
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle className="sr-only">List Your Property</DialogTitle>
-          <DialogDescription className="sr-only">
+        <DialogHeader className="hidden">
+          <DialogTitle>List Your Property</DialogTitle>
+          <DialogDescription>
             Contact us to list your land or property for free on BuildersInfo.
           </DialogDescription>
         </DialogHeader>
+        <DialogClose className="md:hidden" />
         <div className="-m-6">
             <ListPropertyContent />
         </div>
