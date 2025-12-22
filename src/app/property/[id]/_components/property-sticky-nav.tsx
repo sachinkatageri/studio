@@ -7,7 +7,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 const navItems = [
-    { label: 'Info', href: '#info' },
     { label: 'Overview', href: '#overview' },
     { label: 'Amenities', href: '#amenities' },
     { label: 'Price Details', href: '#price-estimate' },
@@ -22,7 +21,7 @@ const navItems = [
 
 export function PropertyStickyNav() {
     const [isSticky, setIsSticky] = useState(false);
-    const [activeId, setActiveId] = useState('info');
+    const [activeId, setActiveId] = useState('overview');
     const scrollViewportRef = useRef<HTMLDivElement>(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
@@ -40,7 +39,7 @@ export function PropertyStickyNav() {
                 break;
             }
         }
-        setActiveId(currentSectionId || 'info');
+        setActiveId(currentSectionId || 'overview');
 
         const topNavHeight = 56; // main header height (h-14)
         

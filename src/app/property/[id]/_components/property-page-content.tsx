@@ -19,6 +19,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/layout/header';
+import { PropertyInfoSection } from './property-info-section';
+import { Separator } from '@/components/ui/separator';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -97,17 +99,22 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 </div>
             </main>
             
-            {!isMobile && <PropertyStickyNav />}
-
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
-                 
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     <div className="lg:col-span-2">
-                        <PropertyDetailsPanel property={property} />
+                        <PropertyInfoSection property={property} />
                     </div>
                     <div className="hidden lg:block">
                         <PropertyContactForm />
                     </div>
+                </div>
+            </div>
+
+            {!isMobile && <PropertyStickyNav />}
+
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
+                <div className="lg:col-span-2">
+                    <PropertyDetailsPanel property={property} />
                 </div>
 
                 <div className="mt-16">
