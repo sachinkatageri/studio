@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
@@ -77,7 +77,7 @@ interface PropertyListProps {
   setMobileView: (view: MobileView) => void;
 }
 
-const quickFilterOptions = ['Lands', 'Plots', 'Owner Listed', 'Last Month'];
+const quickFilterOptions = ['Lands', 'Plots', 'Owner Listed', 'Last Month', 'No Brokerage', 'Verified', 'Video'];
 const sortOptions = [
     { value: 'uploaded-date', label: 'Uploaded Date (Latest)' },
     { value: 'price-low-high', label: 'Price (low to high)' },
@@ -90,7 +90,7 @@ const sortOptions = [
 
 
 export default function PropertyList({ onSelectProperty, selectedPropertyId, setMobileView }: PropertyListProps) {
-    const [quickFilters, setQuickFilters] = useState<string[]>(['Lands', 'Plots']);
+    const [quickFilters, setQuickFilters] = useState<string[]>([]);
 
     const toggleQuickFilter = (filter: string) => {
         setQuickFilters(prev => 
@@ -100,7 +100,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     
     return (
     <div className="flex flex-col h-full bg-card">
-      <div className="p-4 border-b flex flex-col flex-1 min-h-0">
+      <div className="p-4 pb-0 border-b flex flex-col flex-1 min-h-0">
           <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
             <div className='flex items-center justify-between'>
                 <h2 className="text-xl font-bold">List View</h2>
@@ -110,23 +110,26 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     <TabsTrigger value="residential">Residential</TabsTrigger>
                 </TabsList>
             </div>
-             <div className="flex flex-wrap gap-2 my-4">
-                {quickFilterOptions.map(filter => (
-                    <Button 
-                        key={filter} 
-                        variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
-                        size="sm"
-                        onClick={() => toggleQuickFilter(filter)}
-                        className="rounded-full h-8"
-                    >
-                        {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
-                        {filter}
-                    </Button>
-                ))}
-            </div>
+             <ScrollArea className="w-full whitespace-nowrap py-4">
+                <div className="flex gap-2">
+                    {quickFilterOptions.map(filter => (
+                        <Button 
+                            key={filter} 
+                            variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
+                            size="sm"
+                            onClick={() => toggleQuickFilter(filter)}
+                            className="rounded-full h-8"
+                        >
+                            {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
+                            {filter}
+                        </Button>
+                    ))}
+                </div>
+                <ScrollBar orientation="horizontal" className="invisible" />
+            </ScrollArea>
 
             <div className="flex justify-between items-center mb-2">
-                <p className="text-sm text-muted-foreground">36 listings</p>
+                <p className="text-sm text-muted-foreground">6 properties found</p>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="sm">
