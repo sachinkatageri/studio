@@ -23,6 +23,7 @@ import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
 import { LayersDialog } from '../layout/layers-dialog';
+import { Drawer } from 'vaul';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -154,17 +155,19 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </Button>
     </div>
 
-       {isMobile && setMobileView && (
-        <div className={cn(
-             "absolute left-4 z-10 transition-all duration-300",
-             "bottom-20",
-             selectedPropertyId && "bottom-[22rem]"
-         )}>
-             <Button variant="secondary" className="shadow-lg" onClick={() => setMobileView('list')}>
-                 <Menu className="mr-2 h-4 w-4" />
-                 List View
-             </Button>
-         </div>
+       {isMobile && (
+        <Drawer.Trigger asChild>
+          <div className={cn(
+              "absolute left-4 z-10 transition-all duration-300",
+              "bottom-20",
+              selectedPropertyId && "bottom-[22rem]"
+          )}>
+              <Button variant="secondary" className="shadow-lg">
+                  <Menu className="mr-2 h-4 w-4" />
+                  List View
+              </Button>
+          </div>
+        </Drawer.Trigger>
        )}
 
        <div className={cn(

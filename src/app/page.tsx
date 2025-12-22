@@ -11,6 +11,7 @@ import Footer from '@/components/layout/footer';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
 import { useRouter } from 'next/navigation';
+import { Drawer } from "vaul";
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -68,6 +69,46 @@ export default function Home() {
   }
 
   const showHeaderAndFooter = !(isMobile && sidebarView === 'filters');
+
+  if (isMobile) {
+    return (
+      <Drawer.Root shouldScaleBackground>
+        <div className="relative flex flex-col h-screen bg-background">
+          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <main className="relative flex-1">
+              <MapView 
+                isSidebarOpen={isSidebarOpen} 
+                toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+                onFilterClick={handleFilterClick}
+                areFiltersApplied={areFiltersApplied}
+                selectedPropertyId={selectedPropertyId}
+                onCloseInfoCard={handleCloseInfoCard}
+                onMarkerClick={handleMarkerClick}
+                onViewDetails={handleViewDetails}
+              />
+            </main>
+          </div>
+          <Footer />
+        </div>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+          <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0">
+            <div className="p-4 bg-background rounded-t-[10px] flex-1">
+              <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-muted-foreground/20 mb-8" />
+              <div className="max-w-md mx-auto h-full">
+                <PropertyList 
+                  onSelectProperty={handleSelectProperty} 
+                  selectedPropertyId={selectedPropertyId} 
+                  setMobileView={() => {}} // No-op as we are in drawer
+                />
+              </div>
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
+    )
+  }
 
   return (
       <div className="relative flex flex-col h-screen bg-background md:h-auto">
