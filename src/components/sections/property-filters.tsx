@@ -100,10 +100,10 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
             <FilterSection title="Search Type">
                 <div className="flex bg-muted rounded-lg p-1 gap-1">
                     <Button variant="ghost" className="w-1/2 bg-background shadow-sm text-xs px-2 h-auto py-2">
-                        <MapPin className="mr-2 h-4 w-4"/> Locality Search
+                        <MapPin className="mr-2 h-4 w-4"/> Locality
                     </Button>
                     <Button variant="ghost" className="w-1/2 text-xs px-2 h-auto py-2">
-                        <Train className="mr-2 h-4 w-4"/> Search along Metro
+                        <Train className="mr-2 h-4 w-4"/> Along Metro
                     </Button>
                 </div>
                 <div className="relative mt-3">
