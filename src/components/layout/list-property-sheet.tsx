@@ -7,9 +7,15 @@ import {
   SheetHeader,
   SheetTitle,
   SheetDescription,
-  SheetFooter
 } from "@/components/ui/sheet";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerClose } from "@/components/ui/drawer";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -27,7 +33,7 @@ const WhatsAppIcon = () => (
 
 const ListPropertyContent = () => (
     <div className="p-6 text-center flex flex-col items-center justify-center flex-1">
-        <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="List your property" width={150} height={40} className="mb-6" />
+        <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={150} height={40} className="mb-6" />
         <h2 className="text-2xl font-bold font-headline mb-2">List Your Land or Property for Free!</h2>
         <p className="text-muted-foreground mb-8">
             Reach thousands of potential buyers by listing your property on BuildersInfo. Our team will help you get started.
@@ -65,16 +71,18 @@ export function ListPropertySheet({ open, onOpenChange }: ListPropertySheetProps
   }
 
   return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="bottom" className="rounded-t-lg h-auto">
-        <SheetHeader>
-          <SheetTitle className="sr-only">List Your Property</SheetTitle>
-          <SheetDescription className="sr-only">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="sr-only">List Your Property</DialogTitle>
+          <DialogDescription className="sr-only">
             Contact us to list your land or property for free on BuildersInfo.
-          </SheetDescription>
-        </SheetHeader>
-        <ListPropertyContent />
-      </SheetContent>
-    </Sheet>
+          </DialogDescription>
+        </DialogHeader>
+        <div className="-m-6">
+            <ListPropertyContent />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
