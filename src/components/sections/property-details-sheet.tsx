@@ -311,7 +311,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
                 align: 'center',
                 loop: true,
            }}>
-                <CarouselContent className="h-full pt-12">
+                <CarouselContent className="h-full">
                     {properties.map((property) => (
                         <CarouselItem key={property.id} className="basis-[90%] md:basis-1/3">
                             <PropertySheetCard propertyId={property.id} onViewDetails={onViewDetails} />
@@ -326,5 +326,3 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
     </Sheet>
   )
 }
-
-    
