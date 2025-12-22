@@ -539,21 +539,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <Separator />
             <PropertyAmenities property={property} />
             
-            {/* @ts-ignore */}
-            {property.priceBreakdown && (
-                <>
-                    <Separator />
-                    <Card id="price-estimate">
-                        <CardHeader>
-                            <CardTitle className="text-xl">Pricing Details</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <PricingDetails property={property} />
-                        </CardContent>
-                    </Card>
-                </>
-            )}
-
             <Separator />
             <Card id="layout">
                 <CardHeader>

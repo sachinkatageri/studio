@@ -9,7 +9,6 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 const navItems = [
     { label: 'Overview', href: '#overview' },
     { label: 'Amenities', href: '#amenities' },
-    { label: 'Price Details', href: '#price-estimate' },
     { label: 'Layout', href: '#layout' },
     { label: 'Location', href: '#locality' },
     { label: 'Nearby', href: '#nearby' },
