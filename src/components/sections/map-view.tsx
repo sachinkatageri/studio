@@ -210,9 +210,6 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
             </Popover>
           </div>
         </div>
-        <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-12 flex-shrink-0 hidden md:flex">
-          <PlusCircle className="mr-2 h-5 w-5" /> List Property
-        </Button>
     </div>
 
        {isMobile && children}
@@ -224,6 +221,17 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         )}>
             <TooltipProvider>
                 <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-12 w-12">
+                                <PlusCircle />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>List Property</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Separator />
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Button 
