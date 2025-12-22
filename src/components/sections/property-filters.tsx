@@ -1,20 +1,13 @@
 
 'use client';
 
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, MapPin, Locate, Train } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Slider } from '../ui/slider';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { Input } from '@/components/ui/input';
 import { ScrollArea } from '../ui/scroll-area';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { Slider } from '../ui/slider';
 
 interface PropertyFiltersProps {
   onBack: () => void;
@@ -22,7 +15,61 @@ interface PropertyFiltersProps {
   onClearFilters: () => void;
 }
 
+const FilterSection = ({ title, children }: { title: string, children: React.ReactNode }) => (
+    <div className="py-4">
+        <h3 className="font-semibold text-foreground mb-3">{title}</h3>
+        {children}
+    </div>
+);
+
+const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNode, selected?: boolean, onClick?: () => void }) => (
+    <Button
+        variant={selected ? 'default' : 'outline'}
+        className={cn(
+            "w-full justify-center h-auto py-2",
+            selected ? "bg-primary text-primary-foreground" : "bg-card hover:bg-muted"
+        )}
+        onClick={onClick}
+    >
+        {children}
+    </Button>
+);
+
+const MultiSelectGrid = ({ options, selection, onToggle }: { options: string[], selection: string[], onToggle: (option: string) => void }) => (
+    <div className="grid grid-cols-3 gap-2">
+        {options.map(option => (
+            <ToggleButton key={option} selected={selection.includes(option)} onClick={() => onToggle(option)}>
+                {option}
+            </ToggleButton>
+        ))}
+    </div>
+);
+
+const SingleSelectGrid = ({ options, selection, onSelect }: { options: string[], selection: string, onSelect: (option: string) => void }) => (
+     <div className="grid grid-cols-2 gap-2">
+        {options.map(option => (
+            <ToggleButton key={option} selected={selection === option} onClick={() => onSelect(option)}>
+                {option}
+            </ToggleButton>
+        ))}
+    </div>
+);
+
+
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
+    const [lookingFor, setLookingFor] = useState('Full House');
+    const [bhkType, setBhkType] = useState<string[]>([]);
+    const [propertyType, setPropertyType] = useState<string[]>([]);
+    const [propertyStatus, setPropertyStatus] = useState('Ready');
+    const [furnishing, setFurnishing] = useState('Full');
+
+    const toggleBhkType = (bhk: string) => {
+        setBhkType(prev => prev.includes(bhk) ? prev.filter(item => item !== bhk) : [...prev, bhk]);
+    }
+     const togglePropertyType = (type: string) => {
+        setPropertyType(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
+    }
+
   return (
     <div className="flex flex-col h-full bg-card">
       <div className="flex items-center justify-between gap-2 p-4 border-b">
@@ -36,104 +83,99 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
       </div>
 
       <ScrollArea className="flex-1">
-        <div className="space-y-6 p-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Property Type</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup defaultValue="all">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="all" id="r-all" />
-                  <Label htmlFor="r-all">All</Label>
+        <div className="p-4 divide-y">
+            <FilterSection title="Search Type">
+                <div className="flex bg-muted rounded-lg p-1">
+                    <Button variant="ghost" className="w-1/2 bg-background shadow-sm">
+                        <MapPin className="mr-2 h-4 w-4"/> Locality Search
+                    </Button>
+                    <Button variant="ghost" className="w-1/2">
+                        <Train className="mr-2 h-4 w-4"/> Search along Metro
+                    </Button>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="residential" id="r-residential" />
-                  <Label htmlFor="r-residential">Residential</Label>
+                <div className="relative mt-3">
+                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                    <Input placeholder="Search upto 3 localities or landmarks" className="pl-10 pr-10" />
+                     <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9">
+                        <Locate className="h-5 w-5" />
+                    </Button>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="commercial" id="r-commercial" />
-                  <Label htmlFor="r-commercial">Commercial</Label>
-                </div>
-              </RadioGroup>
-            </CardContent>
-          </Card>
+            </FilterSection>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Listed By</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <RadioGroup defaultValue="all-listed">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="owner" id="r-owner" />
-                  <Label htmlFor="r-owner">Owner</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="agent" id="r-agent" />
-                  <Label htmlFor="r-agent">Agent</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="buildersinfo" id="r-buildersinfo" />
-                  <Label htmlFor="r-buildersinfo">Buildersinfo</Label>
-                </div>
-              </RadioGroup>
-            </CardContent>
-          </Card>
+            <FilterSection title="Sale Type">
+                <SingleSelectGrid options={["Buy Resale Properties", "New Builder Projects"]} selection="Buy Resale Properties" onSelect={() => {}} />
+            </FilterSection>
 
-          <div className="space-y-4">
-              <h3 className="font-semibold">Budget (In Crores)</h3>
-              <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                      <Label>Range:</Label>
-                      <span className="text-sm font-medium">₹0cr - ₹30cr</span>
-                  </div>
-                  <Slider defaultValue={[0, 30]} max={100} step={1} />
-              </div>
-          </div>
+             <FilterSection title="Looking For">
+                <div className="grid grid-cols-2 gap-2">
+                    <ToggleButton selected={lookingFor === 'Full House'} onClick={() => setLookingFor('Full House')}>
+                        Full House
+                    </ToggleButton>
+                    <ToggleButton selected={lookingFor === 'Land/Plot'} onClick={() => setLookingFor('Land/Plot')}>
+                        Land/Plot
+                    </ToggleButton>
+                </div>
+            </FilterSection>
+            
+            <FilterSection title="BHK Type">
+                <MultiSelectGrid 
+                    options={["1 RK", "1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK"]}
+                    selection={bhkType}
+                    onToggle={toggleBhkType}
+                />
+            </FilterSection>
 
-          <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <h3 className="font-semibold">Size</h3>
-                <Select defaultValue="sq-yards">
-                  <SelectTrigger className="w-[150px]">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="sq-yards">Square Yards</SelectItem>
-                    <SelectItem value="sq-ft">Square Feet</SelectItem>
-                    <SelectItem value="acres">Acres</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                      <Label>Range:</Label>
-                      <span className="text-sm font-medium">0 - 50,000 sq yd</span>
-                  </div>
-                  <Slider defaultValue={[0, 50000]} max={100000} step={100} />
-              </div>
-          </div>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Amenities</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Checkbox id="amenity-parking" />
-                <Label htmlFor="amenity-parking">Parking</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="amenity-pool" />
-                <Label htmlFor="amenity-pool">Swimming Pool</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="amenity-gym" />
-                <Label htmlFor="amenity-gym">Gym</Label>
-              </div>
-            </CardContent>
-          </Card>
+            <FilterSection title="Property Type">
+                 <MultiSelectGrid 
+                    options={["Apartment", "Gated Community Villa", "Independent House", "Standalone Building"]}
+                    selection={propertyType}
+                    onToggle={togglePropertyType}
+                />
+            </FilterSection>
+            
+             <FilterSection title="Price Range">
+                <div className="px-2">
+                    <Slider defaultValue={[0, 10]} max={50} step={1} />
+                    <div className="flex justify-between text-sm text-muted-foreground mt-2">
+                        <span>₹0 Cr</span>
+                        <span>₹10 Cr</span>
+                    </div>
+                </div>
+            </FilterSection>
+            
+             <FilterSection title="Property Status">
+                <div className="grid grid-cols-2 gap-2">
+                    <ToggleButton selected={propertyStatus === 'Under Construction'} onClick={() => setPropertyStatus('Under Construction')}>
+                        Under Construction
+                    </ToggleButton>
+                    <ToggleButton selected={propertyStatus === 'Ready'} onClick={() => setPropertyStatus('Ready')}>
+                        Ready
+                    </ToggleButton>
+                </div>
+            </FilterSection>
+
+            <FilterSection title="Furnishing">
+                <div className="grid grid-cols-3 gap-2">
+                    <ToggleButton selected={furnishing === 'Full'} onClick={() => setFurnishing('Full')}>
+                        Full
+                    </ToggleButton>
+                    <ToggleButton selected={furnishing === 'Semi'} onClick={() => setFurnishing('Semi')}>
+                        Semi
+                    </ToggleButton>
+                    <ToggleButton selected={furnishing === 'None'} onClick={() => setFurnishing('None')}>
+                        None
+                    </ToggleButton>
+                </div>
+            </FilterSection>
+            
+            <FilterSection title="Parking">
+                <div className="grid grid-cols-3 gap-2">
+                    <ToggleButton>1</ToggleButton>
+                    <ToggleButton>2</ToggleButton>
+                    <ToggleButton>3+</ToggleButton>
+                </div>
+            </FilterSection>
+
         </div>
       </ScrollArea>
       <div className="p-4 border-t mt-auto">
