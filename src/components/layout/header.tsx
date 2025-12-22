@@ -218,7 +218,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                         <SlidersHorizontal className="h-5 w-5" />
                     </Button>
                     <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleLayersClick}>
-                        <Image src="https://i.ibb.co/bF2Qz8w/image.png" alt="layers" width={24} height={24} />
+                        <Globe className="h-5 w-5" />
                     </Button>
                 </div>
             </div>
