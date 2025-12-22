@@ -22,7 +22,7 @@ import { allAmenities } from '@/lib/amenities';
 
 type Property = typeof properties[0];
 
-const amenityIcons: { [key: string]: React.ReactNode } = {
+export const amenityIcons: { [key: string]: React.ReactNode } = {
     'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
     'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
     'Power Backup': <Zap className="h-6 w-6 text-primary" />,

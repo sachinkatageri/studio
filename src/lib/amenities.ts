@@ -1,5 +1,5 @@
 
-import { HardHat, BellRing, Package, ShieldCheck, Siren, Video, KeyRound, TeaCup, Coffee, GlassWater, Milk, CupSoda, Clock, Building, User, Wifi, Paperclip, StickyNote, Printer, Pen, Trash2, Phone, Briefcase, Handshake } from 'lucide-react';
+import { HardHat, BellRing, Package, ShieldCheck, Siren, Video, KeyRound, Coffee, GlassWater, Milk, CupSoda, Clock, Building, User, Wifi, Paperclip, StickyNote, Printer, Pen, Trash2, Phone, Briefcase, Handshake } from 'lucide-react';
 import React from 'react';
 
 export type AmenityCategory = 'GUEST_SERVICES' | 'SECURITY' | 'FOOD_BEVERAGES' | 'CLEANING' | 'PRODUCTIVITY' | 'ON_CREDIT';
@@ -23,7 +23,7 @@ export const allAmenities: Amenity[] = [
     { name: 'Keycard access', category: 'SECURITY', icon: KeyRound },
 
     // FOOD_BEVERAGES
-    { name: 'Tea', category: 'FOOD_BEVERAGES', icon: TeaCup },
+    { name: 'Tea', category: 'FOOD_BEVERAGES', icon: CupSoda },
     { name: 'Coffee', category: 'FOOD_BEVERAGES', icon: Coffee },
     { name: 'Water', category: 'FOOD_BEVERAGES', icon: GlassWater },
     { name: 'Milk / Sweeteners', category: 'FOOD_BEVERAGES', icon: Milk },
