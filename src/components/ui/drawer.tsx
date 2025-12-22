@@ -5,6 +5,8 @@ import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "@/lib/utils"
+import { Button } from "./button"
+import { X } from "lucide-react"
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -51,6 +53,11 @@ const DrawerContent = React.forwardRef<
     >
       <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
       {children}
+      <DrawerClose asChild>
+        <Button variant="ghost" size="icon" className="absolute top-3 right-3 h-8 w-8">
+            <X className="h-5 w-5" />
+        </Button>
+      </DrawerClose>
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))

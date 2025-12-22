@@ -56,11 +56,6 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
                      <SelectItem value="delhi">Delhi</SelectItem>
                 </SelectContent>
             </Select>
-            <DialogClose asChild>
-                <button className="p-1 rounded-full hover:bg-muted md:hidden">
-                 <X className="h-5 w-5" />
-                </button>
-            </DialogClose>
           </div>
         </DialogHeader>
         <div className="p-6 pt-2">

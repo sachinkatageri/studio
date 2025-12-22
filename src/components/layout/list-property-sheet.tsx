@@ -58,11 +58,6 @@ export function ListPropertySheet({ open, onOpenChange }: ListPropertySheetProps
           <DrawerHeader className="text-left">
              <div className="flex justify-between items-center">
                 <DrawerTitle>List Your Property</DrawerTitle>
-                <DrawerClose asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <X className="h-5 w-5" />
-                    </Button>
-                </DrawerClose>
             </div>
           </DrawerHeader>
           <ListPropertyContent />
@@ -80,7 +75,6 @@ export function ListPropertySheet({ open, onOpenChange }: ListPropertySheetProps
             Contact us to list your land or property for free on BuildersInfo.
           </DialogDescription>
         </DialogHeader>
-        <DialogClose className="md:hidden" />
         <div className="-m-6">
             <ListPropertyContent />
         </div>

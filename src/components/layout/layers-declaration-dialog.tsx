@@ -62,11 +62,6 @@ export function LayersDeclarationDialog({ open, onOpenChange, onProceed }: Layer
                     Review the disclaimer before proceeding.
                 </DrawerDescription>
               </div>
-              <DrawerClose asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                    <X className="h-5 w-5" />
-                </Button>
-              </DrawerClose>
             </div>
           </DrawerHeader>
             <div className="px-4">
@@ -100,12 +95,6 @@ export function LayersDeclarationDialog({ open, onOpenChange, onProceed }: Layer
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">Layers Declaration</DialogTitle>
-           <DialogClose asChild>
-                <button className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                    <X className="h-5 w-5" />
-                    <span className="sr-only">Close</span>
-                </button>
-            </DialogClose>
         </DialogHeader>
         <div className="text-sm text-muted-foreground space-y-4 py-4">
             <p>

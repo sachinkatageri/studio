@@ -191,11 +191,6 @@ export function RatingDialog({ open, onOpenChange }: RatingDialogProps) {
           <DrawerHeader className="text-left">
             <div className="flex justify-between items-center">
               <DrawerTitle>Rate Property</DrawerTitle>
-              <DrawerClose asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <X className="h-5 w-5" />
-                </Button>
-              </DrawerClose>
             </div>
             <DrawerDescription>Share your experience with the community.</DrawerDescription>
           </DrawerHeader>
@@ -213,12 +208,6 @@ export function RatingDialog({ open, onOpenChange }: RatingDialogProps) {
         <DialogHeader>
           <DialogTitle className="text-xl font-bold">Rate Property</DialogTitle>
           <DialogDescription>Share your experience with the community.</DialogDescription>
-          <DialogClose asChild>
-            <button className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
-              <X className="h-5 w-5" />
-              <span className="sr-only">Close</span>
-            </button>
-          </DialogClose>
         </DialogHeader>
         <RatingForm onSubmitted={() => onOpenChange(false)} />
       </DialogContent>

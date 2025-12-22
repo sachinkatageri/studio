@@ -61,11 +61,6 @@ export function AmenitiesDialog({ open, onOpenChange }: AmenitiesDialogProps) {
         <DrawerContent className="h-[90vh] flex flex-col">
             <DrawerHeader className="p-4 flex items-center justify-between border-b shrink-0">
                  <DrawerTitle className="text-xl font-bold">All Amenities</DrawerTitle>
-                 <DrawerClose asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <X className="h-5 w-5" />
-                    </Button>
-                </DrawerClose>
             </DrawerHeader>
             <AmenitiesContent />
         </DrawerContent>
@@ -78,12 +73,6 @@ export function AmenitiesDialog({ open, onOpenChange }: AmenitiesDialogProps) {
       <DialogContent className="max-w-3xl flex flex-col max-h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">All Amenities</DialogTitle>
-           <DialogClose asChild>
-                <button className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                    <X className="h-5 w-5" />
-                    <span className="sr-only">Close</span>
-                </button>
-            </DialogClose>
         </DialogHeader>
         <AmenitiesContent />
       </DialogContent>
