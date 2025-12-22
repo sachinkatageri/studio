@@ -13,7 +13,7 @@ import { properties } from '@/lib/properties';
 import { useRouter } from 'next/navigation';
 import { Drawer } from "vaul";
 import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -90,6 +90,20 @@ export default function Home() {
                 onCloseInfoCard={handleCloseInfoCard}
                 onMarkerClick={handleMarkerClick}
                 onViewDetails={handleViewDetails}
+                listViewTrigger={
+                  <Drawer.Trigger asChild>
+                    <div className={cn(
+                        "absolute left-4 z-10 transition-all duration-300",
+                        "bottom-20",
+                        selectedPropertyId && "bottom-[22rem]"
+                    )}>
+                        <Button variant="secondary" className="shadow-lg">
+                            <Menu className="mr-2 h-4 w-4" />
+                            List View
+                        </Button>
+                    </div>
+                  </Drawer.Trigger>
+                }
               />
             </main>
           </div>
