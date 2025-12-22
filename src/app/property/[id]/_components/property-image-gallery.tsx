@@ -63,7 +63,7 @@ export default function PropertyImageGallery() {
                     <CarouselContent>
                         {propertyImageGallery.slice(0, 1).map((image) => (
                             <CarouselItem key={image.id}>
-                                <div className="relative aspect-[9/16] w-full h-screen">
+                                <div className="relative w-full h-[30vh]">
                                     <Image
                                         src={image.imageUrl}
                                         alt={image.description}
