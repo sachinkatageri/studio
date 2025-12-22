@@ -148,6 +148,7 @@ export default function Home() {
           <Drawer.Portal>
             <Drawer.Overlay className="fixed inset-0 bg-black/40 z-50" />
             <Drawer.Content className="bg-background flex flex-col h-[96%] fixed bottom-0 left-0 right-0 z-50">
+                <Drawer.Title className="sr-only">Property Filters</Drawer.Title>
                 <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
             </Drawer.Content>
           </Drawer.Portal>
@@ -162,7 +163,7 @@ export default function Home() {
         <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
-              "md:flex",
+              "md:flex w-[90%]",
               isSidebarOpen ? "w-full md:w-[30%]" : "w-0",
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? 'flex h-full' : 'hidden'
             )}>
