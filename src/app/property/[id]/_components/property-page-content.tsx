@@ -42,9 +42,6 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
             </div>
             <div className='flex items-center'>
                 <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <Search className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
                     <Share2 className="h-5 w-5" />
                 </Button>
             </div>
