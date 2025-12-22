@@ -19,6 +19,7 @@ import { VerificationProcessDialog } from '@/components/layout/verification-proc
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
 import { allAmenities } from '@/lib/amenities';
+import { RatingDialog } from '@/components/layout/rating-dialog';
 
 type Property = typeof properties[0];
 
@@ -199,6 +200,7 @@ const NearbyPlaces = () => {
 
 
 const PropertyReviews = ({ property }: { property: Property }) => {
+    const [isRatingDialogOpen, setIsRatingDialogOpen] = useState(false);
     const totalReviews = 50;
     const ratings = [
         { star: 5, percentage: 80 },
@@ -212,7 +214,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
         <div id="ratings-reviews">
             <div className="flex justify-between items-center mb-4">
                 <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
-                <Button variant="outline" size="sm">Rate property</Button>
+                <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
             </div>
             <Card>
                 <CardContent className="p-4 md:p-6">
@@ -239,6 +241,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                     </div>
                 </CardContent>
             </Card>
+            <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
         </div>
     )
 }
