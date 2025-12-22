@@ -26,7 +26,7 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
     <Button
         variant={selected ? 'default' : 'outline'}
         className={cn(
-            "w-full justify-center h-auto py-2",
+            "w-full justify-center h-auto py-1.5 px-2 text-xs", // Reduced padding and font size
             selected ? "bg-primary text-primary-foreground" : "bg-card hover:bg-muted"
         )}
         onClick={onClick}
