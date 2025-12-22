@@ -4,17 +4,27 @@
 import Link from 'next/link';
 import { Map, Building, Home, Crown } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
-  const [activeView, setActiveView] = useState('map-view');
+  const pathname = usePathname();
 
   const navItems = [
-    { id: 'map-view', label: 'Map-View', icon: <Map className="h-5 w-5" />, href: '#' },
+    { id: 'map-view', label: 'Map-View', icon: <Map className="h-5 w-5" />, href: '/' },
     { id: 'commercial', label: 'Commercial', icon: <Building className="h-5 w-5" />, href: '#' },
     { id: 'residential', label: 'Residential', icon: <Home className="h-5 w-5" />, href: '#' },
     { id: 'builders', label: 'Builders', icon: <Crown className="h-5 w-5" />, href: '#' },
   ];
+
+  // A more robust way to determine active link, especially for home.
+  const getActiveView = () => {
+    if (pathname === '/') return 'map-view';
+    // Add other path logic here if needed
+    return '';
+  }
+  
+  const activeView = getActiveView();
+
 
   return (
     <footer className="md:hidden sticky bottom-0 z-40 w-full bg-background/80 backdrop-blur-sm border-t rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
@@ -23,7 +33,6 @@ export default function Footer() {
           <Link
             key={item.id}
             href={item.href}
-            onClick={() => setActiveView(item.id)}
             className={cn(
               "flex flex-col items-center justify-center gap-1 transition-colors w-full h-full",
               activeView === item.id ? "text-primary" : "text-muted-foreground hover:text-primary"
