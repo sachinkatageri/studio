@@ -75,7 +75,7 @@ export default function Home() {
       <Drawer.Root shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
-          <div className="flex-1 flex flex-col overflow-hidden pt-28">
+          <div className="flex-1 flex flex-col overflow-hidden">
             <main className="relative flex-1">
               <MapView 
                 isSidebarOpen={isSidebarOpen} 
