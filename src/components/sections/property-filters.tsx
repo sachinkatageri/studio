@@ -35,7 +35,7 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
     </Button>
 );
 
-const MultiSelectGrid = ({ options, selection, onToggle, columns = 3 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
+const MultiSelectGrid = ({ options, selection, onToggle, columns = 4 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
     <div className={cn("grid gap-2", 
         columns === 3 && "grid-cols-3",
         columns === 4 && "grid-cols-4",
@@ -134,6 +134,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     options={["1 RK", "1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK"]}
                     selection={bhkType}
                     onToggle={toggleBhkType}
+                    columns={4}
                 />
             </FilterSection>
 
@@ -186,6 +187,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     options={["1", "2", "3+"]}
                     selection={parking}
                     onToggle={toggleParking}
+                    columns={4}
                 />
             </FilterSection>
 
