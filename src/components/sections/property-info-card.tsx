@@ -43,7 +43,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const beforePrice = Math.round(offerPrice * 1.15);
 
   return (
-      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg overflow-hidden flex flex-col h-[70vh]">
+      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg overflow-hidden flex flex-col h-[80vh]">
         <TooltipProvider>
             <div className="relative">
                 {propertyImage && (
