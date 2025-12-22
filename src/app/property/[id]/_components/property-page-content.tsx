@@ -90,11 +90,11 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         <div className="bg-background">
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
-            <main className="md:pt-8">
-                <div className="px-4 sm:px-0 md:pt-0 pt-14">
+            <main className="md:pt-8 pt-14">
+                <div className="hidden md:block md:mb-4">
                   <Breadcrumb property={property} />
                 </div>
-                <div className="md:mt-4">
+                <div>
                     <PropertyImageGallery />
                 </div>
             </main>
