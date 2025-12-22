@@ -84,7 +84,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
 
   return (
     <div className="flex flex-col h-full bg-card">
-      <div className="flex items-center justify-between gap-2 p-4 border-b">
+      <div className="flex items-center justify-between gap-2 p-4 border-b shrink-0">
         <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" onClick={onBack}>
               <ArrowLeft className="h-5 w-5" />
@@ -94,7 +94,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
         <Button variant="link" className="text-primary p-0 h-auto" onClick={onClearFilters}>Clear all</Button>
       </div>
 
-      <ScrollArea className="flex-1">
+      <ScrollArea className="flex-1 min-h-0">
         <div className="p-4 divide-y">
             <FilterSection title="Search Type">
                 <div className="flex bg-muted rounded-lg p-1">
@@ -191,7 +191,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
 
         </div>
       </ScrollArea>
-      <div className="p-4 border-t mt-auto">
+      <div className="p-4 border-t shrink-0">
         <Button className="w-full" onClick={onApplyFilters}>Apply Filters</Button>
       </div>
     </div>
