@@ -439,7 +439,7 @@ const PropertyDocument = () => (
                 ))}
             </CarouselContent>
             <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                 <Button asChild variant="secondary" size="lg" className="bg-white/90 hover:bg-white text-foreground">
+                 <Button asChild variant="secondary" size="lg">
                     <Link href="/sample.pdf" target="_blank">View Brochure</Link>
                 </Button>
             </div>
