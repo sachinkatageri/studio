@@ -34,7 +34,7 @@ const WhatsAppIcon = () => (
 const ListPropertyContent = () => (
     <div className="p-6 text-center flex flex-col items-center justify-center flex-1">
         <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={150} height={40} className="mb-6" />
-        <h2 className="text-2xl font-bold font-headline mb-2">List Your Land or Property for Free!</h2>
+        <h2 className="text-2xl font-bold font-headline mb-2">List your property for free</h2>
         <p className="text-muted-foreground mb-8">
             Reach thousands of potential buyers by listing your property on BuildersInfo. Our team will help you get started.
         </p>
