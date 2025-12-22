@@ -183,7 +183,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   return (
     <>
-    <header className="bg-transparent absolute top-0 z-40 w-full">
+    <header className="bg-background/80 backdrop-blur-sm absolute top-0 z-40 w-full">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
