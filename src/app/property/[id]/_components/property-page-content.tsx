@@ -64,23 +64,7 @@ const MobileFooter = () => (
     </div>
 )
 
-const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
-    // @ts-ignore
-    const lastUpdated = property.postedOn ? format(new Date(property.postedOn), 'PPP') : 'N/A';
-    
-    return (
-        <div className="hidden md:flex justify-between items-center container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center text-sm text-muted-foreground">
-                <Link href="/" className="hover:text-primary">Home</Link>
-                <ChevronRight className="h-4 w-4 mx-1" />
-                <Link href="#" className="hover:text-primary">Properties</Link>
-                <ChevronRight className="h-4 w-4 mx-1" />
-                <span className="text-foreground font-medium truncate">{property.name}</span>
-            </div>
-                <p className="text-sm text-muted-foreground">Last Updated: {lastUpdated}</p>
-        </div>
-    )
-}
+
 
 
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
@@ -94,7 +78,6 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <div>
                     <PropertyImageGallery />
                 </div>
-            </main>
             
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -109,7 +92,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
 
             {!isMobile && <PropertyStickyNav />}
 
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
                 <div className="lg:col-span-2">
                     <PropertyDetailsPanel property={property} />
                 </div>
@@ -117,6 +100,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <div className="mt-16">
                     <SimilarProperties />
                 </div>
+            </div>
             </main>
             
             <BrokerageBanner />
