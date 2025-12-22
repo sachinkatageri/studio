@@ -20,9 +20,9 @@ const residentialProperties = properties.filter(p => p.type === 'Residential');
 const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof properties[0], onSelect: (id: string) => void, isSelected: boolean}) => {
   const propertyImage = PlaceHolderImages.find(p => p.id === property.id);
   
-  const offerPriceString = property.price ? String(property.price).replace(/,/g, '') : '0';
-  const offerPrice = parseInt(offerPriceString);
-  const beforePrice = offerPrice * 1.15;
+  const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
+  const offerPrice = parseInt(offerPriceString, 10);
+  const beforePrice = Math.round(offerPrice * 1.15);
 
   return (
     <Card 
@@ -99,79 +99,79 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     }
     
     return (
-    <div className="flex flex-col h-full bg-card">
-        <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
-          <div className="p-4 pb-0 border-b shrink-0">
-              <h2 className="text-xl font-bold">List View</h2>
-              <TabsList className="grid w-full grid-cols-3 mt-4">
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="commercial">Commercial</TabsTrigger>
-                  <TabsTrigger value="residential">Residential</TabsTrigger>
-              </TabsList>
-              <ScrollArea className="w-full whitespace-nowrap py-4">
-                  <div className="flex gap-2">
-                      {quickFilterOptions.map(filter => (
-                          <Button 
-                              key={filter} 
-                              variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
-                              size="sm"
-                              onClick={() => toggleQuickFilter(filter)}
-                              className="rounded-full h-8"
-                          >
-                              {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
-                              {filter}
-                          </Button>
-                      ))}
-                  </div>
-                  <ScrollBar orientation="horizontal" className="invisible" />
-              </ScrollArea>
+        <div className="flex flex-col h-full bg-card">
+            <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
+                <div className="p-4 pb-0 border-b shrink-0">
+                    <h2 className="text-xl font-bold">List View</h2>
+                    <TabsList className="grid w-full grid-cols-3 mt-4">
+                        <TabsTrigger value="all">All</TabsTrigger>
+                        <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                        <TabsTrigger value="residential">Residential</TabsTrigger>
+                    </TabsList>
+                    <ScrollArea className="w-full whitespace-nowrap py-4">
+                        <div className="flex gap-2">
+                            {quickFilterOptions.map(filter => (
+                                <Button
+                                    key={filter}
+                                    variant={quickFilters.includes(filter) ? 'default' : 'outline'}
+                                    size="sm"
+                                    onClick={() => toggleQuickFilter(filter)}
+                                    className="rounded-full h-8"
+                                >
+                                    {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
+                                    {filter}
+                                </Button>
+                            ))}
+                        </div>
+                        <ScrollBar orientation="horizontal" className="invisible" />
+                    </ScrollArea>
 
-              <div className="flex justify-between items-center pb-2">
-                  <p className="text-sm text-muted-foreground">6 properties found</p>
-                  <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                              Sort by
-                              <ChevronDown className="ml-2 h-4 w-4" />
-                          </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                          {sortOptions.map(option => (
-                              <DropdownMenuItem key={option.value}>
-                                  {option.label}
-                              </DropdownMenuItem>
-                          ))}
-                      </DropdownMenuContent>
-                  </DropdownMenu>
-              </div>
-            </div>
+                    <div className="flex justify-between items-center pb-2">
+                        <p className="text-sm text-muted-foreground">6 properties found</p>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm">
+                                    Sort by
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                {sortOptions.map(option => (
+                                    <DropdownMenuItem key={option.value}>
+                                        {option.label}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                </div>
 
-            <ScrollArea className="flex-1 min-h-0">
-                <TabsContent value="all" className="mt-0">
-                    <div>
-                        {properties.map((property) => (
-                            <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
-                        ))}
-                    </div>
-                </TabsContent>
-                <TabsContent value="commercial" className="mt-0">
-                    <div>
-                        {commercialProperties.map((property) => (
-                            <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
-                        ))}
-                    </div>
-                </TabsContent>
-                <TabsContent value="residential" className="mt-0">
-                     <div>
-                        {residentialProperties.map((property) => (
-                            <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
-                        ))}
-                    </div>
-                </TabsContent>
-            </ScrollArea>
-        </Tabs>
-      </div>
-  );
+                <div className="flex-1 relative">
+                    <ScrollArea className="absolute inset-0">
+                        <TabsContent value="all" className="mt-0">
+                            <div>
+                                {properties.map((property) => (
+                                    <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
+                                ))}
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="commercial" className="mt-0">
+                            <div>
+                                {commercialProperties.map((property) => (
+                                    <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
+                                ))}
+                            </div>
+                        </TabsContent>
+                        <TabsContent value="residential" className="mt-0">
+                            <div>
+                                {residentialProperties.map((property) => (
+                                    <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
+                                ))}
+                            </div>
+                        </TabsContent>
+                    </ScrollArea>
+                </div>
+            </Tabs>
+        </div>
+    );
 }
-
-
