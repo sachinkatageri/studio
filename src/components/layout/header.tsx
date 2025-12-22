@@ -206,7 +206,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       <div className="md:hidden px-4 pb-2">
+       <div className="md:hidden px-4 pb-2 bg-transparent">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
