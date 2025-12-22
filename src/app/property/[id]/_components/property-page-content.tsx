@@ -15,7 +15,7 @@ import { ChevronRight, ArrowLeft, Search, Phone, MoreVertical, Share2, Heart, Ch
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { useIsMobile } from '@/hooks/use-is-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/layout/header';
@@ -89,10 +89,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
             <main className="md:pt-8">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="px-4 sm:px-0 pt-16 md:pt-0">
-                      <Breadcrumb property={property} />
-                    </div>
+                <div className="px-4 sm:px-0 pt-16 md:pt-0">
+                  <Breadcrumb property={property} />
                 </div>
                 <div className="md:mt-4">
                     <PropertyImageGallery />

@@ -5,7 +5,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle, Search, SlidersHorizontal, Globe } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -13,6 +13,9 @@ import { ThemeToggleButton } from '../theme-toggle';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import { useState } from 'react';
 import { LoginDialog } from './login-dialog';
+import { Input } from '../ui/input';
+import { LayersDialog } from './layers-dialog';
+import { LayersDeclarationDialog } from './layers-declaration-dialog';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -47,7 +50,7 @@ const UserMenuButton = () => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <SheetTrigger asChild>
-                                <Button variant="outline" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm">
+                                <Button variant="ghost" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm">
                                     <Menu className="h-5 w-5" />
                                     <div className="bg-muted rounded-full p-1">
                                     <User className="h-5 w-5 text-primary" />
@@ -159,8 +162,20 @@ const UserMenuButton = () => {
 };
 
 
-export default function Header() {
+export default function Header({ onFilterClick, areFiltersApplied }: { onFilterClick?: () => void, areFiltersApplied?: boolean }) {
+  const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
+  const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
+
+  const handleLayersClick = () => {
+    setIsLayersDeclarationOpen(true);
+  }
+
+  const handleDeclarationProceed = () => {
+    setIsLayersDialogOpen(true);
+  }
+
   return (
+    <>
     <header className="bg-background/80 backdrop-blur-sm sticky top-0 z-40 border-b w-full">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
@@ -191,6 +206,33 @@ export default function Header() {
             <UserMenuButton />
         </div>
       </div>
+       <div className="md:hidden px-4 pb-2">
+            <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                    placeholder='Search "Indiranagar"'
+                    className="pl-10 pr-20 h-12"
+                />
+                <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
+                    <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
+                        <SlidersHorizontal className="h-5 w-5" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleLayersClick}>
+                        <Image src="https://i.ibb.co/bF2Qz8w/image.png" alt="layers" width={24} height={24} />
+                    </Button>
+                </div>
+            </div>
+        </div>
     </header>
+    <LayersDeclarationDialog 
+      open={isLayersDeclarationOpen} 
+      onOpenChange={setIsLayersDeclarationOpen}
+      onProceed={handleDeclarationProceed}
+    />
+    <LayersDialog
+        open={isLayersDialogOpen}
+        onOpenChange={setIsLayersDialogOpen}
+    />
+    </>
   );
 }

@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
       <div className="flex flex-col h-screen bg-background">
-        <Header />
+        <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
         <div className="flex flex-col flex-1 md:flex-row overflow-hidden">
           <div className="flex flex-1 overflow-hidden">
             <aside className={cn(

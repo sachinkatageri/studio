@@ -4,7 +4,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation, Building2, Home } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation, Building2, Home, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -117,33 +117,6 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         );
       })}
 
-      <div className="absolute top-4 left-4 right-4 z-10 flex justify-between items-center gap-2 md:hidden">
-        <div className="relative flex-1 max-w-lg">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
-          <Input
-            type="text"
-            placeholder="Search for property, project, or builder..."
-            className="w-full pl-10 pr-12 h-12 text-foreground shadow-lg"
-          />
-          <TooltipProvider>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <Button 
-                        variant={areFiltersApplied ? "default" : "ghost"} 
-                        size="icon" 
-                        className="absolute right-1 top-1/2 -translate-y-1/2 h-10 w-10" 
-                        onClick={onFilterClick}
-                    >
-                        <SlidersHorizontal />
-                    </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                    <p>Filters</p>
-                </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
-      </div>
       <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
         <div className="relative flex-1 max-w-lg">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
@@ -175,31 +148,99 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </Button>
     </div>
 
+       {isMobile && setMobileView && (
+        <div className={cn(
+             "absolute left-4 z-10 transition-all duration-300",
+             "bottom-20",
+             selectedPropertyId && "bottom-[22rem]"
+         )}>
+             <Button variant="secondary" className="shadow-lg" onClick={() => setMobileView('list')}>
+                 <Menu className="mr-2 h-4 w-4" />
+                 List View
+             </Button>
+         </div>
+       )}
+
        <div className={cn(
-           "absolute left-4 z-10 transition-all duration-300",
-           "bottom-4",
-           isMobile && "bottom-20",
-           selectedPropertyId && !isMobile && "bottom-[9rem]"
-       )}>
-          <Popover>
+           "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
+            "bottom-20",
+            selectedPropertyId && "bottom-[22rem]"
+        )}>
             <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="shadow-lg h-12 w-12 bg-background/80 backdrop-blur-sm hover:bg-background/90 border"
-                          onClick={handleLayersClick}
-                         >
-                          <Layers className="text-foreground" />
-                        </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">
-                        <p>Map Layers</p>
-                    </TooltipContent>
-                </Tooltip>
+                <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-12 w-12" onClick={handleLayersClick}>
+                                <Layers />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>Map Layers</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Separator />
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-12 w-12">
+                               <LocateFixed />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>My Location</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Separator className="md:hidden" />
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-12 w-12 md:hidden">
+                               <ZoomIn />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>Zoom In</p>
+                        </TooltipContent>
+                    </Tooltip>
+                    <Separator className="md:hidden" />
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-12 w-12 md:hidden">
+                               <ZoomOut />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent side="left">
+                            <p>Zoom Out</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
             </TooltipProvider>
-          </Popover>
+            
+            {!isMobile && (
+                <TooltipProvider>
+                    <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-12 w-12">
+                                   <ZoomIn />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="left">
+                                <p>Zoom In</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Separator />
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-12 w-12">
+                                   <ZoomOut />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent side="left">
+                                <p>Zoom Out</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
+                </TooltipProvider>
+            )}
        </div>
       
        <TooltipProvider>
@@ -226,52 +267,6 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
           <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
         </div>
        )}
-
-       <div className={cn(
-           "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
-            "bottom-4",
-            isMobile && "bottom-20",
-            selectedPropertyId && !isMobile && "bottom-[9rem]"
-        )}>
-            {!isMobile && (
-                <TooltipProvider>
-                    <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-12 w-12">
-                                   <LocateFixed />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>My Location</p>
-                            </TooltipContent>
-                        </Tooltip>
-                        <Separator />
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-12 w-12">
-                                   <ZoomIn />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>Zoom In</p>
-                            </TooltipContent>
-                        </Tooltip>
-                        <Separator />
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-12 w-12">
-                                   <ZoomOut />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>Zoom Out</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </div>
-                </TooltipProvider>
-            )}
-       </div>
        
        {isMobile && (
           <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
