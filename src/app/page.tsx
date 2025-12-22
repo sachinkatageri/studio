@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 import { Drawer } from "vaul";
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
+import { SlidersHorizontal } from 'lucide-react';
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -25,27 +26,37 @@ export default function Home() {
   const [mobileView, setMobileView] = useState<MobileView>('map');
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
 
 
   const handleFilterClick = () => {
-    setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
-    if (!isSidebarOpen) {
-      setIsSidebarOpen(true);
-    }
     if (isMobile) {
-      setMobileView('list');
+      setIsFilterDrawerOpen(true);
+    } else {
+      setSidebarView(current => (current === 'filters' ? 'list' : 'filters'));
+      if (!isSidebarOpen) {
+        setIsSidebarOpen(true);
+      }
     }
   };
 
   const handleBackToList = () => {
-    setSidebarView('list');
+    if (isMobile) {
+      setIsFilterDrawerOpen(false);
+    } else {
+      setSidebarView('list');
+    }
   }
 
   const handleApplyFilters = () => {
     setAreFiltersApplied(true);
-    setSidebarView('list');
+    if (isMobile) {
+      setIsFilterDrawerOpen(false);
+    } else {
+      setSidebarView('list');
+    }
   }
   
   const handleClearFilters = () => {
@@ -72,10 +83,11 @@ export default function Home() {
     router.push(`/property/${propertyId}`);
   }
 
-  const showHeaderAndFooter = !(isMobile && sidebarView === 'filters');
+  const showHeaderAndFooter = !(isMobile && sidebarView === 'filters' && !isFilterDrawerOpen);
 
   if (isMobile) {
     return (
+      <>
       <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
@@ -90,8 +102,8 @@ export default function Home() {
                 onCloseInfoCard={handleCloseInfoCard}
                 onMarkerClick={handleMarkerClick}
                 onViewDetails={handleViewDetails}
-                listViewTrigger={
-                  <Drawer.Trigger asChild>
+              >
+                 <Drawer.Trigger asChild>
                     <div className={cn(
                         "absolute left-4 z-10 transition-all duration-300",
                         "bottom-20",
@@ -103,8 +115,7 @@ export default function Home() {
                         </Button>
                     </div>
                   </Drawer.Trigger>
-                }
-              />
+              </MapView>
             </main>
           </div>
           <Footer />
@@ -133,6 +144,15 @@ export default function Home() {
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>
+      <Drawer.Root open={isFilterDrawerOpen} onOpenChange={setIsFilterDrawerOpen}>
+          <Drawer.Portal>
+            <Drawer.Overlay className="fixed inset-0 bg-black/40 z-50" />
+            <Drawer.Content className="bg-background flex flex-col h-[96%] fixed bottom-0 left-0 right-0 z-50">
+                <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
+            </Drawer.Content>
+          </Drawer.Portal>
+        </Drawer.Root>
+      </>
     )
   }
 
@@ -175,5 +195,3 @@ export default function Home() {
       </div>
   );
 }
-
-    

@@ -35,7 +35,7 @@ interface MapViewProps {
   onMarkerClick: (id: string) => void;
   onViewDetails: (id: string) => void;
   setMobileView?: (view: MobileView) => void;
-  listViewTrigger?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const propertyPositions = [
@@ -47,7 +47,7 @@ const propertyPositions = [
   { id: 'project-2', top: '60%', left: '80%' },
 ];
 
-export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView, listViewTrigger }: MapViewProps) {
+export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, areFiltersApplied, selectedPropertyId, onCloseInfoCard, onMarkerClick, onViewDetails, setMobileView, children }: MapViewProps) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isGpsActive, setIsGpsActive] = useState(false);
@@ -215,7 +215,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </Button>
     </div>
 
-       {isMobile && listViewTrigger}
+       {isMobile && children}
 
        <div className={cn(
            "absolute right-4 z-10 flex flex-col items-center gap-2 transition-all duration-300",
@@ -274,7 +274,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        </TooltipProvider>
 
        {selectedPropertyId && !isMobile && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[420px]">
           <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
         </div>
        )}
