@@ -189,58 +189,8 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                             <p>My Location</p>
                         </TooltipContent>
                     </Tooltip>
-                    <Separator className="md:hidden" />
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-12 w-12 md:hidden">
-                               <ZoomIn />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>Zoom In</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Separator className="md:hidden" />
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-12 w-12 md:hidden">
-                               <ZoomOut />
-                            </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="left">
-                            <p>Zoom Out</p>
-                        </TooltipContent>
-                    </Tooltip>
                 </div>
             </TooltipProvider>
-            
-            {!isMobile && (
-                <TooltipProvider>
-                    <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-12 w-12">
-                                   <ZoomIn />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>Zoom In</p>
-                            </TooltipContent>
-                        </Tooltip>
-                        <Separator />
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-12 w-12">
-                                   <ZoomOut />
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent side="left">
-                                <p>Zoom Out</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </div>
-                </TooltipProvider>
-            )}
        </div>
       
        <TooltipProvider>
