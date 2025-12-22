@@ -82,7 +82,7 @@ interface PropertyListProps {
   setMobileView: (view: MobileView) => void;
 }
 
-const quickFilterOptions = ['Lands', 'Plots', 'Owner Listed', 'Last Month', 'No Brokerage', 'Verified', 'Video'];
+const quickFilterOptions = ['For Sale', 'For Rent', 'Ready to Move', 'New Projects', 'No Brokerage', 'Verified', 'Video'];
 const sortOptions = [
     { value: 'uploaded-date', label: 'Uploaded Date (Latest)' },
     { value: 'price-low-high', label: 'Price (low to high)' },
