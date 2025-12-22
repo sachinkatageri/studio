@@ -16,6 +16,8 @@ import { Input } from '../ui/input';
 import { LayersDialog } from './layers-dialog';
 import { LayersDeclarationDialog } from './layers-declaration-dialog';
 import { CitySelectionSheet } from './city-selection-sheet';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -181,7 +183,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   return (
     <>
-    <header className="bg-transparent sticky top-0 z-40 border-b w-full">
+    <header className="bg-transparent absolute top-0 z-40 w-full">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -211,20 +213,41 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       <div className="md:hidden px-4 pb-2 bg-transparent">
+       <div className="md:hidden px-4 pb-2 bg-transparent absolute top-14 left-0 right-0 z-20">
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
                     placeholder='Search "Indiranagar"'
-                    className="pl-10 pr-20 h-12"
+                    className="pl-10 pr-20 h-12 bg-background/80 backdrop-blur-sm"
                 />
                 <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
                     <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
                         <SlidersHorizontal className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
-                        <Globe className="h-5 w-5" />
-                    </Button>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-10 w-10">
+                                <Globe className="h-5 w-5" />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-48 p-2">
+                            <div className="grid gap-1">
+                                <Button variant="ghost" className="justify-start">
+                                    <MapIcon className="mr-2 h-4 w-4" /> Default
+                                </Button>
+                                <Button variant="ghost" className="justify-start">
+                                    <Satellite className="mr-2 h-4 w-4" /> Satellite
+                                </Button>
+                                <Button variant="ghost" className="justify-start">
+                                    <Mountain className="mr-2 h-4 w-4" /> Terrain
+                                </Button>
+                                <Separator />
+                                <Button variant="ghost" className="justify-start">
+                                    <TrafficCone className="mr-2 h-4 w-4" /> Traffic
+                                </Button>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
                 </div>
             </div>
         </div>
@@ -242,5 +265,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    

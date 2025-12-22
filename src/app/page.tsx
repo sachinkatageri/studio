@@ -70,7 +70,7 @@ export default function Home() {
   const showHeaderAndFooter = !(isMobile && sidebarView === 'filters');
 
   return (
-      <div className="flex flex-col h-screen bg-background md:h-auto">
+      <div className="relative flex flex-col h-screen bg-background md:h-auto">
         {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
         <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden">
             <aside className={cn(
