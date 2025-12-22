@@ -36,7 +36,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
 
   return (
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
-      <SheetContent side="bottom" className="h-[85vh] max-h-[85vh] flex flex-col p-0 bg-transparent border-0">
+      <SheetContent side="bottom" className="h-auto flex flex-col p-0 bg-transparent border-0 bottom-[10%]">
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
           <SheetDescription>Details for the selected property.</SheetDescription>
