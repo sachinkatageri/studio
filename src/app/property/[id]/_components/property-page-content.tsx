@@ -15,7 +15,7 @@ import { ChevronRight, ArrowLeft, Search, Phone, MoreVertical, Share2, Heart, Ch
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/layout/header';
@@ -67,7 +67,7 @@ const Breadcrumb = ({ property }: { property: typeof properties[0] }) => {
     const lastUpdated = property.postedOn ? format(new Date(property.postedOn), 'PPP') : 'N/A';
     
     return (
-        <div className="hidden md:flex justify-between items-center">
+        <div className="hidden md:flex justify-between items-center container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center text-sm text-muted-foreground">
                 <Link href="/" className="hover:text-primary">Home</Link>
                 <ChevronRight className="h-4 w-4 mx-1" />
@@ -88,9 +88,11 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         <div className="bg-background">
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
-            <main className="container mx-auto px-0 sm:px-6 lg:px-8 md:pt-8">
-                <div className="px-4 sm:px-0 pt-16 md:pt-0">
-                  <Breadcrumb property={property} />
+            <main className="md:pt-8">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="px-4 sm:px-0 pt-16 md:pt-0">
+                      <Breadcrumb property={property} />
+                    </div>
                 </div>
                 <div className="md:mt-4">
                     <PropertyImageGallery />

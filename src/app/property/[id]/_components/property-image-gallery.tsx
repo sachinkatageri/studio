@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import { Badge } from '@/components/ui/badge';
 import { Check, Camera, Share2, Heart, GalleryVertical } from 'lucide-react';
 
@@ -63,7 +63,7 @@ export default function PropertyImageGallery() {
                     <CarouselContent>
                         {propertyImageGallery.slice(0, 1).map((image) => (
                             <CarouselItem key={image.id}>
-                                <div className="relative aspect-[4/3] w-full">
+                                <div className="relative aspect-video w-full">
                                     <Image
                                         src={image.imageUrl}
                                         alt={image.description}
@@ -109,7 +109,7 @@ export default function PropertyImageGallery() {
     }
     
     return (
-        <div className="relative">
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[400px]">
                 {propertyImageGallery.slice(0, imagesToShow).map((image, index) => (
                     <div
