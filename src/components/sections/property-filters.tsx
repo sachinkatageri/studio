@@ -26,7 +26,7 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
     <Button
         variant={selected ? 'default' : 'outline'}
         className={cn(
-            "w-full justify-center h-auto py-1.5 px-2 text-xs", // Reduced padding and font size
+            "w-full justify-center h-auto py-1.5 px-2 text-xs whitespace-normal", // Allow text to wrap
             selected ? "bg-primary text-primary-foreground" : "bg-card hover:bg-muted"
         )}
         onClick={onClick}
@@ -37,9 +37,10 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
 
 const MultiSelectGrid = ({ options, selection, onToggle, columns = 4 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
     <div className={cn("grid gap-2", 
-        columns === 3 && "grid-cols-3",
         columns === 4 && "grid-cols-4",
-        columns === 2 && "grid-cols-2"
+        columns === 3 && "grid-cols-3",
+        columns === 2 && "grid-cols-2",
+        columns === 1 && "grid-cols-1" // Added for single column layout
     )}>
         {options.map(option => (
             <ToggleButton key={option} selected={selection.includes(option)} onClick={() => onToggle(option)}>
@@ -169,17 +170,12 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
             </FilterSection>
 
             <FilterSection title="Furnishing">
-                <div className="grid grid-cols-3 gap-2">
-                    <ToggleButton selected={furnishing === 'Full'} onClick={() => setFurnishing('Full')}>
-                        Full
-                    </ToggleButton>
-                    <ToggleButton selected={furnishing === 'Semi'} onClick={() => setFurnishing('Semi')}>
-                        Semi
-                    </ToggleButton>
-                    <ToggleButton selected={furnishing === 'None'} onClick={() => setFurnishing('None')}>
-                        None
-                    </ToggleButton>
-                </div>
+                <MultiSelectGrid 
+                    options={["Full", "Semi", "None"]}
+                    selection={furnishing === 'Full' ? ['Full'] : furnishing === 'Semi' ? ['Semi'] : ['None']}
+                    onToggle={(option) => setFurnishing(option as 'Full' | 'Semi' | 'None')}
+                    columns={3}
+                />
             </FilterSection>
             
             <FilterSection title="Parking">
