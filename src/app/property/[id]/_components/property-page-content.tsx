@@ -69,12 +69,25 @@ const MobileFooter = () => (
 
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
+    const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : 'N/A';
 
     return (
         <div className="bg-background">
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
             <main className="pt-14">
+                <div className="hidden md:block container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div className="flex justify-between items-center text-sm">
+                        <div className="flex items-center text-muted-foreground">
+                            <Link href="/" className="hover:text-primary">Home</Link>
+                            <ChevronRight className="h-4 w-4 mx-1" />
+                            <Link href="/" className="hover:text-primary">Properties</Link>
+                            <ChevronRight className="h-4 w-4 mx-1" />
+                            <span className="text-foreground font-medium truncate max-w-[200px]">{property.name}</span>
+                        </div>
+                        <p className="text-muted-foreground">Date Added: <span className="font-medium text-foreground">{postedDate}</span></p>
+                    </div>
+                </div>
                 <div>
                     <PropertyImageGallery />
                 </div>
