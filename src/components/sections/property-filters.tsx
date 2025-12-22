@@ -191,7 +191,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
 
         </div>
       </ScrollArea>
-      <div className="p-4 border-t shrink-0">
+      <div className="p-4 border-t bg-card sticky bottom-0">
         <Button className="w-full" onClick={onApplyFilters}>Apply Filters</Button>
       </div>
     </div>
