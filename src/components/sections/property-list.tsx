@@ -10,10 +10,9 @@ import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { Button } from '../ui/button';
-import { ArrowUpDown, Map } from 'lucide-react';
-import { SortSheet } from '../layout/sort-sheet';
+import { ArrowUpDown, Check, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
 const commercialProperties = properties.filter(p => p.type === 'Commercial');
 const residentialProperties = properties.filter(p => p.type === 'Residential');
@@ -78,10 +77,20 @@ interface PropertyListProps {
   setMobileView: (view: MobileView) => void;
 }
 
-const quickFilterOptions = ['No Brokerage', 'Verified', 'Video'];
+const quickFilterOptions = ['Lands', 'Plots', 'Owner Listed', 'Last Month'];
+const sortOptions = [
+    { value: 'uploaded-date', label: 'Uploaded Date (Latest)' },
+    { value: 'price-low-high', label: 'Price (low to high)' },
+    { value: 'price-high-low', label: 'Price (high to low)' },
+    { value: 'size-low-high', label: 'Size (low to high)' },
+    { value: 'size-high-low', label: 'Size (high to low)' },
+    { value: 'total-price-low-high', label: 'Total Price (low to high)' },
+    { value: 'total-price-high-low', label: 'Total Price (high to low)' },
+];
+
 
 export default function PropertyList({ onSelectProperty, selectedPropertyId, setMobileView }: PropertyListProps) {
-    const [quickFilters, setQuickFilters] = useState<string[]>([]);
+    const [quickFilters, setQuickFilters] = useState<string[]>(['Lands', 'Plots']);
 
     const toggleQuickFilter = (filter: string) => {
         setQuickFilters(prev => 
@@ -93,36 +102,41 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     <div className="flex flex-col h-full bg-card">
       <div className="p-4 border-b flex flex-col flex-1 min-h-0">
           <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="commercial">Commercial</TabsTrigger>
-              <TabsTrigger value="residential">Residential</TabsTrigger>
-            </TabsList>
-            <div className="pt-4">
-                <div className="flex justify-between items-center">
-                    <p className="text-sm text-muted-foreground">6 properties found</p>
-                    <SortSheet>
-                        <Button variant="ghost" size="sm">
-                            <ArrowUpDown className="mr-2 h-4 w-4" />
-                            Sort by
-                        </Button>
-                    </SortSheet>
-                </div>
-                 <div className="mt-2 flex flex-wrap gap-2">
-                    {quickFilterOptions.map(filter => (
-                        <Button 
-                            key={filter} 
-                            variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
-                            size="sm"
-                            onClick={() => toggleQuickFilter(filter)}
-                            className="rounded-full h-8"
-                        >
-                            {filter}
-                        </Button>
-                    ))}
-                </div>
+             <div className="flex flex-wrap gap-2 mb-4">
+                {quickFilterOptions.map(filter => (
+                    <Button 
+                        key={filter} 
+                        variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
+                        size="sm"
+                        onClick={() => toggleQuickFilter(filter)}
+                        className="rounded-full h-8"
+                    >
+                        {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
+                        {filter}
+                    </Button>
+                ))}
             </div>
-            <ScrollArea className="flex-1 -mx-4 pt-4">
+
+            <div className="flex justify-between items-center mb-2">
+                <p className="text-sm text-muted-foreground">36 listings</p>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            Sort by
+                            <ChevronDown className="ml-2 h-4 w-4" />
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        {sortOptions.map(option => (
+                            <DropdownMenuItem key={option.value}>
+                                {option.label}
+                            </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+
+            <ScrollArea className="flex-1 -mx-4">
                 <TabsContent value="all" className="mt-0">
                     <div className="px-4">
                         {properties.map((property) => (
