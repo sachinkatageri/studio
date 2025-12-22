@@ -98,7 +98,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
               <TabsTrigger value="commercial">Commercial</TabsTrigger>
               <TabsTrigger value="residential">Residential</TabsTrigger>
             </TabsList>
-            <div className="py-4">
+            <div className="pt-4">
                 <div className="flex justify-between items-center">
                     <p className="text-sm text-muted-foreground">6 properties found</p>
                     <SortSheet>
@@ -122,7 +122,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     ))}
                 </div>
             </div>
-            <ScrollArea className="flex-1 -mx-4">
+            <ScrollArea className="flex-1 -mx-4 pt-4">
                 <TabsContent value="all" className="mt-0">
                     <div className="px-4">
                         {properties.map((property) => (
