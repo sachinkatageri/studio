@@ -43,7 +43,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const beforePrice = Math.round(offerPrice * 1.15);
 
   return (
-      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg relative flex flex-col h-[70vh] overflow-hidden">
+      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg overflow-hidden flex flex-col h-[70vh]">
         <TooltipProvider>
             <div className="relative">
                 {propertyImage && (
@@ -222,7 +222,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="h-14 w-14">
+                            <Button variant="outline" size="icon" className="h-14 w-14 rounded-lg">
                                 <Phone className="h-6 w-6" />
                             </Button>
                             </TooltipTrigger>
@@ -232,7 +232,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </Tooltip>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                            <Button variant="outline" size="icon" className="h-14 w-14">
+                            <Button variant="outline" size="icon" className="h-14 w-14 rounded-lg">
                                 <WhatsAppIcon />
                             </Button>
                             </TooltipTrigger>
@@ -243,7 +243,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </TooltipProvider>
                         <Button
                         variant="default"
-                        className="flex-1 text-lg h-14"
+                        className="flex-1 text-lg h-14 rounded-lg"
                         onClick={() => onViewDetails(property.id)}
                         >
                         View Details
