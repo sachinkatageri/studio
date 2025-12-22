@@ -215,7 +215,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   return (
     <>
-    <header className="bg-background/80 backdrop-blur-sm absolute top-0 z-40 w-full">
+    <header className="bg-background absolute top-0 z-40 w-full border-b">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -250,7 +250,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
                 <Input
                     placeholder={placeholder}
-                    className="pl-10 pr-20 h-12 bg-background/80 backdrop-blur-sm shadow-lg"
+                    className="pl-10 pr-20 h-12 bg-background shadow-lg"
                 />
                 <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
                     <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
@@ -297,5 +297,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    
