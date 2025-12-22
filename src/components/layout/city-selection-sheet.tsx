@@ -110,9 +110,9 @@ export function CitySelectionSheet({ open, onOpenChange }: CitySelectionSheetPro
     <Popover open={open} onOpenChange={onOpenChange}>
         {/* The trigger is in the header, so we just need the content here */}
         <PopoverContent className="w-[480px] p-0 h-[600px] flex flex-col">
-           <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
-             <SheetTitle className="text-xl font-bold">Country/City</SheetTitle>
-           </SheetHeader>
+           <div className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
+             <div className="text-xl font-bold text-lg font-semibold text-foreground">Country/City</div>
+           </div>
            <CitySelectionContent />
         </PopoverContent>
     </Popover>
