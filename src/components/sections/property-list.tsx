@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { Button } from '../ui/button';
-import { ArrowUpDown, Check, ChevronDown } from 'lucide-react';
+import { ArrowUpDown, Check, ChevronDown, X } from 'lucide-react';
 import { useState } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
@@ -100,56 +100,57 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     
     return (
     <div className="flex flex-col h-full bg-card">
-      <div className="p-4 pb-0 border-b flex flex-col flex-1 min-h-0">
-          <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
-            <div className='flex items-center justify-between'>
-                <h2 className="text-xl font-bold">List View</h2>
-            </div>
-            <div className="mt-4">
-                <TabsList>
-                    <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="commercial">Commercial</TabsTrigger>
-                    <TabsTrigger value="residential">Residential</TabsTrigger>
-                </TabsList>
-            </div>
-             <ScrollArea className="w-full whitespace-nowrap py-4">
-                <div className="flex gap-2">
-                    {quickFilterOptions.map(filter => (
-                        <Button 
-                            key={filter} 
-                            variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
-                            size="sm"
-                            onClick={() => toggleQuickFilter(filter)}
-                            className="rounded-full h-8"
-                        >
-                            {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
-                            {filter}
-                        </Button>
-                    ))}
-                </div>
-                <ScrollBar orientation="horizontal" className="invisible" />
-            </ScrollArea>
+        <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
+          <div className="p-4 pb-0 border-b">
+              <div className='flex items-center justify-between'>
+                  <h2 className="text-xl font-bold">List View</h2>
+              </div>
+              <div className="mt-4">
+                  <TabsList>
+                      <TabsTrigger value="all">All</TabsTrigger>
+                      <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                      <TabsTrigger value="residential">Residential</TabsTrigger>
+                  </TabsList>
+              </div>
+              <ScrollArea className="w-full whitespace-nowrap py-4">
+                  <div className="flex gap-2">
+                      {quickFilterOptions.map(filter => (
+                          <Button 
+                              key={filter} 
+                              variant={quickFilters.includes(filter) ? 'default' : 'outline'} 
+                              size="sm"
+                              onClick={() => toggleQuickFilter(filter)}
+                              className="rounded-full h-8"
+                          >
+                              {quickFilters.includes(filter) && <Check className="mr-2 h-4 w-4" />}
+                              {filter}
+                          </Button>
+                      ))}
+                  </div>
+                  <ScrollBar orientation="horizontal" className="invisible" />
+              </ScrollArea>
 
-            <div className="flex justify-between items-center mb-2">
-                <p className="text-sm text-muted-foreground">6 properties found</p>
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                            Sort by
-                            <ChevronDown className="ml-2 h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {sortOptions.map(option => (
-                            <DropdownMenuItem key={option.value}>
-                                {option.label}
-                            </DropdownMenuItem>
-                        ))}
-                    </DropdownMenuContent>
-                </DropdownMenu>
+              <div className="flex justify-between items-center pb-2">
+                  <p className="text-sm text-muted-foreground">6 properties found</p>
+                  <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm">
+                              Sort by
+                              <ChevronDown className="ml-2 h-4 w-4" />
+                          </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                          {sortOptions.map(option => (
+                              <DropdownMenuItem key={option.value}>
+                                  {option.label}
+                              </DropdownMenuItem>
+                          ))}
+                      </DropdownMenuContent>
+                  </DropdownMenu>
+              </div>
             </div>
 
-            <ScrollArea className="flex-1 -mx-4">
+            <ScrollArea className="flex-1">
                 <TabsContent value="all" className="mt-0">
                     <div className="px-0">
                         {properties.map((property) => (
@@ -174,7 +175,5 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
             </ScrollArea>
         </Tabs>
       </div>
-    </div>
   );
 }
-
