@@ -123,9 +123,9 @@ export default function Home() {
   }
 
   return (
-      <div className="relative flex flex-col h-screen bg-background md:h-auto">
+      <div className="relative flex flex-col h-screen bg-background">
         {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
-        <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden pt-14">
+        <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
               "md:flex",
