@@ -67,16 +67,17 @@ export default function Home() {
     router.push(`/property/${propertyId}`);
   }
 
+  const showHeaderAndFooter = !(isMobile && sidebarView === 'filters');
 
   return (
       <div className="flex flex-col h-screen bg-background md:h-auto">
-        <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
+        {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
         <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
               "md:flex",
               isSidebarOpen ? "w-full md:w-[30%]" : "w-0",
-              mobileView === 'list' ? 'flex h-full' : 'hidden'
+              mobileView === 'list' || (isMobile && sidebarView === 'filters') ? 'flex h-full' : 'hidden'
             )}>
               {sidebarView === 'list' 
                   ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
@@ -87,7 +88,8 @@ export default function Home() {
               "relative transition-all duration-300 flex-1",
               "md:block",
               isSidebarOpen ? "md:w-[70%]" : "w-full",
-              mobileView === 'map' ? 'block w-full' : 'hidden'
+              mobileView === 'map' ? 'block w-full' : 'hidden',
+              isMobile && sidebarView === 'filters' && 'hidden'
               )}>
               <MapView 
                 isSidebarOpen={isSidebarOpen} 
@@ -102,9 +104,7 @@ export default function Home() {
               />
             </main>
         </div>
-        <Footer />
+        {showHeaderAndFooter && <Footer />}
       </div>
   );
 }
-
-    
