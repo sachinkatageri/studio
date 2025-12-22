@@ -10,7 +10,7 @@ import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
 import { ThemeToggleButton } from '../theme-toggle';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LoginDialog } from './login-dialog';
 import { Input } from '../ui/input';
 import { LayersDialog } from './layers-dialog';
@@ -169,6 +169,38 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
 
+  const placeholderTexts = ['Search "Indiranagar"', 'Search for projects', 'Search for builders'];
+  const [placeholder, setPlaceholder] = useState('');
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const type = () => {
+      const currentText = placeholderTexts[textIndex];
+      if (isDeleting) {
+        if (charIndex > 0) {
+          setPlaceholder(currentText.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          setIsDeleting(false);
+          setTextIndex((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
+        }
+      } else {
+        if (charIndex < currentText.length) {
+          setPlaceholder(currentText.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000); // Pause before deleting
+        }
+      }
+    };
+
+    const typingSpeed = isDeleting ? 100 : 150;
+    const timeout = setTimeout(type, typingSpeed);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, textIndex, placeholderTexts]);
+
   const handleLayersClick = () => {
     setIsLayersDeclarationOpen(true);
   }
@@ -217,7 +249,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <Input
-                    placeholder='Search "Indiranagar"'
+                    placeholder={placeholder}
                     className="pl-10 pr-20 h-12 bg-background/80 backdrop-blur-sm"
                 />
                 <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
@@ -265,3 +297,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
