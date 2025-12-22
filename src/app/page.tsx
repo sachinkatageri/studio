@@ -21,7 +21,7 @@ export default function Home() {
   const [sidebarView, setSidebarView] = useState<SidebarView>('list');
   const [areFiltersApplied, setAreFiltersApplied] = useState(false);
   const [mobileView, setMobileView] = useState<MobileView>('map');
-  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(properties[0]?.id || null);
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -75,7 +75,7 @@ export default function Home() {
       <Drawer.Root shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
-          <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden pt-28">
             <main className="relative flex-1">
               <MapView 
                 isSidebarOpen={isSidebarOpen} 
@@ -113,7 +113,7 @@ export default function Home() {
   return (
       <div className="relative flex flex-col h-screen bg-background md:h-auto">
         {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
-        <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden">
+        <div className="flex flex-1 flex-col md:flex-row md:overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
               "md:flex",
