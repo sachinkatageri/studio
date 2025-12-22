@@ -241,10 +241,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         </nav>
         
         <div className="flex items-center gap-2">
-            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-10 flex-shrink-0 hidden md:flex items-center gap-2">
-              <PlusCircle className="h-4 w-4" />
-              List Property
-            </Button>
             <ThemeToggleButton />
             <UserMenuButton />
         </div>
