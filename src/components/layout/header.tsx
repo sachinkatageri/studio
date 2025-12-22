@@ -169,7 +169,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
 
-  const placeholderTexts = ['Search "Indiranagar"', 'Search for projects', 'Search for builders'];
+  const placeholderTexts = ['Search "Indiranagar"', 'Search "Koramangala"', 'Search "HSR Layout"'];
   const [placeholder, setPlaceholder] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
