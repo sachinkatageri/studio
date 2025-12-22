@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart, Share2, AlertTriangle, CheckCircle } from 'lucide-react';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
+import { ShareOptions } from '@/components/layout/share-options';
 
 type Property = typeof properties[0];
 
@@ -33,9 +34,11 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                         <Button variant="outline" size="icon">
                             <Heart className="h-5 w-5" />
                         </Button>
-                        <Button variant="outline" size="icon">
-                            <Share2 className="h-5 w-5" />
-                        </Button>
+                        <ShareOptions>
+                            <Button variant="outline" size="icon">
+                                <Share2 className="h-5 w-5" />
+                            </Button>
+                        </ShareOptions>
                     </div>
                 </div>
             

@@ -21,6 +21,7 @@ import { Badge } from '@/components/ui/badge';
 import Header from '@/components/layout/header';
 import { PropertyInfoSection } from './property-info-section';
 import { Separator } from '@/components/ui/separator';
+import { ShareOptions } from '@/components/layout/share-options';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -41,9 +42,11 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                 <h1 className="text-sm font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
-                <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <Share2 className="h-5 w-5" />
-                </Button>
+                <ShareOptions>
+                    <Button variant="ghost" size="icon" className="h-9 w-9">
+                        <Share2 className="h-5 w-5" />
+                    </Button>
+                </ShareOptions>
             </div>
         </div>
     );

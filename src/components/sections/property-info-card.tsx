@@ -17,6 +17,7 @@ import { VerificationProcessDialog } from '../layout/verification-process-dialog
 import { amenityIcons } from './property-details-panel';
 import { Check } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
+import { ShareOptions } from '../layout/share-options';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -59,20 +60,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     </div>
                 )}
                 <div className="absolute top-2 right-2 flex gap-2">
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                        <Button
-                            variant="secondary"
-                            size="icon"
-                            className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white"
-                        >
-                            <Share2 className="h-4 w-4" />
-                        </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                        <p>Share</p>
-                        </TooltipContent>
-                    </Tooltip>
+                    <ShareOptions>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button
+                                    variant="secondary"
+                                    size="icon"
+                                    className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white"
+                                >
+                                    <Share2 className="h-4 w-4" />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Share</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </ShareOptions>
                     <Tooltip>
                         <TooltipTrigger asChild>
                         <Button
