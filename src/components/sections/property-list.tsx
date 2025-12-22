@@ -103,13 +103,11 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
         <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
           <div className="p-4 pb-0 border-b shrink-0">
               <h2 className="text-xl font-bold">List View</h2>
-              <div className="mt-4">
-                  <TabsList>
-                      <TabsTrigger value="all">All</TabsTrigger>
-                      <TabsTrigger value="commercial">Commercial</TabsTrigger>
-                      <TabsTrigger value="residential">Residential</TabsTrigger>
-                  </TabsList>
-              </div>
+              <TabsList className="grid w-full grid-cols-3 mt-4">
+                  <TabsTrigger value="all">All</TabsTrigger>
+                  <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                  <TabsTrigger value="residential">Residential</TabsTrigger>
+              </TabsList>
               <ScrollArea className="w-full whitespace-nowrap py-4">
                   <div className="flex gap-2">
                       {quickFilterOptions.map(filter => (
@@ -175,4 +173,5 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
       </div>
   );
 }
+
 
