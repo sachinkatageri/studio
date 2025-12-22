@@ -5,30 +5,10 @@ import Link from 'next/link';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Badge } from '@/components/ui/badge';
+import { properties } from '@/lib/properties';
 
-const projects = [
-  {
-    id: 'project-1',
-    name: 'Azure Urban Residences',
-    location: 'Metropolis, CA',
-    price: 'Starting from $500,000',
-    status: 'Ready to move'
-  },
-  {
-    id: 'project-2',
-    name: 'Greenwood Villas',
-    location: 'Serene Valley, TX',
-    price: 'Starting from $750,000',
-    status: 'New Launch'
-  },
-  {
-    id: 'project-3',
-    name: 'The Pinnacle Towers',
-    location: 'Skyline City, NY',
-    price: 'Starting from $1,200,000',
-    status: 'Under Construction'
-  },
-];
+const projects = properties.filter(p => ['project-1', 'project-2', 'godown-moula-ali'].includes(p.id));
+
 
 export default function FeaturedProjects() {
   return (
@@ -46,6 +26,10 @@ export default function FeaturedProjects() {
         <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => {
             const projectImage = PlaceHolderImages.find(p => p.id === project.id);
+            const offerPriceString = project.price ? String(project.price).replace(/[^0-9.]/g, '') : '0';
+            const offerPrice = parseInt(offerPriceString, 10);
+            const beforePrice = Math.round(offerPrice * 1.15);
+            
             return (
               <Card key={project.id} className="overflow-hidden group">
                 <div className="relative h-60">
@@ -66,7 +50,25 @@ export default function FeaturedProjects() {
                     <MapPin className="h-4 w-4 mr-2" />
                     <span>{project.location}</span>
                   </div>
-                  <p className="mt-4 font-semibold text-lg text-primary">{project.price}</p>
+                   {project.size && <p className="mt-2 text-sm text-muted-foreground">Size: {project.size} sq. yd.</p>}
+
+                   <div className="flex items-end gap-2 mt-4">
+                    {project.price ? (
+                        <>
+                          <p className="font-semibold text-lg text-primary">
+                              {project.price.startsWith('Starting') ? project.price : `₹${project.price}`}
+                          </p>
+                          {beforePrice > 0 && offerPrice > 0 && !project.price.startsWith('Starting') && (
+                             <p className="text-sm text-muted-foreground line-through">
+                                ₹{beforePrice.toLocaleString('en-IN')}
+                            </p>
+                          )}
+                        </>
+                    ) : project.pricePerSqFt ? (
+                      <p className="font-semibold text-lg text-primary">₹{project.pricePerSqFt} <span className="text-sm font-normal">/sq.ft</span></p>
+                    ) : null}
+                  </div>
+
                    <Button className="mt-6 w-full" variant="outline">View Details</Button>
                 </CardContent>
               </Card>

@@ -53,18 +53,23 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
           <p className="text-xs text-muted-foreground">{property.location}</p>
           {/* @ts-ignore */}
           {property.size && <p className="text-xs text-muted-foreground">Size: {property.size} sq. yd.</p>}
-          {property.price && (
-            <div className="flex items-end gap-2 mt-1">
-              <p className="font-bold text-primary text-sm">
-                  {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
-              </p>
-              {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
-                 <p className="text-xs text-muted-foreground line-through">
-                    ₹{beforePrice.toLocaleString('en-IN')}
-                </p>
-              )}
-            </div>
-          )}
+          
+          <div className="flex items-end gap-2 mt-1">
+            {property.price ? (
+                <>
+                  <p className="font-bold text-primary text-sm">
+                      {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                  </p>
+                  {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
+                     <p className="text-xs text-muted-foreground line-through">
+                        ₹{beforePrice.toLocaleString('en-IN')}
+                    </p>
+                  )}
+                </>
+            ) : property.pricePerSqFt ? (
+              <p className="font-bold text-primary text-sm">₹{property.pricePerSqFt} <span className="text-xs font-normal">/sq.ft</span></p>
+            ) : null}
+          </div>
         </div>
       </CardContent>
     </Card>
