@@ -55,8 +55,8 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
 const MobileFooter = () => (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-background border-t p-2">
         <div className="flex gap-2">
-            <Button variant="outline" className="w-full h-12">Contact</Button>
-            <Button className="w-full h-12">
+            <Button variant="outline" className="w-full h-12 rounded-lg">Contact</Button>
+            <Button className="w-full h-12 rounded-lg">
                 <WhatsAppIcon />
                 <span className="ml-2">WhatsApp</span>
             </Button>
@@ -91,7 +91,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
             <main className="md:pt-8">
-                <div className="px-4 sm:px-0 pt-16 md:pt-0">
+                <div className="px-4 sm:px-0 md:pt-0 pt-14">
                   <Breadcrumb property={property} />
                 </div>
                 <div className="md:mt-4">
