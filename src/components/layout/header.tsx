@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Link from 'next/link';
@@ -16,6 +15,7 @@ import { LoginDialog } from './login-dialog';
 import { Input } from '../ui/input';
 import { LayersDialog } from './layers-dialog';
 import { LayersDeclarationDialog } from './layers-declaration-dialog';
+import { CitySelectionSheet } from './city-selection-sheet';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -165,6 +165,7 @@ const UserMenuButton = () => {
 export default function Header({ onFilterClick, areFiltersApplied }: { onFilterClick?: () => void, areFiltersApplied?: boolean }) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
+  const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
 
   const handleLayersClick = () => {
     setIsLayersDeclarationOpen(true);
@@ -172,6 +173,10 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   const handleDeclarationProceed = () => {
     setIsLayersDialogOpen(true);
+  }
+  
+  const handleCitySelection = () => {
+      setIsCitySheetOpen(true);
   }
 
   return (
@@ -217,7 +222,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                     <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
                         <SlidersHorizontal className="h-5 w-5" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleLayersClick}>
+                    <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
                         <Globe className="h-5 w-5" />
                     </Button>
                 </div>
@@ -233,6 +238,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         open={isLayersDialogOpen}
         onOpenChange={setIsLayersDialogOpen}
     />
+    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} />
     </>
   );
 }
