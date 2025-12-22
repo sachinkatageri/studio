@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
-import { properties, propertyImageGallery } from '@/lib/properties';
+import { properties } from '@/lib/properties';
 import { Button } from '../ui/button';
 import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle } from 'lucide-react';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
 import { amenityIcons } from './property-details-panel';
 import { Check } from 'lucide-react';
+import { ScrollArea } from '../ui/scroll-area';
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -42,7 +43,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const beforePrice = Math.round(offerPrice * 1.15);
 
   return (
-      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg relative overflow-hidden">
+      <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg relative flex flex-col h-[70vh]">
         <TooltipProvider>
             <div className="relative">
                 {propertyImage && (
@@ -112,139 +113,142 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <p className="text-neutral-300">{property.location}</p>
                 </div>
             </div>
-          <div className="space-y-4 p-4">
-            <div className="flex justify-between items-center">
-              <div>
-                {property.price ? (
-                    <div className="flex items-end gap-2">
-                        <p className="text-2xl font-bold text-primary">
-                            {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
-                        </p>
-                        {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
-                            <p className="text-base text-muted-foreground line-through">
-                                ₹{beforePrice.toLocaleString('en-IN')}
-                            </p>
+            <ScrollArea className="flex-1 min-h-0">
+                <div className="space-y-4 p-4">
+                    <div className="flex justify-between items-center">
+                    <div>
+                        {property.price ? (
+                            <div className="flex items-end gap-2">
+                                <p className="text-2xl font-bold text-primary">
+                                    {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                                </p>
+                                {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
+                                    <p className="text-base text-muted-foreground line-through">
+                                        ₹{beforePrice.toLocaleString('en-IN')}
+                                    </p>
+                                )}
+                            </div>
+                        ) : (
+                        <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
                         )}
                     </div>
-                ) : (
-                  <p className="text-2xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-base font-normal text-muted-foreground">/sq.ft</span></p>
-                )}
-              </div>
-              {property.status && (
-                <Badge variant="secondary" className="text-base">
-                  {property.status}
-                </Badge>
-              )}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                <span className="font-semibold">{property.rating}</span>
-                <span className="text-muted-foreground">
-                  ({property.reviews} reviews)
-                </span>
-              </div>
-
-              {postedDate && (
-                <p>
-                  <span className="font-semibold">Date Added:</span>{' '}
-                  {postedDate}
-                </p>
-              )}
-            </div>
-
-            {property.size && (
-              <p className="text-base">
-                <span className="font-semibold">Size:</span> {property.size} sq.
-                yd.
-              </p>
-            )}
-
-            <div>
-              <h4 className="text-base font-semibold mb-2">Amenities</h4>
-              <div className="grid grid-cols-4 gap-4">
-                {property.amenities?.slice(0, 4).map((amenity: string) => (
-                  <div
-                    key={amenity}
-                    className="flex flex-col items-center text-center gap-2"
-                  >
-                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                      {/* @ts-ignore */}
-                      {amenityIcons[amenity] || (
-                        <Check className="h-5 w-5 text-primary" />
-                      )}
+                    {property.status && (
+                        <Badge variant="secondary" className="text-base">
+                        {property.status}
+                        </Badge>
+                    )}
                     </div>
-                    <span className="text-xs font-medium">{amenity}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
 
-            <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
-              <div className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-foreground font-semibold">
-                    Preliminary verification done.
-                  </p>
-                  <Button
-                    variant="link"
-                    className="text-xs p-0 h-auto"
-                    onClick={() => setIsVerificationDialogOpen(true)}
-                  >
-                    Know the Process
-                  </Button>
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                    <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <span className="font-semibold">{property.rating}</span>
+                        <span className="text-muted-foreground">
+                        ({property.reviews} reviews)
+                        </span>
+                    </div>
+
+                    {postedDate && (
+                        <p>
+                        <span className="font-semibold">Date Added:</span>{' '}
+                        {postedDate}
+                        </p>
+                    )}
+                    </div>
+
+                    {property.size && (
+                    <p className="text-base">
+                        <span className="font-semibold">Size:</span> {property.size} sq.
+                        yd.
+                    </p>
+                    )}
+
+                    <div>
+                    <h4 className="text-base font-semibold mb-2">Amenities</h4>
+                    <div className="grid grid-cols-4 gap-4">
+                        {property.amenities?.slice(0, 4).map((amenity: string) => (
+                        <div
+                            key={amenity}
+                            className="flex flex-col items-center text-center gap-2"
+                        >
+                            <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                            {/* @ts-ignore */}
+                            {amenityIcons[amenity] || (
+                                <Check className="h-5 w-5 text-primary" />
+                            )}
+                            </div>
+                            <span className="text-xs font-medium">{amenity}</span>
+                        </div>
+                        ))}
+                    </div>
+                    </div>
+
+                    <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
+                    <div className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 shrink-0" />
+                        <div>
+                        <p className="text-foreground font-semibold">
+                            Preliminary verification done.
+                        </p>
+                        <Button
+                            variant="link"
+                            className="text-xs p-0 h-auto"
+                            onClick={() => setIsVerificationDialogOpen(true)}
+                        >
+                            Know the Process
+                        </Button>
+                        </div>
+                    </div>
+                    <div className="text-center border-t pt-4 mt-4">
+                        <p className="text-xs text-red-600 mb-2">
+                        The land location with survey number could not be verified due
+                        to unavailability of cadastral maps.
+                        </p>
+                        <Button
+                        variant="link"
+                        className="text-xs p-0 h-auto text-foreground font-normal underline"
+                        >
+                        <AlertTriangle className="h-4 w-4 mr-1" />
+                        Report this listing
+                        </Button>
+                    </div>
+                    </div>
                 </div>
-              </div>
-              <div className="text-center border-t pt-4 mt-4">
-                <p className="text-xs text-red-600 mb-2">
-                  The land location with survey number could not be verified due
-                  to unavailability of cadastral maps.
-                </p>
-                <Button
-                  variant="link"
-                  className="text-xs p-0 h-auto text-foreground font-normal underline"
-                >
-                  <AlertTriangle className="h-4 w-4 mr-1" />
-                  Report this listing
-                </Button>
-              </div>
-            </div>
-          </div>
-            <Separator />
-
-             <div className="p-4 bg-background shrink-0">
-                <div className="flex gap-2">
-                    <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" className="h-14 w-14">
-                            <Phone className="h-6 w-6" />
+            </ScrollArea>
+            <div className="mt-auto">
+                <Separator />
+                <div className="p-4 bg-background shrink-0">
+                    <div className="flex gap-2">
+                        <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                            <Button variant="outline" size="icon" className="h-14 w-14">
+                                <Phone className="h-6 w-6" />
+                            </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p>Call</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                            <Button variant="outline" size="icon" className="h-14 w-14">
+                                <WhatsAppIcon />
+                            </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p>WhatsApp</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        </TooltipProvider>
+                        <Button
+                        variant="default"
+                        className="flex-1 text-lg h-14"
+                        onClick={() => onViewDetails(property.id)}
+                        >
+                        View Details
                         </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                        <p>Call</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                        <Button variant="outline" size="icon" className="h-14 w-14">
-                            <WhatsAppIcon />
-                        </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                        <p>WhatsApp</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    </TooltipProvider>
-                    <Button
-                    variant="default"
-                    className="flex-1 text-lg h-14"
-                    onClick={() => onViewDetails(property.id)}
-                    >
-                    View Details
-                    </Button>
+                    </div>
                 </div>
             </div>
         </TooltipProvider>
