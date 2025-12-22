@@ -95,7 +95,7 @@ export default function Home() {
                     <div className={cn(
                         "absolute left-4 z-10 transition-all duration-300",
                         "bottom-20",
-                        selectedPropertyId && "bottom-[22rem]"
+                         selectedPropertyId ? "bottom-[28rem]" : "bottom-20"
                     )}>
                         <Button variant="secondary" className="shadow-lg">
                             <Menu className="mr-2 h-4 w-4" />
