@@ -54,18 +54,20 @@ export function LayersDeclarationDialog({ open, onOpenChange, onProceed }: Layer
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerContent>
-          <DrawerHeader className="text-left flex-row items-center justify-between">
-            <div>
-              <DrawerTitle>Layers Declaration</DrawerTitle>
-              <DrawerDescription>
-                  Review the disclaimer before proceeding.
-              </DrawerDescription>
+          <DrawerHeader className="text-left">
+            <div className="flex justify-between items-center">
+              <div>
+                <DrawerTitle>Layers Declaration</DrawerTitle>
+                <DrawerDescription>
+                    Review the disclaimer before proceeding.
+                </DrawerDescription>
+              </div>
+              <DrawerClose asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <X className="h-5 w-5" />
+                </Button>
+              </DrawerClose>
             </div>
-            <DrawerClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                  <X className="h-5 w-5" />
-              </Button>
-            </DrawerClose>
           </DrawerHeader>
             <div className="px-4">
                  <div className="text-sm text-muted-foreground space-y-4">
