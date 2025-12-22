@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle, Search, SlidersHorizontal, Globe } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle, Search, SlidersHorizontal, Globe, PlusCircle } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -241,6 +241,10 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         </nav>
         
         <div className="flex items-center gap-2">
+            <Button className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg h-10 flex-shrink-0 hidden md:flex items-center gap-2">
+              <PlusCircle className="h-4 w-4" />
+              List Property
+            </Button>
             <ThemeToggleButton />
             <UserMenuButton />
         </div>
@@ -297,5 +301,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    

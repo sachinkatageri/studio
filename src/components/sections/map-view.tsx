@@ -24,6 +24,7 @@ import type { MobileView } from '@/app/page';
 import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
 import { LayersDialog } from '../layout/layers-dialog';
 import { Drawer } from 'vaul';
+import { ListPropertySheet } from '../layout/list-property-sheet';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -51,6 +52,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isGpsActive, setIsGpsActive] = useState(false);
+  const [isListPropertySheetOpen, setIsListPropertySheetOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const mapImages = {
@@ -223,7 +225,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                 <div className="flex flex-col bg-background/80 backdrop-blur-sm border rounded-lg shadow-lg">
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-12 w-12">
+                            <Button variant="ghost" size="icon" className="h-12 w-12" onClick={() => setIsListPropertySheetOpen(true)}>
                                 <PlusCircle />
                             </Button>
                         </TooltipTrigger>
@@ -301,6 +303,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         open={isLayersDialogOpen}
         onOpenChange={setIsLayersDialogOpen}
     />
+    <ListPropertySheet open={isListPropertySheetOpen} onOpenChange={setIsListPropertySheetOpen} />
     </>
   );
 }
