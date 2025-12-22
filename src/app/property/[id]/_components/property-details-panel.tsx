@@ -28,6 +28,13 @@ const amenityIcons: { [key: string]: React.ReactNode } = {
     'Loading Dock': <Warehouse className="h-6 w-6 text-primary" />,
     'Printing': <Check className="h-6 w-6 text-primary" />,
     'Coffee Bar': <Coffee className="h-6 w-6 text-primary" />,
+    'Swimming Pool': <Check className="h-6 w-6 text-primary" />,
+    'Gym': <Check className="h-6 w-6 text-primary" />,
+    'Clubhouse': <Check className="h-6 w-6 text-primary" />,
+    'Private Garden': <Check className="h-6 w-6 text-primary" />,
+    'Community Park': <Check className="h-6 w-6 text-primary" />,
+    'Jogging Track': <Check className="h-6 w-6 text-primary" />,
+    'Gated Community': <ShieldCheck className="h-6 w-6 text-primary" />,
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
@@ -45,7 +52,7 @@ const PropertyAmenities = ({ property }: { property: Property}) => (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
             {property.amenities.map(amenity => (
                 <div key={amenity} className="flex flex-col items-center text-center gap-2">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-lg bg-muted">
+                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted">
                         {amenityIcons[amenity] || <Check className="h-6 w-6 text-primary" />}
                     </div>
                     <span className="text-sm font-medium">{amenity}</span>
