@@ -7,7 +7,6 @@ import PropertyList from '@/components/sections/property-list';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
-import MobileToolbar from '@/components/layout/mobile-toolbar';
 import Footer from '@/components/layout/footer';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { properties } from '@/lib/properties';
@@ -73,7 +72,6 @@ export default function Home() {
       <div className="flex flex-col h-screen bg-background">
         <Header />
         <div className="flex flex-col flex-1 md:flex-row overflow-hidden">
-          <MobileToolbar mobileView={mobileView} setMobileView={setMobileView} />
           <div className="flex flex-1 overflow-hidden">
             <aside className={cn(
               "flex-col border-r transition-all duration-300",
