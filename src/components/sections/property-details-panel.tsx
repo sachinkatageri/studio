@@ -5,7 +5,7 @@
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User } from 'lucide-react';
+import { Check, Phone, ShieldCheck, Star, Users, Warehouse, Wifi, Zap, Building, Square, Bed, Bath, ParkingSquare, Armchair, MapPin, FileText, Clock, Building2, School, Hotel, Hospital, Briefcase, Heart, Share2, AlertTriangle, CheckCircle, Download, Wrench, UserCheck, User, Coffee, PlusCircle } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,17 +17,26 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
+import { allAmenities } from '@/lib/amenities';
 
 type Property = typeof properties[0];
 
 const amenityIcons: { [key: string]: React.ReactNode } = {
-    'High-Speed WiFi': <Wifi className="h-5 w-5 text-primary" />,
-    'Meeting Rooms': <Users className="h-5 w-5 text-primary" />,
-    'Power Backup': <Zap className="h-5 w-5 text-primary" />,
-    '24/7 Security': <ShieldCheck className="h-5 w-5 text-primary" />,
-    'Loading Dock': <Warehouse className="h-5 w-5 text-primary" />,
-    'Printing': <Check className="h-5 w-5 text-primary" />,
-    'Coffee Bar': <Check className="h-5 w-5 text-primary" />,
+    'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
+    'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
+    'Power Backup': <Zap className="h-6 w-6 text-primary" />,
+    '24/7 Security': <ShieldCheck className="h-6 w-6 text-primary" />,
+    'Loading Dock': <Warehouse className="h-6 w-6 text-primary" />,
+    'Printing': <Check className="h-6 w-6 text-primary" />,
+    'Coffee Bar': <Coffee className="h-6 w-6 text-primary" />,
+    'Swimming Pool': <Check className="h-6 w-6 text-primary" />,
+    'Gym': <Check className="h-6 w-6 text-primary" />,
+    'Clubhouse': <Check className="h-6 w-6 text-primary" />,
+    'Private Garden': <Check className="h-6 w-6 text-primary" />,
+    'Community Park': <Check className="h-6 w-6 text-primary" />,
+    'Jogging Track': <Check className="h-6 w-6 text-primary" />,
+    'Gated Community': <ShieldCheck className="h-6 w-6 text-primary" />,
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
@@ -39,19 +48,39 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 )
 
 
-const PropertyAmenities = ({ property }: { property: Property}) => (
-    <div id="amenities">
-        <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {property.amenities.map(amenity => (
-                <div key={amenity} className="flex items-center gap-3">
-                    {amenityIcons[amenity] || <Check className="h-5 w-5 text-primary" />}
-                    <span className="text-sm">{amenity}</span>
-                </div>
-            ))}
+const PropertyAmenities = ({ property }: { property: Property}) => {
+    const [isAmenitiesDialogOpen, setIsAmenitiesDialogOpen] = useState(false);
+    const amenitiesToShow = allAmenities.slice(0, 10);
+    const remainingCount = allAmenities.length - amenitiesToShow.length;
+
+    return (
+        <div id="amenities">
+            <h2 className="text-xl font-semibold mb-4">Amenities</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {amenitiesToShow.map(amenity => (
+                    <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
+                        <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted">
+                            {amenity.icon ? <amenity.icon className="h-6 w-6 text-primary" /> : <Check className="h-6 w-6 text-primary" />}
+                        </div>
+                        <span className="text-sm font-medium">{amenity.name}</span>
+                    </div>
+                ))}
+                 {remainingCount > 0 && (
+                    <div className="flex flex-col items-center text-center gap-2">
+                        <button 
+                            onClick={() => setIsAmenitiesDialogOpen(true)}
+                            className="flex items-center justify-center h-16 w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+                        >
+                            <PlusCircle className="h-6 w-6 text-primary" />
+                        </button>
+                        <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-sm font-medium hover:underline">+{remainingCount} More</button>
+                    </div>
+                 )}
+            </div>
+            <AmenitiesDialog open={isAmenitiesDialogOpen} onOpenChange={setIsAmenitiesDialogOpen} />
         </div>
-    </div>
-)
+    )
+}
 
 const WhatsAppIcon = () => (
     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
@@ -288,8 +317,8 @@ const ResidentReviews = () => {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 z-10" />
-                <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 z-10" />
+                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
             </Carousel>
         </div>
     );
@@ -503,80 +532,8 @@ const OurServices = () => {
 
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
-    const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
-
     return (
-        <>
         <div className="space-y-8 pb-20 md:pb-0">
-            <div id="info" className="md:pt-0 pt-4">
-                <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                           <h1 className="text-3xl font-bold">{property.name}</h1>
-                           <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={28} height={28} />
-                        </div>
-                        <p className="text-muted-foreground mt-1">{property.location}</p>
-                    </div>
-                    <div className="hidden md:flex items-center gap-2">
-                        <Button variant="outline" size="icon">
-                            <Heart className="h-5 w-5" />
-                        </Button>
-                        <Button variant="outline" size="icon">
-                            <Share2 className="h-5 w-5" />
-                        </Button>
-                    </div>
-                </div>
-            
-            
-            <div className="mt-4 flex flex-wrap gap-4 items-center">
-                <p className="text-2xl font-bold text-primary">
-                    {/* @ts-ignore */}
-                    ₹{property.price}
-                    <span className="text-base text-muted-foreground font-normal"> (₹{property.pricePerSqFt}/sq.ft)</span>
-                </p>
-                <Badge variant="secondary">{property.status}</Badge>
-                {property.type === 'Commercial' && <Badge>Zero Brokerage</Badge>}
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Area</span>
-                    {/* @ts-ignore */}
-                    <span className="font-semibold">{property.size} sq.ft</span>
-                </div>
-                <div className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Developer</span>
-                    <span className="font-semibold">Vaishnavi</span>
-                </div>
-                 <div className="flex flex-col">
-                    <span className="text-sm text-muted-foreground">Furnishing</span>
-                    <span className="font-semibold">Furnished</span>
-                </div>
-            </div>
-
-            </div>
-            
-            <Separator />
-
-             <div className="text-sm text-muted-foreground space-y-2 p-4 border rounded-lg">
-              <div className="flex items-start gap-2">
-                <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                  <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
-                    Know the Process
-                  </Button>
-                </div>
-              </div>
-               <div className="text-center border-t pt-4 mt-4">
-                  <p className="text-xs text-red-600 mb-2">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                  <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
-                      <AlertTriangle className="h-4 w-4 mr-1" />
-                      Report this listing
-                  </Button>
-              </div>
-            </div>
-
             <PropertyOverview property={property} />
 
             <Separator />
@@ -693,9 +650,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <Separator />
             <OurServices />
         </div>
-        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
-        </>
     )
 }
-
-    
