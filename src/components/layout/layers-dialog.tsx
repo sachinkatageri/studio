@@ -212,7 +212,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerContent className="h-[90vh]">
-          <DrawerHeader className="p-4 flex-row items-center justify-between border-b shrink-0">
+          <DrawerHeader className="p-4 flex items-center justify-between border-b shrink-0">
             <div className="flex items-center gap-2">
               <DrawerTitle className="text-xl font-bold">Layers</DrawerTitle>
               <Select defaultValue="karnataka">
@@ -248,7 +248,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[90vh] max-w-md w-full p-0 flex flex-col">
-        <DialogHeader className="p-4 flex-row items-center justify-between border-b shrink-0">
+        <DialogHeader className="p-4 flex flex-row items-center justify-between border-b shrink-0">
           <div className="flex items-center gap-2">
             <DialogTitle className="text-xl font-bold">Layers</DialogTitle>
             <Select defaultValue="karnataka">
