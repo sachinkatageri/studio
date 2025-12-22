@@ -177,3 +177,4 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     </div>
   );
 }
+
