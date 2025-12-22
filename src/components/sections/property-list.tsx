@@ -132,7 +132,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     </ScrollArea>
 
                     <div className="flex justify-between items-center pb-2">
-                        <p className="text-xs text-muted-foreground">6 properties found</p>
+                        <p className="text-xs text-muted-foreground">{properties.length} properties found</p>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" size="sm">
