@@ -56,9 +56,9 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
           {property.price && (
             <div className="flex items-end gap-2 mt-1">
               <p className="font-bold text-primary text-base">
-                  ₹{property.price}
+                  {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
               </p>
-              {beforePrice > 0 && offerPrice > 0 && (
+              {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
                  <p className="text-sm text-muted-foreground line-through">
                     ₹{beforePrice.toLocaleString('en-IN')}
                 </p>
@@ -102,7 +102,15 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
     <div className="flex flex-col h-full bg-card">
       <div className="p-4 border-b flex flex-col flex-1 min-h-0">
           <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
-             <div className="flex flex-wrap gap-2 mb-4">
+            <div className='flex items-center justify-between'>
+                <h2 className="text-xl font-bold">List View</h2>
+                <TabsList>
+                    <TabsTrigger value="all">All</TabsTrigger>
+                    <TabsTrigger value="commercial">Commercial</TabsTrigger>
+                    <TabsTrigger value="residential">Residential</TabsTrigger>
+                </TabsList>
+            </div>
+             <div className="flex flex-wrap gap-2 my-4">
                 {quickFilterOptions.map(filter => (
                     <Button 
                         key={filter} 
@@ -138,21 +146,21 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
 
             <ScrollArea className="flex-1 -mx-4">
                 <TabsContent value="all" className="mt-0">
-                    <div className="px-4">
+                    <div className="px-0">
                         {properties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="commercial" className="mt-0">
-                    <div className="px-4">
+                    <div className="px-0">
                         {commercialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
                     </div>
                 </TabsContent>
                 <TabsContent value="residential" className="mt-0">
-                     <div className="px-4">
+                     <div className="px-0">
                         {residentialProperties.map((property) => (
                             <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                         ))}
