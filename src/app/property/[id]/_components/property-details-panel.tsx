@@ -210,44 +210,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
         { star: 1, percentage: 1 },
     ];
     
-    return (
-        <div id="ratings-reviews">
-            <div className="flex justify-between items-center mb-4">
-                <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
-                <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
-            </div>
-            <Card>
-                <CardContent className="p-4 md:p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="flex flex-col items-center justify-center md:border-r">
-                            <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
-                            <div className="flex items-center">
-                                {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
-                                {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
-                            </div>
-                            <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
-                        </div>
-                        <div className="md:col-span-2">
-                           {ratings.map(r => (
-                                <div key={r.star} className="flex items-center gap-2">
-                                    <span className="text-xs md:text-sm w-12">{r.star} star</span>
-                                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                        <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
-                                    </div>
-                                    <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
-                                </div>
-                           ))}
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-            <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
-        </div>
-    )
-}
-
-const ResidentReviews = () => {
-    const reviews = [
+     const reviews = [
         {
             name: 'Vedant Gupta',
             role: 'Owner',
@@ -275,57 +238,90 @@ const ResidentReviews = () => {
     ];
 
     return (
-        <div>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h2>
-                <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
+        <div id="ratings-reviews" className="space-y-8">
+            <div>
+                <div className="flex justify-between items-center mb-4">
+                    <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
+                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
+                </div>
+                <Card>
+                    <CardContent className="p-4 md:p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="flex flex-col items-center justify-center md:border-r">
+                                <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
+                                <div className="flex items-center">
+                                    {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
+                                    {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
+                                </div>
+                                <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
+                            </div>
+                            <div className="md:col-span-2">
+                            {ratings.map(r => (
+                                    <div key={r.star} className="flex items-center gap-2">
+                                        <span className="text-xs md:text-sm w-12">{r.star} star</span>
+                                        <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                            <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                        </div>
+                                        <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
+                                    </div>
+                            ))}
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
-             <Carousel className="w-full" opts={{
-                align: "start",
-                loop: true,
-             }}>
-                <CarouselContent className="-ml-4">
-                    {reviews.map((review, index) => (
-                        <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                             <div className="p-1">
-                                <Card>
-                                    <CardContent className="p-4 space-y-3">
-                                        <div className="flex justify-between items-start">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                    <UserCheck className="w-6 h-6 text-primary" />
+            
+            <div>
+                <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
+                    <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
+                </div>
+                <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+                    <CarouselContent className="-ml-4">
+                        {reviews.map((review, index) => (
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                <div className="p-1">
+                                    <Card>
+                                        <CardContent className="p-4 space-y-3">
+                                            <div className="flex justify-between items-start">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                                        <UserCheck className="w-6 h-6 text-primary" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-semibold text-sm md:text-base">{review.name}</p>
+                                                        <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                    </div>
+                                                </div>
+                                                <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
+                                                    {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                                </Badge>
+                                            </div>
+                                            <div className="space-y-3">
+                                                <div>
+                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
+                                                    <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                                 <div>
-                                                    <p className="font-semibold text-sm md:text-base">{review.name}</p>
-                                                    <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                                    <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                             </div>
-                                            <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
-                                                {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                            </Badge>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <div>
-                                                <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                                <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                                <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                             </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
-                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
-            </Carousel>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
+                </Carousel>
+            </div>
+            
+            <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
         </div>
-    );
-};
+    )
+}
 
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
@@ -601,9 +597,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <PropertyReviews property={property} />
                 </CardContent>
             </Card>
-
-            <Separator />
-            <ResidentReviews />
 
             <Separator />
             <Card id="video">
