@@ -30,23 +30,25 @@ const groupedAmenities = allAmenities.reduce((acc, amenity) => {
 
 function AmenitiesContent() {
   return (
-    <div className="p-6 pt-0 space-y-6">
-        {Object.entries(groupedAmenities).map(([category, amenities]) => (
-            <div key={category}>
-                <h3 className="font-semibold text-lg mb-4 capitalize">{category.toLowerCase().replace(/_/g, ' ')}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {amenities.map(amenity => (
-                        <div key={amenity.name} className="flex items-center gap-3">
-                            <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted shrink-0">
-                               {amenity.icon ? <amenity.icon className="h-5 w-5 text-primary" /> : <X className="h-5 w-5 text-primary" />}
+    <ScrollArea className="flex-1 min-h-0">
+        <div className="p-6 pt-0 space-y-6">
+            {Object.entries(groupedAmenities).map(([category, amenities]) => (
+                <div key={category}>
+                    <h3 className="font-semibold text-lg mb-4 capitalize">{category.toLowerCase().replace(/_/g, ' ')}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {amenities.map(amenity => (
+                            <div key={amenity.name} className="flex items-center gap-3">
+                                <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted shrink-0">
+                                   {amenity.icon ? <amenity.icon className="h-5 w-5 text-primary" /> : <X className="h-5 w-5 text-primary" />}
+                                </div>
+                                <span className="text-sm">{amenity.name}</span>
                             </div>
-                            <span className="text-sm">{amenity.name}</span>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
-        ))}
-    </div>
+            ))}
+        </div>
+    </ScrollArea>
   )
 }
 
@@ -65,9 +67,7 @@ export function AmenitiesDialog({ open, onOpenChange }: AmenitiesDialogProps) {
                     </Button>
                 </DrawerClose>
             </DrawerHeader>
-            <ScrollArea className="flex-1 min-h-0">
-                <AmenitiesContent />
-            </ScrollArea>
+            <AmenitiesContent />
         </DrawerContent>
       </Drawer>
     )
@@ -85,9 +85,7 @@ export function AmenitiesDialog({ open, onOpenChange }: AmenitiesDialogProps) {
                 </button>
             </DialogClose>
         </DialogHeader>
-        <ScrollArea className="flex-1 min-h-0">
-            <AmenitiesContent />
-        </ScrollArea>
+        <AmenitiesContent />
       </DialogContent>
     </Dialog>
   );
