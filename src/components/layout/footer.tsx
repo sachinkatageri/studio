@@ -17,7 +17,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="md:hidden sticky bottom-0 z-40 w-full bg-background border-t">
+    <footer className="md:hidden sticky bottom-0 z-40 w-full bg-background border-t rounded-t-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
       <div className="container mx-auto h-16 flex justify-around items-center">
         {navItems.map((item) => (
           <Link
