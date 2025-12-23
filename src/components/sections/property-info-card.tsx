@@ -411,3 +411,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </Card>
   );
 }
+
+    
