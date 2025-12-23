@@ -25,6 +25,7 @@ import { LayersDeclarationDialog } from '../layout/layers-declaration-dialog';
 import { LayersDialog } from '../layout/layers-dialog';
 import { Drawer } from 'vaul';
 import { ListPropertySheet } from '../layout/list-property-sheet';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 
 interface MapViewProps {
   isSidebarOpen: boolean;
@@ -108,6 +109,8 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     setIsGpsActive(prev => !prev);
     // TODO: Add logic to actually get and track user location
   }
+
+  const initialIndex = selectedPropertyId ? properties.findIndex(p => p.id === selectedPropertyId) : -1;
 
   return (
     <>
@@ -285,11 +288,32 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         </div>
        </TooltipProvider>
 
-       {selectedPropertyId && !isMobile && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-full max-w-4xl">
-          <PropertyInfoCard propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
-        </div>
-       )}
+        {selectedPropertyId && !isMobile && initialIndex !== -1 && (
+            <div className="absolute bottom-0 left-0 right-0 z-20 w-[98%] mx-auto mb-[1%]">
+                <Carousel
+                    opts={{
+                        startIndex: initialIndex,
+                        align: 'center',
+                        loop: true,
+                    }}
+                    className="w-full"
+                >
+                    <CarouselContent className="-ml-4">
+                        {properties.map((p) => (
+                            <CarouselItem key={p.id} className="pl-4">
+                                <PropertyInfoCard
+                                    propertyId={p.id}
+                                    onClose={onCloseInfoCard}
+                                    onViewDetails={onViewDetails}
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-[-1rem] top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-[-1rem] top-1/2 -translate-y-1/2 z-10" />
+                </Carousel>
+            </div>
+        )}
        
        {isMobile && (
           <PropertyDetailsSheet propertyId={selectedPropertyId} onClose={onCloseInfoCard} onViewDetails={onViewDetails} />
