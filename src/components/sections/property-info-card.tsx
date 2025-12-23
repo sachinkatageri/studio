@@ -115,9 +115,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
             </div>
-             <div className="grid grid-cols-5 gap-1 p-1">
-                {galleryImages.map(image => (
-                    <div key={image.id} className="relative aspect-square rounded-md overflow-hidden cursor-pointer group transition-transform duration-200 hover:scale-105 hover:shadow-lg shadow-md">
+             <div className="grid grid-cols-5 gap-px bg-border">
+                {galleryImages.map((image, index) => (
+                    <div key={image.id} className="relative aspect-square cursor-pointer group transition-transform duration-200 hover:scale-105 hover:shadow-lg shadow-md">
                         <Image
                             src={image.imageUrl}
                             alt={image.description}
@@ -271,3 +271,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </Card>
   );
 }
+
+    
