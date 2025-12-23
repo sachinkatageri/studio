@@ -139,8 +139,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
                         )}
                     </div>
-                     <Badge variant={property.status === 'Available' ? 'default' : 'secondary'} className="text-xs">{property.status}</Badge>
-                    </div>
                      {property.amenities && (
                         <div className="grid grid-cols-4 gap-4">
                             {property.amenities.slice(0, 4).map((amenity: string) => (
@@ -153,7 +151,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             ))}
                         </div>
                     )}
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+                    </div>
+                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
                     <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                         <span className="font-semibold">{property.rating}</span>
@@ -177,22 +176,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     </p>
                     )}
 
-                    <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
-                        <div className="flex items-start gap-2">
-                            <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
-                            <div>
-                            <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                            <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
-                                Know the Process
-                            </Button>
-                            </div>
-                        </div>
-                        <p className="text-xs text-red-600">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                         <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
-                            <AlertTriangle className="h-3 w-3 mr-1" />
-                            Report this listing
-                        </Button>
-                    </div>
                 </div>
             </ScrollArea>
             <div className="mt-auto">
@@ -284,7 +267,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
             </div>
-            <div className="col-span-7 p-4 grid grid-cols-3 gap-4 relative">
+            <div className="col-span-7 p-4 grid grid-cols-2 gap-4 relative">
                  <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={onClose}>
                     <X className="h-5 w-5" />
                 </Button>
@@ -298,6 +281,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             height={16}
                         />
                     </div>
+                    <p className="text-xs text-muted-foreground">{property.location}</p>
                     {property.price ? (
                         <div className="flex items-end gap-2">
                             <p className="text-xl font-bold text-primary">
@@ -331,11 +315,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         {postedDate}
                         </p>
                     )}
-                    <Badge variant={property.status === 'Available' ? 'default' : 'secondary'} className="text-xs">{property.status}</Badge>
 
                 </div>
                 
-                <div className="col-span-2 relative flex flex-col">
+                <div className="relative flex flex-col">
                     <ScrollArea className="flex-1 pr-4 -mr-4">
                         <div className="space-y-4">
                             {property.amenities && (
@@ -354,17 +337,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                                 </div>
                             )}
 
-                            <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
-                                <div className="flex items-start gap-2">
-                                    <CheckCircle className="h-4 w-4 text-blue-500 mt-0.5 shrink-0" />
-                                    <div>
-                                    <p className="text-foreground font-semibold">Preliminary verification done.</p>
-                                    <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
-                                        Know the Process
-                                    </Button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </ScrollArea>
                     <div className="flex gap-2 pt-4 sticky bottom-0 bg-card">
@@ -389,5 +361,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </Card>
   );
 }
+
+    
 
     
