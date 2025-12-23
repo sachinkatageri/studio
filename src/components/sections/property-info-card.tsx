@@ -265,7 +265,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   }
   
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden">
+    <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden">
         <div className="grid grid-cols-10">
             <div className="col-span-3 relative">
                 {propertyImage && (
