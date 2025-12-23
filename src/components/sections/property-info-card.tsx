@@ -139,10 +139,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
                         )}
                     </div>
-                    {property.status && (
-                        <Badge variant="secondary">
-                        {property.status}
-                        </Badge>
+                    {property.amenities && (
+                        <div className="grid grid-cols-4 gap-4">
+                            {property.amenities.slice(0, 4).map((amenity: string) => (
+                                <div key={amenity} className="flex flex-col items-center text-center gap-1">
+                                <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                    {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                                </div>
+                                <span className="text-xs font-medium">{amenity}</span>
+                                </div>
+                            ))}
+                        </div>
                     )}
                     </div>
 
@@ -169,24 +176,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         yd.
                     </p>
                     )}
-
-                    <div>
-                    <h4 className="font-semibold mb-2">Amenities</h4>
-                     <div className="grid grid-cols-4 gap-4">
-                        {property.amenities?.slice(0, 4).map((amenity: string) => (
-                        <div
-                            key={amenity}
-                            className="flex flex-col items-center text-center gap-1"
-                        >
-                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                            {/* @ts-ignore */}
-                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
-                            </div>
-                            <span className="text-xs font-medium">{amenity}</span>
-                        </div>
-                        ))}
-                    </div>
-                    </div>
 
                     <div className="text-xs text-muted-foreground space-y-2 p-3 border rounded-lg">
                     <div className="flex items-start gap-2">
@@ -264,7 +253,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   
   return (
     <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-10 h-[210px]">
+        <div className="grid grid-cols-10 h-[240px]">
             <div className="col-span-3 relative">
                 {propertyImage && (
                     <Image
@@ -294,26 +283,25 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         <Heart className="h-4 w-4" />
                     </Button>
                 </div>
-                 <div className="absolute bottom-4 left-4">
-                    <div className="flex items-center gap-2">
-                        <h2 className="text-lg text-white font-bold">
-                        {property.name}
-                        </h2>
-                        <Image
-                        src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png"
-                        alt="Verified"
-                        width={18}
-                        height={18}
-                        />
-                    </div>
-                    <p className="text-xs text-neutral-300">{property.location}</p>
-                </div>
             </div>
             <div className="col-span-7 p-4 grid grid-cols-2 gap-4 relative">
                  <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={onClose}>
                     <X className="h-5 w-5" />
                 </Button>
                 <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2">
+                        <h2 className="text-xl font-bold">
+                            {property.name}
+                        </h2>
+                        <Image
+                        src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png"
+                        alt="Verified"
+                        width={20}
+                        height={20}
+                        />
+                    </div>
+                    <p className="text-sm text-muted-foreground">{property.location}</p>
+
                     {property.price ? (
                         <div className="flex items-end gap-2">
                             <p className="text-xl font-bold text-primary">
@@ -347,29 +335,26 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         {postedDate}
                         </p>
                     )}
-                     {property.status && (
-                        <Badge variant="secondary" className="text-xs">
-                        {property.status}
-                        </Badge>
-                    )}
                 </div>
                 
                 <div className="relative flex flex-col">
                     <ScrollArea className="flex-1 pr-4">
                         <div className="space-y-4">
-                            <div className="space-y-2">
-                                <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
-                                <div className="grid grid-cols-4 gap-4">
-                                    {property.amenities?.map((amenity: string) => (
-                                    <div key={amenity} className="flex flex-col items-center text-center gap-1">
-                                        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                            {property.amenities && (
+                                <div className="space-y-2">
+                                    <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
+                                    <div className="grid grid-cols-4 gap-4">
+                                        {property.amenities.map((amenity: string) => (
+                                        <div key={amenity} className="flex flex-col items-center text-center gap-1">
+                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                                {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                                            </div>
+                                            <span className="text-xs font-medium">{amenity}</span>
                                         </div>
-                                        <span className="text-xs font-medium">{amenity}</span>
+                                        ))}
                                     </div>
-                                    ))}
                                 </div>
-                            </div>
+                            )}
                             <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
                                 <div className="flex items-start gap-2">
                                     <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
@@ -389,7 +374,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             </div>
                         </div>
                     </ScrollArea>
-                    <div className="flex gap-2 pt-4">
+                    <div className="flex gap-2 pt-4 sticky bottom-0 bg-card">
                         <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
                             <Phone className="h-5 w-5" />
                         </Button>
@@ -411,5 +396,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </Card>
   );
 }
+
+    
 
     
