@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
-import { properties } from '@/lib/properties';
+import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
 import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle } from 'lucide-react';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
@@ -30,6 +30,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
+  
+  const galleryImages = propertyImageGallery.slice(0, 5);
+
 
   if (!property) return null;
   
@@ -97,7 +100,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </TooltipContent>
                     </Tooltip>
                 </div>
-                <div className="absolute bottom-0 left-0 p-4">
+                <div className="absolute bottom-4 left-4">
                     <div className="flex items-center gap-2">
                         <h2 className="text-xl text-white font-bold">
                         {property.name}
@@ -111,6 +114,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     </div>
                     <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
+            </div>
+             <div className="grid grid-cols-5 gap-1 p-1">
+                {galleryImages.map(image => (
+                    <div key={image.id} className="relative aspect-square rounded-md overflow-hidden cursor-pointer group transition-transform duration-200 hover:scale-105 hover:shadow-lg shadow-md">
+                        <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={image.imageHint}
+                        />
+                    </div>
+                ))}
             </div>
             <ScrollArea className="flex-1 min-h-0">
                 <div className="space-y-4 p-4 text-sm">
