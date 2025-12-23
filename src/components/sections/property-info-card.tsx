@@ -20,7 +20,7 @@ import { ScrollArea } from '../ui/scroll-area';
 import { ShareOptions } from '../layout/share-options';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '../ui/carousel';
 
 
 interface PropertyInfoCardProps {
@@ -37,10 +37,26 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   
   const galleryImages = propertyImageGallery.slice(0, 5);
 
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [current, setCurrent] = React.useState(0)
+  const [count, setCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap())
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
 
   if (!property) return null;
   
-  // @ts-ignore
   const postedDate = property?.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : null;
   const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
   const offerPrice = parseInt(offerPriceString, 10);
@@ -225,7 +241,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden h-[280px]">
         <div className="grid grid-cols-10 h-full">
             <div className="col-span-3 relative">
-                 <Carousel className="w-full h-full">
+                 <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
                         {galleryImages.map(image => (
                             <CarouselItem key={image.id} className="h-full">
@@ -241,9 +257,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 bg-black/50 text-white border-none hover:bg-black/70" />
-                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 bg-black/50 text-white border-none hover:bg-black/70" />
                 </Carousel>
+                <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
+                    {Array.from({ length: count }).map((_, index) => (
+                    <button
+                        key={index}
+                        className={cn(
+                        'h-2 w-2 rounded-full',
+                        index === current ? 'bg-white' : 'bg-white/50'
+                        )}
+                        onClick={() => api?.scrollTo(index)}
+                    />
+                    ))}
+                </div>
                  <div className="absolute top-2 left-2 flex gap-2 z-20">
                     <ShareOptions>
                         <Button
