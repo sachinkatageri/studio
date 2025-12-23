@@ -264,7 +264,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   
   return (
     <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-10">
+        <div className="grid grid-cols-10 h-[210px]">
             <div className="col-span-3 relative">
                 {propertyImage && (
                     <Image
@@ -354,61 +354,57 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     )}
                 </div>
                 
-                <ScrollArea className="h-[150px] w-full">
-                    <div className="space-y-4">
-                        <div className="space-y-2">
-                            <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
-                             <div className="grid grid-cols-4 gap-4">
-                                {property.amenities?.slice(0, 8).map((amenity: string) => (
-                                <div
-                                    key={amenity}
-                                    className="flex flex-col items-center text-center gap-1"
-                                >
-                                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                                    {/* @ts-ignore */}
-                                    {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                <div className="relative flex flex-col">
+                    <ScrollArea className="flex-1 pr-4">
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
+                                <div className="grid grid-cols-4 gap-4">
+                                    {property.amenities?.map((amenity: string) => (
+                                    <div key={amenity} className="flex flex-col items-center text-center gap-1">
+                                        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                                        </div>
+                                        <span className="text-xs font-medium">{amenity}</span>
                                     </div>
-                                    <span className="text-xs font-medium">{amenity}</span>
+                                    ))}
                                 </div>
-                                ))}
                             </div>
-                        </div>
-
-                         <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
-                            <div className="flex items-start gap-2">
-                                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
-                                <div>
-                                    <p className="text-foreground font-semibold">
-                                        Preliminary verification done.
-                                    </p>
-                                    <Button
-                                        variant="link"
-                                        className="text-xs p-0 h-auto"
-                                        onClick={() => setIsVerificationDialogOpen(true)}
-                                    >
-                                        Know the Process
-                                    </Button>
+                            <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
+                                <div className="flex items-start gap-2">
+                                    <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                    <div>
+                                        <p className="text-foreground font-semibold">
+                                            Preliminary verification done.
+                                        </p>
+                                        <Button
+                                            variant="link"
+                                            className="text-xs p-0 h-auto"
+                                            onClick={() => setIsVerificationDialogOpen(true)}
+                                        >
+                                            Know the Process
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="flex gap-2">
-                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                                <Phone className="h-5 w-5" />
-                            </Button>
-                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-                            </Button>
-                            <Button
-                            variant="default"
-                            className="flex-1 text-base h-11 rounded-lg"
-                            onClick={() => onViewDetails(property.id)}
-                            >
-                            View Details
-                            </Button>
-                        </div>
+                    </ScrollArea>
+                    <div className="flex gap-2 pt-4">
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                            <Phone className="h-5 w-5" />
+                        </Button>
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                        </Button>
+                        <Button
+                        variant="default"
+                        className="flex-1 text-base h-11 rounded-lg"
+                        onClick={() => onViewDetails(property.id)}
+                        >
+                        View Details
+                        </Button>
                     </div>
-                </ScrollArea>
+                </div>
             </div>
         </div>
          <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
