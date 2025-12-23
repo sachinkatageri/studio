@@ -4,7 +4,7 @@
 import Image from 'next/image';
 import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect }from 'react';
 import {
   Dialog,
   DialogContent,
@@ -19,43 +19,13 @@ import { Check, Camera, Share2, Heart, GalleryVertical, ArrowLeft, AlertTriangle
 import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
+const imageCategories = ["Main Image", "Elevation", "Amenities", "Floor Plan", "Master Plan"];
 
-const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
-    return (
-        <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-6xl h-[90vh] flex flex-col">
-                <DialogHeader>
-                    <DialogTitle>Property Gallery</DialogTitle>
-                </DialogHeader>
-                <Carousel className="w-full h-full flex-1">
-                    <CarouselContent className="h-full">
-                        {propertyImageGallery.map(image => (
-                            <CarouselItem key={image.id}>
-                                <div className="relative h-full w-full overflow-hidden rounded-md">
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={image.description}
-                                        fill
-                                        className="object-contain"
-                                        data-ai-hint={image.imageHint}
-                                    />
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
-                </Carousel>
-            </DialogContent>
-        </Dialog>
-    )
-}
-
-const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
+const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => void }) => {
     const property = properties[0]; // Assuming first property for now
-    const imageCategories = ["Main Image", "Elevation", "Amenities", "Floor Plan", "Master Plan"];
     const [activeTab, setActiveTab] = useState(imageCategories[0]);
     const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -66,7 +36,7 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
                     }
                 });
             },
-            { rootMargin: "-50% 0px -50% 0px" }
+            { root: scrollContainerRef.current, rootMargin: "-50% 0px -50% 0px" }
         );
 
         Object.values(sectionRefs.current).forEach((el) => {
@@ -83,14 +53,16 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
         });
     };
     
-    return (
-        <div className="fixed inset-0 bg-background z-50 flex flex-col h-screen">
+    const viewContent = (
+        <>
             <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b">
                 <div className="flex items-center justify-between gap-2 h-14 px-2">
                     <div className="flex items-center gap-1 min-w-0">
-                        <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9">
-                            <ArrowLeft className="h-5 w-5" />
-                        </Button>
+                        {isMobile && (
+                            <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9">
+                                <ArrowLeft className="h-5 w-5" />
+                            </Button>
+                        )}
                         <div className='truncate'>
                             <h1 className="text-sm font-semibold truncate">{property.name}</h1>
                             <p className="text-xs text-muted-foreground truncate">{property.price}</p>
@@ -124,7 +96,7 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
                 </ScrollArea>
             </header>
             
-            <ScrollArea className="flex-1">
+            <ScrollArea className="flex-1" viewportRef={scrollContainerRef}>
                  <div className="flex flex-col">
                     {propertyImageGallery.map((image, index) => {
                         const category = imageCategories[index % imageCategories.length]; // Mock category
@@ -170,8 +142,33 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
                     </Button>
                 </div>
             </footer>
-        </div>
+        </>
+    );
+    
+    if (isMobile) {
+        return (
+            <div className="fixed inset-0 bg-background z-50 flex flex-col h-screen">
+                {viewContent}
+            </div>
+        );
+    }
+    
+    return <div className="flex flex-col h-full">{viewContent}</div>;
+};
+
+
+const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
+    return (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col">
+                <GalleryView isMobile={false} onClose={() => onOpenChange(false)} />
+            </DialogContent>
+        </Dialog>
     )
+}
+
+const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
+   return <GalleryView isMobile={true} onClose={onClose} />;
 }
 
 
@@ -269,3 +266,5 @@ export default function PropertyImageGallery() {
         </div>
     )
 }
+
+    
