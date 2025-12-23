@@ -8,7 +8,6 @@ import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
 import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle } from 'lucide-react';
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 import { Separator } from '../ui/separator';
 import { Badge } from '../ui/badge';
 import { format } from 'date-fns';
@@ -18,6 +17,8 @@ import { amenityIcons } from './property-details-panel';
 import { Check } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { ShareOptions } from '../layout/share-options';
+import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 
 interface PropertyInfoCardProps {
@@ -30,6 +31,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const property = properties.find(p => p.id === propertyId);
   const propertyImage = PlaceHolderImages.find(p => p.id === propertyId);
   const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
   
   const galleryImages = propertyImageGallery.slice(0, 5);
 
@@ -42,7 +44,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const offerPrice = parseInt(offerPriceString, 10);
   const beforePrice = Math.round(offerPrice * 1.15);
 
-  return (
+  if (isMobile) {
+      return (
       <Card className="w-full max-w-sm mx-auto shadow-xl bg-card border rounded-lg overflow-hidden flex flex-col h-[80vh]">
         <TooltipProvider>
             <div className="relative">
@@ -257,5 +260,149 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         </TooltipProvider>
          <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
       </Card>
+    );
+  }
+  
+  return (
+    <Card className="w-full max-w-4xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden">
+        <div className="grid grid-cols-10">
+            <div className="col-span-3 relative">
+                {propertyImage && (
+                    <Image
+                        src={propertyImage.imageUrl}
+                        alt={propertyImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={propertyImage.imageHint}
+                    />
+                )}
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                 <div className="absolute top-2 left-2 flex gap-2">
+                    <ShareOptions>
+                        <Button
+                            variant="secondary"
+                            size="icon"
+                            className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white"
+                        >
+                            <Share2 className="h-4 w-4" />
+                        </Button>
+                    </ShareOptions>
+                    <Button
+                        variant="secondary"
+                        size="icon"
+                        className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white"
+                    >
+                        <Heart className="h-4 w-4" />
+                    </Button>
+                </div>
+                 <div className="absolute bottom-4 left-4">
+                    <div className="flex items-center gap-2">
+                        <h2 className="text-lg text-white font-bold">
+                        {property.name}
+                        </h2>
+                        <Image
+                        src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png"
+                        alt="Verified"
+                        width={18}
+                        height={18}
+                        />
+                    </div>
+                    <p className="text-xs text-neutral-300">{property.location}</p>
+                </div>
+            </div>
+            <div className="col-span-7 p-4 grid grid-cols-3 gap-4 relative">
+                 <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={onClose}>
+                    <X className="h-5 w-5" />
+                </Button>
+                <div className="space-y-2 text-sm">
+                    {property.price ? (
+                        <div className="flex items-end gap-2">
+                            <p className="text-xl font-bold text-primary">
+                                {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                            </p>
+                            {beforePrice > 0 && offerPrice > 0 && !property.price.startsWith('Starting') && (
+                                <p className="text-xs text-muted-foreground line-through">
+                                    ₹{beforePrice.toLocaleString('en-IN')}
+                                </p>
+                            )}
+                        </div>
+                    ) : (
+                    <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
+                    )}
+                     {property.size && (
+                        <p>
+                            <span className="font-semibold">Size:</span> {property.size} sq.
+                            yd.
+                        </p>
+                    )}
+                     <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <span className="font-semibold">{property.rating}</span>
+                        <span className="text-muted-foreground">
+                        ({property.reviews} reviews)
+                        </span>
+                    </div>
+                     {postedDate && (
+                        <p>
+                        <span className="font-semibold">Posted:</span>{' '}
+                        {postedDate}
+                        </p>
+                    )}
+                     {property.status && (
+                        <Badge variant="secondary" className="text-xs">
+                        {property.status}
+                        </Badge>
+                    )}
+                </div>
+                <div className="space-y-2">
+                    <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {property.amenities?.slice(0, 4).map((amenity: string) => (
+                        <Badge key={amenity} variant="outline" className="text-xs font-normal">
+                            {/* @ts-ignore */}
+                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-3 w-3 mr-1' })}
+                            {amenity}
+                        </Badge>
+                        ))}
+                    </div>
+                </div>
+                <div className="space-y-4 flex flex-col justify-between">
+                     <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
+                        <div className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                            <div>
+                                <p className="text-foreground font-semibold">
+                                    Preliminary verification done.
+                                </p>
+                                <Button
+                                    variant="link"
+                                    className="text-xs p-0 h-auto"
+                                    onClick={() => setIsVerificationDialogOpen(true)}
+                                >
+                                    Know the Process
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                            <Phone className="h-5 w-5" />
+                        </Button>
+                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                        </Button>
+                        <Button
+                        variant="default"
+                        className="flex-1 text-base h-11 rounded-lg"
+                        onClick={() => onViewDetails(property.id)}
+                        >
+                        View Details
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
+    </Card>
   );
 }
