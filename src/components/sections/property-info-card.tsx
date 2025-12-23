@@ -20,6 +20,7 @@ import { ScrollArea } from '../ui/scroll-area';
 import { ShareOptions } from '../layout/share-options';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 
 
 interface PropertyInfoCardProps {
@@ -224,17 +225,26 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden h-[280px]">
         <div className="grid grid-cols-10 h-full">
             <div className="col-span-3 relative">
-                {propertyImage && (
-                    <Image
-                        src={propertyImage.imageUrl}
-                        alt={propertyImage.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={propertyImage.imageHint}
-                    />
-                )}
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                 <div className="absolute top-2 left-2 flex gap-2">
+                 <Carousel className="w-full h-full">
+                    <CarouselContent className="h-full">
+                        {galleryImages.map(image => (
+                            <CarouselItem key={image.id} className="h-full">
+                                <div className="relative h-full w-full">
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={image.description}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={image.imageHint}
+                                    />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 bg-black/50 text-white border-none hover:bg-black/70" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 bg-black/50 text-white border-none hover:bg-black/70" />
+                </Carousel>
+                 <div className="absolute top-2 left-2 flex gap-2 z-20">
                     <ShareOptions>
                         <Button
                             variant="secondary"
@@ -251,20 +261,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     >
                         <Heart className="h-4 w-4" />
                     </Button>
-                </div>
-                <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center gap-2">
-                        <h2 className="text-xl font-bold">
-                            {property.name}
-                        </h2>
-                        <Image
-                        src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png"
-                        alt="Verified"
-                        width={20}
-                        height={20}
-                        />
-                    </div>
-                    <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
             </div>
             <div className="col-span-7 p-4 grid grid-cols-2 gap-4 relative">
@@ -361,6 +357,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
     </Card>
   );
 }
+
+    
 
     
 
