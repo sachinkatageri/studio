@@ -178,7 +178,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             key={amenity}
                             className="flex flex-col items-center text-center gap-2"
                         >
-                            <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-muted">
                             {/* @ts-ignore */}
                             {amenityIcons[amenity] || (
                                 <Check className="h-5 w-5 text-primary" />
@@ -357,13 +357,20 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                 </div>
                 <div className="space-y-2">
                     <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-4 gap-4">
                         {property.amenities?.slice(0, 4).map((amenity: string) => (
-                        <Badge key={amenity} variant="outline" className="text-xs font-normal">
+                        <div
+                            key={amenity}
+                            className="flex flex-col items-center text-center gap-1"
+                        >
+                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
                             {/* @ts-ignore */}
-                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-3 w-3 mr-1' })}
-                            {amenity}
-                        </Badge>
+                            {amenityIcons[amenity] || (
+                                <Check className="h-5 w-5 text-primary" />
+                            )}
+                            </div>
+                            <span className="text-xs font-medium">{amenity}</span>
+                        </div>
                         ))}
                     </div>
                 </div>
