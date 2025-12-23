@@ -242,11 +242,13 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
                                 className="h-12 w-12" 
                                 onClick={toggleGps}
                             >
-                               <LocateFixed className={cn(isGpsActive && "text-green-500")} />
+                               <LocateFixed className={cn(
+                                   isGpsActive ? "text-green-500" : "text-red-500"
+                               )} />
                             </Button>
                         </TooltipTrigger>
                         <TooltipContent side="left">
-                            <p>My Location</p>
+                            <p>{isGpsActive ? "Tracking current location" : "Recenter to current location"}</p>
                         </TooltipContent>
                     </Tooltip>
                     <Separator />
