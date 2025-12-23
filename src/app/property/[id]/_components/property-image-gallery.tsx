@@ -163,8 +163,11 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
                     <p><strong>40+ people</strong> are viewing this property</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline" className="w-full h-11 rounded-lg">Get Callback</Button>
-                    <Button className="w-full h-11 rounded-lg">Contact Sellers</Button>
+                    <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
+                    <Button className="w-full h-11 rounded-lg">
+                        <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                        <span className="ml-2">WhatsApp</span>
+                    </Button>
                 </div>
             </footer>
         </div>
