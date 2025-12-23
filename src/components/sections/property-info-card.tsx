@@ -115,19 +115,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <p className="text-sm text-neutral-300">{property.location}</p>
                 </div>
             </div>
-             <div className="grid grid-cols-5 gap-px bg-border">
-                {galleryImages.map((image, index) => (
-                    <div key={image.id} className="relative aspect-square cursor-pointer group transition-transform duration-200 hover:scale-105 hover:shadow-lg shadow-md">
-                        <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={image.imageHint}
-                        />
-                    </div>
-                ))}
-            </div>
+            
             <ScrollArea className="flex-1 min-h-0">
                 <div className="space-y-4 p-4 text-sm">
                     <div className="flex justify-between items-center">
@@ -271,5 +259,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
       </Card>
   );
 }
-
-    
