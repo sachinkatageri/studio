@@ -172,17 +172,15 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
 
                     <div>
                     <h4 className="font-semibold mb-2">Amenities</h4>
-                    <div className="grid grid-cols-4 gap-4">
+                     <div className="grid grid-cols-4 gap-4">
                         {property.amenities?.slice(0, 4).map((amenity: string) => (
                         <div
                             key={amenity}
-                            className="flex flex-col items-center text-center gap-2"
+                            className="flex flex-col items-center text-center gap-1"
                         >
-                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-muted">
+                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
                             {/* @ts-ignore */}
-                            {amenityIcons[amenity] || (
-                                <Check className="h-5 w-5 text-primary" />
-                            )}
+                            {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
                             </div>
                             <span className="text-xs font-medium">{amenity}</span>
                         </div>
@@ -311,7 +309,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <p className="text-xs text-neutral-300">{property.location}</p>
                 </div>
             </div>
-            <div className="col-span-7 p-4 grid grid-cols-3 gap-4 relative">
+            <div className="col-span-7 p-4 grid grid-cols-2 gap-4 relative">
                  <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={onClose}>
                     <X className="h-5 w-5" />
                 </Button>
@@ -355,59 +353,62 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </Badge>
                     )}
                 </div>
-                <div className="space-y-2">
-                    <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
-                    <div className="grid grid-cols-4 gap-4">
-                        {property.amenities?.slice(0, 4).map((amenity: string) => (
-                        <div
-                            key={amenity}
-                            className="flex flex-col items-center text-center gap-1"
-                        >
-                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                            {/* @ts-ignore */}
-                            {amenityIcons[amenity] || (
-                                <Check className="h-5 w-5 text-primary" />
-                            )}
-                            </div>
-                            <span className="text-xs font-medium">{amenity}</span>
-                        </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="space-y-4 flex flex-col justify-between">
-                     <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
-                        <div className="flex items-start gap-2">
-                            <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
-                            <div>
-                                <p className="text-foreground font-semibold">
-                                    Preliminary verification done.
-                                </p>
-                                <Button
-                                    variant="link"
-                                    className="text-xs p-0 h-auto"
-                                    onClick={() => setIsVerificationDialogOpen(true)}
+                
+                <ScrollArea className="h-[150px] w-full">
+                    <div className="space-y-4">
+                        <div className="space-y-2">
+                            <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
+                             <div className="grid grid-cols-4 gap-4">
+                                {property.amenities?.slice(0, 8).map((amenity: string) => (
+                                <div
+                                    key={amenity}
+                                    className="flex flex-col items-center text-center gap-1"
                                 >
-                                    Know the Process
-                                </Button>
+                                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                    {/* @ts-ignore */}
+                                    {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
+                                    </div>
+                                    <span className="text-xs font-medium">{amenity}</span>
+                                </div>
+                                ))}
                             </div>
                         </div>
+
+                         <div className="text-xs text-muted-foreground space-y-2 p-2 border rounded-lg">
+                            <div className="flex items-start gap-2">
+                                <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                <div>
+                                    <p className="text-foreground font-semibold">
+                                        Preliminary verification done.
+                                    </p>
+                                    <Button
+                                        variant="link"
+                                        className="text-xs p-0 h-auto"
+                                        onClick={() => setIsVerificationDialogOpen(true)}
+                                    >
+                                        Know the Process
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-2">
+                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                                <Phone className="h-5 w-5" />
+                            </Button>
+                            <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                            </Button>
+                            <Button
+                            variant="default"
+                            className="flex-1 text-base h-11 rounded-lg"
+                            onClick={() => onViewDetails(property.id)}
+                            >
+                            View Details
+                            </Button>
+                        </div>
                     </div>
-                    <div className="flex gap-2">
-                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                            <Phone className="h-5 w-5" />
-                        </Button>
-                        <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-                        </Button>
-                        <Button
-                        variant="default"
-                        className="flex-1 text-base h-11 rounded-lg"
-                        onClick={() => onViewDetails(property.id)}
-                        >
-                        View Details
-                        </Button>
-                    </div>
-                </div>
+                </ScrollArea>
             </div>
         </div>
          <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
