@@ -14,7 +14,7 @@ import { Badge } from '../ui/badge';
 import { format } from 'date-fns';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
-import { amenityIcons } from './property-details-panel';
+import { amenityIcons } from '@/lib/amenities';
 import { Check } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
 import { ShareOptions } from '../layout/share-options';
@@ -36,6 +36,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   const isMobile = useIsMobile();
   
   const galleryImages = propertyImageGallery.slice(0, 5);
+  const staticImageUrl = "https://img.freepik.com/free-photo/3d-rendering-house-model_23-2150799715.jpg?semt=ais_hybrid&w=740&q=80";
+
 
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
@@ -68,15 +70,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         <div className="relative col-span-3">
             <Carousel className="w-full h-48" setApi={setApi}>
                 <CarouselContent className="h-full">
-                    {galleryImages.map(image => (
+                    {galleryImages.map((image, index) => (
                         <CarouselItem key={image.id} className="h-full">
                             <div className="relative h-full w-full">
                                 <Image
-                                    src={image.imageUrl}
-                                    alt={image.description}
+                                    src={staticImageUrl}
+                                    alt={property.name}
                                     fill
                                     className="object-cover"
-                                    data-ai-hint={image.imageHint}
                                 />
                             </div>
                         </CarouselItem>
@@ -119,6 +120,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
         </div>
         <div className="flex-1 flex flex-col min-h-0">
             <div className="p-4">
+                 <p className="text-xs text-muted-foreground">{property.location}</p>
                 <div className="flex items-center gap-2">
                     <h3 className="font-semibold text-base">{property.name}</h3>
                     <Image
@@ -128,7 +130,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         height={16}
                     />
                 </div>
-                <p className="text-xs text-muted-foreground">{property.location}</p>
                 {property.price ? (
                     <div className="flex items-end gap-2 mt-2">
                         <p className="text-xl font-bold text-primary">
@@ -154,20 +155,24 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         </div>
                         {postedDate && (<p><span className="font-semibold">Posted:</span>{' '}{postedDate}</p>)}
                     </div>
+                    {/* @ts-ignore */}
                     {property.size && (<p><span className="font-semibold">Size:</span> {property.size} sq. yd.</p>)}
 
                     {property.amenities && (
                         <div className="space-y-2">
                             <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
                             <div className="grid grid-cols-4 gap-4">
-                                {property.amenities.map((amenity: string) => (
-                                <div key={amenity} className="flex flex-col items-center text-center gap-1">
-                                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                                        {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
-                                    </div>
-                                    <span className="text-xs font-medium">{amenity}</span>
-                                </div>
-                                ))}
+                                {property.amenities.map((amenityName: string) => {
+                                    const Icon = amenityIcons[amenityName];
+                                    return (
+                                        <div key={amenityName} className="flex flex-col items-center text-center gap-1">
+                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                                {Icon ? <Icon className="h-5 w-5 text-primary" /> : <Check className="h-5 w-5 text-primary" />}
+                                            </div>
+                                            <span className="text-xs font-medium">{amenityName}</span>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
@@ -197,20 +202,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
   }
   
   return (
-    <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden h-[320px]">
+    <Card className="w-full max-w-5xl mx-auto shadow-xl bg-card border rounded-lg overflow-hidden h-[300px]">
         <div className="grid grid-cols-10 h-full">
             <div className="col-span-3 relative">
                  <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
-                        {galleryImages.map(image => (
-                            <CarouselItem key={image.id} className="h-full">
+                        {galleryImages.map((image, index) => (
+                            <CarouselItem key={index} className="h-full">
                                 <div className="relative h-full w-full">
                                     <Image
-                                        src={image.imageUrl}
-                                        alt={image.description}
+                                        src={staticImageUrl}
+                                        alt={property.name}
                                         fill
                                         className="object-cover"
-                                        data-ai-hint={image.imageHint}
                                     />
                                 </div>
                             </CarouselItem>
@@ -253,6 +257,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                     <X className="h-5 w-5" />
                 </Button>
                 <div className="text-sm">
+                    <p className="text-xs text-muted-foreground">{property.location}</p>
                     <div className="flex items-center gap-2">
                         <h3 className="font-semibold text-base">{property.name}</h3>
                         <Image
@@ -262,7 +267,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                             height={16}
                         />
                     </div>
-                     <p className="text-xs text-muted-foreground">{property.location}</p>
                     {property.price ? (
                         <div className="flex items-end gap-2 mt-2">
                             <p className="text-xl font-bold text-primary">
@@ -290,6 +294,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                         {postedDate}
                         </p>
                     )}
+                    {/* @ts-ignore */}
                      {property.size && (
                         <p className="mt-1">
                             <span className="font-semibold">Size:</span> {property.size} sq.
@@ -306,14 +311,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails }: Propert
                                 <div className="space-y-2">
                                     <h4 className="font-semibold mb-2 text-sm">Amenities</h4>
                                     <div className="grid grid-cols-4 gap-4">
-                                        {property.amenities.map((amenity: string) => (
-                                        <div key={amenity} className="flex flex-col items-center text-center gap-1">
-                                            <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
-                                                {React.cloneElement(amenityIcons[amenity] || <Check />, { className: 'h-5 w-5 text-primary' })}
-                                            </div>
-                                            <span className="text-xs font-medium">{amenity}</span>
-                                        </div>
-                                        ))}
+                                        {property.amenities.map((amenityName: string) => {
+                                            const Icon = amenityIcons[amenityName];
+                                            return (
+                                                <div key={amenityName} className="flex flex-col items-center text-center gap-1">
+                                                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-muted">
+                                                        {Icon ? <Icon className="h-5 w-5 text-primary" /> : <Check className="h-5 w-5 text-primary" />}
+                                                    </div>
+                                                    <span className="text-xs font-medium">{amenityName}</span>
+                                                </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             )}

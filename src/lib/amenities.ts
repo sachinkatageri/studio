@@ -1,5 +1,5 @@
 
-import { HardHat, BellRing, Package, ShieldCheck, Siren, Video, KeyRound, Coffee, GlassWater, Milk, CupSoda, Clock, Building, User, Wifi, Paperclip, StickyNote, Printer, Pen, Trash2, Phone, Briefcase, Handshake } from 'lucide-react';
+import { HardHat, BellRing, Package, ShieldCheck, Siren, Video, KeyRound, Coffee, GlassWater, Milk, CupSoda, Clock, Building, User, Wifi, Paperclip, StickyNote, Printer, Pen, Trash2, Phone, Briefcase, Handshake, Zap, Users, Warehouse, Check } from 'lucide-react';
 import React from 'react';
 
 export type AmenityCategory = 'GUEST_SERVICES' | 'SECURITY' | 'FOOD_BEVERAGES' | 'CLEANING' | 'PRODUCTIVITY' | 'ON_CREDIT';
@@ -40,7 +40,7 @@ export const allAmenities: Amenity[] = [
     { name: 'Pest extermination', category: 'CLEANING', icon: ShieldCheck },
 
     // PRODUCTIVITY
-    { name: 'High-speed Wi-Fi 24/7', category: 'PRODUCTIVITY', icon: Wifi },
+    { name: 'High-Speed WiFi', category: 'PRODUCTIVITY', icon: Wifi },
     { name: 'Tape and paper clips', category: 'PRODUCTIVITY', icon: Paperclip },
     { name: 'Sticky notes', category: 'PRODUCTIVITY', icon: StickyNote },
     { name: 'Printers and copies', category: 'PRODUCTIVITY', icon: Printer },
@@ -55,3 +55,27 @@ export const allAmenities: Amenity[] = [
     { name: 'Open desk', category: 'ON_CREDIT', icon: User },
     { name: 'Event sponsor', category: 'ON_CREDIT', icon: Handshake },
 ];
+
+export const amenityIcons: { [key: string]: React.ElementType } = {
+    'High-Speed WiFi': Wifi,
+    'Meeting Rooms': Users,
+    'Power Backup': Zap,
+    '24/7 Security': ShieldCheck,
+    'Loading Dock': Warehouse,
+    'Printing': Printer,
+    'Coffee Bar': Coffee,
+    'Swimming Pool': Check, // Using Check as a generic icon
+    'Gym': Check,
+    'Clubhouse': Check,
+    'Private Garden': Check,
+    'Community Park': Check,
+    'Jogging Track': Check,
+    'Gated Community': ShieldCheck,
+    '24/7 Access': Clock,
+    'Event Space': Building,
+    'Game Zone': Handshake, // Using Handshake as a generic icon
+    'Free Tea & Coffee': Coffee,
+    'Main Road Facing': Building,
+    'Ample Parking': Check,
+    'High Ceilings': Check,
+  };
