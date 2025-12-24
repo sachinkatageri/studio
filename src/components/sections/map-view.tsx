@@ -4,7 +4,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation, Building2, Home, Menu } from 'lucide-react';
+import { Layers, PanelLeft, Search, SlidersHorizontal, ChevronLeft, ChevronRight, Check, Map, Satellite, Globe, Mountain, TrafficCone, MapPin, LocateFixed, ZoomIn, ZoomOut, PlusCircle, List, Heart, Share2, Navigation, Building, Home, Menu } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import {
@@ -143,7 +143,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
         const property = properties.find(p => p.id === pos.id);
         if (!property) return null;
 
-        const MarkerIcon = property.type === 'Commercial' ? Building2 : Home;
+        const MarkerIcon = property.type === 'Commercial' ? Building : Home;
         
         return (
           <TooltipProvider key={pos.id}>
