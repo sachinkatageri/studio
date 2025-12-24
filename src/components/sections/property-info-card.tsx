@@ -163,106 +163,110 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   
   // Desktop card
   return (
-    <Card className="w-full max-w-lg mx-auto shadow-xl bg-card border rounded-lg overflow-hidden relative">
-      <Button onClick={onPrev} size="icon" className="absolute left-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+    <div className="relative w-full max-w-lg mx-auto p-4">
+      <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
+        <div className="grid grid-cols-10 h-[300px]">
+            <div className="col-span-4 relative">
+                 <Carousel className="w-full h-full" setApi={setApi}>
+                    <CarouselContent className="h-full">
+                        {propertyImageGallery.slice(0, 5).map((image, index) => (
+                            <CarouselItem key={index} className="h-full">
+                                <div className="relative h-full w-full">
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={property.name}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={image.imageHint}
+                                    />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                </Carousel>
+                <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
+                    {Array.from({ length: count }).map((_, index) => (
+                    <button
+                        key={index}
+                        className={cn( 'h-2 w-2 rounded-full', index === current ? 'bg-white' : 'bg-white/50')}
+                        onClick={() => api?.scrollTo(index)}
+                    />
+                    ))}
+                </div>
+            </div>
+            <div className="col-span-6 p-4 flex flex-col justify-between relative">
+                <div>
+                    <p className="text-xs text-muted-foreground">{property.location}</p>
+                    <div className="flex items-center gap-2">
+                        <h3 className="font-semibold text-base">{property.name}</h3>
+                        <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16}/>
+                    </div>
+                    {property.price ? (
+                        <div className="flex items-end gap-2 mt-2">
+                            <p className="text-xl font-bold text-primary">
+                                {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
+                            </p>
+                        </div>
+                    ) : (
+                    <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
+                    )}
+                     <div className="flex items-center gap-1 mt-2">
+                        <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                        <span className="font-semibold">{property.rating}</span>
+                        <span className="text-muted-foreground"> ({property.reviews} reviews) </span>
+                    </div>
+                </div>
+                
+                <div className="flex gap-2 items-center">
+                    <div className="flex items-center gap-3">
+                          <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
+                          <div>
+                              <h3 className="font-semibold text-sm">Vaishnavi Group</h3>
+                              <p className="text-xs text-muted-foreground">Developer</p>
+                          </div>
+                      </div>
+                </div>
+
+                <div className="flex gap-2">
+                    <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                        <Phone className="h-5 w-5" />
+                    </Button>
+                    <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
+                        <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                    </Button>
+                    <Button
+                        variant="default"
+                        className="flex-1 text-base h-11 rounded-lg"
+                        onClick={() => onViewDetails(property.id)}
+                    >
+                        View Details
+                    </Button>
+                </div>
+            </div>
+             <div className="absolute top-2 right-2 flex gap-2 z-20">
+                <ShareOptions>
+                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                        <Share2 className="h-4 w-4" />
+                    </Button>
+                </ShareOptions>
+                <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                    <Heart className="h-4 w-4" />
+                </Button>
+                <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                      <X className="h-4 w-4" />
+                  </Button>
+            </div>
+        </div>
+      </Card>
+      <Button onClick={onPrev} size="icon" className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronLeft className="h-5 w-5" />
       </Button>
-      <Button onClick={onNext} size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+      <Button onClick={onNext} size="icon" className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronRight className="h-5 w-5" />
       </Button>
-      <div className="grid grid-cols-10 h-[300px]">
-          <div className="col-span-4 relative">
-               <Carousel className="w-full h-full" setApi={setApi}>
-                  <CarouselContent className="h-full">
-                      {propertyImageGallery.slice(0, 5).map((image, index) => (
-                          <CarouselItem key={index} className="h-full">
-                              <div className="relative h-full w-full">
-                                  <Image
-                                      src={image.imageUrl}
-                                      alt={property.name}
-                                      fill
-                                      className="object-cover"
-                                      data-ai-hint={image.imageHint}
-                                  />
-                              </div>
-                          </CarouselItem>
-                      ))}
-                  </CarouselContent>
-              </Carousel>
-              <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
-                  {Array.from({ length: count }).map((_, index) => (
-                  <button
-                      key={index}
-                      className={cn( 'h-2 w-2 rounded-full', index === current ? 'bg-white' : 'bg-white/50')}
-                      onClick={() => api?.scrollTo(index)}
-                  />
-                  ))}
-              </div>
-          </div>
-          <div className="col-span-6 p-4 flex flex-col justify-between relative">
-              <div>
-                  <p className="text-xs text-muted-foreground">{property.location}</p>
-                  <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-base">{property.name}</h3>
-                      <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16}/>
-                  </div>
-                  {property.price ? (
-                      <div className="flex items-end gap-2 mt-2">
-                          <p className="text-xl font-bold text-primary">
-                              {property.price.startsWith('Starting') ? property.price : `₹${property.price}`}
-                          </p>
-                      </div>
-                  ) : (
-                  <p className="text-xl font-bold text-primary">₹{property.pricePerSqFt} <span className="text-xs font-normal text-muted-foreground">/sq.ft</span></p>
-                  )}
-                   <div className="flex items-center gap-1 mt-2">
-                      <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                      <span className="font-semibold">{property.rating}</span>
-                      <span className="text-muted-foreground"> ({property.reviews} reviews) </span>
-                  </div>
-              </div>
-              
-              <div className="flex gap-2 items-center">
-                  <div className="flex items-center gap-3">
-                        <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
-                        <div>
-                            <h3 className="font-semibold text-sm">Vaishnavi Group</h3>
-                            <p className="text-xs text-muted-foreground">Developer</p>
-                        </div>
-                    </div>
-              </div>
-
-              <div className="flex gap-2">
-                  <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                      <Phone className="h-5 w-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="h-11 w-11 rounded-lg">
-                      <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-                  </Button>
-                  <Button
-                      variant="default"
-                      className="flex-1 text-base h-11 rounded-lg"
-                      onClick={() => onViewDetails(property.id)}
-                  >
-                      View Details
-                  </Button>
-              </div>
-          </div>
-           <div className="absolute top-2 right-2 flex gap-2 z-20">
-              <ShareOptions>
-                  <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                      <Share2 className="h-4 w-4" />
-                  </Button>
-              </ShareOptions>
-              <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                  <Heart className="h-4 w-4" />
-              </Button>
-              <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                    <X className="h-4 w-4" />
-                </Button>
-          </div>
-      </div>
        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
-    </Card>
+    </div>
   );
 }
+
+    
