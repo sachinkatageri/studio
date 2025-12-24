@@ -139,7 +139,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </div>
                             <div className="flex items-center gap-2">
                                 <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
-                                <Button size="icon" className="rounded-full bg-secondary/10 hover:bg-secondary/20 h-10 w-10">
+                                <Button size="icon" className="rounded-full bg-green-500/10 hover:bg-green-500/20 h-10 w-10">
                                     <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
                                 </Button>
                             </div>
@@ -148,19 +148,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     
                     {/* Key Stats Card */}
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-muted/50 shadow-lg border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
-                                <p className="font-bold text-sm text-foreground">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted/50 shadow-lg border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted/50 shadow-lg border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -217,9 +217,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
                         <Heart className="h-4 w-4" />
                     </Button>
-                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white" onClick={onClose}>
-                        <X className="h-4 w-4" />
-                    </Button>
                 </div>
                 <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
                     {Array.from({ length: count }).map((_, index) => (
@@ -275,19 +272,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             <div className="col-span-1 p-4 flex flex-col justify-between">
                 <div className="space-y-3">
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-muted/50 shadow-none border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
-                                <p className="font-bold text-sm text-foreground">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted/50 shadow-none border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted/50 shadow-none border-none text-center">
+                        <Card className="bg-muted text-center border-none shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -304,7 +301,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                          <div className="flex items-center gap-2">
                             <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
-                            <Button size="icon" className="rounded-full bg-secondary/10 hover:bg-secondary/20 h-10 w-10">
+                            <Button size="icon" className="rounded-full bg-green-500/10 hover:bg-green-500/20 h-10 w-10">
                                 <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
                             </Button>
                         </div>
