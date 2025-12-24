@@ -58,7 +58,7 @@ export default function BuildersPage() {
                         <Button variant="outline" size="icon" className="shrink-0">
                             <ListFilter className="h-4 w-4" />
                         </Button>
-                         <div className="flex items-center bg-muted rounded-lg p-1 ml-auto md:ml-0">
+                         <div className="hidden md:flex items-center bg-muted rounded-lg p-1 ml-auto md:ml-0">
                             <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
                                 <LayoutList className="h-4 w-4" />
                             </Button>
