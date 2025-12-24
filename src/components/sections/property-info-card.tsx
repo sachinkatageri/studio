@@ -190,8 +190,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         <ChevronRight className="h-5 w-5" />
       </Button>
       <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-2 h-[420px]">
-            <div className="relative">
+        <div className="grid grid-cols-3 h-[420px]">
+            <div className="relative col-span-1">
                  <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
                         {propertyImageGallery.slice(0, 5).map((image, index) => (
@@ -219,7 +219,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     ))}
                 </div>
             </div>
-            <div className="p-4 flex flex-col justify-between relative">
+            <div className="p-4 flex flex-col justify-between relative col-span-2">
                 <ScrollArea className='h-full -m-4'>
                 <div className='p-4 space-y-3'>
                     <div>
