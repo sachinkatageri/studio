@@ -35,15 +35,17 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                             <p className="text-xs text-muted-foreground">{builder.location}</p>
                         </div>
                     </div>
-                     <div className="text-right">
-                        <p className="font-bold text-md">{builder.experience} Years</p>
-                        <p className="text-xs text-muted-foreground text-right">Experience</p>
-                    </div>
                 </div>
 
-                <div className="mt-3 text-center">
-                     <p className="font-bold text-lg">{builder.totalProjects}</p>
-                    <p className="text-xs text-muted-foreground">Total Projects</p>
+                <div className="mt-4 grid grid-cols-2 gap-4 text-center">
+                    <div>
+                        <p className="font-bold text-lg">{builder.totalProjects}</p>
+                        <p className="text-xs text-muted-foreground">Total Projects</p>
+                    </div>
+                     <div>
+                        <p className="font-bold text-lg">{builder.experience} Years</p>
+                        <p className="text-xs text-muted-foreground">Experience</p>
+                    </div>
                 </div>
                 
                 <div className="mt-4 flex-grow">
@@ -58,6 +60,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 </div>
 
                 <div className="mt-auto pt-4">
+                    <Separator className="mb-4" />
                     <div className="text-right">
                         <Button variant="default" size="sm" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
                     </div>
@@ -141,8 +144,11 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                     </ScrollArea>
                 </TabsContent>
             </Tabs>
-             <div className="mt-4 text-right">
-                <Button variant="default" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
+             <div className="mt-auto pt-4">
+                <Separator className="mb-4"/>
+                <div className="text-right">
+                    <Button variant="default" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
+                </div>
             </div>
         </div>
     )
