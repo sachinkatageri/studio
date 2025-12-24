@@ -19,6 +19,7 @@ import { CitySelectionSheet } from './city-selection-sheet';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -64,7 +65,10 @@ const UserMenuButton = () => {
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <SheetContent side="right" className="w-full sm:w-[400px] p-0 flex flex-col rounded-l-lg">
+                <SheetContent side="right" className={cn(
+                    "p-0 flex flex-col rounded-l-lg",
+                    isMobile ? "w-[95%]" : "w-full sm:w-[400px]"
+                )}>
                 <SheetHeader className="sr-only">
                   <SheetTitle>User Menu</SheetTitle>
                   <SheetDescription>
@@ -276,6 +280,8 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
 
     
 
