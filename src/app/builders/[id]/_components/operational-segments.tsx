@@ -37,7 +37,7 @@ export default function OperationalSegments() {
                         <TabsTrigger value="retail">Retail</TabsTrigger>
                     </TabsList>
                     <TabsContent value="residential" className="mt-4">
-                        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
+                        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-x-4 gap-y-6">
                             {segments.residential.map(item => (
                                 <div key={item.name} className="flex flex-col items-center gap-2 text-center">
                                     <div className="relative w-16 h-16 rounded-full overflow-hidden">
