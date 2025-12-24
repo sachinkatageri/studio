@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Building, Square, Armchair, ChevronLeft, ChevronRight, Building2 } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -246,7 +246,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </div>
                         </div>
                         <div className="grid grid-cols-3 gap-2 text-center text-sm text-muted-foreground pt-2">
-                            <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
+                            <div className="flex items-center gap-2"><Building className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
                             {/* @ts-ignore */}
                             {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
                             <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
@@ -323,6 +323,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
 
     
 
