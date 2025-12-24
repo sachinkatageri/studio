@@ -18,7 +18,7 @@ export const ProjectCard = ({ project, view }: { project: Project; view: 'grid' 
         )
     }
     
-    // Grid view
+    // Grid view for horizontal scroll in list view
     return (
         <div className="w-40 flex-shrink-0">
             <div className="relative h-24 rounded-lg overflow-hidden">
@@ -32,3 +32,5 @@ export const ProjectCard = ({ project, view }: { project: Project; view: 'grid' 
         </div>
     );
 }
+
+    
