@@ -82,6 +82,12 @@ const nextConfig: NextConfig = {
         hostname: 'storage.googleapis.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'calista.brigade-group.org',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

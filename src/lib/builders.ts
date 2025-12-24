@@ -22,16 +22,16 @@ export type Builder = {
 
 export const builders: Builder[] = [
     {
-        id: 'prestige-group',
-        name: 'Prestige Group',
+        id: 'brigade-group',
+        name: 'Brigade Group',
         location: 'Bangalore',
-        logoUrl: 'https://i.ibb.co/3cYf6C5/prestige-logo.png',
+        logoUrl: 'https://calista.brigade-group.org/wp-content/uploads/2024/07/cropped-download__2_-removebg-preview-2.png',
         totalProjects: 120,
         experience: 35,
         completedProjects: [
-            { id: 'p1', name: 'Prestige Greens', location: 'Whitefield, Bangalore', price: '₹ 1.5 Cr - 2.5 Cr', imageUrl: 'https://picsum.photos/seed/p1/400/300', imageHint: 'modern apartment' },
-            { id: 'p2', name: 'Prestige Acropolis', location: 'Koramangala, Bangalore', price: '₹ 2.2 Cr - 3.8 Cr', imageUrl: 'https://picsum.photos/seed/p2/400/300', imageHint: 'luxury residence' },
-            { id: 'p3', name: 'Prestige Lakeside Habitat', location: 'Varthur, Bangalore', price: '₹ 80 L - 1.5 Cr', imageUrl: 'https://picsum.photos/seed/p3/400/300', imageHint: 'villa exterior' },
+            { id: 'p1', name: 'Brigade Greens', location: 'Whitefield, Bangalore', price: '₹ 1.5 Cr - 2.5 Cr', imageUrl: 'https://picsum.photos/seed/p1/400/300', imageHint: 'modern apartment' },
+            { id: 'p2', name: 'Brigade Acropolis', location: 'Koramangala, Bangalore', price: '₹ 2.2 Cr - 3.8 Cr', imageUrl: 'https://picsum.photos/seed/p2/400/300', imageHint: 'luxury residence' },
+            { id: 'p3', name: 'Brigade Lakeside Habitat', location: 'Varthur, Bangalore', price: '₹ 80 L - 1.5 Cr', imageUrl: 'https://picsum.photos/seed/p3/400/300', imageHint: 'villa exterior' },
         ],
         ongoingProjects: [],
         upcomingProjects: [],
