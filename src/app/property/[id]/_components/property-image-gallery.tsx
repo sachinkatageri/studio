@@ -8,16 +8,13 @@ import { useState, useRef, useEffect }from 'react';
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Badge } from '@/components/ui/badge';
-import { Check, Camera, Share2, Heart, GalleryVertical, ArrowLeft, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Share2, Heart, AlertTriangle, Camera } from 'lucide-react';
 import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { ShareOptions } from '@/components/layout/share-options';
 
 const imageCategories = ["Main Image", "Elevation", "Amenities", "Floor Plan", "Master Plan"];
 
@@ -58,20 +55,22 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
             <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b">
                 <div className="flex items-center justify-between gap-2 h-14 px-2">
                     <div className="flex items-center gap-1 min-w-0">
-                        {isMobile && (
+                        {(isMobile || !onClose) && ( // Show back button on mobile or if no close function is provided for desktop
                             <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9">
                                 <ArrowLeft className="h-5 w-5" />
                             </Button>
                         )}
                         <div className='truncate'>
                             <h1 className="text-sm font-semibold truncate">{property.name}</h1>
-                            <p className="text-xs text-muted-foreground truncate">{property.price}</p>
+                            <p className="text-xs text-muted-foreground truncate">{property.location}</p>
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <Button variant="outline" size="sm" className="h-8">
-                            <Share2 className="h-4 w-4 mr-2" /> Share
-                        </Button>
+                        <ShareOptions>
+                             <Button variant="outline" size="sm" className="h-8">
+                                <Share2 className="h-4 w-4 mr-2" /> Share
+                            </Button>
+                        </ShareOptions>
                         <Button variant="outline" size="sm" className="h-8 ml-2">
                             <Heart className="h-4 w-4 mr-2" /> Save
                         </Button>
@@ -117,9 +116,11 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
                                 />
                                 <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded-md">{category}</div>
                                 <div className="absolute top-2 right-2 flex flex-col gap-2">
-                                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
-                                        <Share2 className="h-4 w-4" />
-                                    </Button>
+                                     <ShareOptions>
+                                        <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
+                                            <Share2 className="h-4 w-4" />
+                                        </Button>
+                                    </ShareOptions>
                                     <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
                                         <AlertTriangle className="h-4 w-4" />
                                     </Button>
@@ -130,18 +131,20 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
                 </div>
             </ScrollArea>
 
-            <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm p-3 border-t">
-                <div className="bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg p-2 text-center mb-3">
-                    <p><strong>40+ people</strong> are viewing this property</p>
-                </div>
-                <div className="flex gap-2">
-                    <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
-                    <Button className="w-full h-11 rounded-lg">
-                        <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-                        <span className="ml-2">WhatsApp</span>
-                    </Button>
-                </div>
-            </footer>
+            {isMobile && (
+                <footer className="sticky bottom-0 bg-background/80 backdrop-blur-sm p-3 border-t">
+                    <div className="bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg p-2 text-center mb-3">
+                        <p><strong>40+ people</strong> are viewing this property</p>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
+                        <Button className="w-full h-11 rounded-lg">
+                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                            <span className="ml-2">WhatsApp</span>
+                        </Button>
+                    </div>
+                </footer>
+            )}
         </>
     );
     
@@ -174,97 +177,61 @@ const MobileImageGalleryView = ({ onClose }: { onClose: () => void }) => {
 
 export default function PropertyImageGallery() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const imagesToShow = 5;
-    const remainingImages = propertyImageGallery.length;
     const isMobile = useIsMobile();
+    
+    const openGallery = () => setIsModalOpen(true);
+    const closeGallery = () => setIsModalOpen(false);
 
     if (isMobile) {
         if (isModalOpen) {
-            return <MobileImageGalleryView onClose={() => setIsModalOpen(false)} />;
+            return <MobileImageGalleryView onClose={closeGallery} />;
         }
-        return (
-            <div className="relative">
-                <Carousel className="w-full" onClick={() => setIsModalOpen(true)}>
-                    <CarouselContent>
-                        {propertyImageGallery.slice(0, 1).map((image) => (
-                            <CarouselItem key={image.id}>
-                                <div className="relative w-full h-[30vh]">
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={image.description}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={image.imageHint}
-                                    />
-                                    <div className="absolute inset-0 bg-black/30" />
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel>
-
-                <div className="absolute top-4 right-4 flex items-center gap-2">
-                    <Button variant="secondary" size="icon" className="rounded-full bg-background/80 text-foreground hover:bg-background">
-                        <Heart className="h-5 w-5" />
-                    </Button>
-                </div>
-                
-                <Badge variant="secondary" className="absolute top-4 left-4 bg-background/80 text-foreground border-transparent">
-                    <Check className="h-4 w-4 mr-1 text-green-500" />
-                    RERA
-                </Badge>
-
-                 <div 
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                    onClick={() => setIsModalOpen(true)}
-                 >
-                    <div className="bg-black/50 text-white rounded-lg px-4 py-2 text-sm">
-                        Tap to see all images
-                    </div>
-                </div>
-
-                <div className="absolute bottom-4 right-4">
-                     <Button variant="secondary" className="bg-black/60 text-white hover:bg-black/80" onClick={() => setIsModalOpen(true)}>
-                        <Camera className="mr-2 h-4 w-4" /> {remainingImages}
-                    </Button>
-                </div>
-            </div>
-        )
     }
     
     return (
-        <div className="relative container mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[400px]">
-                {propertyImageGallery.slice(0, imagesToShow).map((image, index) => (
-                    <div
-                        key={image.id}
-                        className={cn(
-                            'relative overflow-hidden rounded-lg group cursor-pointer',
-                            index === 0 && 'md:col-span-2 md:row-span-2',
-                            index > 0 && 'col-span-1',
-                        )}
-                        onClick={() => setIsModalOpen(true)}
-                    >
-                        <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            data-ai-hint={image.imageHint}
-                        />
-                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="relative container mx-auto" onClick={openGallery}>
+             <div className="grid grid-cols-2 md:grid-cols-2 gap-2 h-[250px] md:h-[450px]">
+                {/* Main Image */}
+                <div className="relative col-span-1 row-span-2 overflow-hidden rounded-l-lg group cursor-pointer">
+                    <Image
+                        src={propertyImageGallery[0].imageUrl}
+                        alt={propertyImageGallery[0].description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={propertyImageGallery[0].imageHint}
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {/* Top Right Image */}
+                <div className="relative col-span-1 row-span-1 overflow-hidden rounded-tr-lg group cursor-pointer">
+                    <Image
+                        src={propertyImageGallery[1].imageUrl}
+                        alt={propertyImageGallery[1].description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={propertyImageGallery[1].imageHint}
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {/* Bottom Right Image with Overlay */}
+                 <div className="relative col-span-1 row-span-1 overflow-hidden rounded-br-lg group cursor-pointer">
+                    <Image
+                        src={propertyImageGallery[2].imageUrl}
+                        alt={propertyImageGallery[2].description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={propertyImageGallery[2].imageHint}
+                    />
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <Button variant="secondary" className="bg-black/60 text-white hover:bg-black/80">
+                            <Camera className="mr-2 h-4 w-4" />
+                            {propertyImageGallery.length}+
+                        </Button>
                     </div>
-                ))}
+                </div>
             </div>
-            <div className="absolute bottom-4 right-4 flex gap-2">
-                <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
-                    <GalleryVertical className="mr-2 h-4 w-4" />
-                    {remainingImages > 0 ? `Show all ${remainingImages} photos` : 'View Gallery'}
-                </Button>
-            </div>
-            <ImageGalleryModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+            
+            <ImageGalleryModal open={!isMobile && isModalOpen} onOpenChange={setIsModalOpen} />
         </div>
     )
 }
-
-    
