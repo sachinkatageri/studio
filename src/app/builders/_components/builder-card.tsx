@@ -97,7 +97,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                             {builder.completedProjects.map(project => (
                                 <ProjectCard key={project.id} project={project} />
                             ))}
-                             <div className="flex-shrink-0 w-40 h-56 flex flex-col items-center justify-center bg-muted rounded-lg">
+                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
                                 <button className="text-primary font-semibold">+ {builder.completedProjects.length} More</button>
                             </div>
                         </div>
@@ -110,7 +110,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                             {builder.ongoingProjects.map(project => (
                                 <ProjectCard key={project.id} project={project} />
                             ))}
-                             <div className="flex-shrink-0 w-40 h-56 flex flex-col items-center justify-center bg-muted rounded-lg">
+                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
                                 <button className="text-primary font-semibold">+ {builder.ongoingProjects.length} More</button>
                             </div>
                         </div>
@@ -123,7 +123,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                             {builder.upcomingProjects.map(project => (
                                 <ProjectCard key={project.id} project={project} />
                             ))}
-                             <div className="flex-shrink-0 w-40 h-56 flex flex-col items-center justify-center bg-muted rounded-lg">
+                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
                                 <button className="text-primary font-semibold">+ {builder.upcomingProjects.length} More</button>
                             </div>
                         </div>

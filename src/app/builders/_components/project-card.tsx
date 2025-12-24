@@ -8,7 +8,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             <div className="relative h-32 rounded-lg overflow-hidden">
                 <Image src={project.imageUrl} alt={project.name} fill className="object-cover" data-ai-hint={project.imageHint} />
             </div>
-            <div className="mt-2">
+            <div className="mt-2 p-2">
                 <h4 className="font-semibold truncate text-sm">{project.name}</h4>
                 <p className="text-xs text-muted-foreground truncate">{project.location}</p>
                 <p className="text-sm font-bold text-primary mt-1">{project.price}</p>
