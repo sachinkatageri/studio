@@ -163,7 +163,7 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
 const ImageGalleryModal = ({ open, onOpenChange }: { open: boolean, onOpenChange: (open: boolean) => void }) => {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col rounded-lg">
+            <DialogContent className="max-w-4xl h-[90vh] p-0 flex flex-col rounded-lg overflow-hidden">
                 <GalleryView isMobile={false} onClose={() => onOpenChange(false)} />
             </DialogContent>
         </Dialog>
@@ -234,3 +234,5 @@ export default function PropertyImageGallery() {
         </div>
     )
 }
+
+    
