@@ -73,7 +73,7 @@ const StarRatingInput = ({ value, onChange }: { value: number, onChange: (value:
                         <Star
                             className={cn(
                                 "h-8 w-8 transition-colors",
-                                ratingValue <= (hover || value) ? "text-yellow-400 fill-yellow-400" : "text-muted-foreground"
+                                ratingValue <= (hover || value) ? "text-accent fill-accent" : "text-muted-foreground"
                             )}
                         />
                     </button>
@@ -187,7 +187,7 @@ export function RatingDialog({ open, onOpenChange }: RatingDialogProps) {
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="max-h-[90vh]">
+        <DrawerContent className="max-h-[90vh]" hideCloseButton>
           <DrawerHeader className="text-left">
             <div className="flex justify-between items-center">
               <DrawerTitle>Rate Property</DrawerTitle>

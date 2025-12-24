@@ -51,7 +51,7 @@ export function ListPropertySheet({ open, onOpenChange }: ListPropertySheetProps
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent>
+        <DrawerContent hideCloseButton>
           <DrawerHeader className="text-left">
              <div className="flex justify-between items-center">
                 <DrawerTitle>List Your Property</DrawerTitle>

@@ -39,8 +39,8 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & { hideCloseButton?: boolean }
+>(({ className, children, hideCloseButton, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
     <DrawerPrimitive.Content
@@ -53,11 +53,13 @@ const DrawerContent = React.forwardRef<
     >
       <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" />
       {children}
-      <DrawerClose asChild>
-        <Button variant="ghost" size="icon" className="absolute top-3 right-3 h-8 w-8">
-            <X className="h-5 w-5" />
-        </Button>
-      </DrawerClose>
+      {!hideCloseButton && (
+        <DrawerClose asChild>
+            <Button variant="ghost" size="icon" className="absolute top-3 right-3 h-8 w-8">
+                <X className="h-5 w-5" />
+            </Button>
+        </DrawerClose>
+      )}
     </DrawerPrimitive.Content>
   </DrawerPortal>
 ))

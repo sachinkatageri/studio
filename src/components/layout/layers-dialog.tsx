@@ -211,7 +211,7 @@ export function LayersDialog({ open, onOpenChange }: LayersDialogProps) {
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="h-[90vh]">
+        <DrawerContent className="h-[90vh]" hideCloseButton>
           <DrawerHeader className="p-4 flex items-center justify-between border-b shrink-0">
             <div className="flex items-center gap-2">
               <DrawerTitle className="text-xl font-bold">Layers</DrawerTitle>

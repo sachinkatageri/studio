@@ -53,7 +53,7 @@ export function LayersDeclarationDialog({ open, onOpenChange, onProceed }: Layer
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent>
+        <DrawerContent hideCloseButton>
           <DrawerHeader className="text-left">
             <div className="flex justify-between items-center">
               <div>

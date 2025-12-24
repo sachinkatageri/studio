@@ -55,7 +55,7 @@ const LoginContent = () => (
         </div>
       </div>
       <div className="px-4 md:px-6 pb-6">
-        <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
+        <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
           Send OTP <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
@@ -68,7 +68,7 @@ export function LoginDialog({ open, onOpenChange }: LoginDialogProps) {
   if (isMobile) {
     return (
        <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent>
+        <DrawerContent hideCloseButton>
           <div className="mx-auto w-full max-w-sm">
             <LoginContent />
           </div>
