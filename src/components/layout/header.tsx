@@ -20,6 +20,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -179,6 +180,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
   const isMobile = useIsMobile();
+  const pathname = usePathname();
 
   const placeholderTexts = ['Search "Indiranagar"', 'Search "Koramangala"', 'Search "HSR Layout"'];
   const [placeholder, setPlaceholder] = useState('');
@@ -224,6 +226,8 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
       setIsCitySheetOpen(true);
   }
 
+  const isBuildersPage = pathname.startsWith('/builders');
+
   return (
     <>
     <header className="bg-background fixed top-0 z-40 w-full border-b">
@@ -235,8 +239,8 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         </div>
 
         <nav className="hidden md:flex gap-6 items-center">
-          <Link href="#" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-            <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
+          <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors", pathname === '/' ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+            <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
             Map-View
           </Link>
           <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
@@ -245,7 +249,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
           <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
             Residential
           </Link>
-           <Link href="#" className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+           <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
           </Link>
@@ -293,5 +297,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     
 
     
+
 
 

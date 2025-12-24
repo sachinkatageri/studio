@@ -13,13 +13,12 @@ export default function Footer() {
     { id: 'map-view', label: 'Map-View', icon: <Map className="h-5 w-5" />, href: '/' },
     { id: 'commercial', label: 'Commercial', icon: <Building className="h-5 w-5" />, href: '#' },
     { id: 'residential', label: 'Residential', icon: <Home className="h-5 w-5" />, href: '#' },
-    { id: 'builders', label: 'Builders', icon: <Crown className="h-5 w-5" />, href: '#' },
+    { id: 'builders', label: 'Builders', icon: <Crown className="h-5 w-5" />, href: '/builders' },
   ];
 
-  // A more robust way to determine active link, especially for home.
   const getActiveView = () => {
     if (pathname === '/') return 'map-view';
-    // Add other path logic here if needed
+    if (pathname.startsWith('/builders')) return 'builders';
     return '';
   }
   

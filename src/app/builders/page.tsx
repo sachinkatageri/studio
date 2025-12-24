@@ -1,0 +1,59 @@
+
+"use client";
+
+import Header from "@/components/layout/header";
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { builders } from "@/lib/builders";
+import { ChevronDown, ListFilter, LayoutGrid, LayoutList } from "lucide-react";
+import BuilderCard from "./_components/builder-card";
+import Footer from "@/components/layout/footer";
+
+export default function BuildersPage() {
+    return (
+        <>
+            <Header />
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h1 className="text-3xl font-bold">Builders in Bangalore</h1>
+                        <p className="text-muted-foreground mt-1">{builders.length} results</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline">
+                                    Sort by: Property
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Property</DropdownMenuItem>
+                                <DropdownMenuItem>Experience</DropdownMenuItem>
+                                <DropdownMenuItem>Total Projects</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <Button variant="outline" size="icon">
+                            <ListFilter className="h-4 w-4" />
+                        </Button>
+                         <div className="flex items-center bg-muted rounded-lg p-1">
+                            <Button variant="ghost" size="icon" className="h-8 w-8 bg-background shadow-sm">
+                                <LayoutList className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                                <LayoutGrid className="h-4 w-4" />
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="space-y-6">
+                    {builders.map(builder => (
+                        <BuilderCard key={builder.id} builder={builder} />
+                    ))}
+                </div>
+            </div>
+            <Footer />
+        </>
+    );
+}
