@@ -7,8 +7,49 @@ import Image from "next/image";
 import { ProjectCard } from "./project-card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
-export default function BuilderCard({ builder }: { builder: Builder }) {
+export default function BuilderCard({ builder, view }: { builder: Builder, view: 'list' | 'grid' }) {
+    if (view === 'grid') {
+        return (
+            <div className="border rounded-lg p-4 flex flex-col h-full">
+                <div className="flex justify-between items-start gap-4">
+                    <div className="flex items-center gap-3">
+                        <Image src={builder.logoUrl} alt={`${builder.name} logo`} width={40} height={40} className="rounded-full object-contain border p-1" />
+                        <div>
+                            <h2 className="text-md font-bold">{builder.name}</h2>
+                            <p className="text-xs text-muted-foreground">{builder.location}</p>
+                        </div>
+                    </div>
+                     <div className="text-right">
+                        <p className="font-bold text-md">{builder.experience} Years</p>
+                        <p className="text-xs text-muted-foreground">Experience</p>
+                    </div>
+                </div>
+
+                <div className="mt-3 text-center">
+                    <p className="font-bold text-lg">{builder.totalProjects}</p>
+                    <p className="text-xs text-muted-foreground">Total Projects</p>
+                </div>
+                
+                <div className="mt-4 flex-grow">
+                    <ScrollArea>
+                        <div className="flex space-x-4 pb-4">
+                            {builder.completedProjects.map(project => (
+                                <ProjectCard key={project.id} project={project} />
+                            ))}
+                        </div>
+                        <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                </div>
+
+                <div className="mt-4 text-right">
+                    <Button variant="default" size="sm">View Details</Button>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="border rounded-lg p-4 md:p-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">

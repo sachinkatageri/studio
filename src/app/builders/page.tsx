@@ -8,8 +8,12 @@ import { builders } from "@/lib/builders";
 import { ChevronDown, ListFilter, LayoutGrid, LayoutList } from "lucide-react";
 import BuilderCard from "./_components/builder-card";
 import Footer from "@/components/layout/footer";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export default function BuildersPage() {
+    const [view, setView] = useState<'list' | 'grid'>('list');
+
     return (
         <>
             <Header />
@@ -37,19 +41,23 @@ export default function BuildersPage() {
                             <ListFilter className="h-4 w-4" />
                         </Button>
                          <div className="flex items-center bg-muted rounded-lg p-1">
-                            <Button variant="ghost" size="icon" className="h-8 w-8 bg-background shadow-sm">
+                            <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
                                 <LayoutList className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
                                 <LayoutGrid className="h-4 w-4" />
                             </Button>
                         </div>
                     </div>
                 </div>
 
-                <div className="space-y-6">
+                <div className={cn(
+                    view === 'list' 
+                        ? "space-y-6" 
+                        : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                )}>
                     {builders.map(builder => (
-                        <BuilderCard key={builder.id} builder={builder} />
+                        <BuilderCard key={builder.id} builder={builder} view={view} />
                     ))}
                 </div>
             </div>
