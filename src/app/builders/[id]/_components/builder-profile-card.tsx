@@ -43,7 +43,7 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                         <p className="text-sm">Ongoing</p>
                     </Card>
                 </div>
-                <Card className="col-span-2 bg-destructive text-destructive-foreground p-6 rounded-2xl relative flex items-center justify-between">
+                <Card className="col-span-2 bg-green-600 text-white p-6 rounded-2xl relative flex items-center justify-between">
                      <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8 bg-white/20 hover:bg-white/30 text-white rounded-full">
                         <ArrowUpRight className="h-4 w-4" />
                     </Button>
