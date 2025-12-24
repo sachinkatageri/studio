@@ -47,7 +47,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 </div>
                 
                 <Tabs defaultValue="completed" className="mt-4 flex-grow flex flex-col">
-                    <TabsList className="grid-cols-none justify-start p-0 h-auto bg-transparent text-xs">
+                    <TabsList className="grid-cols-none justify-start p-0 h-auto bg-transparent text-xs border-b">
                         <TabsTrigger value="completed">Completed ({builder.completedProjects.length})</TabsTrigger>
                         <TabsTrigger value="ongoing">Ongoing ({builder.ongoingProjects.length})</TabsTrigger>
                         <TabsTrigger value="upcoming">Upcoming ({builder.upcomingProjects.length})</TabsTrigger>
@@ -135,7 +135,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
             </div>
 
             <Tabs defaultValue="completed" className="mt-4 flex-grow flex flex-col">
-                <TabsList className="grid-cols-none justify-start p-0 h-auto bg-transparent">
+                <TabsList className="grid-cols-none justify-start p-0 h-auto bg-transparent border-b">
                     <TabsTrigger value="completed">Completed ({builder.completedProjects.length})</TabsTrigger>
                     <TabsTrigger value="ongoing">Ongoing ({builder.ongoingProjects.length})</TabsTrigger>
                     <TabsTrigger value="upcoming">Upcoming ({builder.upcomingProjects.length})</TabsTrigger>
@@ -210,5 +210,3 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
         </div>
     )
 }
-
-    
