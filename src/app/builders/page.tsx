@@ -12,7 +12,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function BuildersPage() {
-    const [view, setView] = useState<'list' | 'grid'>('list');
+    const [view, setView] = useState<'list' | 'grid'>('grid');
 
     return (
         <>
