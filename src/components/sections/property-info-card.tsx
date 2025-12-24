@@ -148,19 +148,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     
                     {/* Key Stats Card */}
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
                                 <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -272,19 +272,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             <div className="col-span-1 p-4 flex flex-col justify-between">
                 <div className="space-y-3">
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
                                 <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-card text-center border shadow-none">
+                        <Card className="bg-background text-center border">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -293,7 +293,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="flex items-center justify-between pt-2">
                          <div className="flex items-center gap-3">
-                            <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
+                            <Image src="https://picsum.photos/seed/dev-logo/40/40" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
                             <div>
                                 <h3 className="font-semibold">Vaishnavi Group</h3>
                                 <p className="text-xs text-muted-foreground">Developer</p>
@@ -323,5 +323,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
 
     
