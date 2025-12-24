@@ -16,6 +16,7 @@ import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '../ui/carousel';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
+import { allAmenities } from '@/lib/amenities';
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -30,8 +31,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
   const isMobile = useIsMobile();
   
-  const staticImageUrl = "https://img.freepik.com/free-photo/3d-rendering-house-model_23-2150799715.jpg?semt=ais_hybrid&w=740&q=80";
-
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -45,11 +44,13 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
+  const propertyAmenities = allAmenities.filter(amenity => property.amenities.includes(amenity.name)).slice(0, 4);
+
   if (isMobile) {
       return (
-        <div className="flex-1 bg-background/95 backdrop-blur-sm rounded-t-2xl flex flex-col overflow-hidden">
-          <ScrollArea className="flex-1">
-            <div className="p-2 space-y-3">
+        <div className="flex-1 bg-background/95 backdrop-blur-sm rounded-t-2xl flex flex-col overflow-hidden p-[5%]">
+          <ScrollArea className="flex-1 -m-4">
+            <div className="p-4 space-y-3">
               {/* Image Gallery Card */}
               <Card className="overflow-hidden border-0 shadow-none bg-transparent">
                 <CardContent className="p-0">
@@ -110,6 +111,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   </div>
                 </CardContent>
               </Card>
+               {/* Amenities Card */}
+               <Card className="bg-card shadow-lg border-none">
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-3">Amenities</h3>
+                  <div className="grid grid-cols-4 gap-4">
+                    {propertyAmenities.map(amenity => (
+                      <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                           <amenity.icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <span className="text-xs font-medium">{amenity.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Developer/Agent Card */}
               <Card className="bg-card shadow-lg border-none">
@@ -154,7 +171,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
             </div>
           </ScrollArea>
-          <div className="p-3 bg-background/95 border-t">
+          <div className="p-4 bg-transparent border-t-0">
              <Button className="w-full h-12 text-base" onClick={() => onViewDetails(property.id)}>View Full Details</Button>
           </div>
         </div>
