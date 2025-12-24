@@ -1,10 +1,11 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
 import { Project } from "@/lib/builders";
-import { Acre, AreaChart, Aug, AugSolid, Bed, Building, Calendar, CalendarCheck, CalendarDays, Star } from "lucide-react";
+import { AreaChart, Building, CalendarDays, Star } from "lucide-react";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 
