@@ -12,6 +12,10 @@ const segments = {
         { name: "Kolkata", img: "https://picsum.photos/seed/kolkata/100/100" },
         { name: "Goa", img: "https://picsum.photos/seed/goa/100/100" },
         { name: "Delhi", img: "https://picsum.photos/seed/delhi/100/100" },
+        { name: "Pune", img: "https://picsum.photos/seed/pune/100/100" },
+        { name: "Ahmedabad", img: "https://picsum.photos/seed/ahmedabad/100/100" },
+        { name: "Noida", img: "https://picsum.photos/seed/noida/100/100" },
+        { name: "Gurgaon", img: "https://picsum.photos/seed/gurgaon/100/100" },
     ],
     commercial: [],
     hospitality: [],
@@ -33,7 +37,7 @@ export default function OperationalSegments() {
                         <TabsTrigger value="retail">Retail</TabsTrigger>
                     </TabsList>
                     <TabsContent value="residential" className="mt-4">
-                        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-4">
+                        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4">
                             {segments.residential.map(item => (
                                 <div key={item.name} className="flex flex-col items-center gap-2 text-center">
                                     <div className="relative w-16 h-16 rounded-full overflow-hidden">
