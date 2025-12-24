@@ -111,8 +111,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   </div>
                 </CardContent>
               </Card>
-               {/* Amenities Card */}
-               <Card className="bg-card shadow-lg border-none">
+              {/* Amenities Card */}
+              <Card className="bg-card shadow-lg border-none">
                 <CardContent className="p-4">
                   <h3 className="font-semibold mb-3">Amenities</h3>
                   <div className="grid grid-cols-4 gap-4">
@@ -180,7 +180,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   
   // Desktop card
   return (
-    <div className="relative w-full max-w-lg mx-auto p-4">
+    <div className="relative w-full max-w-lg mx-auto">
       <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
         <div className="grid grid-cols-10 h-[300px]">
             <div className="col-span-4 relative">
@@ -275,15 +275,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
         </div>
       </Card>
-      <Button onClick={onPrev} size="icon" className="absolute left-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+      <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronLeft className="h-5 w-5" />
       </Button>
-      <Button onClick={onNext} size="icon" className="absolute right-0 top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+      <Button onClick={onNext} size="icon" className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronRight className="h-5 w-5" />
       </Button>
        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </div>
   );
 }
+
+    
 
     

@@ -304,7 +304,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
        </TooltipProvider>
 
         {selectedPropertyId && !isMobile && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full max-w-lg z-20">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-full z-20 flex justify-center items-center">
                 <PropertyInfoCard
                     propertyId={selectedPropertyId}
                     onClose={onCloseInfoCard}
@@ -333,3 +333,5 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </>
   );
 }
+
+    
