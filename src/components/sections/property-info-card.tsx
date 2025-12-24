@@ -77,7 +77,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <div className="absolute top-3 right-3 flex items-center gap-2">
                                 <ShareOptions><Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Share2 className="h-4 w-4" /></Button></ShareOptions>
                                 <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Heart className="h-4 w-4" /></Button>
-                                <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><X className="h-4 w-4" /></Button>
                             </div>
                             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
                             {Array.from({ length: count }).map((_, i) => (
@@ -209,14 +208,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         ))}
                     </CarouselContent>
                 </Carousel>
-                <div className="absolute top-2 right-2 flex gap-2 z-20">
+                 <div className="absolute top-2 right-2 flex gap-2 z-20">
                     <ShareOptions>
                         <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
                             <Share2 className="h-4 w-4" />
                         </Button>
                     </ShareOptions>
-                    <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                        <X className="h-4 w-4" />
+                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                        <Heart className="h-4 w-4" />
                     </Button>
                 </div>
                 <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
@@ -324,3 +323,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
