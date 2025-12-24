@@ -15,9 +15,11 @@ interface PropertyDetailsSheetProps {
   propertyId: string | null;
   onClose: () => void;
   onViewDetails: (id: string) => void;
+  onNext: () => void;
+  onPrev: () => void;
 }
 
-export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: PropertyDetailsSheetProps) {
+export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails, onNext, onPrev }: PropertyDetailsSheetProps) {
   const open = !!propertyId;
   const property = properties.find(p => p.id === propertyId);
 
@@ -33,7 +35,13 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails }: Pro
           <SheetDescription>Details for the selected property.</SheetDescription>
         </SheetHeader>
         {property && (
-            <PropertyInfoCard propertyId={property.id} onClose={onClose} onViewDetails={onViewDetails} />
+            <PropertyInfoCard 
+              propertyId={property.id} 
+              onClose={onClose} 
+              onViewDetails={onViewDetails}
+              onNext={onNext}
+              onPrev={onPrev}
+            />
         )}
       </SheetContent>
     </Sheet>
