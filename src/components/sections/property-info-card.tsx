@@ -36,6 +36,37 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      onNext();
+    } else if (isRightSwipe) {
+      onPrev();
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
+
   React.useEffect(() => {
     if (!api) return;
     setCount(api.scrollSnapList().length);
@@ -49,7 +80,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (isMobile) {
       return (
-        <div className="w-full h-full flex flex-col justify-end p-[5%]">
+        <div 
+          className="w-full h-full flex flex-col justify-end p-[5%]"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
             <div className="relative">
                 <Button onClick={onPrev} size="icon" className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
                     <ChevronLeft className="h-5 w-5" />
@@ -344,3 +380,4 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
