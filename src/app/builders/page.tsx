@@ -13,7 +13,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 export default function BuildersPage() {
-    const [view, setView] = useState<'list' | 'grid'>('grid');
+    const [view, setView] = useState<'list' | 'grid'>('list');
 
     return (
         <>
@@ -55,7 +55,7 @@ export default function BuildersPage() {
                 <div className={cn(
                     view === 'list' 
                         ? "space-y-6" 
-                        : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 )}>
                     {builders.map(builder => (
                         <BuilderCard key={builder.id} builder={builder} view={view} />
