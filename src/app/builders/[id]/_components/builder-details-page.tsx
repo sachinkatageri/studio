@@ -15,9 +15,13 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <Breadcrumbs builderName={builder.name} />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
-                    <LeftColumn builder={builder} />
-                    <RightColumn builder={builder} />
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
+                    <div className="lg:col-span-5">
+                        <LeftColumn builder={builder} />
+                    </div>
+                    <div className="lg:col-span-7">
+                        <RightColumn builder={builder} />
+                    </div>
                 </div>
             </div>
             <Footer />

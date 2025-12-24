@@ -9,7 +9,7 @@ import FAQ from "./faq";
 
 export default function LeftColumn({ builder }: { builder: Builder }) {
     return (
-        <div className="lg:col-span-1 space-y-8">
+        <div className="space-y-8">
             <BuilderProfileCard builder={builder} />
             <AboutBuilder />
             <CompanyInfo />

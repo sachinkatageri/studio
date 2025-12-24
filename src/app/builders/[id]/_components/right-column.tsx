@@ -8,7 +8,7 @@ import TeamSection from "./team-section";
 
 export default function RightColumn({ builder }: { builder: Builder }) {
     return (
-        <div className="lg:col-span-2 space-y-8">
+        <div className="space-y-8">
             <FeaturedProjectCard project={builder.completedProjects[0]} />
             <KeyProjects projects={builder.completedProjects.slice(1, 4)} />
             <TeamSection />
