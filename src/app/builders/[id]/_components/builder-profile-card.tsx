@@ -35,15 +35,15 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                         <p className="text-4xl font-bold">{builder.totalProjects}+</p>
                         <p className="text-sm">Projects</p>
                     </Card>
-                    <Card className="bg-orange-500 text-white p-6 rounded-2xl relative aspect-square flex flex-col justify-center text-center">
-                         <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8 bg-white/20 hover:bg-white/30 text-white rounded-full">
+                    <Card className="bg-accent text-accent-foreground p-6 rounded-2xl relative aspect-square flex flex-col justify-center text-center">
+                         <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8 bg-black/10 hover:bg-black/20 text-accent-foreground rounded-full">
                             <ArrowUpRight className="h-4 w-4" />
                         </Button>
                         <p className="text-4xl font-bold">{builder.ongoingProjects.length}</p>
                         <p className="text-sm">Ongoing</p>
                     </Card>
                 </div>
-                <Card className="col-span-2 bg-green-500 text-white p-6 rounded-2xl relative flex items-center justify-between">
+                <Card className="col-span-2 bg-destructive text-destructive-foreground p-6 rounded-2xl relative flex items-center justify-between">
                      <Button variant="ghost" size="icon" className="absolute top-2 right-2 h-8 w-8 bg-white/20 hover:bg-white/30 text-white rounded-full">
                         <ArrowUpRight className="h-4 w-4" />
                     </Button>

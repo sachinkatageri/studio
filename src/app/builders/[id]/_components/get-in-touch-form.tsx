@@ -32,7 +32,7 @@ export default function GetInTouchForm() {
                         </span>
                         <Input type="tel" placeholder="Phone Number" className="rounded-l-none" />
                     </div>
-                    <Button type="submit" className="w-full bg-green-500 hover:bg-green-600">Contact Now</Button>
+                    <Button type="submit" className="w-full">Contact Now</Button>
                 </form>
             </CardContent>
         </Card>

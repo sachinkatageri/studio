@@ -111,7 +111,7 @@ export default function FeaturedProjectCard({ project }: { project: Project }) {
                         <p className="text-muted-foreground">Total Range</p>
                         <p className="text-2xl font-bold text-primary">₹1.16 Cr - ₹2.91 Cr</p>
                     </div>
-                    <Button size="lg" className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white">Contact Builder</Button>
+                    <Button size="lg" className="w-full sm:w-auto">Contact Builder</Button>
                 </div>
 
             </CardContent>
