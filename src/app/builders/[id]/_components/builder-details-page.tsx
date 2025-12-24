@@ -14,6 +14,7 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
             <Header />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
                 <Breadcrumbs builderName={builder.name} />
+                <h1 className="text-3xl font-bold mt-4">{builder.name}</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
                     <div className="lg:col-span-6">
