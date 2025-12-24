@@ -36,19 +36,13 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         </div>
                     </div>
                      <div className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                            <Award className="h-4 w-4 text-primary" />
-                            <p className="font-bold text-md">{builder.experience} Years</p>
-                        </div>
+                        <p className="font-bold text-md">{builder.experience} Years</p>
                         <p className="text-xs text-muted-foreground text-right">Experience</p>
                     </div>
                 </div>
 
                 <div className="mt-3 text-center">
-                    <div className="flex items-center justify-center gap-2">
-                        <Building2 className="h-5 w-5 text-primary" />
-                        <p className="font-bold text-lg">{builder.totalProjects}</p>
-                    </div>
+                     <p className="font-bold text-lg">{builder.totalProjects}</p>
                     <p className="text-xs text-muted-foreground">Total Projects</p>
                 </div>
                 
@@ -64,9 +58,8 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 </div>
 
                 <div className="mt-auto pt-4">
-                    <Separator className="mb-4" />
                     <div className="text-right">
-                        <Button variant="default" size="sm" className="w-full md:w-auto">View Details</Button>
+                        <Button variant="default" size="sm" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
                     </div>
                 </div>
             </div>
@@ -82,7 +75,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         alt={`${builder.name} logo`} 
                         width={56} 
                         height={56} 
-                        className="rounded-full object-contain border p-1"
+                        className="rounded-lg object-contain border p-1"
                         onError={() => setImgSrc(emptyImage)}
                      />
                     <div>
@@ -92,24 +85,18 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 </div>
                 <div className="flex w-full md:w-auto justify-around items-center gap-8 text-center mt-4 md:mt-0">
                     <div>
-                        <div className="flex items-center justify-center gap-2">
-                            <Building2 className="h-5 w-5 text-primary" />
-                            <p className="font-bold text-lg">{builder.totalProjects}</p>
-                        </div>
+                        <p className="font-bold text-lg">{builder.totalProjects}</p>
                         <p className="text-xs text-muted-foreground">Total Projects</p>
                     </div>
                     <div>
-                        <div className="flex items-center justify-center gap-2">
-                             <Award className="h-5 w-5 text-primary" />
-                            <p className="font-bold text-lg">{builder.experience} Years</p>
-                        </div>
+                        <p className="font-bold text-lg">{builder.experience} Years</p>
                         <p className="text-xs text-muted-foreground">Experience</p>
                     </div>
                 </div>
             </div>
 
             <Tabs defaultValue="completed" className="mt-4">
-                <TabsList className="grid w-full grid-cols-3">
+                <TabsList>
                     <TabsTrigger value="completed">Completed ({builder.completedProjects.length})</TabsTrigger>
                     <TabsTrigger value="ongoing">Ongoing ({builder.ongoingProjects.length})</TabsTrigger>
                     <TabsTrigger value="upcoming">Upcoming ({builder.upcomingProjects.length})</TabsTrigger>
@@ -154,11 +141,8 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                     </ScrollArea>
                 </TabsContent>
             </Tabs>
-             <div className="mt-4">
-                <Separator className="mb-4" />
-                <div className="text-right">
-                    <Button variant="default" className="w-full md:w-auto">View Details</Button>
-                </div>
+             <div className="mt-4 text-right">
+                <Button variant="default" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
             </div>
         </div>
     )
