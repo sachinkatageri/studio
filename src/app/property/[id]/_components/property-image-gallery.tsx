@@ -222,6 +222,8 @@ export default function PropertyImageGallery() {
         )
     }
     
+    const remainingImages = propertyImageGallery.length - 5;
+
     return (
         <div className="relative container mx-auto cursor-pointer" onClick={openGallery}>
             <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[250px] md:h-[450px]">
@@ -265,7 +267,7 @@ export default function PropertyImageGallery() {
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white">
                             <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
                                 <Camera className="mr-2 h-4 w-4" />
-                                Show all {propertyImageGallery.length} photos
+                                {remainingImages > 0 ? `+${remainingImages} Photos` : 'View All'}
                             </Button>
                         </div>
                     </div>
