@@ -55,7 +55,7 @@ const LoginContent = () => (
         </div>
       </div>
       <div className="px-4 md:px-6 pb-6">
-        <Button type="submit" size="lg" className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
+        <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
           Send OTP <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
