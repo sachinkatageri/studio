@@ -209,6 +209,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         ))}
                     </CarouselContent>
                 </Carousel>
+                <div className="absolute top-2 right-2 flex gap-2 z-20">
+                    <ShareOptions>
+                        <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                            <Share2 className="h-4 w-4" />
+                        </Button>
+                    </ShareOptions>
+                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                        <Heart className="h-4 w-4" />
+                    </Button>
+                    <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
+                        <X className="h-4 w-4" />
+                    </Button>
+                </div>
                 <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
                     {Array.from({ length: count }).map((_, index) => (
                     <button
@@ -308,28 +321,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </Button>
                 </div>
             </div>
-             <div className="absolute top-2 right-2 flex gap-2 z-20">
-                <ShareOptions>
-                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                        <Share2 className="h-4 w-4" />
-                    </Button>
-                </ShareOptions>
-                <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                    <Heart className="h-4 w-4" />
-                </Button>
-                <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                      <X className="h-4 w-4" />
-                  </Button>
-            </div>
         </div>
       </Card>
        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </div>
   );
 }
-
-    
-
-    
 
     
