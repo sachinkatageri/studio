@@ -16,10 +16,10 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
                 <Breadcrumbs builderName={builder.name} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
-                    <div className="lg:col-span-5">
+                    <div className="lg:col-span-6">
                         <LeftColumn builder={builder} />
                     </div>
-                    <div className="lg:col-span-7">
+                    <div className="lg:col-span-6">
                         <RightColumn builder={builder} />
                     </div>
                 </div>
