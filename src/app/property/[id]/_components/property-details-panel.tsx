@@ -371,10 +371,10 @@ const PropertyLayout = ({ property }: { property: Property }) => {
 
     return (
         <Tabs defaultValue="small">
-            <TabsList className="grid w-full grid-cols-3 mb-4 h-11">
-                <TabsTrigger value="small" className="text-xs md:text-sm">6-15 Seats</TabsTrigger>
-                <TabsTrigger value="medium" className="text-xs md:text-sm">16-30 Seats</TabsTrigger>
-                <TabsTrigger value="large" className="text-xs md:text-sm">31-60 Seats</TabsTrigger>
+            <TabsList variant="pill" className="grid w-full grid-cols-3 mb-4">
+                <TabsTrigger variant="pill" value="small" className="text-xs md:text-sm">6-15 Seats</TabsTrigger>
+                <TabsTrigger variant="pill" value="medium" className="text-xs md:text-sm">16-30 Seats</TabsTrigger>
+                <TabsTrigger variant="pill" value="large" className="text-xs md:text-sm">31-60 Seats</TabsTrigger>
             </TabsList>
             <TabsContent value="small">
                 <LayoutImageGallery images={layouts.small} />
