@@ -96,7 +96,7 @@ export function CitySelectionSheet({ open, onOpenChange }: CitySelectionSheetPro
   const isMobile = useIsMobile();
   
   const side = isMobile ? 'bottom' : 'left';
-  const className = isMobile ? 'h-full max-h-full w-full p-0 flex flex-col' : 'w-[480px] p-0 flex flex-col';
+  const className = isMobile ? 'h-[90%] max-h-full w-full p-0 flex flex-col' : 'w-[480px] p-0 flex flex-col';
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
