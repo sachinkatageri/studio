@@ -116,28 +116,32 @@ const UserMenuButton = () => {
                         </SheetClose>
                     </nav>
 
-                    <Card className="bg-yellow-100 border-yellow-200 dark:bg-yellow-900/50 dark:border-yellow-800/50">
-                        <CardContent className="p-4 flex items-center gap-4">
-                            <div>
-                                <h3 className="font-bold">Tag Along</h3>
-                                <p className="text-sm">Buy Large Land Parcels with us, starting @ 4 Lakh/ Acre.</p>
-                            </div>
-                            <Image src="https://www.buildersinfo.in/tag-along-pic.svg" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" />
-                        </CardContent>
-                    </Card>
+                    {!isMobile && (
+                        <>
+                            <Card className="bg-yellow-100 border-yellow-200 dark:bg-yellow-900/50 dark:border-yellow-800/50">
+                                <CardContent className="p-4 flex items-center gap-4">
+                                    <div>
+                                        <h3 className="font-bold">Tag Along</h3>
+                                        <p className="text-sm">Buy Large Land Parcels with us, starting @ 4 Lakh/ Acre.</p>
+                                    </div>
+                                    <Image src="https://www.buildersinfo.in/tag-along-pic.svg" alt="Tag Along" width={100} height={80} className="rounded-md shrink-0" />
+                                </CardContent>
+                            </Card>
 
-                    <Card>
-                        <CardContent className="p-4 space-y-4">
-                            <h3 className="font-semibold text-center">Download Builderinfo App</h3>
-                             <div className="flex items-center justify-center gap-4">
-                                <div className="flex flex-col gap-2">
-                                <AppStoreButton />
-                                <PlayStoreButton />
-                                </div>
-                                <Image src="https://c.housingcdn.com/demand/s/client/common/assets/qr-code.f143ed3a.png" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
-                            </div>
-                        </CardContent>
-                    </Card>
+                            <Card>
+                                <CardContent className="p-4 space-y-4">
+                                    <h3 className="font-semibold text-center">Download Builderinfo App</h3>
+                                    <div className="flex items-center justify-center gap-4">
+                                        <div className="flex flex-col gap-2">
+                                            <AppStoreButton />
+                                            <PlayStoreButton />
+                                        </div>
+                                        <Image src="https://c.housingcdn.com/demand/s/client/common/assets/qr-code.f143ed3a.png" alt="QR Code" width={80} height={80} data-ai-hint="qr code" />
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </>
+                    )}
 
                     </div>
                     <div className="p-4 border-t mt-auto space-y-4">
