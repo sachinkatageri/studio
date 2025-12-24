@@ -1,4 +1,5 @@
 
+
 export const properties = [
     {
       id: 'wework',
@@ -95,31 +96,31 @@ export const properties = [
     {
       "id": "gallery-1",
       "description": "Bright and airy open-plan office with comfortable lounge seating.",
-      "imageUrl": "https://images.unsplash.com/photo-1685955010389-5b914b128f41?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8b2ZmaWNlJTIwbG91bmdlfGVufDB8fHx8MTc2NjU1MDY3OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://picsum.photos/seed/gallery-1/800/600",
       "imageHint": "office lounge"
     },
     {
       "id": "gallery-2",
       "description": "Modern kitchen and bar area in a coworking space.",
-      "imageUrl": "https://images.unsplash.com/photo-1637665691265-3d653ffd7c77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxvZmZpY2UlMjBraXRjaGVufGVufDB8fHx8MTc2NjQ4NDEyNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://picsum.photos/seed/gallery-2/800/600",
       "imageHint": "office kitchen"
     },
     {
       "id": "gallery-3",
       "description": "Private office booth with a view of the city skyline.",
-      "imageUrl": "https://images.unsplash.com/photo-1690264240336-505886514231?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvZmZpY2UlMjBib290aHxlbnwwfHx8fDE3NjY1NjYxNjl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://picsum.photos/seed/gallery-3/800/600",
       "imageHint": "office booth"
     },
     {
       "id": "gallery-4",
       "description": "Collaborative meeting area with a whiteboard and casual seating.",
-      "imageUrl": "https://images.unsplash.com/photo-1763567823709-9df979a3b7b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3NjY0ODQxMjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://picsum.photos/seed/gallery-4/800/600",
       "imageHint": "meeting area"
     },
     {
       "id": "gallery-5",
       "description": "Cozy nook with hanging chairs for relaxation.",
-      "imageUrl": "https://images.unsplash.com/photo-1732291321029-fcf65e0d7b48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2NjU2MzkwNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://picsum.photos/seed/gallery-5/800/600",
       "imageHint": "lounge area"
     },
     {
