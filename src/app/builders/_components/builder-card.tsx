@@ -63,7 +63,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                                     ))}
                                     {builder.completedProjects.length > 3 && (
                                         <div className="w-40 flex-shrink-0">
-                                            <div className="relative h-44 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                                            <div className="relative h-24 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
                                                 <Button variant="outline" className="bg-background">
                                                     +{builder.completedProjects.length - 3} View All
                                                 </Button>
@@ -82,7 +82,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                                     ))}
                                     {builder.ongoingProjects.length > 3 && (
                                         <div className="w-40 flex-shrink-0">
-                                            <div className="relative h-44 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                                            <div className="relative h-24 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
                                                 <Button variant="outline" className="bg-background">
                                                     +{builder.ongoingProjects.length - 3} View All
                                                 </Button>
@@ -101,7 +101,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                                     ))}
                                     {builder.upcomingProjects.length > 3 && (
                                         <div className="w-40 flex-shrink-0">
-                                            <div className="relative h-44 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                                            <div className="relative h-24 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
                                                 <Button variant="outline" className="bg-background">
                                                     +{builder.upcomingProjects.length - 3} View All
                                                 </Button>
@@ -166,61 +166,40 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
 
                 <div className="mt-4 flex-grow">
                     <TabsContent value="completed" className="mt-0 h-full">
-                        <ScrollArea>
-                            <div className="flex space-x-4 pb-4">
-                                {builder.completedProjects.slice(0, 3).map(project => (
-                                    <ProjectCard key={project.id} project={project} view="grid" />
-                                ))}
-                                {builder.completedProjects.length > 3 && (
-                                     <div className="w-40 flex-shrink-0">
-                                        <div className="relative h-44 rounded-lg overflow-hidden bg-accent/10 flex items-center justify-center">
-                                             <Button variant="outline" className="bg-background">
-                                                +{builder.completedProjects.length - 3} View All
-                                            </Button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
+                        <div className="space-y-3">
+                            {builder.completedProjects.slice(0, 2).map(project => (
+                                <ProjectCard key={project.id} project={project} view="list" />
+                            ))}
+                            {builder.completedProjects.length > 2 && (
+                                <Button variant="link" className="text-primary p-0 h-auto">
+                                    +{builder.completedProjects.length - 2} View All
+                                </Button>
+                            )}
+                        </div>
                     </TabsContent>
                     <TabsContent value="ongoing" className="mt-0 h-full">
-                        <ScrollArea>
-                            <div className="flex space-x-4 pb-4">
-                                {builder.ongoingProjects.slice(0, 3).map(project => (
-                                    <ProjectCard key={project.id} project={project} view="grid" />
-                                ))}
-                                {builder.ongoingProjects.length > 3 && (
-                                     <div className="w-40 flex-shrink-0">
-                                        <div className="relative h-44 rounded-lg overflow-hidden bg-accent/10 flex items-center justify-center">
-                                             <Button variant="outline" className="bg-background">
-                                                +{builder.ongoingProjects.length - 3} View All
-                                            </Button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
+                         <div className="space-y-3">
+                            {builder.ongoingProjects.slice(0, 2).map(project => (
+                                <ProjectCard key={project.id} project={project} view="list" />
+                            ))}
+                            {builder.ongoingProjects.length > 2 && (
+                                <Button variant="link" className="text-primary p-0 h-auto">
+                                    +{builder.ongoingProjects.length - 2} View All
+                                </Button>
+                            )}
+                        </div>
                     </TabsContent>
                     <TabsContent value="upcoming" className="mt-0 h-full">
-                         <ScrollArea>
-                            <div className="flex space-x-4 pb-4">
-                                {builder.upcomingProjects.slice(0, 3).map(project => (
-                                    <ProjectCard key={project.id} project={project} view="grid" />
-                                ))}
-                                {builder.upcomingProjects.length > 3 && (
-                                     <div className="w-40 flex-shrink-0">
-                                        <div className="relative h-44 rounded-lg overflow-hidden bg-accent/10 flex items-center justify-center">
-                                             <Button variant="outline" className="bg-background">
-                                                +{builder.upcomingProjects.length - 3} View All
-                                            </Button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            <ScrollBar orientation="horizontal" />
-                        </ScrollArea>
+                         <div className="space-y-3">
+                            {builder.upcomingProjects.slice(0, 2).map(project => (
+                                <ProjectCard key={project.id} project={project} view="list" />
+                            ))}
+                            {builder.upcomingProjects.length > 2 && (
+                                <Button variant="link" className="text-primary p-0 h-auto">
+                                    +{builder.upcomingProjects.length - 2} View All
+                                </Button>
+                            )}
+                        </div>
                     </TabsContent>
                 </div>
             </Tabs>
