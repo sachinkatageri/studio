@@ -192,14 +192,22 @@ export default function PropertyImageGallery() {
     return (
         <div className="relative container mx-auto cursor-pointer" onClick={openGallery}>
             <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[250px] md:h-[450px]">
-                {propertyImageGallery.slice(0, 5).map((image, index) => (
+                <div className="relative md:col-span-2 md:row-span-2 rounded-lg overflow-hidden group">
+                    <Image
+                        src={propertyImageGallery[0].imageUrl}
+                        alt={propertyImageGallery[0].description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={propertyImageGallery[0].imageHint}
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {propertyImageGallery.slice(1, 5).map((image, index) => (
                     <div
                         key={image.id}
                         className={cn(
                             'relative overflow-hidden rounded-lg group',
-                            index === 0 && 'md:col-span-2 md:row-span-2',
-                            index > 0 && 'col-span-1',
-                            index > 2 && 'hidden md:block'
+                            'col-span-1 hidden md:block'
                         )}
                     >
                         <Image
@@ -212,7 +220,7 @@ export default function PropertyImageGallery() {
                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                 ))}
-                {propertyImageGallery.length > 4 && (
+                {propertyImageGallery.length > 5 && (
                     <div className="relative col-span-1 row-span-1 hidden md:block rounded-lg overflow-hidden group">
                          <Image
                             src={propertyImageGallery[4].imageUrl}
@@ -224,7 +232,7 @@ export default function PropertyImageGallery() {
                         <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white">
                             <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
                                 <Camera className="mr-2 h-4 w-4" />
-                                {propertyImageGallery.length}+
+                                Show all {propertyImageGallery.length} photos
                             </Button>
                         </div>
                     </div>
@@ -235,6 +243,3 @@ export default function PropertyImageGallery() {
         </div>
     )
 }
-
-    
-
