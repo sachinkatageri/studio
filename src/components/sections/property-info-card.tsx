@@ -80,7 +80,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   if (isMobile) {
       return (
         <div 
-          className="w-full h-full flex flex-col justify-end p-[5%]"
+          className="w-full h-full flex flex-col justify-end p-[2%]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -173,7 +173,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Card className="bg-card shadow-lg border-none">
                         <CardContent className="p-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
+                                <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
                                 <div>
                                     <h3 className="font-semibold">Vaishnavi Group</h3>
                                     <p className="text-xs text-muted-foreground">Developer</p>
@@ -379,6 +379,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
 
 
 
