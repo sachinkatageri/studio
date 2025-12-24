@@ -8,6 +8,7 @@ import { ProjectCard } from "./project-card";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { Award, Building2 } from "lucide-react";
 
 export default function BuilderCard({ builder, view }: { builder: Builder, view: 'list' | 'grid' }) {
     if (view === 'grid') {
@@ -22,13 +23,19 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         </div>
                     </div>
                      <div className="text-right">
-                        <p className="font-bold text-md">{builder.experience} Years</p>
-                        <p className="text-xs text-muted-foreground">Experience</p>
+                        <div className="flex items-center justify-end gap-2">
+                            <Award className="h-4 w-4 text-primary" />
+                            <p className="font-bold text-md">{builder.experience} Years</p>
+                        </div>
+                        <p className="text-xs text-muted-foreground text-right">Experience</p>
                     </div>
                 </div>
 
                 <div className="mt-3 text-center">
-                    <p className="font-bold text-lg">{builder.totalProjects}</p>
+                    <div className="flex items-center justify-center gap-2">
+                        <Building2 className="h-5 w-5 text-primary" />
+                        <p className="font-bold text-lg">{builder.totalProjects}</p>
+                    </div>
                     <p className="text-xs text-muted-foreground">Total Projects</p>
                 </div>
                 
@@ -62,11 +69,17 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 </div>
                 <div className="flex w-full md:w-auto justify-around items-center gap-8 text-center mt-4 md:mt-0">
                     <div>
-                        <p className="font-bold text-lg">{builder.totalProjects}</p>
+                        <div className="flex items-center justify-center gap-2">
+                            <Building2 className="h-5 w-5 text-primary" />
+                            <p className="font-bold text-lg">{builder.totalProjects}</p>
+                        </div>
                         <p className="text-xs text-muted-foreground">Total Projects</p>
                     </div>
                     <div>
-                        <p className="font-bold text-lg">{builder.experience} Years</p>
+                        <div className="flex items-center justify-center gap-2">
+                             <Award className="h-5 w-5 text-primary" />
+                            <p className="font-bold text-lg">{builder.experience} Years</p>
+                        </div>
                         <p className="text-xs text-muted-foreground">Experience</p>
                     </div>
                 </div>
