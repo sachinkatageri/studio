@@ -182,7 +182,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   
   // Desktop card
   return (
-    <div className="relative w-full max-w-4xl mx-auto">
+    <div className="relative w-full max-w-5xl mx-auto">
        <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronLeft className="h-5 w-5" />
       </Button>
@@ -332,3 +332,4 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
