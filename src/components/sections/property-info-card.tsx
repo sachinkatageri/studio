@@ -190,7 +190,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         <ChevronRight className="h-5 w-5" />
       </Button>
       <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-3 h-[420px]">
+        <div className="grid grid-cols-3 h-[320px]">
             <div className="relative col-span-1">
                  <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
@@ -327,5 +327,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
 
     
