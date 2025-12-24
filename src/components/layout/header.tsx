@@ -65,15 +65,16 @@ const UserMenuButton = () => {
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <SheetContent side="right" className={cn(
+                <SheetContent 
+                  side="right" 
+                  className={cn(
                     "p-0 flex flex-col rounded-l-lg",
                     isMobile ? "w-[95%]" : "w-full sm:w-[400px]"
-                )}>
+                  )}
+                  hideCloseButton={isMobile}
+                >
                 <SheetHeader className="sr-only">
                   <SheetTitle>User Menu</SheetTitle>
-                  <SheetDescription>
-                    Access your profile, settings, and other user-specific options.
-                  </SheetDescription>
                 </SheetHeader>
                 <div className="p-4 bg-muted/50">
                     <div className="flex items-center gap-4">
@@ -290,3 +291,4 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     
 
     
+
