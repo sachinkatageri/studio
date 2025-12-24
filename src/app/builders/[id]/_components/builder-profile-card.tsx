@@ -14,7 +14,6 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                     <div className="w-40 h-40 relative mb-4">
                         <Image src={builder.logoUrl} alt={`${builder.name} logo`} fill className="object-contain" />
                     </div>
-                    <p className="text-sm text-muted-foreground">"{builder.name === 'Brigade Group' ? 'Add Prestige to your life' : `Building Tomorrow, Today`}"</p>
                 </Card>
                 <Card className="p-6 text-center">
                     <p className="text-4xl font-bold">{builder.experience}+</p>
