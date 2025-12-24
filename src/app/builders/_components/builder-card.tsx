@@ -60,7 +60,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         <p className="text-muted-foreground">{builder.location}</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-8 text-center">
+                <div className="flex w-full md:w-auto justify-around items-center gap-8 text-center mt-4 md:mt-0">
                     <div>
                         <p className="font-bold text-lg">{builder.totalProjects}</p>
                         <p className="text-xs text-muted-foreground">Total Projects</p>
@@ -73,10 +73,10 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
             </div>
 
             <Tabs defaultValue="completed" className="mt-4">
-                <TabsList>
-                    <TabsTrigger value="completed">Completed Projects ({builder.completedProjects.length})</TabsTrigger>
-                    <TabsTrigger value="ongoing">Ongoing Projects ({builder.ongoingProjects.length})</TabsTrigger>
-                    <TabsTrigger value="upcoming">Upcoming Projects ({builder.upcomingProjects.length})</TabsTrigger>
+                <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="completed">Completed ({builder.completedProjects.length})</TabsTrigger>
+                    <TabsTrigger value="ongoing">Ongoing ({builder.ongoingProjects.length})</TabsTrigger>
+                    <TabsTrigger value="upcoming">Upcoming ({builder.upcomingProjects.length})</TabsTrigger>
                 </TabsList>
                 <TabsContent value="completed" className="mt-4">
                     <ScrollArea>

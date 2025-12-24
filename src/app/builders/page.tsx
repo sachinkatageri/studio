@@ -23,10 +23,10 @@ export default function BuildersPage() {
                         <h1 className="text-3xl font-bold">Builders in Bangalore</h1>
                         <p className="text-muted-foreground mt-1">{builders.length} results</p>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex w-full md:w-auto items-center gap-2">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline">
+                                <Button variant="outline" className="flex-1 md:flex-initial">
                                     Sort by: Property
                                     <ChevronDown className="ml-2 h-4 w-4" />
                                 </Button>
@@ -37,10 +37,10 @@ export default function BuildersPage() {
                                 <DropdownMenuItem>Total Projects</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <Button variant="outline" size="icon">
+                        <Button variant="outline" size="icon" className="shrink-0">
                             <ListFilter className="h-4 w-4" />
                         </Button>
-                         <div className="flex items-center bg-muted rounded-lg p-1">
+                         <div className="flex items-center bg-muted rounded-lg p-1 ml-auto md:ml-0">
                             <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
                                 <LayoutList className="h-4 w-4" />
                             </Button>
