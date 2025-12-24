@@ -137,9 +137,18 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
             <div className="mt-4 flex-grow">
                 <ScrollArea>
                     <div className="flex space-x-4 pb-4">
-                        {builder.completedProjects.map(project => (
+                        {builder.completedProjects.slice(0, 3).map(project => (
                             <ProjectCard key={project.id} project={project} view="grid" />
                         ))}
+                        {builder.completedProjects.length > 3 && (
+                             <div className="w-40 flex-shrink-0">
+                                <div className="relative h-24 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                                     <Button variant="outline" className="bg-background">
+                                        +{builder.completedProjects.length - 3} View All
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>
