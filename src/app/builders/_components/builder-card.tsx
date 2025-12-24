@@ -10,6 +10,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Award, Building2 } from "lucide-react";
 import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 export default function BuilderCard({ builder, view }: { builder: Builder, view: 'list' | 'grid' }) {
     const [imgSrc, setImgSrc] = useState(builder.logoUrl);
@@ -62,8 +63,11 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                     </ScrollArea>
                 </div>
 
-                <div className="mt-4 text-right">
-                    <Button variant="default" size="sm">View Details</Button>
+                <div className="mt-auto pt-4">
+                    <Separator className="mb-4" />
+                    <div className="text-right">
+                        <Button variant="default" size="sm">View Details</Button>
+                    </div>
                 </div>
             </div>
         )
@@ -150,8 +154,11 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                     </ScrollArea>
                 </TabsContent>
             </Tabs>
-            <div className="mt-4 text-right">
-                <Button variant="default">View Details</Button>
+             <div className="mt-4">
+                <Separator className="mb-4" />
+                <div className="text-right">
+                    <Button variant="default">View Details</Button>
+                </div>
             </div>
         </div>
     )
