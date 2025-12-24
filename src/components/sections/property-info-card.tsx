@@ -93,8 +93,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <Button onClick={onNext} size="icon" className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
                     <ChevronRight className="h-5 w-5" />
                 </Button>
-                <div className="bg-background/95 backdrop-blur-sm rounded-2xl flex flex-col overflow-hidden">
-                <ScrollArea className="flex-1 -m-4">
+                <div className="bg-background/95 backdrop-blur-sm rounded-2xl flex flex-col overflow-hidden h-[calc(95vh-5%)]">
+                <ScrollArea className="flex-1">
                     <div className="p-4 space-y-3">
                     {/* Image Gallery Card */}
                     <Card className="overflow-hidden border-0 shadow-none bg-transparent">
@@ -104,13 +104,13 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                 <CarouselContent>
                                     {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image) => (
                                         <CarouselItem key={image.id}>
-                                            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+                                            <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden">
                                                 <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
                                             </div>
                                         </CarouselItem>
                                     )) : (
                                         <CarouselItem>
-                                            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-muted flex items-center justify-center">
+                                            <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden bg-muted flex items-center justify-center">
                                                 <p className="text-muted-foreground text-sm">No Images</p>
                                             </div>
                                         </CarouselItem>
@@ -213,7 +213,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
                     </div>
                 </ScrollArea>
-                <div className="p-4 bg-transparent border-t-0">
+                <div className="p-4 bg-transparent border-t-0 mt-auto">
                     <Button className="w-full h-12 text-base" onClick={() => onViewDetails(property.id)}>View Full Details</Button>
                 </div>
                 </div>
@@ -380,4 +380,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
 

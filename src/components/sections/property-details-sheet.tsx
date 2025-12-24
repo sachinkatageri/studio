@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import {
@@ -27,7 +28,7 @@ export function PropertyDetailsSheet({ propertyId, onClose, onViewDetails, onNex
     <Sheet open={open} onOpenChange={(open) => !open && onClose()}>
       <SheetContent 
         side="bottom" 
-        className="h-[95%] flex flex-col p-0 bg-transparent border-0"
+        className="h-full flex flex-col p-0 bg-transparent border-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Property Details</SheetTitle>
