@@ -48,132 +48,135 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (isMobile) {
       return (
-        <div className="flex-1 bg-background/95 backdrop-blur-sm rounded-t-2xl flex flex-col overflow-hidden p-[5%]">
-          <ScrollArea className="flex-1 -m-4">
-            <div className="p-4 space-y-3">
-              {/* Image Gallery Card */}
-              <Card className="overflow-hidden border-0 shadow-none bg-transparent">
-                <CardContent className="p-0">
-                  <div className="relative">
-                    <Carousel className="w-full" setApi={setApi}>
-                        <CarouselContent>
-                            {propertyImageGallery.slice(0, 5).map((image) => (
-                                <CarouselItem key={image.id}>
-                                    <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
-                                        <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                    </div>
-                                </CarouselItem>
+        <div className="w-full h-full flex flex-col justify-end p-[5%]">
+            <div className="relative">
+                <Button onClick={onPrev} size="icon" className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+                    <ChevronLeft className="h-5 w-5" />
+                </Button>
+                <Button onClick={onNext} size="icon" className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+                    <ChevronRight className="h-5 w-5" />
+                </Button>
+                <div className="bg-background/95 backdrop-blur-sm rounded-t-2xl flex flex-col overflow-hidden">
+                <ScrollArea className="flex-1 -m-4">
+                    <div className="p-4 space-y-3">
+                    {/* Image Gallery Card */}
+                    <Card className="overflow-hidden border-0 shadow-none bg-transparent">
+                        <CardContent className="p-0">
+                        <div className="relative">
+                            <Carousel className="w-full" setApi={setApi}>
+                                <CarouselContent>
+                                    {propertyImageGallery.slice(0, 5).map((image) => (
+                                        <CarouselItem key={image.id}>
+                                            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+                                                <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                            </div>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                            </Carousel>
+                            <div className="absolute top-3 right-3 flex items-center gap-2">
+                                <ShareOptions><Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Share2 className="h-4 w-4" /></Button></ShareOptions>
+                                <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Heart className="h-4 w-4" /></Button>
+                                <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><X className="h-4 w-4" /></Button>
+                            </div>
+                            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                            {Array.from({ length: count }).map((_, i) => (
+                                <button key={i} onClick={() => api?.scrollTo(i)} className={cn('h-1.5 w-1.5 rounded-full transition-all', current === i ? 'w-4 bg-white' : 'bg-white/50')}/>
                             ))}
-                        </CarouselContent>
-                    </Carousel>
-                    <div className="absolute top-3 right-3 flex items-center gap-2">
-                        <ShareOptions><Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Share2 className="h-4 w-4" /></Button></ShareOptions>
-                        <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Heart className="h-4 w-4" /></Button>
-                        <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><X className="h-4 w-4" /></Button>
-                    </div>
-                     <div className="absolute z-10 top-1/2 -translate-y-1/2 flex justify-between w-full px-2">
-                        <Button onClick={onPrev} size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-                            <ChevronLeft className="h-5 w-5" />
-                        </Button>
-                        <Button onClick={onNext} size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-                            <ChevronRight className="h-5 w-5" />
-                        </Button>
-                    </div>
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                      {Array.from({ length: count }).map((_, i) => (
-                        <button key={i} onClick={() => api?.scrollTo(i)} className={cn('h-1.5 w-1.5 rounded-full transition-all', current === i ? 'w-4 bg-white' : 'bg-white/50')}/>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Primary Details Card */}
-              <Card className="bg-card shadow-lg border-none">
-                <CardContent className="p-4 space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h2 className="text-lg font-bold flex items-center gap-2">
-                        {property.name}
-                        <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
-                      </h2>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
-                    </div>
-                     <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
-                        {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                    </Badge>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
-                      <div className="flex items-center gap-2"><Building className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
-                      {/* @ts-ignore */}
-                      {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
-                      <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
-                  </div>
-                </CardContent>
-              </Card>
-              {/* Amenities Card */}
-              <Card className="bg-card shadow-lg border-none">
-                <CardContent className="p-4">
-                  <h3 className="font-semibold mb-3">Amenities</h3>
-                  <div className="grid grid-cols-4 gap-4">
-                    {propertyAmenities.map(amenity => (
-                      <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
-                        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                           <amenity.icon className="h-6 w-6 text-primary" />
+                            </div>
                         </div>
-                        <span className="text-xs font-medium">{amenity.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                        </CardContent>
+                    </Card>
 
-              {/* Developer/Agent Card */}
-              <Card className="bg-card shadow-lg border-none">
-                 <CardContent className="p-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
-                        <div>
-                            <h3 className="font-semibold">Vaishnavi Group</h3>
-                            <p className="text-xs text-muted-foreground">Developer</p>
+                    {/* Primary Details Card */}
+                    <Card className="bg-card shadow-lg border-none">
+                        <CardContent className="p-4 space-y-3">
+                        <div className="flex justify-between items-start">
+                            <div>
+                            <h2 className="text-lg font-bold flex items-center gap-2">
+                                {property.name}
+                                <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                            </h2>
+                            <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
+                            </div>
+                            <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
+                                {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                            </Badge>
                         </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Button size="icon" className="rounded-full bg-green-100 hover:bg-green-200 h-10 w-10"><Phone className="h-5 w-5 text-green-700" /></Button>
-                         <Button size="icon" className="rounded-full bg-blue-100 hover:bg-blue-200 h-10 w-10">
-                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
-                        </Button>
-                    </div>
-                 </CardContent>
-              </Card>
-              
-               {/* Key Stats Card */}
-              <div className="grid grid-cols-3 gap-3">
-                <Card className="bg-card shadow-lg border-none text-center">
-                    <CardContent className="p-3">
-                        <p className="text-xs text-muted-foreground">Price</p>
-                        <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
-                    </CardContent>
-                </Card>
-                 <Card className="bg-card shadow-lg border-none text-center">
-                    <CardContent className="p-3">
-                        <p className="text-xs text-muted-foreground">Status</p>
-                        <p className="font-bold text-sm">{property.status}</p>
-                    </CardContent>
-                </Card>
-                 <Card className="bg-card shadow-lg border-none text-center">
-                    <CardContent className="p-3">
-                        <p className="text-xs text-muted-foreground">Reviews</p>
-                        <p className="font-bold text-sm">{property.reviews}</p>
-                    </CardContent>
-                </Card>
-              </div>
+                        <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
+                            <div className="flex items-center gap-2"><Building className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
+                            {/* @ts-ignore */}
+                            {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
+                            <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
+                        </div>
+                        </CardContent>
+                    </Card>
+                    
+                    {/* Amenities Card */}
+                    <Card className="bg-card shadow-lg border-none">
+                        <CardContent className="p-4">
+                        <h3 className="font-semibold mb-3">Amenities</h3>
+                        <div className="grid grid-cols-4 gap-4">
+                            {propertyAmenities.map(amenity => (
+                            <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                                <amenity.icon className="h-6 w-6 text-primary" />
+                                </div>
+                                <span className="text-xs font-medium">{amenity.name}</span>
+                            </div>
+                            ))}
+                        </div>
+                        </CardContent>
+                    </Card>
 
+                    {/* Developer/Agent Card */}
+                    <Card className="bg-card shadow-lg border-none">
+                        <CardContent className="p-4 flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
+                                <div>
+                                    <h3 className="font-semibold">Vaishnavi Group</h3>
+                                    <p className="text-xs text-muted-foreground">Developer</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Button size="icon" className="rounded-full bg-green-100 hover:bg-green-200 h-10 w-10"><Phone className="h-5 w-5 text-green-700" /></Button>
+                                <Button size="icon" className="rounded-full bg-blue-100 hover:bg-blue-200 h-10 w-10">
+                                    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
+                                </Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                    
+                    {/* Key Stats Card */}
+                    <div className="grid grid-cols-3 gap-3">
+                        <Card className="bg-card shadow-lg border-none text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Price</p>
+                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-card shadow-lg border-none text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Status</p>
+                                <p className="font-bold text-sm">{property.status}</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-card shadow-lg border-none text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Reviews</p>
+                                <p className="font-bold text-sm">{property.reviews}</p>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    </div>
+                </ScrollArea>
+                <div className="p-4 bg-transparent border-t-0">
+                    <Button className="w-full h-12 text-base" onClick={() => onViewDetails(property.id)}>View Full Details</Button>
+                </div>
+                </div>
             </div>
-          </ScrollArea>
-          <div className="p-4 bg-transparent border-t-0">
-             <Button className="w-full h-12 text-base" onClick={() => onViewDetails(property.id)}>View Full Details</Button>
-          </div>
         </div>
       );
   }
@@ -181,6 +184,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   // Desktop card
   return (
     <div className="relative w-full max-w-lg mx-auto">
+       <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+        <ChevronLeft className="h-5 w-5" />
+      </Button>
+      <Button onClick={onNext} size="icon" className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+        <ChevronRight className="h-5 w-5" />
+      </Button>
       <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
         <div className="grid grid-cols-10 h-[300px]">
             <div className="col-span-4 relative">
@@ -275,17 +284,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
         </div>
       </Card>
-      <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-        <ChevronLeft className="h-5 w-5" />
-      </Button>
-      <Button onClick={onNext} size="icon" className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-        <ChevronRight className="h-5 w-5" />
-      </Button>
        <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </div>
   );
 }
-
-    
-
-    
