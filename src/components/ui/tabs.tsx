@@ -16,7 +16,7 @@ const tabsListVariants = cva(
     variants: {
       variant: {
         underline: "h-auto rounded-none bg-transparent",
-        pill: "h-10 rounded-lg bg-muted p-1",
+        pill: "h-11 rounded-lg bg-muted p-1.5",
       },
     },
     defaultVariants: {
@@ -44,7 +44,7 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         underline: "bg-transparent px-3 py-1.5 border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-foreground data-[state=active]:shadow-none rounded-none",
-        pill: "px-3 py-2 rounded-md data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+        pill: "px-4 py-2.5 rounded-md data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
       },
     },
     defaultVariants: {
@@ -84,4 +84,5 @@ TabsContent.displayName = TabsPrimitive.Content.displayName
 
 export { Tabs, TabsList, TabsTrigger, TabsContent }
 
+    
     

@@ -33,25 +33,25 @@ import { Terminal } from "lucide-react";
 import Header from "@/components/layout/header";
 
 const colors = [
-    { name: "background", bg: "bg-background", text: "text-foreground", code: "#ffffff" },
-    { name: "foreground", bg: "bg-foreground", text: "text-background", code: "#09090b" },
-    { name: "card", bg: "bg-card", text: "text-card-foreground", code: "#ffffff" },
-    { name: "card-foreground", bg: "bg-card-foreground", text: "text-card", code: "#09090b" },
-    { name: "popover", bg: "bg-popover", text: "text-popover-foreground", code: "#ffffff" },
-    { name: "popover-foreground", bg: "bg-popover-foreground", text: "text-popover", code: "#09090b" },
-    { name: "primary", bg: "bg-primary", text: "text-primary-foreground", code: "#0a53c7" },
-    { name: "primary-foreground", bg: "bg-primary-foreground", text: "text-primary", code: "#fafafa" },
-    { name: "secondary", bg: "bg-secondary", text: "text-secondary-foreground", code: "#4285f4" },
-    { name: "secondary-foreground", bg: "bg-secondary-foreground", text: "text-secondary", code: "#fafafa" },
-    { name: "muted", bg: "bg-muted", text: "text-muted-foreground", code: "#f1f3f4" },
-    { name: "muted-foreground", bg: "bg-muted-foreground", text: "text-muted", code: "#6c757d" },
-    { name: "accent", bg: "bg-accent", text: "text-accent-foreground", code: "#fbbc04" },
-    { name: "accent-foreground", bg: "bg-accent-foreground", text: "text-accent", code: "#09090b" },
-    { name: "destructive", bg: "bg-destructive", text: "text-destructive-foreground", code: "#e53935" },
-    { name: "destructive-foreground", bg: "bg-destructive-foreground", text: "text-destructive", code: "#fafafa" },
-    { name: "border", bg: "bg-border", text: "text-foreground", code: "#e4e5e7" },
-    { name: "input", bg: "bg-input", text: "text-foreground", code: "#e4e5e7" },
-    { name: "ring", bg: "bg-ring", text: "text-primary-foreground", code: "#0a53c7" },
+    { name: "background", bg: "bg-background", text: "text-foreground", code: "hsl(0 0% 100%)" },
+    { name: "foreground", bg: "bg-foreground", text: "text-background", code: "hsl(240 10% 3.9%)" },
+    { name: "card", bg: "bg-card", text: "text-card-foreground", code: "hsl(0 0% 100%)" },
+    { name: "card-foreground", bg: "bg-card-foreground", text: "text-card", code: "hsl(240 10% 3.9%)" },
+    { name: "popover", bg: "bg-popover", text: "text-popover-foreground", code: "hsl(0 0% 100%)" },
+    { name: "popover-foreground", bg: "bg-popover-foreground", text: "text-popover", code: "hsl(240 10% 3.9%)" },
+    { name: "primary", bg: "bg-primary", text: "text-primary-foreground", code: "hsl(219 92% 42%)" },
+    { name: "primary-foreground", bg: "bg-primary-foreground", text: "text-primary", code: "hsl(0 0% 98%)" },
+    { name: "secondary", bg: "bg-secondary", text: "text-secondary-foreground", code: "hsl(212 90% 61%)" },
+    { name: "secondary-foreground", bg: "bg-secondary-foreground", text: "text-secondary", code: "hsl(0 0% 98%)" },
+    { name: "muted", bg: "bg-muted", text: "text-muted-foreground", code: "hsl(240 4.8% 95.9%)" },
+    { name: "muted-foreground", bg: "bg-muted-foreground", text: "text-muted", code: "hsl(240 3.8% 46.1%)" },
+    { name: "accent", bg: "bg-accent", text: "text-accent-foreground", code: "hsl(45 97% 51%)" },
+    { name: "accent-foreground", bg: "bg-accent-foreground", text: "text-accent", code: "hsl(240 10% 3.9%)" },
+    { name: "destructive", bg: "bg-destructive", text: "text-destructive-foreground", code: "hsl(0 84.2% 60.2%)" },
+    { name: "destructive-foreground", bg: "bg-destructive-foreground", text: "text-destructive", code: "hsl(0 0% 98%)" },
+    { name: "border", bg: "bg-border", text: "text-foreground", code: "hsl(240 5.9% 90%)" },
+    { name: "input", bg: "bg-input", text: "text-foreground", code: "hsl(240 5.9% 90%)" },
+    { name: "ring", bg: "bg-ring", text: "text-primary-foreground", code: "hsl(219 92% 42%)" },
   ];
 
 const spacing = [
@@ -73,50 +73,44 @@ const typography = [
     {
       style: "Headline Extra Bold (h1)",
       class: "text-4xl font-extrabold font-headline tracking-tight",
-      font: "Geist Sans",
+      font: "Plus Jakarta Sans",
       size: "36px",
     },
     {
       style: "Headline Bold (h2)",
       class: "text-3xl font-bold font-headline",
-      font: "Geist Sans",
+      font: "Plus Jakarta Sans",
       size: "30px",
     },
     {
       style: "Headline Semibold (h3)",
       class: "text-2xl font-semibold font-headline",
-      font: "Geist Sans",
+      font: "Plus Jakarta Sans",
       size: "24px",
     },
     {
       style: "Body Large",
       class: "text-lg",
-      font: "Geist Sans",
+      font: "Plus Jakarta Sans",
       size: "18px",
     },
     {
       style: "Body Regular",
       class: "",
-      font: "Geist Sans",
+      font: "Plus Jakarta Sans",
       size: "16px",
     },
     {
       style: "Body Small (muted)",
       class: "text-sm text-muted-foreground",
-      font: "Geist Sans",
-      size: "14px",
-    },
-    {
-      style: "Code Font",
-      class: "font-code text-sm",
-      font: "Geist Mono",
+      font: "Plus Jakarta Sans",
       size: "14px",
     },
   ];
 
 const AllComponents = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4">
+        <div className="space-y-8">
         <Card>
             <CardHeader>
             <CardTitle>Buttons</CardTitle>
@@ -181,7 +175,7 @@ const AllComponents = () => (
         </Card>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-8">
         <Card>
             <CardHeader>
             <CardTitle>Form Elements</CardTitle>
@@ -257,7 +251,7 @@ export default function DesignSystemPage() {
                   <span className={`${color.text}`}>Aa</span>
                 </div>
                 <div className="mt-2 text-sm">
-                  <p className="font-semibold">{color.name}</p>
+                  <p className="font-semibold capitalize">{color.name.replace('-', ' ')}</p>
                   <p className="text-muted-foreground font-mono text-xs">{color.code}</p>
                 </div>
               </div>
@@ -299,12 +293,14 @@ export default function DesignSystemPage() {
         {/* Components - Light Mode */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold font-headline mb-6">Components (Light Mode)</h2>
-          <AllComponents />
+          <div className="p-8 border rounded-lg">
+            <AllComponents />
+          </div>
         </section>
 
         {/* Components - Dark Mode */}
         <section className="mb-12">
-            <div className="dark bg-background p-8 rounded-lg">
+            <div className="dark bg-background p-8 rounded-lg border">
                 <h2 className="text-3xl font-bold font-headline mb-6 text-foreground">Components (Dark Mode)</h2>
                 <AllComponents />
             </div>
@@ -342,3 +338,5 @@ export default function DesignSystemPage() {
     </>
   );
 }
+
+    

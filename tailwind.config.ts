@@ -10,9 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['var(--font-geist-sans)', 'sans-serif'],
-        headline: ['var(--font-geist-sans)', 'sans-serif'],
-        code: ['var(--font-geist-mono)', 'monospace'],
+        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        headline: ['Plus Jakarta Sans', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
@@ -68,8 +67,8 @@ export default {
       },
       borderRadius: {
         lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        md: 'calc(var(--radius) - 4px)',
+        sm: 'calc(var(--radius) - 8px)',
       },
       keyframes: {
         'accordion-down': {
@@ -97,3 +96,5 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    
