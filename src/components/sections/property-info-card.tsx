@@ -98,7 +98,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </h2>
                             <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                             </div>
-                            <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
+                            <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
                                 {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
                             </Badge>
                         </div>
@@ -148,19 +148,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     
                     {/* Key Stats Card */}
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
                                 <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -272,19 +272,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             <div className="col-span-1 p-4 flex flex-col justify-between">
                 <div className="space-y-3">
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
                                 <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Status</p>
                                 <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-muted text-center border-none shadow-none">
+                        <Card className="bg-card text-center border shadow-none">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Reviews</p>
                                 <p className="font-bold text-sm text-foreground">{property.reviews}</p>
@@ -323,3 +323,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
