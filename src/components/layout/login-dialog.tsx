@@ -28,11 +28,11 @@ interface LoginDialogProps {
 
 const LoginContent = () => (
   <>
-      <DialogHeader className="items-center text-center">
+      <DialogHeader className="items-center text-center pt-6">
         <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} className="mb-4" />
         <DialogTitle className="text-2xl font-bold">Login</DialogTitle>
       </DialogHeader>
-      <div className="grid gap-4 py-4 px-4 md:px-0">
+      <div className="grid gap-4 py-4 px-6">
         <div className="grid gap-2">
           <Label htmlFor="phone">Phone number</Label>
           <div className="flex items-center gap-2">
@@ -54,7 +54,7 @@ const LoginContent = () => (
           </p>
         </div>
       </div>
-      <div className="px-4 md:px-6 pb-6">
+      <div className="px-6 pb-6">
         <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold">
           Send OTP <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
