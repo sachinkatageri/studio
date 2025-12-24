@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import Header from "@/components/layout/header";
@@ -14,6 +13,9 @@ import { cn } from "@/lib/utils";
 
 export default function BuildersPage() {
     const [view, setView] = useState<'list' | 'grid'>('grid');
+    const [location, setLocation] = useState('Bangalore');
+
+    const locations = ['Bangalore', 'Mumbai', 'Delhi', 'Chennai', 'Hyderabad'];
 
     return (
         <>
@@ -21,10 +23,25 @@ export default function BuildersPage() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold">Builders in Bangalore</h1>
+                        <h1 className="text-3xl font-bold">Builders in {location}</h1>
                         <p className="text-muted-foreground mt-1">{builders.length} results</p>
                     </div>
                     <div className="flex w-full md:w-auto items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" className="flex-1 md:flex-initial">
+                                    {location}
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                {locations.map(loc => (
+                                    <DropdownMenuItem key={loc} onClick={() => setLocation(loc)}>
+                                        {loc}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="flex-1 md:flex-initial">
@@ -66,5 +83,3 @@ export default function BuildersPage() {
         </>
     );
 }
-
-    
