@@ -31,11 +31,28 @@ export default function BuildersPage() {
                         <ChevronRight className="h-4 w-4 mx-1" />
                         <span className="font-medium text-foreground">Builders</span>
                     </div>
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex justify-between items-center mb-4">
                         <h1 className="text-2xl font-bold">Builders in {location}</h1>
+                    </div>
+                     <div className="flex justify-between items-center mb-6 gap-2">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline">
+                                <Button variant="outline" className="flex-1">
+                                    {location}
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="start">
+                                {locations.map(loc => (
+                                    <DropdownMenuItem key={loc} onClick={() => setLocation(loc)}>
+                                        {loc}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" className="flex-1">
                                     Sort by: Popularity
                                     <ChevronDown className="ml-2 h-4 w-4" />
                                 </Button>
@@ -47,6 +64,7 @@ export default function BuildersPage() {
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
+
 
                     <div className="grid grid-cols-3 gap-3">
                         {builders.map(builder => (
