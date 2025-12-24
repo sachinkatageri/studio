@@ -115,7 +115,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     {/* Amenities Card */}
                     <Card className="bg-card shadow-lg border-none">
                         <CardContent className="p-4">
-                        <h3 className="font-semibold mb-3">Amenities</h3>
                         <div className="grid grid-cols-4 gap-4">
                             {propertyAmenities.map(amenity => (
                             <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
