@@ -219,46 +219,50 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     ))}
                 </div>
             </div>
-            <div className="p-4 flex flex-col justify-between relative col-span-2">
+            <div className="col-span-1 p-4 flex flex-col justify-between relative border-l border-r">
                 <ScrollArea className='h-full -m-4'>
-                <div className='p-4 space-y-3'>
-                    <div>
-                        <div className="flex justify-between items-start">
-                             <div>
-                                <h2 className="text-lg font-bold flex items-center gap-2">
-                                    {property.name}
-                                    <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
-                                </h2>
-                                <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
-                            </div>
-                             <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
-                                {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                            </Badge>
-                        </div>
-                    </div>
-                     <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
-                        <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
-                        {/* @ts-ignore */}
-                        {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
-                        <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
-                    </div>
-                    
-                    <Card className="bg-card shadow-none border">
-                        <CardContent className="p-3">
-                            <div className="grid grid-cols-4 gap-2">
-                                {propertyAmenities.map(amenity => (
-                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1">
-                                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted">
-                                    <amenity.icon className="h-5 w-5 text-primary" />
-                                    </div>
-                                    <span className="text-[10px] font-medium leading-tight">{amenity.name}</span>
+                    <div className='p-4 space-y-3'>
+                        <div>
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h2 className="text-lg font-bold flex items-center gap-2">
+                                        {property.name}
+                                        <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                                    </h2>
+                                    <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                                 </div>
-                                ))}
+                                <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
+                                    {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                </Badge>
                             </div>
-                        </CardContent>
-                    </Card>
-
-                     <div className="grid grid-cols-3 gap-3 pt-2">
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
+                            <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
+                            {/* @ts-ignore */}
+                            {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
+                            <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
+                        </div>
+                        
+                        <Card className="bg-card shadow-none border">
+                            <CardContent className="p-3">
+                                <div className="grid grid-cols-4 gap-2">
+                                    {propertyAmenities.map(amenity => (
+                                    <div key={amenity.name} className="flex flex-col items-center text-center gap-1">
+                                        <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted">
+                                        <amenity.icon className="h-5 w-5 text-primary" />
+                                        </div>
+                                        <span className="text-[10px] font-medium leading-tight">{amenity.name}</span>
+                                    </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </ScrollArea>
+            </div>
+            <div className="col-span-1 p-4 flex flex-col justify-between">
+                <div className="space-y-3">
+                    <div className="grid grid-cols-3 gap-3">
                         <Card className="bg-card shadow-none border text-center">
                             <CardContent className="p-3">
                                 <p className="text-xs text-muted-foreground">Price</p>
@@ -278,8 +282,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </CardContent>
                         </Card>
                     </div>
-
-                    
                     <div className="flex items-center justify-between pt-2">
                          <div className="flex items-center gap-3">
                             <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
@@ -295,10 +297,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </Button>
                         </div>
                     </div>
-
                 </div>
-                </ScrollArea>
-                <div className="p-4 bg-transparent border-t -mb-4 -mx-4 mt-2">
+                <div className="mt-2">
                     <Button
                         variant="default"
                         className="flex-1 text-base h-11 rounded-lg w-full"
@@ -327,9 +327,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
-
-    
 
     
