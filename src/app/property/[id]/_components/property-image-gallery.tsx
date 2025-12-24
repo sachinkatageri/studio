@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { ArrowLeft, Share2, Heart, AlertTriangle, Camera, X } from 'lucide-react';
+import { ArrowLeft, Share2, Heart, AlertTriangle, Camera, X, Check } from 'lucide-react';
 import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { ShareOptions } from '@/components/layout/share-options';
+import { Badge } from '@/components/ui/badge';
 
 const imageCategories = ["Main Image", "Elevation", "Amenities", "Floor Plan", "Master Plan"];
 
@@ -187,6 +188,38 @@ export default function PropertyImageGallery() {
         if (isModalOpen) {
             return <MobileImageGalleryView onClose={closeGallery} />;
         }
+        return (
+            <div className="relative h-[300px] w-full cursor-pointer" onClick={openGallery}>
+                <Image
+                    src={propertyImageGallery[0].imageUrl}
+                    alt={propertyImageGallery[0].description}
+                    fill
+                    className="object-cover"
+                    data-ai-hint={propertyImageGallery[0].imageHint}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+
+                <Badge variant="secondary" className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm text-foreground">
+                    <Check className="h-4 w-4 mr-1 text-green-500" />
+                    RERA
+                </Badge>
+                
+                <Button variant="secondary" size="icon" className="absolute top-4 right-4 h-10 w-10 rounded-full bg-background/80 backdrop-blur-sm text-foreground">
+                    <Heart className="h-5 w-5" />
+                </Button>
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-black/50 text-white rounded-full px-4 py-2 text-sm backdrop-blur-sm">
+                        Tap to see all images
+                    </div>
+                </div>
+
+                <div className="absolute bottom-4 right-4 bg-black/60 text-white rounded-full px-3 py-1.5 flex items-center gap-2 text-sm backdrop-blur-sm">
+                    <Camera className="h-4 w-4" />
+                    <span>{propertyImageGallery.length}</span>
+                </div>
+            </div>
+        )
     }
     
     return (
