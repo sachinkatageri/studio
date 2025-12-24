@@ -132,7 +132,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Card className="bg-card shadow-lg border-none">
                         <CardContent className="p-4 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
+                                <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
                                 <div>
                                     <h3 className="font-semibold">Vaishnavi Group</h3>
                                     <p className="text-xs text-muted-foreground">Developer</p>
@@ -215,9 +215,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <Share2 className="h-4 w-4" />
                         </Button>
                     </ShareOptions>
-                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                        <Heart className="h-4 w-4" />
-                    </Button>
                     <Button variant="secondary" size="icon" onClick={onClose} className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
                         <X className="h-4 w-4" />
                     </Button>
@@ -238,18 +235,18 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <div>
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <h2 className="text-lg font-bold flex items-center gap-2">
+                                    <h2 className="text-xl font-bold flex items-center gap-2">
                                         {property.name}
                                         <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
                                     </h2>
-                                    <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
+                                    <p className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                                 </div>
                                 <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
                                     {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
                                 </Badge>
                             </div>
                         </div>
-                        <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
+                        <div className="grid grid-cols-3 gap-2 text-center text-sm text-muted-foreground pt-2">
                             <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
                             {/* @ts-ignore */}
                             {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
@@ -264,7 +261,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                         <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted">
                                         <amenity.icon className="h-5 w-5 text-primary" />
                                         </div>
-                                        <span className="text-[10px] font-medium leading-tight">{amenity.name}</span>
+                                        <span className="text-xs font-medium leading-tight">{amenity.name}</span>
                                     </div>
                                     ))}
                                 </div>
@@ -297,7 +294,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="flex items-center justify-between pt-2">
                          <div className="flex items-center gap-3">
-                            <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
+                            <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
                             <div>
                                 <h3 className="font-semibold">Vaishnavi Group</h3>
                                 <p className="text-xs text-muted-foreground">Developer</p>
@@ -327,5 +324,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
