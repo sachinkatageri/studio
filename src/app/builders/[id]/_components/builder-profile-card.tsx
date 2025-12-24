@@ -10,7 +10,7 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Left Side */}
             <div className="space-y-6">
-                <Card className="p-6 flex flex-col items-center justify-center text-center h-full">
+                <Card className="p-6 flex flex-col items-center justify-center text-center aspect-square">
                     <div className="w-40 h-40 relative mb-4">
                         <Image src={builder.logoUrl} alt={`${builder.name} logo`} fill className="object-contain" />
                     </div>
