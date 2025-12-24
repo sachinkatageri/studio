@@ -26,11 +26,6 @@ export default function BuildersPage() {
             <>
                 <Header />
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-                    <div className="flex items-center text-sm text-muted-foreground mb-2">
-                        <Link href="/" className="hover:text-primary">Home</Link>
-                        <ChevronRight className="h-4 w-4 mx-1" />
-                        <span className="font-medium text-foreground">Builders</span>
-                    </div>
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-2xl font-bold">Builders in {location}</h1>
                     </div>
