@@ -5,17 +5,59 @@ import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { builders } from "@/lib/builders";
-import { ChevronDown, ListFilter, LayoutGrid, LayoutList } from "lucide-react";
+import { ChevronDown, ListFilter, LayoutGrid, LayoutList, ChevronRight } from "lucide-react";
 import BuilderCard from "./_components/builder-card";
 import Footer from "@/components/layout/footer";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useIsMobile } from "@/hooks/use-mobile";
+import MobileBuilderCard from "./_components/mobile-builder-card";
 
 export default function BuildersPage() {
     const [view, setView] = useState<'list' | 'grid'>('grid');
     const [location, setLocation] = useState('Bangalore');
+    const isMobile = useIsMobile();
 
     const locations = ['Bangalore', 'Mumbai', 'Delhi', 'Chennai', 'Hyderabad'];
+
+    if (isMobile) {
+        return (
+            <>
+                <Header />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+                    <div className="flex items-center text-sm text-muted-foreground mb-2">
+                        <Link href="/" className="hover:text-primary">Home</Link>
+                        <ChevronRight className="h-4 w-4 mx-1" />
+                        <span className="font-medium text-foreground">Builders</span>
+                    </div>
+                    <div className="flex justify-between items-center mb-6">
+                        <h1 className="text-2xl font-bold">Builders in {location}</h1>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline">
+                                    Sort by: Popularity
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem>Popularity</DropdownMenuItem>
+                                <DropdownMenuItem>Experience</DropdownMenuItem>
+                                <DropdownMenuItem>Total Projects</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-3">
+                        {builders.map(builder => (
+                            <MobileBuilderCard key={builder.id} builder={builder} />
+                        ))}
+                    </div>
+                </div>
+                <Footer />
+            </>
+        )
+    }
 
     return (
         <>
