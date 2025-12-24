@@ -6,6 +6,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, LocateFixed, Search } from "lucide-react";
@@ -13,7 +14,6 @@ import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Popover, PopoverContent } from "../ui/popover";
 
 interface CitySelectionSheetProps {
   open: boolean;
@@ -44,8 +44,14 @@ const otherCities = [
 ];
 
 
-const CitySelectionContent = () => (
+const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }) => (
   <>
+    <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
+        <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
+            <ArrowLeft />
+        </Button>
+      <SheetTitle className="text-xl font-bold">Country/City</SheetTitle>
+    </SheetHeader>
     <div className="p-4 shrink-0">
         <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -89,33 +95,17 @@ const CitySelectionContent = () => (
 export function CitySelectionSheet({ open, onOpenChange }: CitySelectionSheetProps) {
   const isMobile = useIsMobile();
   
-  if (isMobile) {
-    return (
-      <Sheet open={open} onOpenChange={onOpenChange}>
-        <SheetContent side="bottom" className="h-full max-h-full w-full p-0 flex flex-col">
-          <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
-              <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
-                  <ArrowLeft />
-              </Button>
-            <SheetTitle className="text-xl font-bold">Country/City</SheetTitle>
-          </SheetHeader>
-          <CitySelectionContent />
-        </SheetContent>
-      </Sheet>
-    )
-  }
+  const side = isMobile ? 'bottom' : 'left';
+  const className = isMobile ? 'h-full max-h-full w-full p-0 flex flex-col' : 'w-[480px] p-0 flex flex-col';
 
-  // Popover for desktop
   return (
-    <Popover open={open} onOpenChange={onOpenChange}>
-        {/* The trigger is in the header, so we just need the content here */}
-        <PopoverContent className="w-[480px] p-0 h-[600px] flex flex-col">
-           <div className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
-             <div className="text-xl font-bold text-lg font-semibold text-foreground">Country/City</div>
-           </div>
-           <CitySelectionContent />
-        </PopoverContent>
-    </Popover>
-  );
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side={side} className={className} hideCloseButton>
+        <CitySelectionContent onOpenChange={onOpenChange} />
+      </SheetContent>
+    </Sheet>
+  )
 }
+    
+
     
