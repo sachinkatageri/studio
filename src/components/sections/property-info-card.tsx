@@ -80,7 +80,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   if (isMobile) {
       return (
         <div 
-          className="w-full h-full flex flex-col justify-end p-[2%]"
+          className="w-full h-full flex flex-col justify-end p-[5%]"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -371,16 +371,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
-
-    
-
-    
-
-    
-
-
-
-
-
