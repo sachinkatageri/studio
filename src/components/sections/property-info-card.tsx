@@ -92,7 +92,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <Button onClick={onNext} size="icon" className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
                     <ChevronRight className="h-5 w-5" />
                 </Button>
-                <div className="bg-background/95 backdrop-blur-sm rounded-2xl flex flex-col overflow-hidden h-[calc(95vh-5%)]">
+                <div className="bg-background/95 backdrop-blur-sm rounded-2xl flex flex-col overflow-hidden h-[90vh]">
                 <ScrollArea className="flex-1">
                     <div className="p-4 space-y-3">
                     {/* Image Gallery Card */}
@@ -379,6 +379,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
 
 
 
