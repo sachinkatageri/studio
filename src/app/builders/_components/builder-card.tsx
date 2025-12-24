@@ -9,14 +9,26 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { Award, Building2 } from "lucide-react";
+import { useState } from "react";
 
 export default function BuilderCard({ builder, view }: { builder: Builder, view: 'list' | 'grid' }) {
+    const [imgSrc, setImgSrc] = useState(builder.logoUrl);
+    const emptyImage = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+
     if (view === 'grid') {
         return (
             <div className="border rounded-lg p-4 flex flex-col h-full">
                 <div className="flex justify-between items-start gap-4">
                     <div className="flex items-center gap-3">
-                        <Image src={builder.logoUrl} alt={`${builder.name} logo`} width={40} height={40} className="rounded-full object-contain border p-1" />
+                        <Image 
+                          src={imgSrc} 
+                          alt={`${builder.name} logo`} 
+                          width={40} 
+                          height={40} 
+                          className="rounded-full object-contain border p-1" 
+                          onError={() => setImgSrc(emptyImage)}
+                        />
                         <div>
                             <h2 className="text-md font-bold">{builder.name}</h2>
                             <p className="text-xs text-muted-foreground">{builder.location}</p>
@@ -61,7 +73,14 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
         <div className="border rounded-lg p-4 md:p-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div className="flex items-center gap-4">
-                    <Image src={builder.logoUrl} alt={`${builder.name} logo`} width={56} height={56} className="rounded-full object-contain border p-1" />
+                     <Image 
+                        src={imgSrc} 
+                        alt={`${builder.name} logo`} 
+                        width={56} 
+                        height={56} 
+                        className="rounded-full object-contain border p-1"
+                        onError={() => setImgSrc(emptyImage)}
+                     />
                     <div>
                         <h2 className="text-xl font-bold">{builder.name}</h2>
                         <p className="text-muted-foreground">{builder.location}</p>
