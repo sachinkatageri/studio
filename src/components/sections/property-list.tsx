@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { Button } from '../ui/button';
-import { ArrowUpDown, Check, ChevronDown, X } from 'lucide-react';
+import { ArrowUpDown, Building, Check, ChevronDown, Home, X } from 'lucide-react';
 import { useState } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
@@ -110,8 +110,8 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     <h2 className="text-lg font-bold">List View</h2>
                     <TabsList className="grid w-full grid-cols-3 mt-4">
                         <TabsTrigger value="all">All</TabsTrigger>
-                        <TabsTrigger value="commercial">Commercial</TabsTrigger>
-                        <TabsTrigger value="residential">Residential</TabsTrigger>
+                        <TabsTrigger value="commercial"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
+                        <TabsTrigger value="residential"><Home className="mr-2 h-4 w-4" />Residential</TabsTrigger>
                     </TabsList>
                     <ScrollArea className="w-full whitespace-nowrap py-4">
                         <div className="flex gap-2">
