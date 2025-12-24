@@ -66,13 +66,19 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <div className="relative">
                             <Carousel className="w-full" setApi={setApi}>
                                 <CarouselContent>
-                                    {propertyImageGallery.slice(0, 5).map((image) => (
+                                    {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image) => (
                                         <CarouselItem key={image.id}>
                                             <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
                                                 <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
                                             </div>
                                         </CarouselItem>
-                                    ))}
+                                    )) : (
+                                        <CarouselItem>
+                                            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-muted flex items-center justify-center">
+                                                <p className="text-muted-foreground text-sm">No Images</p>
+                                            </div>
+                                        </CarouselItem>
+                                    )}
                                 </CarouselContent>
                             </Carousel>
                             <div className="absolute top-3 right-3 flex items-center gap-2">
@@ -194,7 +200,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             <div className="relative col-span-1">
                  <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
-                        {propertyImageGallery.slice(0, 5).map((image, index) => (
+                        {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
                             <CarouselItem key={index} className="h-full">
                                 <div className="relative h-full w-full">
                                     <Image
@@ -206,7 +212,13 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                     />
                                 </div>
                             </CarouselItem>
-                        ))}
+                        )) : (
+                           <CarouselItem className="h-full">
+                                <div className="relative h-full w-full bg-muted flex items-center justify-center">
+                                    <p className="text-muted-foreground">No Images</p>
+                                </div>
+                            </CarouselItem>
+                        )}
                     </CarouselContent>
                 </Carousel>
                 <div className="absolute top-2 right-2 flex gap-2 z-20">
@@ -332,4 +344,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
-
