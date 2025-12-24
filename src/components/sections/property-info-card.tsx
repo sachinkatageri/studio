@@ -182,7 +182,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   
   // Desktop card
   return (
-    <div className="relative w-full max-w-lg mx-auto">
+    <div className="relative w-full max-w-4xl mx-auto">
        <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
         <ChevronLeft className="h-5 w-5" />
       </Button>
@@ -190,8 +190,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         <ChevronRight className="h-5 w-5" />
       </Button>
       <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-10 h-[300px]">
-            <div className="col-span-4 relative">
+        <div className="grid grid-cols-2 h-[420px]">
+            <div className="relative">
                  <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
                         {propertyImageGallery.slice(0, 5).map((image, index) => (
@@ -219,8 +219,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     ))}
                 </div>
             </div>
-            <div className="col-span-6 p-4 flex flex-col justify-between relative">
-                <div className='space-y-3'>
+            <div className="p-4 flex flex-col justify-between relative">
+                <ScrollArea className='h-full -m-4'>
+                <div className='p-4 space-y-3'>
                     <div>
                         <div className="flex justify-between items-start">
                              <div>
@@ -235,14 +236,51 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </Badge>
                         </div>
                     </div>
-                     <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground">
+                     <div className="grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground pt-2">
                         <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
                         {/* @ts-ignore */}
                         {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
                         <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
                     </div>
                     
-                    <div className="flex items-center justify-between">
+                    <Card className="bg-card shadow-none border">
+                        <CardContent className="p-3">
+                            <div className="grid grid-cols-4 gap-2">
+                                {propertyAmenities.map(amenity => (
+                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1">
+                                    <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted">
+                                    <amenity.icon className="h-5 w-5 text-primary" />
+                                    </div>
+                                    <span className="text-[10px] font-medium leading-tight">{amenity.name}</span>
+                                </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                     <div className="grid grid-cols-3 gap-3 pt-2">
+                        <Card className="bg-card shadow-none border text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Price</p>
+                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-card shadow-none border text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Status</p>
+                                <p className="font-bold text-sm">{property.status}</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-card shadow-none border text-center">
+                            <CardContent className="p-3">
+                                <p className="text-xs text-muted-foreground">Reviews</p>
+                                <p className="font-bold text-sm">{property.reviews}</p>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    
+                    <div className="flex items-center justify-between pt-2">
                          <div className="flex items-center gap-3">
                             <Image src="https://i.ibb.co/L9YvC2Z/bangalore.png" alt="Developer Logo" width={40} height={40} className="rounded-full" />
                             <div>
@@ -259,11 +297,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
 
                 </div>
-
-                <div className="flex gap-2">
+                </ScrollArea>
+                <div className="p-4 bg-transparent border-t -mb-4 -mx-4 mt-2">
                     <Button
                         variant="default"
-                        className="flex-1 text-base h-11 rounded-lg"
+                        className="flex-1 text-base h-11 rounded-lg w-full"
                         onClick={() => onViewDetails(property.id)}
                     >
                         View Details
@@ -289,5 +327,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
 
     
