@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { ArrowLeft, Share2, Heart, AlertTriangle, Camera } from 'lucide-react';
+import { ArrowLeft, Share2, Heart, AlertTriangle, Camera, X } from 'lucide-react';
 import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { ShareOptions } from '@/components/layout/share-options';
@@ -55,24 +55,25 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
             <header className="sticky top-0 z-20 bg-background/80 backdrop-blur-sm border-b">
                 <div className="flex items-center justify-between gap-2 h-14 px-2">
                     <div className="flex items-center gap-1 min-w-0">
-                        {(isMobile || !onClose) && ( // Show back button on mobile or if no close function is provided for desktop
-                            <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9">
-                                <ArrowLeft className="h-5 w-5" />
-                            </Button>
-                        )}
+                        <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9 md:hidden">
+                            <ArrowLeft className="h-5 w-5" />
+                        </Button>
                         <div className='truncate'>
                             <h1 className="text-sm font-semibold truncate">{property.name}</h1>
                             <p className="text-xs text-muted-foreground truncate">{property.location}</p>
                         </div>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-1">
                         <ShareOptions>
-                             <Button variant="outline" size="sm" className="h-8">
-                                <Share2 className="h-4 w-4 mr-2" /> Share
+                             <Button variant="ghost" size="icon" className="h-9 w-9">
+                                <Share2 className="h-5 w-5" />
                             </Button>
                         </ShareOptions>
-                        <Button variant="outline" size="sm" className="h-8 ml-2">
-                            <Heart className="h-4 w-4 mr-2" /> Save
+                        <Button variant="ghost" size="icon" className="h-9 w-9">
+                            <Heart className="h-5 w-5" />
+                        </Button>
+                        <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 h-9 w-9 hidden md:inline-flex">
+                            <X className="h-5 w-5" />
                         </Button>
                     </div>
                 </div>
