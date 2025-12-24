@@ -66,7 +66,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 <div className="mt-auto pt-4">
                     <Separator className="mb-4" />
                     <div className="text-right">
-                        <Button variant="default" size="sm">View Details</Button>
+                        <Button variant="default" size="sm" className="w-full md:w-auto">View Details</Button>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
              <div className="mt-4">
                 <Separator className="mb-4" />
                 <div className="text-right">
-                    <Button variant="default">View Details</Button>
+                    <Button variant="default" className="w-full md:w-auto">View Details</Button>
                 </div>
             </div>
         </div>
