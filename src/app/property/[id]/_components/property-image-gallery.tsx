@@ -189,46 +189,45 @@ export default function PropertyImageGallery() {
     }
     
     return (
-        <div className="relative container mx-auto" onClick={openGallery}>
-             <div className="grid grid-cols-2 md:grid-cols-2 gap-2 h-[250px] md:h-[450px]">
-                {/* Main Image */}
-                <div className="relative col-span-1 row-span-2 overflow-hidden rounded-l-lg group cursor-pointer">
-                    <Image
-                        src={propertyImageGallery[0].imageUrl}
-                        alt={propertyImageGallery[0].description}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={propertyImageGallery[0].imageHint}
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                {/* Top Right Image */}
-                <div className="relative col-span-1 row-span-1 overflow-hidden rounded-tr-lg group cursor-pointer">
-                    <Image
-                        src={propertyImageGallery[1].imageUrl}
-                        alt={propertyImageGallery[1].description}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={propertyImageGallery[1].imageHint}
-                    />
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                {/* Bottom Right Image with Overlay */}
-                 <div className="relative col-span-1 row-span-1 overflow-hidden rounded-br-lg group cursor-pointer">
-                    <Image
-                        src={propertyImageGallery[2].imageUrl}
-                        alt={propertyImageGallery[2].description}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={propertyImageGallery[2].imageHint}
-                    />
-                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <Button variant="secondary" className="bg-black/60 text-white hover:bg-black/80">
-                            <Camera className="mr-2 h-4 w-4" />
-                            {propertyImageGallery.length}+
-                        </Button>
+        <div className="relative container mx-auto cursor-pointer" onClick={openGallery}>
+            <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[250px] md:h-[450px]">
+                {propertyImageGallery.slice(0, 5).map((image, index) => (
+                    <div
+                        key={image.id}
+                        className={cn(
+                            'relative overflow-hidden rounded-lg group',
+                            index === 0 && 'md:col-span-2 md:row-span-2',
+                            index > 0 && 'col-span-1',
+                            index > 2 && 'hidden md:block'
+                        )}
+                    >
+                        <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={image.imageHint}
+                        />
+                         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                </div>
+                ))}
+                {propertyImageGallery.length > 4 && (
+                    <div className="relative col-span-1 row-span-1 hidden md:block rounded-lg overflow-hidden group">
+                         <Image
+                            src={propertyImageGallery[4].imageUrl}
+                            alt={propertyImageGallery[4].description}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={propertyImageGallery[4].imageHint}
+                        />
+                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white">
+                            <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
+                                <Camera className="mr-2 h-4 w-4" />
+                                {propertyImageGallery.length}+
+                            </Button>
+                        </div>
+                    </div>
+                )}
             </div>
             
             <ImageGalleryModal open={!isMobile && isModalOpen} onOpenChange={setIsModalOpen} />
