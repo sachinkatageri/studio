@@ -148,22 +148,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     
                     {/* Key Stats Card */}
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-primary/10 shadow-lg border-none text-center">
+                        <Card className="bg-muted/50 shadow-lg border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Price</p>
-                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                                <p className="text-xs text-muted-foreground">Price</p>
+                                <p className="font-bold text-sm text-foreground">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-primary/10 shadow-lg border-none text-center">
+                        <Card className="bg-muted/50 shadow-lg border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Status</p>
-                                <p className="font-bold text-sm text-primary">{property.status}</p>
+                                <p className="text-xs text-muted-foreground">Status</p>
+                                <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-primary/10 shadow-lg border-none text-center">
+                        <Card className="bg-muted/50 shadow-lg border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Reviews</p>
-                                <p className="font-bold text-sm text-primary">{property.reviews}</p>
+                                <p className="text-xs text-muted-foreground">Reviews</p>
+                                <p className="font-bold text-sm text-foreground">{property.reviews}</p>
                             </CardContent>
                         </Card>
                     </div>
@@ -275,22 +275,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             <div className="col-span-1 p-4 flex flex-col justify-between">
                 <div className="space-y-3">
                     <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-primary/10 shadow-none border-none text-center">
+                        <Card className="bg-muted/50 shadow-none border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Price</p>
-                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
+                                <p className="text-xs text-muted-foreground">Price</p>
+                                <p className="font-bold text-sm text-foreground">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-primary/10 shadow-none border-none text-center">
+                        <Card className="bg-muted/50 shadow-none border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Status</p>
-                                <p className="font-bold text-sm text-primary">{property.status}</p>
+                                <p className="text-xs text-muted-foreground">Status</p>
+                                <p className="font-bold text-sm text-foreground">{property.status}</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-primary/10 shadow-none border-none text-center">
+                        <Card className="bg-muted/50 shadow-none border-none text-center">
                             <CardContent className="p-3">
-                                <p className="text-xs text-primary/80">Reviews</p>
-                                <p className="font-bold text-sm text-primary">{property.reviews}</p>
+                                <p className="text-xs text-muted-foreground">Reviews</p>
+                                <p className="font-bold text-sm text-foreground">{property.reviews}</p>
                             </CardContent>
                         </Card>
                     </div>
