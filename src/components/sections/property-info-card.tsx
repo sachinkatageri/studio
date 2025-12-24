@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import * as React from 'react';
@@ -380,5 +379,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     
 
     
+
 
 
