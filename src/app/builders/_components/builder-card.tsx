@@ -1,5 +1,4 @@
 
-
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { Award, Building2 } from "lucide-react";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function BuilderCard({ builder, view }: { builder: Builder, view: 'list' | 'grid' }) {
     const [imgSrc, setImgSrc] = useState(builder.logoUrl);
@@ -96,7 +96,9 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                 <div className="mt-auto pt-4">
                     <Separator className="mb-4" />
                     <div className="text-right">
-                        <Button variant="default" size="sm" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
+                        <Button asChild variant="default" size="sm" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
+                            <Link href={`/builders/${builder.id}`}>View Details</Link>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -204,7 +206,9 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
              <div className="mt-auto pt-4">
                 <Separator className="mb-4"/>
                 <div className="text-right">
-                    <Button variant="default" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">View Details</Button>
+                    <Button asChild variant="default" className="w-full md:w-auto bg-accent hover:bg-accent/90 text-accent-foreground">
+                        <Link href={`/builders/${builder.id}`}>View Details</Link>
+                    </Button>
                 </div>
             </div>
         </div>
