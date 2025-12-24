@@ -30,7 +30,7 @@ export default function OperationalSegments() {
             </CardHeader>
             <CardContent>
                 <Tabs defaultValue="residential">
-                    <TabsList className="grid w-full grid-cols-4">
+                    <TabsList className="grid w-full grid-cols-4 border-b">
                         <TabsTrigger value="residential">Residential</TabsTrigger>
                         <TabsTrigger value="commercial">Commercial</TabsTrigger>
                         <TabsTrigger value="hospitality">Hospitality</TabsTrigger>
