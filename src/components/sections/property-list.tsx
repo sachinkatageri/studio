@@ -111,7 +111,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     <TabsList className="grid w-full grid-cols-3 mt-4">
                         <TabsTrigger value="all">All</TabsTrigger>
                         <TabsTrigger value="commercial"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
-                        <TabsTrigger value="residential"><Home className="mr-2 h-4 w-4" />Residential</TabsTrigger>
+                        <TabsTrigger value="residential">Residential</TabsTrigger>
                     </TabsList>
                     <ScrollArea className="w-full whitespace-nowrap py-4">
                         <div className="flex gap-2">
