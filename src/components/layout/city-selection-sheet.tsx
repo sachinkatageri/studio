@@ -9,7 +9,7 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, LocateFixed, Search } from "lucide-react";
+import { ArrowLeft, LocateFixed, Search, Building } from "lucide-react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
 import Image from "next/image";
@@ -21,18 +21,18 @@ interface CitySelectionSheetProps {
 }
 
 const topCities = [
-    { name: 'Bangalore', icon: 'https://i.ibb.co/L9YvC2Z/bangalore.png' },
-    { name: 'Chennai', icon: 'https://i.ibb.co/3W6dM2b/chennai.png' },
-    { name: 'Delhi', icon: 'https://i.ibb.co/DLRg3t4/delhi.png' },
-    { name: 'Gurgaon', icon: 'https://i.ibb.co/cQh5qV2/gurgaon.png' },
-    { name: 'Hyderabad', icon: 'https://i.ibb.co/F8Q9bWJ/hyderabad.png' },
-    { name: 'Kolkata', icon: 'https://i.ibb.co/bB3d5yG/kolkata.png' },
-    { name: 'Lucknow', icon: 'https://i.ibb.co/k2DyrzS/lucknow.png' },
-    { name: 'Mumbai', icon: 'https://i.ibb.co/GWCw6cK/mumbai.png' },
-    { name: 'Navi Mumbai', icon: 'https://i.ibb.co/vQ1T2W6/navimumbai.png' },
-    { name: 'Noida', icon: 'https://i.ibb.co/2MLj5Vp/noida.png' },
-    { name: 'Pune', icon: 'https://i.ibb.co/hZJgG1J/pune.png' },
-    { name: 'Thane', icon: 'https://i.ibb.co/gR2XkYr/thane.png' },
+    { name: 'Bangalore' },
+    { name: 'Chennai' },
+    { name: 'Delhi' },
+    { name: 'Gurgaon' },
+    { name: 'Hyderabad' },
+    { name: 'Kolkata' },
+    { name: 'Lucknow' },
+    { name: 'Mumbai' },
+    { name: 'Navi Mumbai' },
+    { name: 'Noida' },
+    { name: 'Pune' },
+    { name: 'Thane' },
 ];
 
 const otherCities = [
@@ -71,7 +71,9 @@ const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) 
              <div className="grid grid-cols-4 gap-4">
                 {topCities.map(city => (
                     <div key={city.name} className="flex flex-col items-center justify-center gap-2 p-2 rounded-lg hover:bg-muted text-center cursor-pointer">
-                        <Image src={city.icon} alt={`${city.name} icon`} width={48} height={48} />
+                        <div className="w-12 h-12 flex items-center justify-center bg-muted rounded-full">
+                            <Building className="h-6 w-6 text-primary" />
+                        </div>
                         <span className="text-sm font-medium">{city.name}</span>
                     </div>
                 ))}
