@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -52,7 +53,7 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                     <ScrollArea>
                         <div className="flex space-x-4 pb-4">
                             {builder.completedProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard key={project.id} project={project} view="grid" />
                             ))}
                         </div>
                         <ScrollBar orientation="horizontal" />
@@ -71,13 +72,13 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
 
     return (
         <div className="border rounded-lg p-4 md:p-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-start gap-6">
                 <div className="flex items-center gap-4">
                      <Image 
                         src={imgSrc} 
                         alt={`${builder.name} logo`} 
-                        width={56} 
-                        height={56} 
+                        width={64} 
+                        height={64} 
                         className="rounded-lg object-contain border p-1"
                         onError={() => setImgSrc(emptyImage)}
                      />
@@ -86,62 +87,60 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         <p className="text-muted-foreground">{builder.location}</p>
                     </div>
                 </div>
-                <div className="flex w-full md:w-auto justify-around items-center gap-8 text-center mt-4 md:mt-0">
+                <div className="flex w-full md:w-auto justify-around items-center gap-8 text-left md:text-center mt-4 md:mt-0">
                     <div>
-                        <p className="font-bold text-lg">{builder.totalProjects}</p>
-                        <p className="text-xs text-muted-foreground">Total Projects</p>
+                        <p className="font-bold text-2xl">{builder.totalProjects}</p>
+                        <p className="text-sm text-muted-foreground">Total Projects</p>
                     </div>
                     <div>
-                        <p className="font-bold text-lg">{builder.experience} Years</p>
-                        <p className="text-xs text-muted-foreground">Experience</p>
+                        <p className="font-bold text-2xl">{builder.experience} Years</p>
+                        <p className="text-sm text-muted-foreground">Experience</p>
                     </div>
                 </div>
             </div>
 
             <Tabs defaultValue="completed" className="mt-4">
-                <TabsList>
+                <TabsList className="grid-cols-none justify-start p-0 h-auto">
                     <TabsTrigger value="completed">Completed ({builder.completedProjects.length})</TabsTrigger>
                     <TabsTrigger value="ongoing">Ongoing ({builder.ongoingProjects.length})</TabsTrigger>
                     <TabsTrigger value="upcoming">Upcoming ({builder.upcomingProjects.length})</TabsTrigger>
                 </TabsList>
+
                 <TabsContent value="completed" className="mt-4">
-                    <ScrollArea>
-                        <div className="flex space-x-4 pb-4">
-                            {builder.completedProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
-                            ))}
-                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
-                                <button className="text-primary font-semibold">+ {builder.completedProjects.length} More</button>
-                            </div>
-                        </div>
-                        <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
+                    <div className="space-y-4">
+                        {builder.completedProjects.slice(0, 2).map(project => (
+                             <ProjectCard key={project.id} project={project} view="list" />
+                        ))}
+                         {builder.completedProjects.length > 2 && (
+                            <Button variant="outline" className="w-full bg-accent/10 border-accent/30 text-accent-foreground hover:bg-accent/20">
+                                +{builder.completedProjects.length - 2} View All
+                            </Button>
+                        )}
+                    </div>
                 </TabsContent>
                 <TabsContent value="ongoing" className="mt-4">
-                     <ScrollArea>
-                        <div className="flex space-x-4 pb-4">
-                            {builder.ongoingProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
-                            ))}
-                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
-                                <button className="text-primary font-semibold">+ {builder.ongoingProjects.length} More</button>
-                            </div>
-                        </div>
-                        <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
+                    <div className="space-y-4">
+                        {builder.ongoingProjects.slice(0, 2).map(project => (
+                             <ProjectCard key={project.id} project={project} view="list" />
+                        ))}
+                         {builder.ongoingProjects.length > 2 && (
+                            <Button variant="outline" className="w-full bg-accent/10 border-accent/30 text-accent-foreground hover:bg-accent/20">
+                                +{builder.ongoingProjects.length - 2} View All
+                            </Button>
+                        )}
+                    </div>
                 </TabsContent>
                 <TabsContent value="upcoming" className="mt-4">
-                     <ScrollArea>
-                        <div className="flex space-x-4 pb-4">
-                            {builder.upcomingProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
-                            ))}
-                             <div className="flex-shrink-0 w-48 h-[220px] flex flex-col items-center justify-center bg-muted rounded-lg">
-                                <button className="text-primary font-semibold">+ {builder.upcomingProjects.length} More</button>
-                            </div>
-                        </div>
-                        <ScrollBar orientation="horizontal" />
-                    </ScrollArea>
+                     <div className="space-y-4">
+                        {builder.upcomingProjects.slice(0, 2).map(project => (
+                             <ProjectCard key={project.id} project={project} view="list" />
+                        ))}
+                         {builder.upcomingProjects.length > 2 && (
+                            <Button variant="outline" className="w-full bg-accent/10 border-accent/30 text-accent-foreground hover:bg-accent/20">
+                                +{builder.upcomingProjects.length - 2} View All
+                            </Button>
+                        )}
+                    </div>
                 </TabsContent>
             </Tabs>
              <div className="mt-auto pt-4">
