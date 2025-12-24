@@ -83,10 +83,12 @@ const UserMenuButton = () => {
                         </div>
                         <div className="flex-1">
                             <h3 className="font-bold text-lg">Hello 👋</h3>
-                            <ul className="text-sm text-muted-foreground mt-1 space-y-1">
-                                <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Easy Contact with sellers</li>
-                                <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Personalized experience</li>
-                            </ul>
+                            {!isMobile && (
+                                <ul className="text-sm text-muted-foreground mt-1 space-y-1">
+                                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Easy Contact with sellers</li>
+                                    <li className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Personalized experience</li>
+                                </ul>
+                            )}
                         </div>
                         <Button onClick={() => setIsLoginOpen(true)}>Login</Button>
                     </div>
@@ -291,4 +293,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     
 
     
+
 
