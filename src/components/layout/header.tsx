@@ -228,6 +228,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
+  const isPrivacyPage = pathname.startsWith('/privacy-policy');
   const isCommercialPage = pathname.startsWith('/commercial');
   const isResidentialPage = pathname.startsWith('/residential');
 
@@ -266,7 +267,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       {!(isBuildersPage || isAboutPage) && (
+       {!(isBuildersPage || isAboutPage || isPrivacyPage) && (
         <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
               <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
                   <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />
@@ -300,3 +301,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
