@@ -27,12 +27,12 @@ export default function BuildersPage() {
                 <Header />
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
                     <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-2xl font-bold">Builders in {location}</h1>
+                        <h1 className="text-xl font-bold">Builders in {location}</h1>
                     </div>
                      <div className="flex justify-between items-center mb-6 gap-2">
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="flex-1">
+                                <Button variant="outline" className="flex-1 text-xs md:text-sm">
                                     {location}
                                     <ChevronDown className="ml-2 h-4 w-4" />
                                 </Button>
@@ -47,7 +47,7 @@ export default function BuildersPage() {
                         </DropdownMenu>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="flex-1">
+                                <Button variant="outline" className="flex-1 text-xs md:text-sm">
                                     Sort by: Popularity
                                     <ChevronDown className="ml-2 h-4 w-4" />
                                 </Button>

@@ -1,3 +1,4 @@
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -14,8 +15,8 @@ export default function SimilarProperties() {
     <section id="projects" className="py-16 sm:py-24">
       <div className="flex flex-wrap justify-between items-center gap-4 mb-12">
         <div>
-          <h2 className="text-3xl md:text-4xl font-bold font-headline">Similar Properties</h2>
-          <p className="mt-2 text-lg text-muted-foreground">Handpicked properties for you.</p>
+          <h2 className="text-2xl md:text-4xl font-bold font-headline">Similar Properties</h2>
+          <p className="mt-2 text-base md:text-lg text-muted-foreground">Handpicked properties for you.</p>
         </div>
         <Button variant="outline" asChild>
           <Link href="#">View All Properties <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -39,13 +40,12 @@ export default function SimilarProperties() {
                  <Badge className="absolute top-4 left-4" variant={project.status === 'Ready to move' ? 'default' : 'secondary'}>{project.status}</Badge>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold font-headline">{project.name}</h3>
-                <div className="flex items-center text-muted-foreground mt-2">
+                <h3 className="text-lg md:text-xl font-bold font-headline">{project.name}</h3>
+                <div className="flex items-center text-muted-foreground mt-2 text-sm">
                   <MapPin className="h-4 w-4 mr-2" />
                   <span>{project.location}</span>
                 </div>
-                {/* @ts-ignore */}
-                <p className="mt-4 font-semibold text-lg text-primary">{project.price}</p>
+                <p className="mt-4 font-semibold text-base md:text-lg text-primary">{project.price}</p>
                  <Button className="mt-6 w-full" variant="outline">View Details</Button>
               </CardContent>
             </Card>

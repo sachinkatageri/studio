@@ -16,8 +16,8 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
                 <div className="hidden md:block">
                     <Breadcrumbs builderName={builder.name} />
                 </div>
-                <h1 className="text-3xl font-bold mt-4">{builder.name}</h1>
-                <p className="text-muted-foreground mt-1">Explore projects, and more from {builder.name}.</p>
+                <h1 className="text-2xl md:text-3xl font-bold mt-4">{builder.name}</h1>
+                <p className="text-sm md:text-base text-muted-foreground mt-1">Explore projects, and more from {builder.name}.</p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-6">
                     <div className="lg:col-span-6">

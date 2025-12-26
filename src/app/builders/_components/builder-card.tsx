@@ -30,18 +30,18 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                       onError={() => setImgSrc(emptyImage)}
                     />
                     <div>
-                        <h2 className="text-md font-bold">{builder.name}</h2>
+                        <h2 className="text-sm md:text-md font-bold">{builder.name}</h2>
                         <p className="text-xs text-muted-foreground">{builder.location}</p>
                     </div>
                 </div>
 
                 <div className="flex justify-between items-center gap-4 text-center mt-4">
                     <div>
-                        <p className="font-bold text-lg">{builder.totalProjects}</p>
+                        <p className="font-bold text-base md:text-lg">{builder.totalProjects}</p>
                         <p className="text-xs text-muted-foreground">Projects</p>
                     </div>
                      <div>
-                        <p className="font-bold text-lg">{builder.experience} Yrs</p>
+                        <p className="font-bold text-base md:text-lg">{builder.experience} Yrs</p>
                         <p className="text-xs text-muted-foreground">Exp.</p>
                     </div>
                 </div>
@@ -119,19 +119,19 @@ export default function BuilderCard({ builder, view }: { builder: Builder, view:
                         onError={() => setImgSrc(emptyImage)}
                      />
                     <div>
-                        <h2 className="text-xl font-bold">{builder.name}</h2>
-                        <p className="text-muted-foreground">{builder.location}</p>
+                        <h2 className="text-lg md:text-xl font-bold">{builder.name}</h2>
+                        <p className="text-sm md:text-base text-muted-foreground">{builder.location}</p>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-8 text-left md:text-center">
                     <div>
-                        <p className="font-bold text-2xl">{builder.totalProjects}</p>
-                        <p className="text-sm text-muted-foreground">Total Projects</p>
+                        <p className="font-bold text-xl md:text-2xl">{builder.totalProjects}</p>
+                        <p className="text-xs md:text-sm text-muted-foreground">Total Projects</p>
                     </div>
                     <div>
-                        <p className="font-bold text-2xl">{builder.experience} Years</p>
-                        <p className="text-sm text-muted-foreground">Experience</p>
+                        <p className="font-bold text-xl md:text-2xl">{builder.experience} Years</p>
+                        <p className="text-xs md:text-sm text-muted-foreground">Experience</p>
                     </div>
                 </div>
             </div>

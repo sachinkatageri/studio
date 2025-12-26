@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, 'useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -19,6 +19,7 @@ import { VerificationProcessDialog } from '@/components/layout/verification-proc
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
 import { allAmenities } from '@/lib/amenities';
+import { RatingDialog } from '@/components/layout/rating-dialog';
 
 type Property = typeof properties[0];
 
@@ -43,37 +44,37 @@ const PropertyOverview = ({ property }: { property: Property}) => (
     <div id="overview">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         {/* @ts-ignore */}
-        <p className="text-muted-foreground">{property.about}</p>
+        <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
     </div>
 )
 
 
 const PropertyAmenities = ({ property }: { property: Property}) => {
     const [isAmenitiesDialogOpen, setIsAmenitiesDialogOpen] = useState(false);
-    const amenitiesToShow = allAmenities.slice(0, 10);
+    const amenitiesToShow = allAmenities.slice(0, 7);
     const remainingCount = allAmenities.length - amenitiesToShow.length;
 
     return (
         <div id="amenities">
             <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-4 gap-4 md:gap-6">
                 {amenitiesToShow.map(amenity => (
                     <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
-                        <div className="flex items-center justify-center h-16 w-16 rounded-full bg-muted">
-                            {amenity.icon ? <amenity.icon className="h-6 w-6 text-primary" /> : <Check className="h-6 w-6 text-primary" />}
+                        <div className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted">
+                            {amenity.icon ? <amenity.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" /> : <Check className="h-5 w-5 md:h-6 md:w-6 text-primary" />}
                         </div>
-                        <span className="text-sm font-medium">{amenity.name}</span>
+                        <span className="text-xs md:text-sm font-medium">{amenity.name}</span>
                     </div>
                 ))}
                  {remainingCount > 0 && (
                     <div className="flex flex-col items-center text-center gap-2">
                         <button 
                             onClick={() => setIsAmenitiesDialogOpen(true)}
-                            className="flex items-center justify-center h-16 w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+                            className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
                         >
-                            <PlusCircle className="h-6 w-6 text-primary" />
+                            <PlusCircle className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                         </button>
-                        <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-sm font-medium hover:underline">+{remainingCount} More</button>
+                        <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-xs md:text-sm font-medium hover:underline">+{remainingCount} More</button>
                     </div>
                  )}
             </div>
@@ -81,10 +82,6 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
         </div>
     )
 }
-
-const WhatsAppIcon = () => (
-    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-);
 
 const PricingDetails = ({ property }: { property: Property}) => (
     // @ts-ignore
@@ -162,10 +159,10 @@ const NearbyPlaces = () => {
                                 key={category.id} 
                                 variant={activeCategory === category.id ? 'default' : 'outline'}
                                 onClick={() => setActiveCategory(category.id)}
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 h-9 px-3"
                             >
                                 {category.icon}
-                                <span>{category.label}</span>
+                                <span className="text-xs">{category.label}</span>
                             </Button>
                         ))}
                     </div>
@@ -187,7 +184,7 @@ const NearbyPlaces = () => {
             </div>
             <ul className="space-y-2">
                 {nearbyData[activeCategory].map(item => (
-                    <li key={item.name} className="flex justify-between p-2 rounded-md hover:bg-muted">
+                    <li key={item.name} className="flex justify-between p-2 rounded-md hover:bg-muted text-sm md:text-base">
                         <span className="font-medium">{item.name}</span>
                         <span className="text-muted-foreground">{item.distance}</span>
                     </li>
@@ -199,6 +196,7 @@ const NearbyPlaces = () => {
 
 
 const PropertyReviews = ({ property }: { property: Property }) => {
+    const [isRatingDialogOpen, setIsRatingDialogOpen] = useState(false);
     const totalReviews = 50;
     const ratings = [
         { star: 5, percentage: 80 },
@@ -208,43 +206,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
         { star: 1, percentage: 1 },
     ];
     
-    return (
-        <div id="ratings-reviews">
-            <div className="flex justify-between items-center mb-4">
-                <p>Overall rating based on {totalReviews} reviews.</p>
-                <Button variant="outline">Rate property</Button>
-            </div>
-            <Card>
-                <CardContent className="p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="flex flex-col items-center justify-center border-r">
-                            <p className="text-4xl font-bold">{property.rating}</p>
-                            <div className="flex items-center">
-                                {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />)}
-                                {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-5 w-5 text-muted-foreground" />)}
-                            </div>
-                            <p className="text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
-                        </div>
-                        <div className="md:col-span-2">
-                           {ratings.map(r => (
-                                <div key={r.star} className="flex items-center gap-2">
-                                    <span className="text-sm w-12">{r.star} star</span>
-                                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                        <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
-                                    </div>
-                                    <span className="text-sm w-8 text-right">{r.percentage}%</span>
-                                </div>
-                           ))}
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
-    )
-}
-
-const ResidentReviews = () => {
-    const reviews = [
+     const reviews = [
         {
             name: 'Vedant Gupta',
             role: 'Owner',
@@ -272,57 +234,90 @@ const ResidentReviews = () => {
     ];
 
     return (
-        <div>
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h2>
-                <Button variant="link" className="text-primary">View All</Button>
+        <div id="ratings-reviews" className="space-y-8">
+            <div>
+                <div className="flex justify-between items-center mb-4">
+                    <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
+                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
+                </div>
+                <Card>
+                    <CardContent className="p-4 md:p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="flex flex-col items-center justify-center md:border-r">
+                                <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
+                                <div className="flex items-center">
+                                    {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
+                                    {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
+                                </div>
+                                <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
+                            </div>
+                            <div className="md:col-span-2">
+                            {ratings.map(r => (
+                                    <div key={r.star} className="flex items-center gap-2">
+                                        <span className="text-xs md:text-sm w-12">{r.star} star</span>
+                                        <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                            <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                        </div>
+                                        <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
+                                    </div>
+                            ))}
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
-             <Carousel className="w-full" opts={{
-                align: "start",
-                loop: true,
-             }}>
-                <CarouselContent className="-ml-4">
-                    {reviews.map((review, index) => (
-                        <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                             <div className="p-1">
-                                <Card>
-                                    <CardContent className="p-4 space-y-3">
-                                        <div className="flex justify-between items-start">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                    <UserCheck className="w-6 h-6 text-primary" />
+            
+            <div>
+                <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
+                    <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
+                </div>
+                <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+                    <CarouselContent className="-ml-4">
+                        {reviews.map((review, index) => (
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                <div className="p-1">
+                                    <Card>
+                                        <CardContent className="p-4 space-y-3">
+                                            <div className="flex justify-between items-start">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                                        <UserCheck className="w-6 h-6 text-primary" />
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-semibold text-sm md:text-base">{review.name}</p>
+                                                        <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                    </div>
+                                                </div>
+                                                <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
+                                                    {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                                </Badge>
+                                            </div>
+                                            <div className="space-y-3">
+                                                <div>
+                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
+                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                                 <div>
-                                                    <p className="font-semibold">{review.name}</p>
-                                                    <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                             </div>
-                                            <Badge className="bg-green-100 text-green-800 border-green-200">
-                                                {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                            </Badge>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <div>
-                                                <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                                <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                            </div>
-                                            <div>
-                                                <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                                <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                             </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
-                <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
-            </Carousel>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
+                </Carousel>
+            </div>
+            
+            <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
         </div>
-    );
-};
+    )
+}
 
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
@@ -376,10 +371,10 @@ const PropertyLayout = ({ property }: { property: Property }) => {
 
     return (
         <Tabs defaultValue="small">
-            <TabsList className="grid w-full grid-cols-3 mb-4">
-                <TabsTrigger value="small">6-15 Seats</TabsTrigger>
-                <TabsTrigger value="medium">16-30 Seats</TabsTrigger>
-                <TabsTrigger value="large">31-60 Seats</TabsTrigger>
+            <TabsList variant="pill" className="grid w-full grid-cols-3 mb-4">
+                <TabsTrigger variant="pill" value="small" className="text-xs md:text-sm">6-15 Seats</TabsTrigger>
+                <TabsTrigger variant="pill" value="medium" className="text-xs md:text-sm">16-30 Seats</TabsTrigger>
+                <TabsTrigger variant="pill" value="large" className="text-xs md:text-sm">31-60 Seats</TabsTrigger>
             </TabsList>
             <TabsContent value="small">
                 <LayoutImageGallery images={layouts.small} />
@@ -439,14 +434,14 @@ const PropertyDocument = () => (
                 ))}
             </CarouselContent>
             <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                 <Button asChild variant="secondary" size="lg" className="bg-white/90 hover:bg-white text-foreground">
+                 <Button asChild variant="secondary" size="lg">
                     <Link href="/sample.pdf" target="_blank">View Brochure</Link>
                 </Button>
             </div>
             <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
             <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
         </Carousel>
-        <Button asChild size="lg" className="w-full mt-4 bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
+        <Button asChild size="lg" className="w-full mt-4 bg-accent hover:bg-accent/90 text-accent-foreground font-bold h-11 md:h-12">
             <Link href="/sample.pdf" target="_blank" download>
                 <Download className="mr-2 h-5 w-5" />
                 Download Brochure
@@ -516,11 +511,11 @@ const OurServices = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {services.map(service => (
             <Card key={service.title}>
-              <CardHeader>
-                <CardTitle className="text-lg">{service.title}</CardTitle>
+              <CardHeader className="p-4 md:p-6">
+                <CardTitle className="text-base md:text-lg">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
+              <CardContent className="p-4 md:p-6 pt-0">
+                <p className="text-xs md:text-sm text-muted-foreground">{service.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -539,21 +534,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <Separator />
             <PropertyAmenities property={property} />
             
-            {/* @ts-ignore */}
-            {property.priceBreakdown && (
-                <>
-                    <Separator />
-                    <Card id="price-estimate">
-                        <CardHeader>
-                            <CardTitle className="text-xl">Pricing Details</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <PricingDetails property={property} />
-                        </CardContent>
-                    </Card>
-                </>
-            )}
-
             <Separator />
             <Card id="layout">
                 <CardHeader>
@@ -613,9 +593,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <PropertyReviews property={property} />
                 </CardContent>
             </Card>
-
-            <Separator />
-            <ResidentReviews />
 
             <Separator />
             <Card id="video">

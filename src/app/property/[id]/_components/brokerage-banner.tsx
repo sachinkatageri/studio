@@ -20,8 +20,8 @@ export default function BrokerageBanner() {
                 <div className="bg-background rounded-2xl shadow-lg p-8 md:p-12">
                     <div className="grid md:grid-cols-2 items-center gap-8">
                         <div className="text-center md:text-left">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Brokerage - Free Real Estate at Your Fingertips</h2>
-                            <p className="text-muted-foreground mb-8 max-w-md mx-auto md:mx-0">
+                            <h2 className="text-2xl md:text-4xl font-bold mb-4">Brokerage - Free Real Estate at Your Fingertips</h2>
+                            <p className="text-muted-foreground mb-8 max-w-md mx-auto md:mx-0 text-sm md:text-base">
                                 Buildersinfo is India's first brokerage-free real estate discovery platform. Find properties, projects and builders in your city.
                             </p>
                             <div className="flex items-center justify-center md:justify-start gap-4">
@@ -29,7 +29,7 @@ export default function BrokerageBanner() {
                                 <PlayStoreButton />
                             </div>
                         </div>
-                        <div className="relative h-full min-h-[300px] hidden md:flex items-center justify-center">
+                        <div className="relative h-full min-h-[250px] md:min-h-[300px] hidden md:flex items-center justify-center">
                             <Image 
                                 src="https://i.ibb.co/v6CN21Pt/image-Photoroom.png"
                                 alt="BuildersInfo App on a phone"
