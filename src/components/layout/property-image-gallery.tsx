@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { ArrowLeft, Share2, Heart, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Share2, Heart, AlertTriangle, Camera } from 'lucide-react';
 import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { ShareOptions } from './share-options';
@@ -188,17 +188,28 @@ export default function PropertyImageGallery() {
         }
     }
     
+    const remainingImages = propertyImageGallery.length - 5;
+
     return (
         <div className="relative cursor-pointer" onClick={openGallery}>
              <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-2 h-[250px] md:h-[450px]">
-                {propertyImageGallery.slice(0, 5).map((image, index) => (
+                <div className="relative md:col-span-2 md:row-span-2 rounded-lg overflow-hidden group">
+                    <Image
+                        src={propertyImageGallery[0].imageUrl}
+                        alt={propertyImageGallery[0].description}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={propertyImageGallery[0].imageHint}
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {propertyImageGallery.slice(1, 5).map((image, index) => (
                     <div
                         key={image.id}
                         className={cn(
                             'relative overflow-hidden rounded-lg group',
-                            index === 0 && 'md:col-span-2 md:row-span-2',
-                            index > 0 && 'col-span-1',
-                            index > 2 && 'hidden md:block'
+                            'col-span-1',
+                            index > 0 && 'hidden md:block'
                         )}
                     >
                         <Image
@@ -211,15 +222,17 @@ export default function PropertyImageGallery() {
                          <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                 ))}
+                
             </div>
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 md:bg-transparent">
-                <div className="bg-black/50 text-white rounded-lg px-4 py-2 text-sm md:hidden">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/30 md:hidden">
+                <div className="bg-black/50 text-white rounded-lg px-4 py-2 text-sm">
                     Tap to see all images
                 </div>
             </div>
              <div className="absolute bottom-4 right-4 flex gap-2">
-                <Button variant="secondary">
-                    Show all {propertyImageGallery.length} photos
+                <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
+                    <Camera className="mr-2 h-4 w-4" />
+                    {remainingImages > 0 ? `Show all ${propertyImageGallery.length} photos` : 'View All'}
                 </Button>
             </div>
             <ImageGalleryModal open={!isMobile && isModalOpen} onOpenChange={setIsModalOpen} />
