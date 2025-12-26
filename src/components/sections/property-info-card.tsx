@@ -140,10 +140,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       <CardContent className="p-4 space-y-3">
                       <div className="flex justify-between items-start">
                           <div>
-                          <h2 className="text-lg font-bold flex items-center gap-2">
-                              {property.name}
-                              <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
-                          </h2>
+                          <button onClick={() => onViewDetails(property.id)} className="text-left">
+                            <h2 className="text-lg font-bold flex items-center gap-2">
+                                {property.name}
+                                <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                            </h2>
+                          </button>
                           <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                           </div>
                           <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
@@ -288,10 +290,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <div>
                             <div className="flex justify-between items-start">
                                 <div>
-                                    <h2 className="text-xl font-bold flex items-center gap-2">
-                                        {property.name}
-                                        <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
-                                    </h2>
+                                    <button onClick={() => onViewDetails(property.id)} className="text-left">
+                                        <h2 className="text-xl font-bold flex items-center gap-2">
+                                            {property.name}
+                                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                                        </h2>
+                                    </button>
                                     <p className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                                 </div>
                                 <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
@@ -377,3 +381,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
