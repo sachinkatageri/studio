@@ -237,6 +237,11 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     setIsCitySheetOpen(false);
   }
 
+  const handleCityReset = () => {
+    setSelectedCity(null);
+    setIsCitySheetOpen(false);
+  }
+
 
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
@@ -304,7 +309,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Select City</p>
+                            <p>{selectedCity ? selectedCity : "Select City"}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -322,7 +327,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         open={isLayersDialogOpen}
         onOpenChange={setIsLayersDialogOpen}
     />
-    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} />
+    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
     </>
   );
 }

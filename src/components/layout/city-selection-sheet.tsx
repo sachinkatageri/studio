@@ -19,6 +19,7 @@ interface CitySelectionSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onCitySelect: (city: string) => void;
+  onCityReset: () => void;
 }
 
 const topCities = [
@@ -45,7 +46,7 @@ const otherCities = [
 ];
 
 
-const CitySelectionContent = ({ onOpenChange, onCitySelect }: { onOpenChange: (open: boolean) => void; onCitySelect: (city: string) => void; }) => (
+const CitySelectionContent = ({ onOpenChange, onCitySelect, onCityReset }: { onOpenChange: (open: boolean) => void; onCitySelect: (city: string) => void; onCityReset: () => void; }) => (
   <>
     <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
         <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
@@ -63,7 +64,7 @@ const CitySelectionContent = ({ onOpenChange, onCitySelect }: { onOpenChange: (o
                 <LocateFixed className="mr-3 h-5 w-5" />
                 Detect my location
             </Button>
-             <Button variant="link" size="sm" className="text-muted-foreground">Reset City</Button>
+             <Button variant="link" size="sm" className="text-muted-foreground" onClick={onCityReset}>Reset City</Button>
         </div>
     </div>
     <ScrollArea className="flex-1 min-h-0">
@@ -95,7 +96,7 @@ const CitySelectionContent = ({ onOpenChange, onCitySelect }: { onOpenChange: (o
 );
 
 
-export function CitySelectionSheet({ open, onOpenChange, onCitySelect }: CitySelectionSheetProps) {
+export function CitySelectionSheet({ open, onOpenChange, onCitySelect, onCityReset }: CitySelectionSheetProps) {
   const isMobile = useIsMobile();
   
   const side = isMobile ? 'bottom' : 'left';
@@ -104,7 +105,7 @@ export function CitySelectionSheet({ open, onOpenChange, onCitySelect }: CitySel
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side={side} className={className} hideCloseButton>
-        <CitySelectionContent onOpenChange={onOpenChange} onCitySelect={onCitySelect} />
+        <CitySelectionContent onOpenChange={onOpenChange} onCitySelect={onCitySelect} onCityReset={onCityReset} />
       </SheetContent>
     </Sheet>
   )
