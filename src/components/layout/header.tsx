@@ -248,10 +248,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
           </Link>
-          <Link href="/about" className={cn("flex items-center text-sm font-medium transition-colors", isAboutPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-            <Info className="mr-2 h-4 w-4" />
-            About
-          </Link>
         </nav>
         
         <div className="flex items-center gap-2">
