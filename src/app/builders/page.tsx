@@ -63,7 +63,7 @@ export default function BuildersPage() {
                     </div>
 
 
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-3 gap-4">
                         {builders.map(builder => (
                             <MobileBuilderCard key={builder.id} builder={builder} />
                         ))}
