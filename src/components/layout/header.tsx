@@ -149,14 +149,18 @@ const UserMenuButton = () => {
 
                     </div>
                     <div className="p-4 border-t mt-auto space-y-4">
-                        <Link href="/privacy-policy" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <Link2Off className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium">Privacy Policy</span>
-                        </Link>
-                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                            <FileText className="h-5 w-5 text-muted-foreground" />
-                            <span className="font-medium">Terms & Conditions</span>
-                        </Link>
+                        <SheetClose asChild>
+                            <Link href="/privacy-policy" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                                <Link2Off className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Privacy Policy</span>
+                            </Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href="/terms-and-conditions" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                                <FileText className="h-5 w-5 text-muted-foreground" />
+                                <span className="font-medium">Terms & Conditions</span>
+                            </Link>
+                        </SheetClose>
                         <Separator />
                         <div className="flex items-center justify-center gap-4">
                             <h3 className="font-medium text-sm">Follow on</h3>
@@ -229,6 +233,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
   const isPrivacyPage = pathname.startsWith('/privacy-policy');
+  const isTermsPage = pathname.startsWith('/terms-and-conditions');
   const isCommercialPage = pathname.startsWith('/commercial');
   const isResidentialPage = pathname.startsWith('/residential');
 
@@ -267,7 +272,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       {!(isBuildersPage || isAboutPage || isPrivacyPage) && (
+       {!(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage) && (
         <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
               <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
                   <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />
@@ -301,5 +306,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    
