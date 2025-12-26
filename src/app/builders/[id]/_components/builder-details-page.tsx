@@ -9,13 +9,14 @@ import LeftColumn from "./left-column";
 import RightColumn from "./right-column";
 import MobileStickyFooter from "./mobile-sticky-footer";
 import { useIsMobile } from "@/hooks/use-mobile";
+import MobileStickyHeader from "./mobile-sticky-header";
 
 export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
     const isMobile = useIsMobile();
     
     return (
         <>
-            <Header />
+            {isMobile ? <MobileStickyHeader builder={builder} /> : <Header />}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-20 md:pt-14 pb-40 md:pb-10">
                 <div className="hidden md:block">
                     <Breadcrumbs builderName={builder.name} />
