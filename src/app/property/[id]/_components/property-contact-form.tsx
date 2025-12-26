@@ -18,6 +18,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useTransition } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -37,6 +39,7 @@ async function submitForm(data: FormData) {
 export default function PropertyContactForm() {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
+  const isMobile = useIsMobile();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -68,7 +71,10 @@ export default function PropertyContactForm() {
   }
 
   return (
-    <Card className="w-full sticky top-40 bg-muted/50 border">
+    <Card className={cn(
+      "w-full bg-muted/50 border",
+      isMobile ? "sticky bottom-[60px] z-30 rounded-t-lg shadow-lg" : "sticky top-28"
+    )}>
       <CardHeader>
         <CardTitle className="text-xl font-headline">Interested in this property?</CardTitle>
       </CardHeader>

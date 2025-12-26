@@ -89,12 +89,14 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 </div>
             
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
                     <div className="lg:col-span-2">
                         <PropertyInfoSection property={property} />
                     </div>
                     <div className="hidden lg:block">
-                        <PropertyContactForm />
+                        <div className="sticky top-28">
+                          <PropertyContactForm />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -102,8 +104,16 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             <PropertyStickyNav />
 
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
-                <div className="lg:col-span-2">
-                    <PropertyDetailsPanel property={property} />
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+                    <div className="lg:col-span-2 space-y-8">
+                        <PropertyDetailsPanel property={property} />
+                        <div className="lg:hidden">
+                            <PropertyContactForm />
+                        </div>
+                    </div>
+                    <div className="hidden lg:block">
+                       {/* This space is for the sticky contact form on desktop */}
+                    </div>
                 </div>
 
                 <div className="mt-16">
