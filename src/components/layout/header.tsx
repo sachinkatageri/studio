@@ -149,7 +149,7 @@ const UserMenuButton = () => {
 
                     </div>
                     <div className="p-4 border-t mt-auto space-y-4">
-                        <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                        <Link href="/privacy-policy" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
                             <Link2Off className="h-5 w-5 text-muted-foreground" />
                             <span className="font-medium">Privacy Policy</span>
                         </Link>
