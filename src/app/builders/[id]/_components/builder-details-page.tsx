@@ -16,7 +16,7 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
     return (
         <>
             <Header />
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-20 md:pt-14 pb-24 md:pb-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-20 md:pt-14 pb-40 md:pb-10">
                 <div className="hidden md:block">
                     <Breadcrumbs builderName={builder.name} />
                 </div>

@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Builder } from "@/lib/builders";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MobileStickyFooter({ builder }: { builder: Builder }) {
     const projectSections = [
@@ -20,7 +21,7 @@ export default function MobileStickyFooter({ builder }: { builder: Builder }) {
     ];
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-background border-t p-2 z-40">
+        <div className="fixed bottom-0 left-0 right-0 md:hidden bg-background/95 backdrop-blur-sm p-2 border-t z-40 space-y-2">
             <div className="grid grid-cols-3 gap-2">
                 {projectSections.map(section => (
                     <Button key={section.href} asChild variant="outline">
@@ -29,6 +30,13 @@ export default function MobileStickyFooter({ builder }: { builder: Builder }) {
                         </Link>
                     </Button>
                 ))}
+            </div>
+             <div className="flex gap-2">
+                <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
+                <Button className="w-full h-11 rounded-lg">
+                    <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                    <span className="ml-2">WhatsApp</span>
+                </Button>
             </div>
         </div>
     );
