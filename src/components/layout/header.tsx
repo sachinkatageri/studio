@@ -110,7 +110,7 @@ const UserMenuButton = () => {
                             </Link>
                         </SheetClose>
                         <SheetClose asChild>
-                            <Link href="#" className="flex items-center justify-between p-2 rounded-lg hover:bg-muted">
+                            <Link href="/knowledge-base" className="flex items-center justify-between p-2 rounded-lg hover:bg-muted">
                                 <div className="flex items-center gap-3">
                                     <HelpCircle className="h-5 w-5 text-muted-foreground" />
                                     <span className="font-medium">Visit Help Center</span>
@@ -234,9 +234,12 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isAboutPage = pathname.startsWith('/about');
   const isPrivacyPage = pathname.startsWith('/privacy-policy');
   const isTermsPage = pathname.startsWith('/terms-and-conditions');
+  const isKnowledgeBasePage = pathname.startsWith('/knowledge-base');
   const isCommercialPage = pathname.startsWith('/commercial');
   const isResidentialPage = pathname.startsWith('/residential');
 
+
+  const showMobileSearch = !(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage || isKnowledgeBasePage);
 
   return (
     <>
@@ -272,7 +275,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       {!(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage) && (
+       {showMobileSearch && (
         <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
               <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
                   <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />
