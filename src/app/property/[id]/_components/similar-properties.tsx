@@ -26,29 +26,26 @@ export default function SimilarProperties() {
         {similarProperties.map((project) => {
           const projectImage = PlaceHolderImages.find(p => p.id === project.id);
           return (
-            <Card key={project.id} className="overflow-hidden group">
-              <div className="relative h-60">
-                {projectImage && (
-                  <Image
-                    src={projectImage.imageUrl}
-                    alt={projectImage.description}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    data-ai-hint={projectImage.imageHint}
-                  />
-                )}
-                 <Badge className="absolute top-4 left-4" variant={project.status === 'Ready to move' ? 'default' : 'secondary'}>{project.status}</Badge>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-lg md:text-xl font-bold font-headline">{project.name}</h3>
-                <div className="flex items-center text-muted-foreground mt-2 text-sm">
-                  <MapPin className="h-4 w-4 mr-2" />
-                  <span>{project.location}</span>
+            <Link key={project.id} href={`/property/${project.id}`} className="group">
+              <Card className="overflow-hidden h-full">
+                <div className="relative aspect-[4/3]">
+                  {projectImage && (
+                    <Image
+                      src={projectImage.imageUrl}
+                      alt={projectImage.description}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      data-ai-hint={projectImage.imageHint}
+                    />
+                  )}
                 </div>
-                <p className="mt-4 font-semibold text-base md:text-lg text-primary">{project.price}</p>
-                 <Button className="mt-6 w-full" variant="outline">View Details</Button>
-              </CardContent>
-            </Card>
+                <CardContent className="p-4">
+                  <h3 className="text-lg md:text-xl font-bold font-headline">{project.name}</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">{project.location}</p>
+                  <p className="mt-4 font-bold text-lg md:text-xl text-primary">{project.price}</p>
+                </CardContent>
+              </Card>
+            </Link>
           );
         })}
       </div>
