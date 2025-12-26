@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { ArrowLeft, MapPin, Locate, Train } from 'lucide-react';
@@ -72,6 +73,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [propertyStatus, setPropertyStatus] = useState('Ready');
     const [furnishing, setFurnishing] = useState('Full');
     const [parking, setParking] = useState<string[]>([]);
+    const [priceRange, setPriceRange] = useState<[number, number]>([0, 50]);
 
 
     const toggleBhkType = (bhk: string) => {
@@ -168,10 +170,15 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
             
              <FilterSection title="Price Range">
                 <div className="px-2">
-                    <Slider defaultValue={[0, 10]} max={50} step={1} />
+                    <Slider 
+                      value={priceRange} 
+                      onValueChange={(value) => setPriceRange(value as [number, number])}
+                      max={50} 
+                      step={1} 
+                    />
                     <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                        <span>₹0 Cr</span>
-                        <span>₹10 Cr+</span>
+                        <span>₹{priceRange[0]} Cr</span>
+                        <span>₹{priceRange[1]}{priceRange[1] === 50 ? ' Cr+' : ' Cr'}</span>
                     </div>
                 </div>
             </FilterSection>
