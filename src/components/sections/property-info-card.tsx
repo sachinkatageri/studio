@@ -177,25 +177,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       </CardContent>
                   </Card>
 
-                  {/* Developer/Agent Card */}
-                  <Card className="bg-card shadow-lg border-none">
-                      <CardContent className="p-4 flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                              <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
-                              <div>
-                                  <h3 className="font-semibold">Vaishnavi Group</h3>
-                                  <p className="text-xs text-muted-foreground">Developer</p>
-                              </div>
-                          </div>
-                          <div className="flex items-center gap-2">
-                              <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
-                              <Button size="icon" className="rounded-full bg-green-500/10 hover:bg-green-500/20 h-10 w-10">
-                                  <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
-                              </Button>
-                          </div>
-                      </CardContent>
-                  </Card>
-                  
                   {/* Key Stats Card */}
                   <div className="grid grid-cols-3 gap-3">
                       <Card className="bg-background text-center border">
@@ -217,6 +198,25 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                           </CardContent>
                       </Card>
                   </div>
+                  
+                  {/* Developer/Agent Card */}
+                  <Card className="bg-card shadow-lg border-none">
+                      <CardContent className="p-4 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                              <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
+                              <div>
+                                  <h3 className="font-semibold">Vaishnavi Group</h3>
+                                  <p className="text-xs text-muted-foreground">Developer</p>
+                              </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                              <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
+                              <Button size="icon" className="rounded-full bg-green-500/10 hover:bg-green-500/20 h-10 w-10">
+                                  <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
+                              </Button>
+                          </div>
+                      </CardContent>
+                  </Card>
 
                   </div>
               </ScrollArea>
