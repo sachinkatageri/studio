@@ -7,6 +7,7 @@ import { Drawer as DrawerPrimitive } from "vaul"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { X } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip"
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -55,9 +56,18 @@ const DrawerContent = React.forwardRef<
       {children}
       {!hideCloseButton && (
         <DrawerClose asChild>
-            <Button variant="ghost" size="icon" className="absolute top-3 right-3 h-8 w-8">
-                <X className="h-5 w-5" />
-            </Button>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="absolute top-3 right-3 h-8 w-8">
+                    <X className="h-5 w-5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Close</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </DrawerClose>
       )}
     </DrawerPrimitive.Content>

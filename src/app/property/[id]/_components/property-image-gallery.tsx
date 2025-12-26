@@ -16,6 +16,7 @@ import { properties } from '@/lib/properties';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { ShareOptions } from '@/components/layout/share-options';
 import { Badge } from '@/components/ui/badge';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const imageCategories = ["Main Image", "Elevation", "Amenities", "Floor Plan", "Master Plan"];
 
@@ -118,14 +119,26 @@ const GalleryView = ({ isMobile, onClose }: { isMobile: boolean, onClose: () => 
                                 />
                                 <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-1 rounded-md">{category}</div>
                                 <div className="absolute top-2 right-2 flex flex-col gap-2">
+                                    <TooltipProvider>
                                      <ShareOptions>
-                                        <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
-                                            <Share2 className="h-4 w-4" />
-                                        </Button>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                 <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
+                                                    <Share2 className="h-4 w-4" />
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent><p>Share</p></TooltipContent>
+                                        </Tooltip>
                                     </ShareOptions>
-                                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
-                                        <AlertTriangle className="h-4 w-4" />
-                                    </Button>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                             <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/50 text-white hover:bg-black/70">
+                                                <AlertTriangle className="h-4 w-4" />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent><p>Report</p></TooltipContent>
+                                    </Tooltip>
+                                    </TooltipProvider>
                                 </div>
                             </div>
                         )
@@ -204,9 +217,19 @@ export default function PropertyImageGallery() {
                     RERA
                 </Badge>
                 
-                <Button variant="secondary" size="icon" className="absolute top-4 right-4 h-10 w-10 rounded-full bg-background/80 backdrop-blur-sm text-foreground">
-                    <Heart className="h-5 w-5" />
-                </Button>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button variant="secondary" size="icon" className="absolute top-4 right-4 h-10 w-10 rounded-full bg-background/80 backdrop-blur-sm text-foreground">
+                                <Heart className="h-5 w-5" />
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Save to wishlist</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+
 
                 <div className="absolute inset-0 flex items-center justify-center">
                     <div className="bg-black/50 text-white rounded-full px-4 py-2 text-sm backdrop-blur-sm">

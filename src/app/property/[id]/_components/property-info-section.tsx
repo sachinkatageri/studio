@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Heart, Share2, AlertTriangle, CheckCircle } from 'lucide-react';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ShareOptions } from '@/components/layout/share-options';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Property = typeof properties[0];
 
@@ -32,14 +33,30 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                         <p className="text-muted-foreground mt-1 text-sm md:text-base">{property.location}</p>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
-                        <Button variant="outline" size="icon">
-                            <Heart className="h-5 w-5" />
-                        </Button>
-                        <ShareOptions>
-                            <Button variant="outline" size="icon">
-                                <Share2 className="h-5 w-5" />
-                            </Button>
-                        </ShareOptions>
+                         <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" size="icon">
+                                        <Heart className="h-5 w-5" />
+                                    </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>Save to wishlist</p>
+                                </TooltipContent>
+                            </Tooltip>
+                            <ShareOptions>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="outline" size="icon">
+                                            <Share2 className="h-5 w-5" />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Share</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </ShareOptions>
+                         </TooltipProvider>
                     </div>
                 </div>
             
@@ -98,4 +115,3 @@ export function PropertyInfoSection({ property }: { property: Property }) {
         </>
     );
 }
-
