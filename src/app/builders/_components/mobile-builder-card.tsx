@@ -12,7 +12,7 @@ export default function MobileBuilderCard({ builder }: { builder: Builder }) {
 
     return (
         <Link href={`/builders/${builder.id}`} className="block">
-            <div className="border rounded-lg p-2 flex flex-col items-center justify-center text-center h-full aspect-square">
+            <div className="border rounded-lg p-2 flex flex-col items-center justify-center text-center h-full aspect-square hover:bg-muted transition-colors">
                 <div className="relative w-16 h-16 mb-2">
                     <Image
                         src={imgSrc}
