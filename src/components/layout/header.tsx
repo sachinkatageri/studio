@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle, Search, SlidersHorizontal, Globe, PlusCircle } from 'lucide-react';
+import { Crown, ArrowRight, Menu, User, Info, CheckSquare, Headset, Mail, Linkedin, Youtube, Instagram, FileText, Link2Off, X, Map, HelpCircle, ChevronRight, Facebook, Twitter, CheckCircle, Search, SlidersHorizontal, Globe, PlusCircle, Building, Home as HomeIcon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet';
 import { Card, CardContent } from '../ui/card';
 import { Separator } from '../ui/separator';
@@ -228,6 +228,9 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
 
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
+  const isCommercialPage = pathname.startsWith('/commercial');
+  const isResidentialPage = pathname.startsWith('/residential');
+
 
   return (
     <>
@@ -247,6 +250,14 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
            <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
+          </Link>
+          <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isCommercialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+            <Building className="mr-2 h-4 w-4" />
+            Commercial
+          </Link>
+          <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isResidentialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+            <HomeIcon className="mr-2 h-4 w-4" />
+            Residential
           </Link>
         </nav>
         
