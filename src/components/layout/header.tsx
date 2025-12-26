@@ -55,7 +55,7 @@ const UserMenuButton = () => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <SheetTrigger asChild>
-                                <Button variant="ghost" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm">
+                                <Button variant="ghost" className="flex items-center gap-2 rounded-full p-1 pr-3 h-10 shadow-sm border">
                                     <Menu className="h-5 w-5" />
                                     <div className="bg-muted rounded-full p-1">
                                     <User className="h-5 w-5 text-primary" />
