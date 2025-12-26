@@ -141,7 +141,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       <div className="flex justify-between items-start">
                           <div>
                           <button onClick={() => onViewDetails(property.id)} className="text-left">
-                            <h2 className="text-lg font-bold flex items-center gap-2">
+                            <h2 className="text-lg font-bold flex items-center gap-2 hover:underline">
                                 {property.name}
                                 <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
                             </h2>
@@ -291,7 +291,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <div className="flex justify-between items-start">
                                 <div>
                                     <button onClick={() => onViewDetails(property.id)} className="text-left">
-                                        <h2 className="text-xl font-bold flex items-center gap-2">
+                                        <h2 className="text-xl font-bold flex items-center gap-2 hover:underline">
                                             {property.name}
                                             <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
                                         </h2>
@@ -381,5 +381,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
