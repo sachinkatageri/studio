@@ -28,8 +28,8 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
     <Card 
       key={property.id} 
       className={cn(
-        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border rounded-lg",
-        isSelected && "ring-2 ring-primary border-primary"
+        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 rounded-lg",
+        isSelected ? "ring-2 ring-primary border-primary" : "border-transparent"
       )}
       onClick={() => onSelect(property.id)}
     >
@@ -45,12 +45,12 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
             />
           )}
         </div>
-        <div className="flex flex-col gap-1 flex-1">
+        <div className="flex flex-col gap-1 flex-1 min-w-0">
             <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-sm leading-tight">{property.name}</h3>
+                <h3 className="font-semibold text-sm leading-tight truncate">{property.name}</h3>
                 <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
             </div>
-          <p className="text-xs text-muted-foreground">{property.location}</p>
+          <p className="text-xs text-muted-foreground truncate">{property.location}</p>
           {/* @ts-ignore */}
           {property.size && <p className="text-xs text-muted-foreground">Size: {property.size} sq. yd.</p>}
           
@@ -153,21 +153,21 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
 
                 <div className="flex-1 overflow-y-auto">
                     <TabsContent value="all" className="mt-0">
-                        <div className="space-y-3 p-3">
+                        <div className="space-y-3 p-4">
                             {properties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
                         </div>
                     </TabsContent>
                     <TabsContent value="commercial" className="mt-0">
-                        <div className="space-y-3 p-3">
+                        <div className="space-y-3 p-4">
                             {commercialProperties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
                         </div>
                     </TabsContent>
                     <TabsContent value="residential" className="mt-0">
-                        <div className="space-y-3 p-3">
+                        <div className="space-y-3 p-4">
                             {residentialProperties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
