@@ -289,9 +289,18 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                       <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
                           <SlidersHorizontal className="h-5 w-5" />
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
-                          <Globe className="h-5 w-5" />
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
+                                <Building className="h-5 w-5" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Select City</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                   </div>
               </div>
           </div>
@@ -310,3 +319,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
