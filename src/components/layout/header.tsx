@@ -98,7 +98,7 @@ const UserMenuButton = () => {
                     
                     <nav className="flex flex-col gap-1">
                         <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
+                            <Link href="/about" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
                             <Info className="h-5 w-5 text-muted-foreground" />
                             <span className="font-medium">About Us</span>
                             </Link>
@@ -227,6 +227,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   }
 
   const isBuildersPage = pathname.startsWith('/builders');
+  const isAboutPage = pathname.startsWith('/about');
 
   return (
     <>
@@ -243,15 +244,13 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
             Map-View
           </Link>
-          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Commercial
-          </Link>
-          <Link href="#" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
-            Residential
-          </Link>
            <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
+          </Link>
+          <Link href="/about" className={cn("flex items-center text-sm font-medium transition-colors", isAboutPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+            <Info className="mr-2 h-4 w-4" />
+            About
           </Link>
         </nav>
         
@@ -260,7 +259,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       {!isBuildersPage && (
+       {!(isBuildersPage || isAboutPage) && (
         <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
               <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
                   <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />

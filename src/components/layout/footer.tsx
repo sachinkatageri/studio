@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Map, Building, Home, Crown } from 'lucide-react';
+import { Map, Building, Home, Crown, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 
@@ -11,14 +11,14 @@ export default function Footer() {
 
   const navItems = [
     { id: 'map-view', label: 'Map-View', icon: <Map className="h-5 w-5" />, href: '/' },
-    { id: 'commercial', label: 'Commercial', icon: <Building className="h-5 w-5" />, href: '#' },
-    { id: 'residential', label: 'Residential', icon: <Home className="h-5 w-5" />, href: '#' },
     { id: 'builders', label: 'Builders', icon: <Crown className="h-5 w-5" />, href: '/builders' },
+    { id: 'about', label: 'About', icon: <Info className="h-5 w-5" />, href: '/about' },
   ];
 
   const getActiveView = () => {
     if (pathname === '/') return 'map-view';
     if (pathname.startsWith('/builders')) return 'builders';
+    if (pathname.startsWith('/about')) return 'about';
     return '';
   }
   
