@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Image from 'next/image';
@@ -28,7 +29,7 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
     <Card 
       key={property.id} 
       className={cn(
-        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border rounded-lg",
+        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer rounded-lg",
         isSelected ? "ring-2 ring-primary border-primary" : "border"
       )}
       onClick={() => onSelect(property.id)}
@@ -151,7 +152,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                     </div>
                 </div>
 
-                <div className="flex-1 overflow-y-auto">
+                <ScrollArea className="flex-1 overflow-y-auto">
                     <TabsContent value="all" className="mt-0">
                         <div className="space-y-3 p-4">
                             {properties.map((property) => (
@@ -173,7 +174,7 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
                             ))}
                         </div>
                     </TabsContent>
-                </div>
+                </ScrollArea>
             </Tabs>
         </div>
     );
