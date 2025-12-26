@@ -51,13 +51,13 @@ const PropertyOverview = ({ property }: { property: Property}) => (
 
 const PropertyAmenities = ({ property }: { property: Property}) => {
     const [isAmenitiesDialogOpen, setIsAmenitiesDialogOpen] = useState(false);
-    const amenitiesToShow = allAmenities.slice(0, 7);
+    const amenitiesToShow = allAmenities.slice(0, 11);
     const remainingCount = allAmenities.length - amenitiesToShow.length;
 
     return (
         <div id="amenities">
             <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-            <div className="grid grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
                 {amenitiesToShow.map(amenity => (
                     <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
                         <div className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted">
@@ -629,4 +629,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
-
