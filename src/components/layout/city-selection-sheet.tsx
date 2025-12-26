@@ -18,6 +18,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 interface CitySelectionSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onCitySelect: (city: string) => void;
 }
 
 const topCities = [
@@ -44,7 +45,7 @@ const otherCities = [
 ];
 
 
-const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) => void }) => (
+const CitySelectionContent = ({ onOpenChange, onCitySelect }: { onOpenChange: (open: boolean) => void; onCitySelect: (city: string) => void; }) => (
   <>
     <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
         <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
@@ -70,7 +71,7 @@ const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) 
             <h3 className="font-semibold mb-4">Top Cities</h3>
              <div className="grid grid-cols-4 gap-4">
                 {topCities.map(city => (
-                    <div key={city.name} className="flex flex-col items-center justify-center gap-2 p-2 rounded-lg hover:bg-muted text-center cursor-pointer">
+                    <div key={city.name} className="flex flex-col items-center justify-center gap-2 p-2 rounded-lg hover:bg-muted text-center cursor-pointer" onClick={() => onCitySelect(city.name)}>
                         <div className="w-12 h-12 flex items-center justify-center bg-muted rounded-full">
                             <Building className="h-6 w-6 text-primary" />
                         </div>
@@ -83,7 +84,7 @@ const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) 
             <h3 className="font-semibold mb-2">Other Cities</h3>
             <ul className="divide-y">
                 {otherCities.map(city => (
-                    <li key={city} className="py-3 text-muted-foreground cursor-pointer hover:bg-muted -mx-4 px-4">
+                    <li key={city} className="py-3 text-muted-foreground cursor-pointer hover:bg-muted -mx-4 px-4" onClick={() => onCitySelect(city)}>
                         {city}
                     </li>
                 ))}
@@ -94,7 +95,7 @@ const CitySelectionContent = ({ onOpenChange }: { onOpenChange: (open: boolean) 
 );
 
 
-export function CitySelectionSheet({ open, onOpenChange }: CitySelectionSheetProps) {
+export function CitySelectionSheet({ open, onOpenChange, onCitySelect }: CitySelectionSheetProps) {
   const isMobile = useIsMobile();
   
   const side = isMobile ? 'bottom' : 'left';
@@ -103,11 +104,8 @@ export function CitySelectionSheet({ open, onOpenChange }: CitySelectionSheetPro
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side={side} className={className} hideCloseButton>
-        <CitySelectionContent onOpenChange={onOpenChange} />
+        <CitySelectionContent onOpenChange={onOpenChange} onCitySelect={onCitySelect} />
       </SheetContent>
     </Sheet>
   )
 }
-    
-
-    

@@ -184,6 +184,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
@@ -230,6 +231,12 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const handleCitySelection = () => {
       setIsCitySheetOpen(true);
   }
+
+  const handleCitySelected = (city: string) => {
+    setSelectedCity(city);
+    setIsCitySheetOpen(false);
+  }
+
 
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
@@ -293,7 +300,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
-                                <Building className="h-5 w-5" />
+                               {selectedCity ? <Building className="h-5 w-5" /> : <Globe className="h-5 w-5" />}
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -315,9 +322,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         open={isLayersDialogOpen}
         onOpenChange={setIsLayersDialogOpen}
     />
-    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} />
+    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} />
     </>
   );
 }
-
-    
