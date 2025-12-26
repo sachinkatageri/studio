@@ -182,7 +182,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
-  const placeholderTexts = ['Search "Indiranagar"', 'Search "Koramangala"', 'Search "HSR Layout"'];
+  const placeholderTexts = ['"Indiranagar"', '"Koramangala"', '"HSR Layout"'];
   const [placeholder, setPlaceholder] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -212,7 +212,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     const typingSpeed = isDeleting ? 100 : 150;
     const timeout = setTimeout(type, typingSpeed);
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, textIndex, placeholderTexts]);
+  }, [charIndex, isDeleting, textIndex]);
 
   const handleLayersClick = () => {
     setIsLayersDeclarationOpen(true);
@@ -262,11 +262,12 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
       </div>
        {!isBuildersPage && (
         <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
-              <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
+              <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
+                  <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />
+                  <span className="pl-10 text-sm text-muted-foreground">Search </span>
                   <Input
                       placeholder={placeholder}
-                      className="pl-10 pr-20 h-12 bg-background shadow-lg"
+                      className="pl-2 pr-20 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
                   />
                   <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
                       <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
@@ -293,13 +294,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    
-
-    
-
-    
-
-
-
-

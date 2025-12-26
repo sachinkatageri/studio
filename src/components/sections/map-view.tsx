@@ -64,7 +64,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     hybrid: 'satellite map',
   };
 
-  const placeholderTexts = ['Search "Indiranagar"', 'Search "Koramangala"', 'Search "HSR Layout"'];
+  const placeholderTexts = ['"Indiranagar"', '"Koramangala"', '"HSR Layout"'];
   const [placeholder, setPlaceholder] = useState('');
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -94,7 +94,7 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     const typingSpeed = isDeleting ? 100 : 150;
     const timeout = setTimeout(type, typingSpeed);
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, textIndex, placeholderTexts]);
+  }, [charIndex, isDeleting, textIndex]);
 
 
   const handleLayersClick = () => {
@@ -179,13 +179,14 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
       })}
 
       <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
-        <div className="relative flex-1 max-w-lg">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
-          <Input
-            type="text"
-            placeholder={placeholder}
-            className="w-full pl-10 pr-24 h-12 text-foreground shadow-lg"
-          />
+        <div className="relative flex items-center flex-1 max-w-lg h-12 text-foreground shadow-lg bg-background rounded-lg">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+            <span className="pl-10 text-sm text-muted-foreground">Search </span>
+            <Input
+                type="text"
+                placeholder={placeholder}
+                className="w-full pl-2 pr-24 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+            />
            <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
             <TooltipProvider>
                 <Tooltip>
@@ -333,7 +334,3 @@ export default function MapView({ isSidebarOpen, toggleSidebar, onFilterClick, a
     </>
   );
 }
-
-    
-
-    
