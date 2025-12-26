@@ -28,8 +28,8 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
     <Card 
       key={property.id} 
       className={cn(
-        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border-2 rounded-lg",
-        isSelected ? "ring-2 ring-primary border-primary" : "border-transparent"
+        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border rounded-lg",
+        isSelected ? "ring-2 ring-primary border-primary" : "border"
       )}
       onClick={() => onSelect(property.id)}
     >
