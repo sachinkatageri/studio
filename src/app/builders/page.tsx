@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MobileBuilderCard from "./_components/mobile-builder-card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function BuildersPage() {
     const [view, setView] = useState<'list' | 'grid'>('grid');
@@ -115,12 +116,28 @@ export default function BuildersPage() {
                             <ListFilter className="h-4 w-4" />
                         </Button>
                          <div className="hidden md:flex items-center bg-muted rounded-lg p-1 ml-auto md:ml-0">
-                            <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
-                                <LayoutList className="h-4 w-4" />
-                            </Button>
-                            <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
-                                <LayoutGrid className="h-4 w-4" />
-                            </Button>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
+                                            <LayoutList className="h-4 w-4" />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>List View</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
+                                            <LayoutGrid className="h-4 w-4" />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Grid View</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
                         </div>
                     </div>
                 </div>
