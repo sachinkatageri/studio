@@ -247,10 +247,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
             Map-View
           </Link>
-           <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
-            <Crown className="mr-2 h-4 w-4 text-amber-500" />
-            Builders
-          </Link>
           <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isCommercialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <Building className="mr-2 h-4 w-4" />
             Commercial
@@ -258,6 +254,10 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
           <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isResidentialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <HomeIcon className="mr-2 h-4 w-4" />
             Residential
+          </Link>
+          <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+            <Crown className="mr-2 h-4 w-4 text-amber-500" />
+            Builders
           </Link>
         </nav>
         
