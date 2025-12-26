@@ -22,15 +22,6 @@ export default function MobileStickyFooter({ builder }: { builder: Builder }) {
 
     return (
         <div className="fixed bottom-0 left-0 right-0 md:hidden bg-background/95 backdrop-blur-sm p-2 border-t z-40 space-y-2">
-            <div className="grid grid-cols-3 gap-2">
-                {projectSections.map(section => (
-                    <Button key={section.href} asChild variant="outline">
-                        <Link href={section.href} className="text-xs h-9 px-2">
-                            {section.label}
-                        </Link>
-                    </Button>
-                ))}
-            </div>
              <div className="flex gap-2">
                 <Button variant="outline" className="w-full h-11 rounded-lg">Contact</Button>
                 <Button className="w-full h-11 rounded-lg">
