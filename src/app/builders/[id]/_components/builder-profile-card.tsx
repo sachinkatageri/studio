@@ -56,7 +56,7 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                         </div>
                     </Card>
                 </div>
-                <div className="grid grid-cols-2 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-4 md:gap-6">
                     <Card>
                         <CardContent className="p-4">
                             <h3 className="font-semibold mb-2 text-sm">Our Mission</h3>
