@@ -21,6 +21,7 @@ import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import { ListPropertySheet } from './list-property-sheet';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -44,6 +45,7 @@ const socialLinks = [
 
 const UserMenuButton = () => {
     const [isLoginOpen, setIsLoginOpen] = useState(false);
+    const [isListPropertySheetOpen, setIsListPropertySheetOpen] = useState(false);
     const isMobile = useIsMobile();
     
     return (
@@ -103,12 +105,10 @@ const UserMenuButton = () => {
                             <span className="font-medium">About Us</span>
                             </Link>
                         </SheetClose>
-                        <SheetClose asChild>
-                            <Link href="#" className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted">
-                                <CheckSquare className="h-5 w-5 text-muted-foreground" />
-                                <span className="font-medium">Our Verification Process</span>
-                            </Link>
-                        </SheetClose>
+                        <button onClick={() => setIsListPropertySheetOpen(true)} className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted text-left w-full">
+                            <CheckSquare className="h-5 w-5 text-muted-foreground" />
+                            <span className="font-medium">Our Verification Process</span>
+                        </button>
                         <SheetClose asChild>
                             <Link href="/knowledge-base" className="flex items-center justify-between p-2 rounded-lg hover:bg-muted">
                                 <div className="flex items-center gap-3">
@@ -174,6 +174,7 @@ const UserMenuButton = () => {
                 </SheetContent>
             </Sheet>
             <LoginDialog open={isLoginOpen} onOpenChange={setIsLoginOpen} />
+            <ListPropertySheet open={isListPropertySheetOpen} onOpenChange={setIsListPropertySheetOpen} />
         </>
     );
 };
