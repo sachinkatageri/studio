@@ -11,7 +11,7 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
             {/* Left Side */}
             <div className="space-y-4 md:space-y-6">
                 <Card className="p-4 md:p-6 flex flex-col items-center justify-center text-center aspect-square">
-                    <div className="w-24 h-24 md:w-40 md:h-40 relative mb-4">
+                    <div className="w-[100px] h-[100px] relative mb-4 rounded-full overflow-hidden">
                         <Image src={builder.logoUrl} alt={`${builder.name} logo`} fill className="object-contain" />
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold">{builder.name}</h2>
