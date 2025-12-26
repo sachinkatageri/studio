@@ -93,7 +93,17 @@ const UserMenuButton = () => {
                                 </ul>
                             )}
                         </div>
-                        <Button onClick={() => setIsLoginOpen(true)}>Login</Button>
+                        <Button
+                            onClick={() => setIsLoginOpen(true)}
+                            className="relative overflow-hidden bg-primary text-primary-foreground animate-shine"
+                            style={
+                                {
+                                    '--shine-angle': '45deg',
+                                } as React.CSSProperties
+                            }
+                        >
+                            Login
+                        </Button>
                     </div>
                     </div>
                     <div className="flex-grow overflow-y-auto p-4 space-y-4">
@@ -331,3 +341,5 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
+
+    
