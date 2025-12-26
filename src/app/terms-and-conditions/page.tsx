@@ -6,7 +6,7 @@ import Link from "next/link";
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="mb-8">
         <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-headline">{title}</h2>
-        <div className="space-y-4 text-muted-foreground text-base">{children}</div>
+        <div className="space-y-4 text-muted-foreground text-sm md:text-base">{children}</div>
     </div>
 );
 
@@ -16,11 +16,13 @@ export default function TermsAndConditionsPage() {
             <Header />
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
                 <div className="max-w-4xl mx-auto">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-12 font-headline">Terms & Conditions</h1>
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-center mb-12 font-headline">Terms & Conditions</h1>
                     
-                    <p className="text-muted-foreground mb-8">These terms and conditions outline the rules and regulations for the use of Buildersinfo's Website, located at Buildersinfo.in.</p>
-                    <p className="text-muted-foreground mb-8">By accessing this website we assume you accept these terms and conditions. Do not continue to use Buildersinfo.in if you do not agree to take all of the terms and conditions stated on this page.</p>
-                    <p className="text-muted-foreground mb-12">The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+                    <div className="text-sm md:text-base">
+                        <p className="text-muted-foreground mb-8">These terms and conditions outline the rules and regulations for the use of Buildersinfo's Website, located at Buildersinfo.in.</p>
+                        <p className="text-muted-foreground mb-8">By accessing this website we assume you accept these terms and conditions. Do not continue to use Buildersinfo.in if you do not agree to take all of the terms and conditions stated on this page.</p>
+                        <p className="text-muted-foreground mb-12">The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company's terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client's needs in respect of provision of the Company's stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
+                    </div>
 
                     <Section title="Cookies">
                         <p>We employ the use of cookies. By accessing Buildersinfo.in, you agreed to use cookies in agreement with the Buildersinfo's Privacy Policy.</p>
