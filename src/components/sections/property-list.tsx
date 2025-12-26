@@ -28,8 +28,8 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
     <Card 
       key={property.id} 
       className={cn(
-        "overflow-hidden group hover:bg-muted/50 cursor-pointer shadow-none border-0 border-b rounded-none",
-        isSelected && "bg-muted/50"
+        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer border rounded-lg",
+        isSelected && "ring-2 ring-primary border-primary"
       )}
       onClick={() => onSelect(property.id)}
     >
@@ -153,21 +153,21 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
 
                 <div className="flex-1 overflow-y-auto">
                     <TabsContent value="all" className="mt-0">
-                        <div>
+                        <div className="space-y-3 p-3">
                             {properties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
                         </div>
                     </TabsContent>
                     <TabsContent value="commercial" className="mt-0">
-                        <div>
+                        <div className="space-y-3 p-3">
                             {commercialProperties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
                         </div>
                     </TabsContent>
                     <TabsContent value="residential" className="mt-0">
-                        <div>
+                        <div className="space-y-3 p-3">
                             {residentialProperties.map((property) => (
                                 <PropertyCard key={property.id} property={property} onSelect={onSelectProperty} isSelected={selectedPropertyId === property.id} />
                             ))}
