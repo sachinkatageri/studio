@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
     <div className="mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 font-headline">{title}</h2>
+        <h2 className="text-xl md:text-3xl font-bold text-primary mb-4 font-headline">{title}</h2>
         <div className="space-y-4 text-muted-foreground text-sm md:text-base">{children}</div>
     </div>
 );
@@ -126,7 +126,7 @@ export default function TermsAndConditionsPage() {
                     </Section>
 
                     <Section title="Shipping & Delivery Policy">
-                        <p>Shipping is not applicable for business. <a href="https://merchant.razorpay.com/policy/KkdPXvvkTxWyhP/shipping" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">https://merchant.razorpay.com/policy/KkdPXvvkTxWyhP/shipping</a></p>
+                        <p>Shipping is not applicable for business. <a href="https://merchant.razorpay.com/policy/KkdPXvvkTxWyhP/shipping" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all">https://merchant.razorpay.com/policy/KkdPXvvkTxWyhP/shipping</a></p>
                     </Section>
 
                     <Section title="Disclaimer">
