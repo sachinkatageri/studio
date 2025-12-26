@@ -99,9 +99,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <ScrollArea className="flex-1">
-                  <div className="p-4 space-y-3">
-                  {/* Image Gallery Card */}
+              <div className="p-4 pb-0">
                   <Card className="overflow-hidden border-0 shadow-none bg-transparent">
                       <CardContent className="p-0">
                       <div className="relative">
@@ -134,7 +132,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       </div>
                       </CardContent>
                   </Card>
+              </div>
 
+              <ScrollArea className="flex-1">
+                  <div className="p-4 space-y-3">
                   {/* Primary Details Card */}
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 space-y-3">
