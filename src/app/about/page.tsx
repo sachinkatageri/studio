@@ -43,7 +43,7 @@ export default function AboutPage() {
                     </Section>
 
                     <Section title="Our Mission">
-                        <p>At 1acre.in, we exist to design such an algorithm, that can solve the Land Market, completely and instantly.</p>
+                        <p>At BuildersInfo, we exist to design such an algorithm, that can solve the Land Market, completely and instantly.</p>
                         <p>The key to such an algorithm is simple - Incentivise the good players heavily & instantly. Align the incentives of all the good players (Buyers, Agents, Owners & Builders).</p>
                     </Section>
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
                                 <CardTitle>Verification</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p>Our first step, was Verification. We do a 'Preliminary Verification' before we list any Land or Plot on 1acre. There is a distinct & pre-defined process for every state and UT. This process eliminates 90% of the potential issues.</p>
+                                <p>Our first step, was Verification. We do a 'Preliminary Verification' before we list any Land or Plot on BuildersInfo. There is a distinct & pre-defined process for every state and UT. This process eliminates 90% of the potential issues.</p>
                             </CardContent>
                         </Card>
                          <Card className="bg-muted/50">
@@ -83,18 +83,18 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <FounderCard
-                            name="Satish Chandra"
-                            title="Co-Founder"
-                            description="Director, Mordor Intelligence, IIM Ahmedabad, BITS Pilani"
-                            imageUrl="https://picsum.photos/seed/satish/400/400"
+                            name="Ritwik"
+                            title="Founder"
+                            description="Lead Visionary, PhD in Computer Science from Stanford University."
+                            imageUrl="https://picsum.photos/seed/ritwik/400/400"
                             imageHint="male founder"
                         />
                         <FounderCard
-                            name="Ratna Kiran"
+                            name="Zakir Ansari"
                             title="Co-Founder"
-                            description="Architect, School of planning & architecture, New Delhi."
-                            imageUrl="https://picsum.photos/seed/ratna/400/400"
-                            imageHint="female founder"
+                            description="Product & Technology, Masters in Urban Planning from MIT."
+                            imageUrl="https://picsum.photos/seed/zakir/400/400"
+                            imageHint="male founder"
                         />
                     </div>
                 </div>
