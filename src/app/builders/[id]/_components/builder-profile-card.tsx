@@ -16,11 +16,11 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                     </div>
                 </Card>
                 <div className="grid grid-cols-2 gap-4 md:gap-6">
-                    <Card className="p-4 md:p-6 text-center">
+                    <Card className="p-4 text-center">
                         <p className="text-2xl md:text-4xl font-bold">{builder.experience}+</p>
                         <p className="text-xs md:text-sm text-muted-foreground mt-1">Years of Exp.</p>
                     </Card>
-                    <Card className="p-4 md:p-6 text-center">
+                    <Card className="p-4 text-center">
                         <p className="text-2xl md:text-4xl font-bold">12</p>
                         <p className="text-xs md:text-sm text-muted-foreground mt-1">Cities Presence</p>
                     </Card>
@@ -56,15 +56,15 @@ export default function BuilderProfileCard({ builder }: { builder: Builder }) {
                 </div>
                 <div className="grid grid-cols-2 gap-4 md:gap-6">
                     <Card>
-                        <CardContent className="p-4 md:p-6">
-                            <h3 className="font-semibold mb-2 text-sm md:text-lg">Our Mission</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground">To create exceptional spaces that enhance Peoples' lives.</p>
+                        <CardContent className="p-4">
+                            <h3 className="font-semibold mb-2 text-sm">Our Mission</h3>
+                            <p className="text-xs text-muted-foreground">To create exceptional spaces that enhance Peoples' lives.</p>
                         </CardContent>
                     </Card>
                     <Card>
-                        <CardContent className="p-4 md:p-6">
-                            <h3 className="font-semibold mb-2 text-sm md:text-lg">Our Vision</h3>
-                            <p className="text-xs md:text-sm text-muted-foreground">To be the most trusted and preferred real estate brand.</p>
+                        <CardContent className="p-4">
+                            <h3 className="font-semibold mb-2 text-sm">Our Vision</h3>
+                            <p className="text-xs text-muted-foreground">To be the most trusted and preferred real estate brand.</p>
                         </CardContent>
                     </Card>
                 </div>
