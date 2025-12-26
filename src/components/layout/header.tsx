@@ -70,7 +70,7 @@ const UserMenuButton = () => {
                   side="right" 
                   className={cn(
                     "p-0 flex flex-col rounded-l-lg",
-                    isMobile ? "w-[95%]" : "w-full sm:w-[400px]"
+                    isMobile ? "w-[80%]" : "w-full sm:w-[400px]"
                   )}
                   hideCloseButton={isMobile}
                 >
