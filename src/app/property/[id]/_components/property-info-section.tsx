@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState } from 'react';
@@ -25,10 +26,10 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <div className="flex items-center gap-2">
-                           <h1 className="text-lg md:text-3xl font-bold">{property.name}</h1>
+                           <h1 className="text-xl md:text-3xl font-bold">{property.name}</h1>
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} className="md:w-7 md:h-7" />
                         </div>
-                        <p className="text-muted-foreground mt-1 text-xs md:text-base">{property.location}</p>
+                        <p className="text-muted-foreground mt-1 text-sm md:text-base">{property.location}</p>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
                         <Button variant="outline" size="icon">
@@ -45,11 +46,11 @@ export function PropertyInfoSection({ property }: { property: Property }) {
             
                 <div className="mt-4 flex flex-wrap gap-2 md:gap-4 items-center">
                     <div className="flex items-end gap-2">
-                        <p className="text-lg md:text-2xl font-bold text-primary">
+                        <p className="text-xl md:text-2xl font-bold text-primary">
                             {property.price && !property.price.startsWith('Starting') ? `₹${property.price}` : property.price}
                         </p>
                         {property.price && !property.price.startsWith('Starting') && offerPrice > 0 && (
-                            <p className="text-xs md:text-base text-muted-foreground line-through">
+                            <p className="text-sm md:text-base text-muted-foreground line-through">
                                 ₹{beforePrice.toLocaleString('en-IN')}
                             </p>
                         )}
@@ -97,3 +98,4 @@ export function PropertyInfoSection({ property }: { property: Property }) {
         </>
     );
 }
+

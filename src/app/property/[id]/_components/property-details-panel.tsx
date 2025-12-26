@@ -44,7 +44,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
     <div id="overview">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         {/* @ts-ignore */}
-        <p className="text-muted-foreground">{property.about}</p>
+        <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
     </div>
 )
 
@@ -269,7 +269,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
             
             <div>
                 <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
+                    <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
                     <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
                 </div>
                 <Carousel className="w-full" opts={{ align: "start", loop: true }}>
@@ -296,11 +296,11 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                                             <div className="space-y-3">
                                                 <div>
                                                     <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                                    <p className="text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
+                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                                 <div>
                                                     <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                                    <p className="text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
+                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                 </div>
                                             </div>
                                         </CardContent>
@@ -629,3 +629,4 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+

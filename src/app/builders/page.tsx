@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Header from "@/components/layout/header";
@@ -78,8 +79,8 @@ export default function BuildersPage() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold">Builders in {location}</h1>
-                        <p className="text-muted-foreground mt-1">{builders.length} results</p>
+                        <h1 className="text-2xl md:text-3xl font-bold">Builders in {location}</h1>
+                        <p className="text-sm text-muted-foreground mt-1">{builders.length} results</p>
                     </div>
                     <div className="flex w-full md:w-auto items-center gap-2">
                         <DropdownMenu>
