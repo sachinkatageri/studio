@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState } from 'react';
@@ -73,7 +72,6 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                         )}
                     </div>
                     <Badge variant="secondary" className="text-xs">{property.status}</Badge>
-                    {property.type === 'Commercial' && <Badge className="text-xs">Zero Brokerage</Badge>}
                 </div>
 
                 <div className="mt-6 grid grid-cols-3 gap-4 text-sm md:text-base">
