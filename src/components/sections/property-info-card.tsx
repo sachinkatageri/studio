@@ -352,12 +352,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="col-span-5 space-y-1">
                         <div className="flex items-center gap-2">
-                            <Info className="h-3 w-3 text-muted-foreground" />
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         </div>
                         <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
                          <div className="flex items-center gap-2 pt-1">
-                            <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
+                             <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
                         </div>
                         <div className="grid grid-cols-2 gap-x-2 text-[10px]">
                             {brandStats.map(stat => (
