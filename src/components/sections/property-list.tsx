@@ -52,8 +52,6 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
                 <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
             </div>
           <p className="text-xs text-muted-foreground truncate">{property.location}</p>
-          {/* @ts-ignore */}
-          {property.size && <p className="text-xs text-muted-foreground">Size: {property.size} sq. yd.</p>}
           
           <div className="flex items-end gap-2 mt-1">
             {property.price ? (
