@@ -210,9 +210,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                              <Image src="https://storage.googleapis.com/realtyplusmag-news-photo/108330.Vaishnavi-Group.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
+                              <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
                               <div>
-                                  <h3 className="font-semibold">Vaishnavi Group</h3>
+                                  <h3 className="font-semibold">BHIVE Workspace</h3>
                                   <p className="text-xs text-muted-foreground">Developer</p>
                               </div>
                           </div>
@@ -335,11 +335,26 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <Card className="border shadow-none">
                     <CardContent className="p-4">
                         <div className="grid grid-cols-4 gap-4">
-                            {amenitiesToDisplay.map((amenity, index) => {
+                            {amenitiesToDisplay.slice(0, 4).map((amenity, index) => {
                                 const Icon = amenity.icon;
                                 const label = amenity.name.split(' ');
                                 return (
                                 <div key={index} className="flex flex-col items-center text-center gap-1.5">
+                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                                    <Icon className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <span className="text-xs font-medium text-center leading-tight">{label[0]}</span>
+                                    {label[1] && <span className="text-xs font-medium text-center leading-tight">{label[1]}</span>}
+                                </div>
+                                );
+                            })}
+                        </div>
+                         <div className="grid grid-cols-4 gap-4 mt-4">
+                            {amenitiesToDisplay.slice(4).map((amenity, index) => {
+                                const Icon = amenity.icon;
+                                const label = amenity.name.split(' ');
+                                return (
+                                <div key={index + 4} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
                                     <Icon className="h-6 w-6 text-primary" />
                                     </div>
