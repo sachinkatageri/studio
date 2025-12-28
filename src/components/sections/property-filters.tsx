@@ -2,7 +2,7 @@
 
 'use client';
 
-import { ArrowLeft, MapPin, Locate, Train } from 'lucide-react';
+import { ArrowLeft, MapPin, Locate, Train, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '../ui/scroll-area';
@@ -66,7 +66,7 @@ const SingleSelectGrid = ({ options, selection, onSelect, columns = 2 }: { optio
 
 
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
-    const [searchType, setSearchType] = useState<'locality' | 'metro'>('locality');
+    const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
     const [lookingFor, setLookingFor] = useState('Full House');
     const [bhkType, setBhkType] = useState<string[]>([]);
     const [propertyType, setPropertyType] = useState<string[]>([]);
@@ -84,6 +84,19 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     }
      const toggleParking = (p: string) => {
         setParking(prev => prev.includes(p) ? prev.filter(item => item !== p) : [...prev, p]);
+    }
+    
+    const getPlaceholderText = () => {
+        switch (searchType) {
+            case 'locality':
+                return "Search upto 3 localities or landmarks";
+            case 'metro':
+                return "Search for metro stations";
+            case 'travel':
+                return "Enter your office/destination";
+            default:
+                return "Search...";
+        }
     }
 
   return (
@@ -105,7 +118,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     <Button 
                         variant="ghost" 
                         className={cn(
-                            "w-1/2 text-xs px-2 h-auto py-2",
+                            "w-1/3 text-xs px-2 h-auto py-2",
                             searchType === 'locality' ? 'bg-background shadow-sm' : ''
                         )}
                         onClick={() => setSearchType('locality')}
@@ -115,18 +128,28 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     <Button 
                         variant="ghost" 
                         className={cn(
-                            "w-1/2 text-xs px-2 h-auto py-2",
+                            "w-1/3 text-xs px-2 h-auto py-2",
                             searchType === 'metro' ? 'bg-background shadow-sm' : ''
                         )}
                         onClick={() => setSearchType('metro')}
                     >
                         <Train className="mr-2 h-4 w-4"/> Along Metro
                     </Button>
+                     <Button 
+                        variant="ghost" 
+                        className={cn(
+                            "w-1/3 text-xs px-2 h-auto py-2",
+                            searchType === 'travel' ? 'bg-background shadow-sm' : ''
+                        )}
+                        onClick={() => setSearchType('travel')}
+                    >
+                        <Clock className="mr-2 h-4 w-4"/> Travel time
+                    </Button>
                 </div>
                 <div className="relative mt-3">
                     <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input 
-                        placeholder={searchType === 'locality' ? "Search upto 3 localities or landmarks" : "Search for metro stations"}
+                        placeholder={getPlaceholderText()}
                         className="pl-10 pr-10" 
                     />
                      <Button variant="ghost" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-9 w-9">
