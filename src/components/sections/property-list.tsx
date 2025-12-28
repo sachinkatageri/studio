@@ -116,8 +116,8 @@ export default function PropertyList({ onSelectProperty, selectedPropertyId, set
         <div className="flex flex-col h-full bg-card">
             <Tabs defaultValue="all" className="w-full flex flex-col flex-1 min-h-0">
                 <div className="p-4 pb-0 border-b shrink-0">
-                    <h2 className="text-lg font-bold">List View</h2>
-                    <TabsList variant="pill" className="grid w-full grid-cols-3 mt-4">
+                    
+                    <TabsList variant="pill" className="grid w-full grid-cols-3">
                         <TabsTrigger variant="pill" value="all">All</TabsTrigger>
                         <TabsTrigger variant="pill" value="commercial"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
                         <TabsTrigger variant="pill" value="residential"><Home className="mr-2 h-4 w-4" />Residential</TabsTrigger>

@@ -1,10 +1,11 @@
 
+
 "use client";
 
 import Header from '@/components/layout/header';
 import MapView from '@/components/sections/map-view';
 import PropertyList from '@/components/sections/property-list';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
 import Footer from '@/components/layout/footer';
@@ -13,8 +14,13 @@ import { properties } from '@/lib/properties';
 import { useRouter } from 'next/navigation';
 import { Drawer } from "vaul";
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
-import { SlidersHorizontal } from 'lucide-react';
+import { Menu, X, Search, Globe, SlidersHorizontal } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
+
 
 type SidebarView = 'list' | 'filters';
 export type MobileView = 'list' | 'map';
@@ -84,6 +90,39 @@ export default function Home() {
   }
 
   const showHeaderAndFooter = !(isMobile && sidebarView === 'filters' && !isFilterDrawerOpen);
+  
+    const placeholderTexts = ['"Indiranagar"', '"Koramangala"', '"HSR Layout"'];
+  const [placeholder, setPlaceholder] = useState('');
+  const [textIndex, setTextIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const type = () => {
+      const currentText = placeholderTexts[textIndex];
+      if (isDeleting) {
+        if (charIndex > 0) {
+          setPlaceholder(currentText.substring(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          setIsDeleting(false);
+          setTextIndex((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
+        }
+      } else {
+        if (charIndex < currentText.length) {
+          setPlaceholder(currentText.substring(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000); // Pause before deleting
+        }
+      }
+    };
+
+    const typingSpeed = isDeleting ? 100 : 150;
+    const timeout = setTimeout(type, typingSpeed);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, textIndex]);
+
 
   if (isMobile) {
     return (
@@ -158,15 +197,71 @@ export default function Home() {
         {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
         <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
-              "flex-col border-r transition-all duration-300",
+              "flex-col border-r transition-all duration-300 relative",
               "md:flex w-[90%]",
               isSidebarOpen ? "w-full md:w-[30%]" : "w-0",
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? 'flex h-full' : 'hidden'
             )}>
-              {sidebarView === 'list' 
-                  ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
-                  : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
-              }
+              <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
+                <div className="relative flex items-center flex-1 max-w-lg h-12 text-foreground shadow-lg bg-background rounded-lg">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+                    <span className="pl-10 text-sm text-muted-foreground">Search </span>
+                    <Input
+                        type="text"
+                        placeholder={placeholder}
+                        className="w-full pl-2 pr-24 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                   <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button 
+                                    variant={areFiltersApplied ? "default" : "ghost"} 
+                                    size="icon" 
+                                    className="h-10 w-10" 
+                                    onClick={handleFilterClick}
+                                >
+                                    <SlidersHorizontal />
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                <p>Filters</p>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-10 w-10">
+                                <Globe className="h-5 w-5" />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-48 p-2">
+                            <div className="grid gap-1">
+                                <Button variant="ghost" className="justify-start">
+                                    <MapIcon className="mr-2 h-4 w-4" /> Default
+                                </Button>
+                                <Button variant="ghost" className="justify-start">
+                                    <Satellite className="mr-2 h-4 w-4" /> Satellite
+                                </Button>
+                                <Button variant="ghost" className="justify-start">
+                                    <Mountain className="mr-2 h-4 w-4" /> Terrain
+                                </Button>
+                                <Separator />
+                                <Button variant="ghost" className="justify-start">
+                                    <TrafficCone className="mr-2 h-4 w-4" /> Traffic
+                                </Button>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-20 w-full flex-1 min-h-0">
+                {sidebarView === 'list' 
+                    ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
+                    : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
+                }
+              </div>
             </aside>
             <main className={cn(
               "relative transition-all duration-300 flex-1",
