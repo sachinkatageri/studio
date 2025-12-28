@@ -238,12 +238,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
         <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
             <div className="col-span-5 relative group h-full">
-                <div 
-                    className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
-                    onClick={() => onViewDetails(property.id)}
-                >
-                    <Button variant="secondary">View Details</Button>
-                </div>
                 <div className="absolute top-2 left-2 z-10">
                     <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Grand Mercure" width={100} height={30} />
                 </div>
@@ -256,7 +250,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <CarouselContent className="h-full">
                         {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
                             <CarouselItem key={index} className="h-full basis-full">
-                                <div className="relative h-full w-full aspect-[16/9]">
+                                <div className="relative h-full w-full">
                                     <Image
                                         src={image.imageUrl}
                                         alt={property.name}
@@ -387,5 +381,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
