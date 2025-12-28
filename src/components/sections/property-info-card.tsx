@@ -254,10 +254,16 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   return (
     <div className="relative w-full max-w-5xl mx-auto flex items-center">
-      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12 h-[30vh]">
+      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '30vh' }}>
         {/* Left: Image Carousel */}
         <div className="col-span-5 relative group">
-          <div className="absolute top-2 right-2 z-20">
+          <div 
+            className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
+            onClick={() => onViewDetails(property.id)}
+          >
+            <Button variant="secondary">View Details</Button>
+          </div>
+          <div className="absolute top-2 right-2 z-10">
               <div className="relative w-16 h-16">
                 <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
               </div>
@@ -288,22 +294,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </CarouselItem>
               )}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80" />
-            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80" />
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
           </Carousel>
           
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
               <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Undo className="h-4 w-4" /></Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Redo className="h-4 w-4" /></Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><Redo className="h-4 w-4" /></Button>
           </div>
 
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
             {Array.from({ length: count }).map((_, index) => (
               <button
                 key={index}
-                className={cn('h-1.5 rounded-full transition-all', index === current ? 'w-4 bg-white' : 'w-1.5 bg-white/50')}
+                className={cn('h-1 rounded-full transition-all', index === current ? 'w-3 bg-white' : 'w-1 bg-white/50')}
                 onClick={() => api?.scrollTo(index)}
               />
             ))}
@@ -311,111 +317,89 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         </div>
 
         {/* Right: Details */}
-        <div className="col-span-7 p-6 flex flex-col">
-            <div className="flex-1 space-y-4 flex flex-col">
+        <div className="col-span-7 p-4 flex flex-col justify-between">
+            <div className="flex-1 space-y-2 flex flex-col">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
-                            <h2 className="text-xl font-bold">{property.name}</h2>
-                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                            <h2 className="text-lg font-bold leading-tight">{property.name}</h2>
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
                                 <Star className="h-3 w-3 mr-1 fill-current" /> {property.rating}
                             </Badge>
                         </div>
                         <div className="flex items-center gap-2 mt-1">
-                            <MapPin className="h-4 w-4 text-muted-foreground" />
-                            <p className="text-sm text-muted-foreground">{property.location}</p>
-                            <CheckCircle className="h-4 w-4 text-blue-500" />
+                            <MapPin className="h-3 w-3 text-muted-foreground" />
+                            <p className="text-xs text-muted-foreground">{property.location}</p>
+                            <CheckCircle className="h-3 w-3 text-blue-500" />
                         </div>
                     </div>
-                    <div className="text-right">
-                        <p className="text-sm text-muted-foreground line-through">₹8,000</p>
-                        <p className="text-xl font-bold text-primary">₹6,990</p>
+                    <div className="text-right flex-shrink-0">
+                        <p className="text-xs text-muted-foreground line-through">₹8,000</p>
+                        <p className="text-lg font-bold text-primary">₹6,990</p>
                     </div>
                 </div>
 
-                 <div className="flex items-center justify-between gap-4">
-                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs">
+                 <div className="flex items-center justify-between gap-2">
+                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-[10px] px-1 py-0.5">
                         <CheckCircle className="h-3 w-3 mr-1" />
-                        Best price guaranteed - save up to 15% with myHQ
+                        Best price guaranteed
                         <Info className="h-3 w-3 ml-1" />
                     </Badge>
-                    <div className="flex items-center gap-2">
-                        <Button variant="outline" size="icon" className="rounded-full h-9 w-9">
+                    <div className="flex items-center gap-1">
+                        <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
                             <Phone className="h-4 w-4 text-primary" />
                         </Button>
-                         <Button variant="outline" size="icon" className="rounded-full h-9 w-9">
-                           <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
+                           <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
                         </Button>
                     </div>
                 </div>
 
-                <Card className="border shadow-none">
-                    <CardContent className="p-4">
-                        <div className="grid grid-cols-4 gap-4">
-                            {amenitiesToShow.slice(0,4).map((amenity, index) => {
+                <Card className="border-none shadow-none bg-muted/50 -mx-4">
+                    <CardContent className="p-2">
+                        <div className="grid grid-cols-4 gap-2">
+                            {amenitiesToShow.map((amenity, index) => {
                                 const Icon = amenity.icon;
                                 return (
-                                <div key={index} className="flex flex-col items-center text-center gap-1.5">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                    <Icon className="h-6 w-6 text-primary" />
+                                <div key={index} className="flex flex-col items-center text-center gap-1">
+                                    <div className="flex items-center justify-center h-8 w-8 rounded-md bg-background">
+                                        <Icon className="h-4 w-4 text-primary" />
                                     </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name}</span>
-                                </div>
-                                );
-                            })}
-                        </div>
-                         <div className="grid grid-cols-4 gap-4 mt-4">
-                            {amenitiesToShow.slice(4).map((amenity, index) => {
-                                const Icon = amenity.icon;
-                                return (
-                                <div key={index + 4} className="flex flex-col items-center text-center gap-1.5">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                        <Icon className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name.replace(' ', '\n')}</span>
+                                    <span className="text-[10px] font-medium text-center leading-tight">{amenity.name}</span>
                                 </div>
                                 );
                             })}
                         </div>
                     </CardContent>
                 </Card>
-                <div className="mt-auto">
-                    <div className="mb-4">
-                        <h3 className="text-sm font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
-                        <div className="w-10 h-0.5 bg-primary mt-1"></div>
+            </div>
+            
+            <div className="mt-auto pt-2">
+                <div className="mb-1">
+                    <h3 className="text-xs font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                    <div className="w-8 h-0.5 bg-primary mt-0.5"></div>
+                </div>
+                <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-1">
+                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={32} height={32} className="rounded-full object-contain border p-0.5"/>
+                        <h4 className="font-bold text-sm">BHIVE Workspace</h4>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-4 flex-1">
-                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={48} height={48} className="rounded-full object-contain border p-1"/>
-                            <h4 className="font-bold text-lg">BHIVE Workspace</h4>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-                            {brandStats.map(stat => (
-                                <div key={stat.label} className="flex items-center gap-2">
-                                    <stat.icon className="h-4 w-4 text-primary" />
-                                    <div>
-                                        <span className="font-bold">{stat.value}</span>
-                                        <span className="text-muted-foreground ml-1">{stat.label}</span>
-                                    </div>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-xs">
+                        {brandStats.map(stat => (
+                            <div key={stat.label} className="flex items-center gap-1">
+                                <stat.icon className="h-3 w-3 text-primary" />
+                                <div className='flex items-baseline gap-1'>
+                                    <span className="font-bold text-xs">{stat.value}</span>
+                                    <span className="text-muted-foreground text-[10px]">{stat.label}</span>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">
-                        BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Button variant="link" className="p-0 h-auto text-xs">Read more</Button>
-                    </p>
                 </div>
             </div>
         </div>
       </Card>
-        <button 
-            onClick={() => onViewDetails(property.id)} 
-            className="absolute -right-5 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-32 flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors"
-        >
-            <span className="[writing-mode:vertical-rl] rotate-180 font-semibold tracking-wider">View Details</span>
-        </button>
     </div>
   );
 }
 
-    
