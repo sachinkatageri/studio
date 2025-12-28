@@ -113,7 +113,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [amenities, setAmenities] = useState<string[]>(['24 x 7 Security', 'Power Backup', `Visitor's Parking`]);
     const [bhkType, setBhkType] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
-    const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('residential');
+    const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('commercial');
     
     // Commercial states
     const [commercialPropertyType, setCommercialPropertyType] = useState<string[]>([]);
@@ -218,8 +218,8 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
             <FilterSection title="Building Type">
                 <Tabs value={buildingType} onValueChange={(value) => setBuildingType(value as 'residential' | 'commercial')} className="w-full">
                     <TabsList variant="pill" className="grid w-full grid-cols-2">
-                        <TabsTrigger value="residential" variant="pill"><HomeIcon className="mr-2 h-4 w-4" />Residential</TabsTrigger>
                         <TabsTrigger value="commercial" variant="pill"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
+                        <TabsTrigger value="residential" variant="pill"><HomeIcon className="mr-2 h-4 w-4" />Residential</TabsTrigger>
                     </TabsList>
                     <TabsContent value="residential" className="mt-4 space-y-4">
                         <FilterSection title="Property Type">
@@ -301,7 +301,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                                 </Select>
                                 <Select>
                                     <SelectTrigger><SelectValue placeholder="Max" /></SelectTrigger>
-                                    <SelectContent>
+                                     <SelectContent>
                                         <SelectItem value="20000">20,000</SelectItem>
                                         <SelectItem value="50000">50,000</SelectItem>
                                     </SelectContent>
