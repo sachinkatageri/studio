@@ -78,7 +78,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
-  const amenitiesToShow = allAmenities.filter(a => ['GUEST_SERVICES', 'SECURITY'].includes(a.category)).slice(0, 8);
+  const amenitiesToShow = allAmenities.filter(a => ['GUEST_SERVICES', 'SECURITY', 'FOOD_BEVERAGES'].includes(a.category)).slice(0, 8);
 
 
   const brandStats = [
@@ -212,7 +212,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                              <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
+                              <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain border p-0.5" />
                               <div>
                                   <h3 className="font-semibold">BHIVE Workspace</h3>
                                   <p className="text-xs text-muted-foreground">Developer</p>
@@ -242,7 +242,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
         <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
             <div className="col-span-5 relative group h-full">
-                 <div 
+                <div 
                     className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
                     onClick={() => onViewDetails(property.id)}
                 >
@@ -277,8 +277,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </CarouselItem>
                         )}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
-                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
                 </Carousel>
                 
                 <div className="absolute top-10 left-2 z-10 flex flex-col gap-2">
@@ -299,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-4 flex flex-col justify-between">
+            <div className="col-span-7 p-3 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -314,16 +312,16 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <p className="text-sm text-muted-foreground">{property.location}</p>
                         </div>
                     </div>
-                    <div className="text-right flex-shrink-0">
+                    <div className="text-right flex-shrink-0 pl-4">
                         <p className="text-md text-muted-foreground line-through">₹8,000</p>
                         <p className="text-2xl font-bold text-primary">₹6,990</p>
                     </div>
                 </div>
 
-                <div className="flex justify-between items-center my-2">
+                <div className="flex justify-between items-center my-1">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs px-2 py-1 flex items-center gap-1">
                         <CheckCircle className="h-3 w-3" />
-                        Best price guaranteed - save up to 15% with myHQ <Info className="h-3 w-3 ml-1"/>
+                        Best price guaranteed
                     </Badge>
                      <div className="flex items-center gap-2">
                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
@@ -335,10 +333,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                 <div className="grid grid-cols-12 gap-4 flex-grow">
+                 <div className="grid grid-cols-12 gap-4 flex-grow items-center">
                     <div className="col-span-7">
                         <Card className="border-none shadow-none bg-muted/50 h-full">
-                            <CardContent className="p-3">
+                            <CardContent className="p-2">
                                 <div className="grid grid-cols-4 gap-y-2 gap-x-1">
                                     {amenitiesToShow.map((amenity, index) => {
                                         const Icon = amenity.icon;
@@ -381,12 +379,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </p>
                     </div>
                 </div>
-
             </div>
 
             <button
                 onClick={() => onViewDetails(property.id)}
-                className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
+                className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
                 style={{ writingMode: 'vertical-rl' }}
             >
                 <span className="rotate-180 font-semibold tracking-wider text-xs">View Details</span>
@@ -395,3 +392,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
