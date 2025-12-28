@@ -248,7 +248,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 >
                     <Button variant="secondary">View Details</Button>
                 </div>
-                <div className="absolute top-2 right-2 z-10">
+                <div className="absolute top-2 left-2 z-10">
                     <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={64} height={64} />
                 </div>
                  <div className="absolute top-2 left-2 z-10">
@@ -297,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-3 pr-16 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-3 pr-20 flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -358,9 +358,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         </div>
                         <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
-                        <div className="flex items-center gap-2 pt-1">
-                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
-                            <h4 className="font-bold text-xs">BHIVE Workspace</h4>
+                         <div className="flex items-center gap-2 pt-1">
+                            <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
                         </div>
                         <div className="grid grid-cols-2 gap-x-2 text-[10px]">
                             {brandStats.map(stat => (
@@ -391,5 +390,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
