@@ -2,7 +2,7 @@
 
 'use client';
 
-import { ArrowLeft, MapPin, Locate, Train, Clock, Building, Home as HomeIcon } from 'lucide-react';
+import { ArrowLeft, MapPin, Locate, Train, Clock, Building, Home as HomeIcon, Search, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '../ui/scroll-area';
@@ -10,6 +10,8 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Slider } from '../ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Switch } from '../ui/switch';
+import { Label } from '../ui/label';
 
 interface PropertyFiltersProps {
   onBack: () => void;
@@ -39,15 +41,22 @@ const ToggleButton = ({ children, selected, onClick }: { children: React.ReactNo
 
 const MultiSelectGrid = ({ options, selection, onToggle, columns = 4 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
     <div className={cn("grid gap-2", 
+        columns === 5 && "grid-cols-5",
         columns === 4 && "grid-cols-4",
         columns === 3 && "grid-cols-3",
         columns === 2 && "grid-cols-2",
         columns === 1 && "grid-cols-1"
     )}>
         {options.map(option => (
-            <ToggleButton key={option} selected={selection.includes(option)} onClick={() => onToggle(option)}>
+            <Button
+                key={option}
+                variant={selection.includes(option) ? 'default' : 'outline'}
+                className="h-auto text-xs py-1.5 px-2"
+                onClick={() => onToggle(option)}
+            >
+                {selection.includes(option) && <Check className="w-3 h-3 mr-1" />}
                 {option}
-            </ToggleButton>
+            </Button>
         ))}
     </div>
 );
@@ -69,27 +78,28 @@ const SingleSelectGrid = ({ options, selection, onSelect, columns = 2 }: { optio
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
     const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
     const [lookingFor, setLookingFor] = useState('Full House');
+    const [propertyType, setPropertyType] = useState<string[]>(['Apartment']);
+    const [bedrooms, setBedrooms] = useState<string[]>(['2 BHK']);
+    const [saleType, setSaleType] = useState('New');
+    const [constructionStatus, setConstructionStatus] = useState('Ready To Move');
+    const [washrooms, setWashrooms] = useState<string[]>(['+2']);
+    const [floors, setFloors] = useState<string[]>([]);
+    const [facing, setFacing] = useState<string[]>([]);
+    const [reraRegistered, setReraRegistered] = useState(false);
+    const [withOffers, setWithOffers] = useState(false);
+    const [furnishingStatus, setFurnishingStatus] = useState<string[]>(['Furnished']);
+    const [postedBy, setPostedBy] = useState<string[]>(['Owners']);
+    const [possessionStatus, setPossessionStatus] = useState<string[]>(['Ready To Move']);
+    const [amenities, setAmenities] = useState<string[]>(['24 x 7 Security', 'Power Backup', `Visitor's Parking`]);
     const [bhkType, setBhkType] = useState<string[]>([]);
-    const [propertyStatus, setPropertyStatus] = useState('Ready');
-    const [furnishing, setFurnishing] = useState('Full');
-    const [parking, setParking] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
     const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('residential');
     const [commercialBuildingTypes, setCommercialBuildingTypes] = useState<string[]>([]);
-    const [residentialBuildingTypes, setResidentialBuildingTypes] = useState<string[]>([]);
+    
+    const toggleMultiSelect = (setter: React.Dispatch<React.SetStateAction<string[]>>, value: string) => {
+        setter(prev => prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]);
+    }
 
-    const toggleBhkType = (bhk: string) => {
-        setBhkType(prev => prev.includes(bhk) ? prev.filter(item => item !== bhk) : [...prev, bhk]);
-    }
-     const toggleCommercialBuildingType = (type: string) => {
-        setCommercialBuildingTypes(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
-    }
-    const toggleResidentialBuildingType = (type: string) => {
-        setResidentialBuildingTypes(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
-    }
-     const toggleParking = (p: string) => {
-        setParking(prev => prev.includes(p) ? prev.filter(item => item !== p) : [...prev, p]);
-    }
     
     const getPlaceholderText = () => {
         switch (searchType) {
@@ -163,11 +173,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                 </div>
             </FilterSection>
 
-            <FilterSection title="Sale Type">
-                <SingleSelectGrid options={["Buy Resale Properties", "New Builder Projects"]} selection="Buy Resale Properties" onSelect={() => {}} />
-            </FilterSection>
-
-             <FilterSection title="Looking For">
+            <FilterSection title="Looking For">
                 <div className="grid grid-cols-2 gap-2">
                     <ToggleButton selected={lookingFor === 'Full House'} onClick={() => setLookingFor('Full House')}>
                         Full House
@@ -184,76 +190,58 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                         <TabsTrigger value="residential" variant="pill"><HomeIcon className="mr-2 h-4 w-4" />Residential</TabsTrigger>
                         <TabsTrigger value="commercial" variant="pill"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
                     </TabsList>
-                    <TabsContent value="residential" className="mt-4">
-                        <MultiSelectGrid 
-                            options={["Apartment", "Gated Community Villa", "Independent House", "Standalone Building"]}
-                            selection={residentialBuildingTypes}
-                            onToggle={toggleResidentialBuildingType}
-                            columns={1}
-                        />
+                    <TabsContent value="residential" className="mt-4 space-y-4">
+                        <FilterSection title="Property Type">
+                            <MultiSelectGrid options={["Plot", "Villa", "Apartment", "Independent House", "Builder Floor", "Penthouse"]} selection={propertyType} onToggle={(v) => toggleMultiSelect(setPropertyType, v)} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Bedrooms">
+                             <MultiSelectGrid options={["1 BHK", "1 RK", "1.5 BHK", "2 BHK", "2.5 BHK", "3 BHK", "3.5 BHK", "4 BHK", "5 BHK", "6 BHK", "6+ BHK", "Studio"]} selection={bedrooms} onToggle={(v) => toggleMultiSelect(setBedrooms, v)} columns={3}/>
+                        </FilterSection>
+                        <FilterSection title="Sale Type">
+                            <MultiSelectGrid options={["New", "Resale"]} selection={[saleType]} onToggle={setSaleType} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Construction Status">
+                            <MultiSelectGrid options={["Ready To Move", "Under Construction"]} selection={[constructionStatus]} onToggle={setConstructionStatus} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Number of washrooms">
+                            <MultiSelectGrid options={["+1", "+2", "+3", "+4", "+5"]} selection={washrooms} onToggle={(v) => toggleMultiSelect(setWashrooms, v)} columns={5}/>
+                        </FilterSection>
+                        <FilterSection title="Floor">
+                             <MultiSelectGrid options={["Basement", "Ground", "1-4", "5-8", "9-12", "13-16", "16+"]} selection={floors} onToggle={(v) => toggleMultiSelect(setFloors, v)} columns={4}/>
+                        </FilterSection>
+                        <FilterSection title="Facing">
+                            <MultiSelectGrid options={["East", "North", "North-East", "North-West", "South", "South-East", "South-West", "West"]} selection={facing} onToggle={(v) => toggleMultiSelect(setFacing, v)} columns={2}/>
+                        </FilterSection>
+                        <div className="flex items-center justify-between py-4">
+                            <Label htmlFor="rera-registered" className="font-semibold">RERA Registered Properties</Label>
+                            <Switch id="rera-registered" checked={reraRegistered} onCheckedChange={setReraRegistered} />
+                        </div>
+                        <div className="flex items-center justify-between py-4">
+                            <Label htmlFor="with-offers" className="font-semibold">Properties with Offers</Label>
+                            <Switch id="with-offers" checked={withOffers} onCheckedChange={setWithOffers} />
+                        </div>
+                         <FilterSection title="Furnishing Status">
+                            <MultiSelectGrid options={["Furnished", "Semi-Furnished", "Unfurnished", "Gated Communities"]} selection={furnishingStatus} onToggle={(v) => toggleMultiSelect(setFurnishingStatus, v)} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Posted by">
+                             <MultiSelectGrid options={["Owners", "Partner Agents"]} selection={postedBy} onToggle={(v) => toggleMultiSelect(setPostedBy, v)} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Possession Status">
+                            <MultiSelectGrid options={["Ready To Move", "Under Construction"]} selection={possessionStatus} onToggle={(v) => toggleMultiSelect(setPossessionStatus, v)} columns={2}/>
+                        </FilterSection>
+                        <FilterSection title="Amenities">
+                             <MultiSelectGrid options={["24 x 7 Security", "Attached Market", "Power Backup", "Swimming Pool", "Visitor's Parking", "Clubhouse", "Central AC", "Kids Play Area", "Intercom", "Vaastu Compliant", "Air Conditioned", "Lift"]} selection={amenities} onToggle={(v) => toggleMultiSelect(setAmenities, v)} columns={2}/>
+                        </FilterSection>
                     </TabsContent>
                     <TabsContent value="commercial" className="mt-4">
                         <MultiSelectGrid 
                             options={["Independent House", "Business Park", "Mall", "Standalone building", "Independent shop"]}
                             selection={commercialBuildingTypes}
-                            onToggle={toggleCommercialBuildingType}
+                            onToggle={(v) => toggleMultiSelect(setCommercialBuildingTypes, v)}
                             columns={1}
                         />
                     </TabsContent>
                 </Tabs>
-            </FilterSection>
-            
-            <FilterSection title="BHK Type">
-                <MultiSelectGrid 
-                    options={["1 RK", "1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK"]}
-                    selection={bhkType}
-                    onToggle={toggleBhkType}
-                    columns={3}
-                />
-            </FilterSection>
-            
-             <FilterSection title="Price Range">
-                <div className="px-2">
-                    <Slider 
-                      value={priceRange} 
-                      onValueChange={(value) => setPriceRange(value as [number, number])}
-                      max={10} 
-                      step={1} 
-                    />
-                    <div className="flex justify-between text-sm text-muted-foreground mt-2">
-                        <span>₹{priceRange[0]} Cr</span>
-                        <span>₹{priceRange[1]}{priceRange[1] === 10 ? ' Cr+' : ' Cr'}</span>
-                    </div>
-                </div>
-            </FilterSection>
-            
-             <FilterSection title="Property Status">
-                <div className="grid grid-cols-2 gap-2">
-                    <ToggleButton selected={propertyStatus === 'Under Construction'} onClick={() => setPropertyStatus('Under Construction')}>
-                        Under Construction
-                    </ToggleButton>
-                    <ToggleButton selected={propertyStatus === 'Ready'} onClick={() => setPropertyStatus('Ready')}>
-                        Ready
-                    </ToggleButton>
-                </div>
-            </FilterSection>
-
-            <FilterSection title="Furnishing">
-                <MultiSelectGrid 
-                    options={["Full", "Semi", "None"]}
-                    selection={furnishing === 'Full' ? ['Full'] : furnishing === 'Semi' ? ['Semi'] : ['None']}
-                    onToggle={(option) => setFurnishing(option as 'Full' | 'Semi' | 'None')}
-                    columns={3}
-                />
-            </FilterSection>
-            
-            <FilterSection title="Parking">
-                <MultiSelectGrid 
-                    options={["1", "2", "3+"]}
-                    selection={parking}
-                    onToggle={toggleParking}
-                    columns={4}
-                />
             </FilterSection>
 
         </div>
