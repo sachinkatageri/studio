@@ -299,7 +299,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
 
             <div className="col-span-7 p-3 flex flex-col justify-between">
-                 <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
                             <h2 className="text-md font-bold leading-tight">{property.name}</h2>
@@ -373,7 +373,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                 </div>
                             ))}
                         </div>
-                         <p className="text-[10px] text-muted-foreground leading-snug pt-1">
+                        <p className="text-[10px] text-muted-foreground leading-snug pt-1">
                             BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
                         </p>
                     </div>
@@ -391,5 +391,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
