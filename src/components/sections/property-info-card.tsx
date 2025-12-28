@@ -369,7 +369,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                     </div>
                 </div>
-
             </div>
             <div className="flex items-center justify-center -mr-6">
                  <button onClick={() => onViewDetails(property.id)} className="bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-l-lg hover:bg-primary/90 transition-colors">
@@ -381,3 +380,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
