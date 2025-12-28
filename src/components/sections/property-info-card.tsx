@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2 } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -26,7 +26,7 @@ interface PropertyInfoCardProps {
   onPrev: () => void;
 }
 const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
-const BellRing = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /><path d="M4 2C2.8 3.7 2 5.7 2 8" /><path d="M22 8c0-2.3-.8-4.3-2-6" /></svg>;
+
 
 const amenityIcons: { [key: string]: React.ElementType } = {
     'Guest Check-in': User,
@@ -84,7 +84,23 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
-  const amenitiesToShow = allAmenities.filter(a => a.category === 'GUEST_SERVICES' || a.category === 'SECURITY').slice(0, 4);
+  const amenitiesToShow = [
+    { name: 'Guest', icon: User },
+    { name: 'Delivery', icon: BellRing },
+    { name: 'Package', icon: Package },
+    { name: 'Fire', icon: Siren },
+    { name: 'Guest Check-in', icon: User },
+    { name: 'Delivery Acceptance', icon: BellRing },
+    { name: 'Package Notification', icon: Package },
+    { name: 'Fire Safety', icon: Siren },
+  ]
+
+  const brandStats = [
+    { value: "2+", label: "Cities", icon: Building2},
+    { value: "1000+", label: "Clients", icon: Users},
+    { value: "27+", label: "Coworking Spaces", icon: Briefcase},
+    { value: "8000+", label: "Seats", icon: Armchair}
+  ];
 
   if (isMobile) {
       return (
@@ -171,7 +187,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4">
                       <div className="grid grid-cols-4 gap-4">
-                          {amenitiesToShow.map(amenity => {
+                          {amenitiesToShow.slice(0, 4).map(amenity => {
                               const Icon = amenity.icon;
                               return (
                                 <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
@@ -235,33 +251,21 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         </div>
       );
   }
-  
-  const amenitiesToDisplay = [
-    { name: 'Guest Check-in', icon: User },
-    { name: 'Delivery Acceptance', icon: BellRing },
-    { name: 'Package Notification', icon: Package },
-    { name: 'Fire Safety', icon: Siren },
-    { name: 'Guest', icon: User },
-    { name: 'Delivery', icon: BellRing },
-    { name: 'Package', icon: Package },
-    { name: 'Fire', icon: Siren },
-  ];
-
-  const brandStats = [
-    { value: "2+", label: "Cities", icon: Building2},
-    { value: "1000+", label: "Clients", icon: Users},
-    { value: "27+", label: "Coworking Spaces", icon: Briefcase},
-    { value: "8000+", label: "Seats", icon: Armchair}
-  ];
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto">
+    <div className="relative w-full max-w-5xl mx-auto flex items-center">
       <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
         {/* Left: Image Carousel */}
         <div className="col-span-5 relative group">
-          <div className="absolute top-2 left-2 z-10">
-            <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={48} height={48} />
+          <div className="absolute top-2 right-2 z-20">
+              <div className="relative w-16 h-16">
+                <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
+              </div>
           </div>
+          <div className="absolute top-4 left-4 z-10">
+            <Image src="https://i.ibb.co/yqgwwG0/image.png" alt="Grand Mercure" width={100} height={40} />
+          </div>
+
           <Carousel className="w-full h-full" setApi={setApi}>
             <CarouselContent className="h-full">
               {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
@@ -284,23 +288,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </CarouselItem>
               )}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
-            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80" />
           </Carousel>
-          <div 
-            onClick={() => onViewDetails(property.id)}
-            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"
-          >
-              <div className="text-white text-center">
-                  <p className="font-bold text-lg">View Details</p>
-              </div>
-          </div>
-          <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+          
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
               <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Undo className="h-4 w-4" /></Button>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Redo className="h-4 w-4" /></Button>
           </div>
+
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
             {Array.from({ length: count }).map((_, index) => (
               <button
@@ -337,7 +335,9 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
                  <div className="flex items-center justify-between gap-4">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs">
+                        <CheckCircle className="h-3 w-3 mr-1" />
                         Best price guaranteed - save up to 15% with myHQ
+                        <Info className="h-3 w-3 ml-1" />
                     </Badge>
                     <div className="flex items-center gap-2">
                         <Button variant="outline" size="icon" className="rounded-full h-9 w-9">
@@ -352,31 +352,25 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <Card className="border shadow-none">
                     <CardContent className="p-4">
                         <div className="grid grid-cols-4 gap-4">
-                            {amenitiesToDisplay.slice(0, 4).map((amenity, index) => {
-                                const Icon = amenity.icon;
-                                const label = amenity.name.split(' ');
+                            {amenitiesToShow.slice(0,4).map((amenity, index) => {
                                 return (
                                 <div key={index} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                    <Icon className="h-6 w-6 text-primary" />
+                                    <amenity.icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{label[0]}</span>
-                                    {label[1] && <span className="text-xs font-medium text-center leading-tight">{label[1]}</span>}
+                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name}</span>
                                 </div>
                                 );
                             })}
                         </div>
                          <div className="grid grid-cols-4 gap-4 mt-4">
-                            {amenitiesToDisplay.slice(4).map((amenity, index) => {
-                                const Icon = amenity.icon;
-                                const label = amenity.name.split(' ');
+                            {amenitiesToShow.slice(4).map((amenity, index) => {
                                 return (
                                 <div key={index + 4} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                    <Icon className="h-6 w-6 text-primary" />
+                                        <amenity.icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{label[0]}</span>
-                                    {label[1] && <span className="text-xs font-medium text-center leading-tight">{label[1]}</span>}
+                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name.replace(' ', '\n')}</span>
                                 </div>
                                 );
                             })}
@@ -414,8 +408,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
         </div>
       </Card>
+        <button 
+            onClick={() => onViewDetails(property.id)} 
+            className="absolute -right-5 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-32 flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors"
+        >
+            <span className="writing-mode-vertical-rl rotate-180 font-semibold tracking-wider">View Details</span>
+        </button>
     </div>
   );
 }
-
-    
