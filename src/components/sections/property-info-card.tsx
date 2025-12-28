@@ -352,32 +352,30 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </div>
                         </CardContent>
                     </Card>
-                    <div>
-                         <div className="space-y-1">
-                             <div className="flex items-center gap-2">
-                                <Info className="h-3 w-3 text-muted-foreground" />
-                                <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
-                             </div>
-                            <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
-                            <div className="flex items-center gap-2 pt-1">
-                                <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
-                                <h4 className="font-bold text-xs">BHIVE Workspace</h4>
-                            </div>
-                            <div className="grid grid-cols-2 gap-x-2 text-[10px]">
-                                {brandStats.map(stat => (
-                                    <div key={stat.label} className="flex items-center gap-1">
-                                        <stat.icon className="h-2.5 w-2.5 text-primary" />
-                                        <div className='flex items-baseline gap-0.5'>
-                                            <span className="font-bold text-[10px]">{stat.value}</span>
-                                            <span className="text-muted-foreground text-[8px]">{stat.label}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                             <p className="text-[10px] text-muted-foreground leading-snug pt-1">
-                                BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
-                            </p>
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                            <Building2 className="h-3 w-3 text-muted-foreground" />
+                            <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         </div>
+                        <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
+                        <div className="flex items-center gap-2 pt-1">
+                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
+                            <h4 className="font-bold text-xs">BHIVE Workspace</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-2 text-[10px]">
+                            {brandStats.map(stat => (
+                                <div key={stat.label} className="flex items-center gap-1">
+                                    <stat.icon className="h-2.5 w-2.5 text-primary" />
+                                    <div className='flex items-baseline gap-0.5'>
+                                        <span className="font-bold text-[10px]">{stat.value}</span>
+                                        <span className="text-muted-foreground text-[8px]">{stat.label}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                         <p className="text-[10px] text-muted-foreground leading-snug pt-1">
+                            BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -393,3 +391,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
