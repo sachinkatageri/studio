@@ -211,12 +211,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                   
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                              <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain border p-0.5" />
-                              <div>
-                                  <h3 className="font-semibold">BHIVE Workspace</h3>
-                                  <p className="text-xs text-muted-foreground">Developer</p>
-                              </div>
+                          <div>
+                              <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
                           </div>
                           <div className="flex items-center gap-2">
                               <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
@@ -249,11 +245,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Button variant="secondary">View Details</Button>
                 </div>
                 <div className="absolute top-2 left-2 z-10">
-                    <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={64} height={64} />
-                </div>
-                 <div className="absolute top-2 left-2 z-10">
                     <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Grand Mercure" width={100} height={30} />
                 </div>
+                <div className="absolute top-2 right-2 z-10">
+                    <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={64} height={64} />
+                </div>
+                 
 
                 <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
@@ -297,7 +294,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-4 pr-20 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-4 pr-16 flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
