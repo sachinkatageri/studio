@@ -97,7 +97,6 @@ const CheckboxGroup = ({ options, selection, onToggle, columns = 2 }: { options:
 
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
     const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
-    const [lookingFor, setLookingFor] = useState('Full House');
     const [propertyType, setPropertyType] = useState<string[]>(['Apartment']);
     const [bedrooms, setBedrooms] = useState<string[]>(['2 BHK']);
     const [saleType, setSaleType] = useState('New');
@@ -204,16 +203,6 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                 </div>
             </FilterSection>
 
-            <FilterSection title="Looking For">
-                <div className="grid grid-cols-2 gap-2">
-                    <ToggleButton selected={lookingFor === 'Full House'} onClick={() => setLookingFor('Full House')}>
-                        Full House
-                    </ToggleButton>
-                    <ToggleButton selected={lookingFor === 'Land/Plot'} onClick={() => setLookingFor('Land/Plot')}>
-                        Land/Plot
-                    </ToggleButton>
-                </div>
-            </FilterSection>
             
             <FilterSection title="Building Type">
                 <Tabs value={buildingType} onValueChange={(value) => setBuildingType(value as 'residential' | 'commercial')} className="w-full">
