@@ -17,6 +17,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '../ui/carousel';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
 import { allAmenities, Amenity, AmenityCategory } from '@/lib/amenities';
+import Link from 'next/link';
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -252,15 +253,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
                     </div>
                 </div>
-                <div className="absolute top-4 left-4 z-10">
-                    <Image src="https://i.ibb.co/yqgwwG0/image.png" alt="Grand Mercure" width={100} height={40} />
-                </div>
 
                 <Carousel className="w-full h-full" setApi={setApi}>
                     <CarouselContent className="h-full">
                         {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
-                            <CarouselItem key={index} className="h-full">
-                                <div className="relative h-full w-full">
+                            <CarouselItem key={index} className="h-full basis-full">
+                                <div className="relative h-full w-full aspect-[16/9]">
                                     <Image
                                         src={image.imageUrl}
                                         alt={property.name}
@@ -301,7 +299,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
 
             <div className="col-span-7 p-3 flex flex-col justify-between">
-                <div className="flex justify-between items-start">
+                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
                             <h2 className="text-md font-bold leading-tight">{property.name}</h2>
@@ -335,12 +333,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </Button>
                     </div>
                 </div>
-                
-                 <div className="grid grid-cols-2 gap-4">
+
+                <div className="grid grid-cols-2 gap-4">
                     <Card className="border-none shadow-none bg-muted/50 h-full">
                         <CardContent className="p-2">
                             <div className="grid grid-cols-4 gap-2">
-                                {amenitiesToShow.slice(0, 8).map((amenity, index) => {
+                                {amenitiesToShow.map((amenity, index) => {
                                     const Icon = amenity.icon;
                                     return (
                                     <div key={index} className="flex flex-col items-center text-center gap-1">
@@ -354,9 +352,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </div>
                         </CardContent>
                     </Card>
-                     <div>
+                    <div>
                          <div className="space-y-1">
-                            <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                             <div className="flex items-center gap-2">
+                                <Info className="h-3 w-3 text-muted-foreground" />
+                                <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                             </div>
                             <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
                             <div className="flex items-center gap-2 pt-1">
                                 <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
@@ -373,19 +374,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                     </div>
                                 ))}
                             </div>
+                             <p className="text-[10px] text-muted-foreground leading-snug pt-1">
+                                BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
+                            </p>
                         </div>
                     </div>
-                 </div>
-
+                </div>
             </div>
+
+            <button
+                onClick={() => onViewDetails(property.id)}
+                className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
+                style={{ writingMode: 'vertical-rl' }}
+            >
+                <span className="rotate-180 font-semibold tracking-wider text-xs">View Details</span>
+            </button>
         </Card>
-        <button
-            onClick={() => onViewDetails(property.id)}
-            className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
-            style={{ writingMode: 'vertical-rl' }}
-        >
-            <span className="rotate-180 font-semibold tracking-wider text-sm">View Details</span>
-        </button>
     </div>
   );
 }
