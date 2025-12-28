@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing, KeyRound, Video, User } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -26,7 +26,7 @@ interface PropertyInfoCardProps {
   onPrev: () => void;
 }
 
-const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+const UserIcon = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
 
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, onPrev }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
@@ -239,7 +239,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   return (
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
-        <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '30vh' }}>
+        <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
             <div className="col-span-5 relative group h-full">
                 <div 
                     className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
@@ -340,7 +340,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Card className="border-none shadow-none bg-muted/50 h-full">
                         <CardContent className="p-2">
                             <div className="grid grid-cols-4 gap-2">
-                                {amenitiesToShow.map((amenity, index) => {
+                                {amenitiesToShow.slice(0, 8).map((amenity, index) => {
                                     const Icon = amenity.icon;
                                     return (
                                     <div key={index} className="flex flex-col items-center text-center gap-1">
@@ -389,5 +389,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
