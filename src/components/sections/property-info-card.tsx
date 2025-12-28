@@ -8,7 +8,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing, KeyRound, Video } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing, KeyRound, Video, ArrowRight, ExternalLink } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -275,8 +275,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <div className="absolute top-2 left-2 z-10 flex flex-row gap-2">
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
                     <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><Redo className="h-4 w-4" /></Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><ArrowRight className="h-4 w-4" /></Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={() => window.open(`/property/${propertyId}`, '_blank')}><ExternalLink className="h-4 w-4" /></Button>
                 </div>
 
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
@@ -311,7 +311,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                <div className="flex items-center gap-4 my-1">
+                 <div className="flex items-center gap-4 my-1">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs px-2 py-1 flex items-center gap-1">
                         <CheckCircle className="h-3 w-3" />
                         Best price guaranteed
@@ -357,7 +357,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <div className="grid grid-cols-2 gap-x-2 text-[10px]">
                             {brandStats.map(stat => (
                                 <div key={stat.label} className="flex items-center gap-1">
-                                    <stat.icon className="h-2.5 w-2.5 text-primary" />
+                                    <stat.icon className="h-3 w-3 text-muted-foreground" />
                                     <div className='flex items-baseline gap-0.5'>
                                         <span className="font-bold text-[10px]">{stat.value}</span>
                                         <span className="text-muted-foreground text-[8px] whitespace-nowrap">{stat.label}</span>
