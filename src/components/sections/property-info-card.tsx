@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import * as React from 'react';
@@ -157,7 +158,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                           </button>
                           <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
                           </div>
-                          <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                          <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
                               {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
                           </Badge>
                       </div>
@@ -359,7 +360,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                     <stat.icon className="h-2.5 w-2.5 text-primary" />
                                     <div className='flex items-baseline gap-0.5'>
                                         <span className="font-bold text-[10px]">{stat.value}</span>
-                                        <span className="text-muted-foreground text-[8px]">{stat.label}</span>
+                                        <span className="text-muted-foreground text-[8px] whitespace-nowrap">{stat.label}</span>
                                     </div>
                                 </div>
                             ))}
