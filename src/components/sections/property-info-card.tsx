@@ -25,7 +25,6 @@ interface PropertyInfoCardProps {
   onNext: () => void;
   onPrev: () => void;
 }
-
 const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
 const BellRing = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /><path d="M4 2C2.8 3.7 2 5.7 2 8" /><path d="M22 8c0-2.3-.8-4.3-2-6" /></svg>;
 
@@ -247,7 +246,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   ];
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto" onMouseEnter={onClose}>
+    <div className="relative w-full max-w-5xl mx-auto">
       <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
         {/* Left: Image Carousel */}
         <div className="col-span-5 relative">
