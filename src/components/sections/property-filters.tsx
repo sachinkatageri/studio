@@ -2,7 +2,7 @@
 
 'use client';
 
-import { ArrowLeft, MapPin, Locate, Train, Clock, Building, Home as HomeIcon, Search, Check } from 'lucide-react';
+import { ArrowLeft, MapPin, Locate, Train, Clock, Building, Home as HomeIcon, Search, Check, Power, ParkingCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '../ui/scroll-area';
@@ -12,6 +12,10 @@ import { Slider } from '../ui/slider';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Switch } from '../ui/switch';
 import { Label } from '../ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Checkbox } from '../ui/checkbox';
+import { Badge } from '../ui/badge';
 
 interface PropertyFiltersProps {
   onBack: () => void;
@@ -74,6 +78,22 @@ const SingleSelectGrid = ({ options, selection, onSelect, columns = 2 }: { optio
     </div>
 );
 
+const CheckboxGroup = ({ options, selection, onToggle, columns = 2 }: { options: string[], selection: string[], onToggle: (option: string) => void, columns?: number }) => (
+    <div className={cn("grid gap-3",
+        columns === 2 ? "grid-cols-2" : "grid-cols-1"
+    )}>
+        {options.map(option => (
+            <Label key={option} className="flex items-center gap-2 font-normal">
+                <Checkbox
+                    checked={selection.includes(option)}
+                    onCheckedChange={() => onToggle(option)}
+                />
+                {option}
+            </Label>
+        ))}
+    </div>
+);
+
 
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
     const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
@@ -94,10 +114,18 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [bhkType, setBhkType] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
     const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('residential');
-    const [commercialBuildingTypes, setCommercialBuildingTypes] = useState<string[]>([]);
-    const [commercialPriceRange, setCommercialPriceRange] = useState<[number, number]>([0, 500000]);
-    const [commercialWashrooms, setCommercialWashrooms] = useState<string[]>([]);
+    
+    // Commercial states
+    const [commercialPropertyType, setCommercialPropertyType] = useState<string[]>([]);
     const [commercialFurnishing, setCommercialFurnishing] = useState<string[]>([]);
+    const [commercialBuildingType, setCommercialBuildingType] = useState<string[]>([]);
+    const [commercialAvailability, setCommercialAvailability] = useState('Immediate');
+    const [commercialParking, setCommercialParking] = useState<string[]>([]);
+    const [commercialShowOnly, setCommercialShowOnly] = useState('With Photos');
+    const [removeSeen, setRemoveSeen] = useState(false);
+    const [commercialAmenities, setCommercialAmenities] = useState<string[]>([]);
+    const [commercialFloors, setCommercialFloors] = useState<string[]>([]);
+    const [commercialPropertyAge, setCommercialPropertyAge] = useState<string[]>([]);
     
     const toggleMultiSelect = (setter: React.Dispatch<React.SetStateAction<string[]>>, value: string) => {
         setter(prev => prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]);
@@ -201,10 +229,10 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                              <MultiSelectGrid options={["1 BHK", "1 RK", "1.5 BHK", "2 BHK", "2.5 BHK", "3 BHK", "3.5 BHK", "4 BHK", "5 BHK", "6 BHK", "6+ BHK", "Studio"]} selection={bedrooms} onToggle={(v) => toggleMultiSelect(setBedrooms, v)} columns={3}/>
                         </FilterSection>
                         <FilterSection title="Sale Type">
-                            <MultiSelectGrid options={["New", "Resale"]} selection={[saleType]} onToggle={setSaleType} columns={2}/>
+                            <SingleSelectGrid options={["New", "Resale"]} selection={saleType} onSelect={setSaleType} columns={2}/>
                         </FilterSection>
                         <FilterSection title="Construction Status">
-                            <MultiSelectGrid options={["Ready To Move", "Under Construction"]} selection={[constructionStatus]} onToggle={setConstructionStatus} columns={2}/>
+                            <SingleSelectGrid options={["Ready To Move", "Under Construction"]} selection={constructionStatus} onSelect={setConstructionStatus} columns={2}/>
                         </FilterSection>
                         <FilterSection title="Number of washrooms">
                             <MultiSelectGrid options={["+1", "+2", "+3", "+4", "+5"]} selection={washrooms} onToggle={(v) => toggleMultiSelect(setWashrooms, v)} columns={5}/>
@@ -238,31 +266,104 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     </TabsContent>
                     <TabsContent value="commercial" className="mt-4 space-y-4">
                         <FilterSection title="Property Type">
-                            <MultiSelectGrid
-                                options={["Office Space", "Retail Shop", "Warehouse", "Industrial Shed", "Plot/Land"]}
-                                selection={commercialBuildingTypes}
-                                onToggle={(v) => toggleMultiSelect(setCommercialBuildingTypes, v)}
-                                columns={2}
+                            <CheckboxGroup
+                                options={["Office Space", "Co-Working", "Shop", "Showroom", "Godown/Warehouse", "Industrial Shed", "Industrial Building", "Other business", "Restaurant/Cafe"]}
+                                selection={commercialPropertyType}
+                                onToggle={(v) => toggleMultiSelect(setCommercialPropertyType, v)}
                             />
                         </FilterSection>
-                        <FilterSection title="Price Range (per month)">
-                            <Slider
-                                defaultValue={[commercialPriceRange[0], commercialPriceRange[1]]}
-                                min={0}
-                                max={500000}
-                                step={10000}
-                                onValueChange={(value) => setCommercialPriceRange(value as [number, number])}
-                            />
-                            <div className="flex justify-between text-xs mt-2">
-                                <span>₹{commercialPriceRange[0].toLocaleString()}</span>
-                                <span>₹{commercialPriceRange[1].toLocaleString()}{commercialPriceRange[1] === 500000 ? '+' : ''}</span>
+                         <FilterSection title="Budget (lumsum)">
+                            <div className="grid grid-cols-2 gap-2">
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Min" /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="100000">1 Lakh</SelectItem>
+                                        <SelectItem value="500000">5 Lakhs</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Max" /></SelectTrigger>
+                                     <SelectContent>
+                                        <SelectItem value="1000000">10 Lakhs</SelectItem>
+                                        <SelectItem value="5000000">50 Lakhs</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                         </FilterSection>
-                        <FilterSection title="Number of washrooms">
-                            <MultiSelectGrid options={["0", "1", "2", "3", "4+"]} selection={commercialWashrooms} onToggle={(v) => toggleMultiSelect(setCommercialWashrooms, v)} columns={5}/>
+                        <FilterSection title="Budget (per seat)">
+                            <div className="grid grid-cols-2 gap-2">
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Min" /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="5000">5,000</SelectItem>
+                                        <SelectItem value="10000">10,000</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Max" /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="20000">20,000</SelectItem>
+                                        <SelectItem value="50000">50,000</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
                         </FilterSection>
-                         <FilterSection title="Furnishing">
-                            <MultiSelectGrid options={["Unfurnished", "Semi-Furnished", "Furnished"]} selection={commercialFurnishing} onToggle={(v) => toggleMultiSelect(setCommercialFurnishing, v)} columns={3}/>
+                        <FilterSection title="Size">
+                             <div className="grid grid-cols-2 gap-2">
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Min" /></SelectTrigger>
+                                     <SelectContent>
+                                        <SelectItem value="100">100 sqft</SelectItem>
+                                        <SelectItem value="500">500 sqft</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <Select>
+                                    <SelectTrigger><SelectValue placeholder="Max" /></SelectTrigger>
+                                     <SelectContent>
+                                        <SelectItem value="1000">1000 sqft</SelectItem>
+                                        <SelectItem value="5000">5000 sqft</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </FilterSection>
+                        <FilterSection title="Furnishing">
+                            <CheckboxGroup options={["Full", "Semi", "None"]} selection={commercialFurnishing} onToggle={(v) => toggleMultiSelect(setCommercialFurnishing, v)} />
+                        </FilterSection>
+                         <FilterSection title="Building Type">
+                            <CheckboxGroup options={["Independent House", "Business Park", "Mall", "Standalone building", "Independent shop"]} selection={commercialBuildingType} onToggle={(v) => toggleMultiSelect(setCommercialBuildingType, v)} />
+                        </FilterSection>
+                        <FilterSection title="Availability">
+                            <RadioGroup value={commercialAvailability} onValueChange={setCommercialAvailability} className="grid grid-cols-2 gap-3">
+                                {["Immediate", "Within 15 Days", "Within 30 Days", "After 30 Days"].map(option => (
+                                    <div key={option} className="flex items-center space-x-2">
+                                        <RadioGroupItem value={option} id={`com-avail-${option}`} />
+                                        <Label htmlFor={`com-avail-${option}`}>{option}</Label>
+                                    </div>
+                                ))}
+                            </RadioGroup>
+                        </FilterSection>
+                        <FilterSection title="Parking">
+                             <CheckboxGroup options={["Public", "Reserved"]} selection={commercialParking} onToggle={(v) => toggleMultiSelect(setCommercialParking, v)} />
+                        </FilterSection>
+                        <FilterSection title="Show Only">
+                            <div className="space-y-3">
+                                <ToggleButton selected={commercialShowOnly === 'With Photos'} onClick={() => setCommercialShowOnly('With Photos')}>
+                                    With Photos
+                                </ToggleButton>
+                                <Label className="flex items-center gap-2 font-normal">
+                                    <Checkbox checked={removeSeen} onCheckedChange={(checked) => setRemoveSeen(!!checked)} />
+                                    Remove Seen Properties <Badge variant="destructive" className="text-white">New</Badge>
+                                </Label>
+                            </div>
+                        </FilterSection>
+                        <FilterSection title="Amenities">
+                             <CheckboxGroup options={["Power Backup", "Lift"]} selection={commercialAmenities} onToggle={(v) => toggleMultiSelect(setCommercialAmenities, v)} />
+                        </FilterSection>
+                        <FilterSection title="Floors">
+                             <MultiSelectGrid options={["Ground", "1 to 3", "4 to 6", "7 to 9", "10 & above", "Custom"]} selection={commercialFloors} onToggle={(v) => toggleMultiSelect(setCommercialFloors, v)} columns={3}/>
+                        </FilterSection>
+                        <FilterSection title="Property Age">
+                             <CheckboxGroup options={["Less than a Year", "1 to 5 year", "5 to 10 year", "More than 10 year"]} selection={commercialPropertyAge} onToggle={(v) => toggleMultiSelect(setCommercialPropertyAge, v)} />
                         </FilterSection>
                     </TabsContent>
                 </Tabs>
