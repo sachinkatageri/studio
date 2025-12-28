@@ -95,6 +95,9 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
     const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('residential');
     const [commercialBuildingTypes, setCommercialBuildingTypes] = useState<string[]>([]);
+    const [commercialPriceRange, setCommercialPriceRange] = useState<[number, number]>([0, 500000]);
+    const [commercialWashrooms, setCommercialWashrooms] = useState<string[]>([]);
+    const [commercialFurnishing, setCommercialFurnishing] = useState<string[]>([]);
     
     const toggleMultiSelect = (setter: React.Dispatch<React.SetStateAction<string[]>>, value: string) => {
         setter(prev => prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]);
@@ -233,13 +236,34 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                              <MultiSelectGrid options={["24 x 7 Security", "Attached Market", "Power Backup", "Swimming Pool", "Visitor's Parking", "Clubhouse", "Central AC", "Kids Play Area", "Intercom", "Vaastu Compliant", "Air Conditioned", "Lift"]} selection={amenities} onToggle={(v) => toggleMultiSelect(setAmenities, v)} columns={2}/>
                         </FilterSection>
                     </TabsContent>
-                    <TabsContent value="commercial" className="mt-4">
-                        <MultiSelectGrid 
-                            options={["Independent House", "Business Park", "Mall", "Standalone building", "Independent shop"]}
-                            selection={commercialBuildingTypes}
-                            onToggle={(v) => toggleMultiSelect(setCommercialBuildingTypes, v)}
-                            columns={1}
-                        />
+                    <TabsContent value="commercial" className="mt-4 space-y-4">
+                        <FilterSection title="Property Type">
+                            <MultiSelectGrid
+                                options={["Office Space", "Retail Shop", "Warehouse", "Industrial Shed", "Plot/Land"]}
+                                selection={commercialBuildingTypes}
+                                onToggle={(v) => toggleMultiSelect(setCommercialBuildingTypes, v)}
+                                columns={2}
+                            />
+                        </FilterSection>
+                        <FilterSection title="Price Range (per month)">
+                            <Slider
+                                defaultValue={[commercialPriceRange[0], commercialPriceRange[1]]}
+                                min={0}
+                                max={500000}
+                                step={10000}
+                                onValueChange={(value) => setCommercialPriceRange(value as [number, number])}
+                            />
+                            <div className="flex justify-between text-xs mt-2">
+                                <span>₹{commercialPriceRange[0].toLocaleString()}</span>
+                                <span>₹{commercialPriceRange[1].toLocaleString()}{commercialPriceRange[1] === 500000 ? '+' : ''}</span>
+                            </div>
+                        </FilterSection>
+                        <FilterSection title="Number of washrooms">
+                            <MultiSelectGrid options={["0", "1", "2", "3", "4+"]} selection={commercialWashrooms} onToggle={(v) => toggleMultiSelect(setCommercialWashrooms, v)} columns={5}/>
+                        </FilterSection>
+                         <FilterSection title="Furnishing">
+                            <MultiSelectGrid options={["Unfurnished", "Semi-Furnished", "Furnished"]} selection={commercialFurnishing} onToggle={(v) => toggleMultiSelect(setCommercialFurnishing, v)} columns={3}/>
+                        </FilterSection>
                     </TabsContent>
                 </Tabs>
             </FilterSection>
