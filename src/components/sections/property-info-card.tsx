@@ -78,7 +78,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
-  const amenitiesToShow = allAmenities.filter(a => ['GUEST_SERVICES', 'SECURITY', 'FOOD_BEVERAGES'].includes(a.category)).slice(0, 8);
+  const amenitiesToShow = allAmenities.filter(a => ['GUEST_SERVICES', 'SECURITY'].includes(a.category)).slice(0, 8);
 
 
   const brandStats = [
@@ -242,16 +242,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
         <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
             <div className="col-span-5 relative group h-full">
-                <div 
+                 <div 
                     className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
                     onClick={() => onViewDetails(property.id)}
                 >
                     <Button variant="secondary">View Details</Button>
                 </div>
                 <div className="absolute top-2 right-2 z-10">
-                    <div className="relative w-16 h-16">
-                        <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
-                    </div>
+                    <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={64} height={64} />
+                </div>
+                 <div className="absolute top-2 left-2 z-10">
+                    <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Grand Mercure" width={100} height={30} />
                 </div>
 
                 <Carousel className="w-full h-full" setApi={setApi}>
@@ -276,11 +277,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </CarouselItem>
                         )}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
-                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-30 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-30 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
                 </Carousel>
                 
-                <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+                <div className="absolute top-10 left-2 z-10 flex flex-col gap-2">
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
                     <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
@@ -298,33 +299,33 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-3 flex flex-col justify-between">
+            <div className="col-span-7 p-4 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
-                            <h2 className="text-md font-bold leading-tight">{property.name}</h2>
-                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
+                            <h2 className="text-xl font-bold leading-tight">{property.name}</h2>
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
                                 <Star className="h-3 w-3 mr-1 fill-current" /> {property.rating}
                             </Badge>
-                             <CheckCircle className="h-4 w-4 text-blue-500" />
+                             <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
                         </div>
                         <div className="flex items-center gap-2 mt-1">
-                            <MapPin className="h-3 w-3 text-muted-foreground" />
-                            <p className="text-xs text-muted-foreground">{property.location}</p>
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
+                            <p className="text-sm text-muted-foreground">{property.location}</p>
                         </div>
                     </div>
                     <div className="text-right flex-shrink-0">
-                        <p className="text-xs text-muted-foreground line-through">₹8,000</p>
-                        <p className="text-md font-bold text-primary">₹6,990</p>
+                        <p className="text-md text-muted-foreground line-through">₹8,000</p>
+                        <p className="text-2xl font-bold text-primary">₹6,990</p>
                     </div>
                 </div>
 
-                <div className="flex justify-between items-center">
-                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-[10px] px-1 py-0.5">
-                        <CheckCircle className="h-3 w-3 mr-1" />
-                        Best price guaranteed
+                <div className="flex justify-between items-center my-2">
+                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs px-2 py-1 flex items-center gap-1">
+                        <CheckCircle className="h-3 w-3" />
+                        Best price guaranteed - save up to 15% with myHQ <Info className="h-3 w-3 ml-1"/>
                     </Badge>
-                     <div className="flex items-center gap-1">
+                     <div className="flex items-center gap-2">
                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
                             <Phone className="h-4 w-4 text-primary" />
                         </Button>
@@ -334,25 +335,27 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <Card className="border-none shadow-none bg-muted/50 h-full">
-                        <CardContent className="p-2">
-                            <div className="grid grid-cols-4 gap-2">
-                                {amenitiesToShow.map((amenity, index) => {
-                                    const Icon = amenity.icon;
-                                    return (
-                                    <div key={index} className="flex flex-col items-center text-center gap-1">
-                                        <div className="flex items-center justify-center h-6 w-6 rounded-md bg-background">
-                                            <Icon className="h-3.5 w-3.5 text-primary" />
+                 <div className="grid grid-cols-12 gap-4 flex-grow">
+                    <div className="col-span-7">
+                        <Card className="border-none shadow-none bg-muted/50 h-full">
+                            <CardContent className="p-3">
+                                <div className="grid grid-cols-4 gap-y-2 gap-x-1">
+                                    {amenitiesToShow.map((amenity, index) => {
+                                        const Icon = amenity.icon;
+                                        return (
+                                        <div key={index} className="flex flex-col items-center text-center gap-1">
+                                            <div className="flex items-center justify-center h-8 w-8 rounded-md bg-background">
+                                                <Icon className="h-5 w-5 text-primary" />
+                                            </div>
+                                            <span className="text-[10px] font-medium text-center leading-tight">{amenity.name}</span>
                                         </div>
-                                        <span className="text-[9px] font-medium text-center leading-tight">{amenity.name}</span>
-                                    </div>
-                                    );
-                                })}
-                            </div>
-                        </CardContent>
-                    </Card>
-                    <div className="space-y-1">
+                                        );
+                                    })}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                    <div className="col-span-5 space-y-1">
                         <div className="flex items-center gap-2">
                             <Building2 className="h-3 w-3 text-muted-foreground" />
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
@@ -378,6 +381,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </p>
                     </div>
                 </div>
+
             </div>
 
             <button
