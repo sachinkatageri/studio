@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing, KeyRound, Video, User } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2, Info, BellRing, KeyRound, Video } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -297,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-3 pr-20 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-4 pr-20 flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -318,22 +318,22 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                <div className="flex justify-between items-center my-1">
+                <div className="flex items-center gap-4 my-1">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs px-2 py-1 flex items-center gap-1">
                         <CheckCircle className="h-3 w-3" />
                         Best price guaranteed
                     </Badge>
-                     <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
                             <Phone className="h-4 w-4 text-primary" />
                         </Button>
-                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
+                        <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
                         </Button>
                     </div>
                 </div>
 
-                 <div className="grid grid-cols-12 gap-4 flex-grow items-center">
+                <div className="grid grid-cols-12 gap-4 flex-grow items-center">
                     <div className="col-span-7">
                         <Card className="border-none shadow-none bg-muted/50 h-full">
                             <CardContent className="p-2">
@@ -355,6 +355,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="col-span-5 space-y-1">
                         <div className="flex items-center gap-2">
+                            <Info className="h-3 w-3 text-muted-foreground" />
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         </div>
                         <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
@@ -390,3 +391,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
