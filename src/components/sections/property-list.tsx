@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 import { properties } from '@/lib/properties';
 import type { MobileView } from '@/app/page';
 import { Button } from '../ui/button';
-import { ArrowUpDown, Building, Check, ChevronDown, Home, X } from 'lucide-react';
+import { ArrowUpDown, Building, Check, ChevronDown, Heart, Home, MessageCircle, X } from 'lucide-react';
 import { useState } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 
@@ -29,7 +29,7 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
     <Card 
       key={property.id} 
       className={cn(
-        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer rounded-lg",
+        "overflow-hidden group hover:shadow-lg transition-shadow duration-300 cursor-pointer rounded-lg hover:bg-yellow-50 dark:hover:bg-yellow-900/20",
         isSelected ? "ring-2 ring-primary border-primary" : "border"
       )}
       onClick={() => onSelect(property.id)}
@@ -47,9 +47,19 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
           )}
         </div>
         <div className="flex flex-col gap-1 flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-sm leading-tight truncate">{property.name}</h3>
-                <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
+            <div className="flex justify-between items-start">
+                <div className="flex items-center gap-2">
+                    <h3 className="font-semibold text-sm leading-tight truncate">{property.name}</h3>
+                    <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={16} height={16} />
+                </div>
+                 <div className="flex items-center gap-0.5">
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-rose-500 hover:bg-rose-100 dark:hover:bg-rose-900/50">
+                        <Heart className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-green-500 hover:bg-green-100 dark:hover:bg-green-900/50">
+                        <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
+                    </Button>
+                </div>
             </div>
           <p className="text-xs text-muted-foreground truncate">{property.location}</p>
           
