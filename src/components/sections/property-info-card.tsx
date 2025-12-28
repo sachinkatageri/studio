@@ -92,7 +92,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
           className="w-full h-full flex flex-col justify-end p-[5%]"
         >
           <div
-             onClick={(e) => e.stopPropagation()}
              className="relative"
           >
             <Button onClick={onPrev} size="icon" className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
@@ -298,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
         {/* Right: Details */}
         <div className="col-span-7 p-6 flex">
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 space-y-4 flex flex-col">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -353,19 +352,21 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </CardContent>
                 </Card>
 
-                <div>
-                    <h3 className="text-sm font-semibold mb-2">ABOUT THE BRAND</h3>
-                    <div className="h-px bg-primary w-8 mb-2"></div>
-                    <div className="flex items-start gap-4">
-                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={100} height={40} className="object-contain" />
-                        <div className="text-sm text-muted-foreground">
-                            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                <p className="flex items-center gap-1"><MapPin className="h-3 w-3" /> 2+ Cities</p>
-                                <p className="flex items-center gap-1"><Building className="h-3 w-3" /> 27+ Coworking Spaces</p>
-                                <p className="flex items-center gap-1"><User className="h-3 w-3" /> 1000+ Clients</p>
-                                <p className="flex items-center gap-1"><Armchair className="h-3 w-3" /> 8000+ Seats</p>
+                <div className="flex-grow flex flex-col justify-end">
+                    <div>
+                        <h3 className="text-sm font-semibold mb-2">ABOUT THE BRAND</h3>
+                        <div className="h-px bg-primary w-8 mb-2"></div>
+                        <div className="flex items-start gap-4">
+                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={100} height={40} className="object-contain" />
+                            <div className="text-sm text-muted-foreground">
+                                <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                                    <p className="flex items-center gap-1"><MapPin className="h-3 w-3" /> 2+ Cities</p>
+                                    <p className="flex items-center gap-1"><Building className="h-3 w-3" /> 27+ Coworking Spaces</p>
+                                    <p className="flex items-center gap-1"><User className="h-3 w-3" /> 1000+ Clients</p>
+                                    <p className="flex items-center gap-1"><Armchair className="h-3 w-3" /> 8000+ Seats</p>
+                                </div>
+                                <p className="mt-2 text-xs">BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <button className="text-primary font-semibold">Read more</button></p>
                             </div>
-                            <p className="mt-2 text-xs">BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <button className="text-primary font-semibold">Read more</button></p>
                         </div>
                     </div>
                 </div>
@@ -380,5 +381,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
