@@ -90,7 +90,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
       return (
         <div 
           className="w-full h-full flex flex-col justify-end p-[5%]"
-          onMouseEnter={onClose}
         >
           <div
              onClick={(e) => e.stopPropagation()}
@@ -243,10 +242,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     { name: 'Delivery Acceptance', icon: BellRing },
     { name: 'Package Notification', icon: Package },
     { name: 'Fire Safety', icon: Siren },
-    { name: 'Guest Check-in', icon: User },
-    { name: 'Delivery Acceptance', icon: BellRing },
-    { name: 'Package Notification', icon: Package },
-    { name: 'Fire Safety', icon: Siren },
+    { name: 'Guest', icon: User },
+    { name: 'Delivery', icon: BellRing },
+    { name: 'Package', icon: Package },
+    { name: 'Fire', icon: Siren },
   ];
 
   return (
@@ -339,12 +338,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         <div className="grid grid-cols-4 gap-4">
                             {amenitiesToDisplay.map((amenity, index) => {
                                 const Icon = amenity.icon;
+                                const label = amenity.name.split(' ');
                                 return (
                                 <div key={index} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
                                     <Icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name}</span>
+                                    <span className="text-xs font-medium text-center leading-tight">{label[0]}</span>
+                                    {label[1] && <span className="text-xs font-medium text-center leading-tight">{label[1]}</span>}
                                 </div>
                                 );
                             })}
@@ -380,5 +381,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
