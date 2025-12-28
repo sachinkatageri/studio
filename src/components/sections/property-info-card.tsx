@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren, Users, Briefcase, LandPlot, Building2 } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -247,11 +247,18 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     { name: 'Fire', icon: Siren },
   ];
 
+  const brandStats = [
+    { value: "2+", label: "Cities", icon: Building2},
+    { value: "1000+", label: "Clients", icon: Users},
+    { value: "27+", label: "Coworking Spaces", icon: Briefcase},
+    { value: "8000+", label: "Seats", icon: Armchair}
+  ];
+
   return (
     <div className="relative w-full max-w-5xl mx-auto">
       <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
         {/* Left: Image Carousel */}
-        <div className="col-span-5 relative">
+        <div className="col-span-5 relative group">
           <div className="absolute top-2 left-2 z-10">
             <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={48} height={48} />
           </div>
@@ -277,7 +284,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </CarouselItem>
               )}
             </CarouselContent>
+            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
           </Carousel>
+          <div 
+            onClick={() => onViewDetails(property.id)}
+            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center cursor-pointer"
+          >
+              <div className="text-white text-center">
+                  <p className="font-bold text-lg">View Details</p>
+              </div>
+          </div>
           <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
               <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
@@ -296,7 +313,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         </div>
 
         {/* Right: Details */}
-        <div className="col-span-7 p-6 flex">
+        <div className="col-span-7 p-6 flex flex-col">
             <div className="flex-1 space-y-4 flex flex-col">
                 <div className="flex justify-between items-start">
                     <div>
@@ -366,14 +383,39 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                     </CardContent>
                 </Card>
-            </div>
-            <div className="flex items-center justify-center -mr-6">
-                 <button onClick={() => onViewDetails(property.id)} className="bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-l-lg hover:bg-primary/90 transition-colors">
-                    <span className="[writing-mode:vertical-rl] rotate-180 font-semibold tracking-wider">View Details</span>
-                </button>
+
+                <div>
+                    <div className="mb-4">
+                        <h3 className="text-sm font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                        <div className="w-10 h-0.5 bg-primary mt-1"></div>
+                    </div>
+
+                    <div className="flex items-center gap-4 mb-4">
+                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={48} height={48} className="rounded-full object-contain border p-1"/>
+                        <h4 className="font-bold text-lg">BHIVE Workspace</h4>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-4">
+                        {brandStats.map(stat => (
+                            <div key={stat.label} className="flex items-center gap-2">
+                                <stat.icon className="h-4 w-4 text-primary" />
+                                <div>
+                                    <span className="font-bold">{stat.value}</span>
+                                    <span className="text-muted-foreground ml-1">{stat.label}</span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    
+                    <p className="text-xs text-muted-foreground">
+                        BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Button variant="link" className="p-0 h-auto text-xs">Read more</Button>
+                    </p>
+                </div>
             </div>
         </div>
       </Card>
     </div>
   );
 }
+
+    
