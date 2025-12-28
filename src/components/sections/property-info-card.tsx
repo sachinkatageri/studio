@@ -297,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-3 flex flex-col justify-between">
+            <div className="col-span-7 p-3 pr-6 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -392,5 +392,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
