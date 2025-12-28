@@ -272,7 +272,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </Carousel>
                 </div>
                 
-                <div className="absolute top-10 left-2 z-10 flex flex-col gap-2">
+                <div className="absolute top-2 left-2 z-10 flex flex-row gap-2">
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
                     <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
