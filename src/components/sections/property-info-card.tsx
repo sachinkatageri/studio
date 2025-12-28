@@ -90,7 +90,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
       return (
         <div 
           className="w-full h-full flex flex-col justify-end p-[5%]"
-          onClick={onClose}
+          onMouseEnter={onClose}
         >
           <div
              onClick={(e) => e.stopPropagation()}
@@ -239,10 +239,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   }
   
   const amenitiesToDisplay = [
-    { name: 'Guest', icon: User },
-    { name: 'Delivery', icon: BellRing },
-    { name: 'Package', icon: Package },
-    { name: 'Fire', icon: Siren },
+    { name: 'Guest Check-in', icon: User },
+    { name: 'Delivery Acceptance', icon: BellRing },
+    { name: 'Package Notification', icon: Package },
+    { name: 'Fire Safety', icon: Siren },
+    { name: 'Guest Check-in', icon: User },
+    { name: 'Delivery Acceptance', icon: BellRing },
+    { name: 'Package Notification', icon: Package },
+    { name: 'Fire Safety', icon: Siren },
   ];
 
   return (
@@ -316,7 +320,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                 <div className="flex items-center gap-4">
+                 <div className="flex items-center justify-between gap-4">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs">
                         Best price guaranteed - save up to 15% with myHQ
                     </Badge>
@@ -333,27 +337,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 <Card className="border shadow-none">
                     <CardContent className="p-4">
                         <div className="grid grid-cols-4 gap-4">
-                            {amenitiesToDisplay.map(amenity => {
+                            {amenitiesToDisplay.map((amenity, index) => {
                                 const Icon = amenity.icon;
                                 return (
-                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                                <div key={index} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
                                     <Icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    <span className="text-xs font-medium">{amenity.name}</span>
-                                </div>
-                                );
-                            })}
-                        </div>
-                         <div className="grid grid-cols-4 gap-4 mt-4">
-                            {amenitiesToDisplay.map(amenity => {
-                                const Icon = amenity.icon;
-                                return (
-                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
-                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                    <Icon className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name} <br/> {amenity.name === 'Guest' ? 'Check-in' : amenity.name === 'Delivery' ? 'Acceptance' : amenity.name === 'Package' ? 'Notification' : 'Safety'}</span>
+                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name}</span>
                                 </div>
                                 );
                             })}
@@ -389,3 +380,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
