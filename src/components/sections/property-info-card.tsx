@@ -7,7 +7,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { properties, propertyImageGallery } from '@/lib/properties';
 import { Button } from '../ui/button';
-import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building } from 'lucide-react';
+import { X, MapPin, Phone, Share2, Navigation, Heart, AlertTriangle, Star, CheckCircle, Bed, Bath, Square, Armchair, ChevronLeft, ChevronRight, Building, Undo, Redo, Package, Siren } from 'lucide-react';
 import { Badge } from '../ui/badge';
 import { useState } from 'react';
 import { VerificationProcessDialog } from '../layout/verification-process-dialog';
@@ -16,7 +16,7 @@ import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '../ui/carousel';
 import { ScrollArea, ScrollBar } from '../ui/scroll-area';
-import { allAmenities } from '@/lib/amenities';
+import { allAmenities, Amenity, AmenityCategory } from '@/lib/amenities';
 
 interface PropertyInfoCardProps {
   propertyId: string;
@@ -25,6 +25,16 @@ interface PropertyInfoCardProps {
   onNext: () => void;
   onPrev: () => void;
 }
+
+const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
+const BellRing = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /><path d="M4 2C2.8 3.7 2 5.7 2 8" /><path d="M22 8c0-2.3-.8-4.3-2-6" /></svg>;
+
+const amenityIcons: { [key: string]: React.ElementType } = {
+    'Guest Check-in': User,
+    'Delivery Acceptance': BellRing,
+    'Package Notification': Package,
+    'Fire Safety': Siren,
+};
 
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, onPrev }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
@@ -75,7 +85,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
-  const propertyAmenities = allAmenities.slice(0, 4);
+  const amenitiesToShow = allAmenities.filter(a => a.category === 'GUEST_SERVICES' || a.category === 'SECURITY').slice(0, 4);
 
   if (isMobile) {
       return (
@@ -136,7 +146,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
               <ScrollArea className="flex-1">
                   <div className="p-4 space-y-3">
-                  {/* Primary Details Card */}
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 space-y-3">
                       <div className="flex justify-between items-start">
@@ -162,23 +171,24 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       </CardContent>
                   </Card>
                   
-                  {/* Amenities Card */}
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4">
                       <div className="grid grid-cols-4 gap-4">
-                          {propertyAmenities.map(amenity => (
-                          <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
-                              <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                              <amenity.icon className="h-6 w-6 text-primary" />
-                              </div>
-                              <span className="text-xs font-medium">{amenity.name}</span>
-                          </div>
-                          ))}
+                          {amenitiesToShow.map(amenity => {
+                              const Icon = amenity.icon;
+                              return (
+                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                                    <Icon className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <span className="text-xs font-medium">{amenity.name}</span>
+                                </div>
+                              );
+                          })}
                       </div>
                       </CardContent>
                   </Card>
 
-                  {/* Key Stats Card */}
                   <div className="grid grid-cols-3 gap-3">
                       <Card className="bg-background text-center border">
                           <CardContent className="p-3">
@@ -200,7 +210,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                       </Card>
                   </div>
                   
-                  {/* Developer/Agent Card */}
                   <Card className="bg-card shadow-lg border-none">
                       <CardContent className="p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
@@ -230,155 +239,154 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
       );
   }
   
-  // Desktop card
+  const amenitiesToDisplay = [
+    { name: 'Guest', icon: User },
+    { name: 'Delivery', icon: BellRing },
+    { name: 'Package', icon: Package },
+    { name: 'Fire', icon: Siren },
+  ];
+
   return (
-    <div className="relative w-full max-w-5xl mx-auto">
-       <Button onClick={onPrev} size="icon" className="absolute left-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-        <ChevronLeft className="h-5 w-5" />
-      </Button>
-      <Button onClick={onNext} size="icon" className="absolute right-[-40px] top-1/2 -translate-y-1/2 z-10 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
-        <ChevronRight className="h-5 w-5" />
-      </Button>
-      <Card className="w-full shadow-xl bg-card border rounded-lg overflow-hidden">
-        <div className="grid grid-cols-3 h-72">
-            <div className="relative col-span-1">
-                 <Carousel className="w-full h-full" setApi={setApi}>
-                    <CarouselContent className="h-full">
-                        {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
-                            <CarouselItem key={index} className="h-full">
-                                <div className="relative h-full w-full">
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={property.name}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={image.imageHint}
-                                    />
-                                </div>
-                            </CarouselItem>
-                        )) : (
-                           <CarouselItem className="h-full">
-                                <div className="relative h-full w-full bg-muted flex items-center justify-center">
-                                    <p className="text-muted-foreground">No Images</p>
-                                </div>
-                            </CarouselItem>
-                        )}
-                    </CarouselContent>
-                </Carousel>
-                <div className="absolute top-2 right-2 flex gap-2 z-20">
-                    <ShareOptions>
-                        <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                            <Share2 className="h-4 w-4" />
-                        </Button>
-                    </ShareOptions>
-                    <Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/30 hover:bg-black/50 text-white hover:text-white">
-                        <Heart className="h-4 w-4" />
-                    </Button>
-                </div>
-                <div className="absolute bottom-4 left-0 right-0 z-20 flex items-center justify-center gap-2">
-                    {Array.from({ length: count }).map((_, index) => (
-                    <button
-                        key={index}
-                        className={cn( 'h-2 w-2 rounded-full', index === current ? 'bg-white' : 'bg-white/50')}
-                        onClick={() => api?.scrollTo(index)}
+    <div className="relative w-full max-w-5xl mx-auto" onMouseEnter={onClose}>
+      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
+        {/* Left: Image Carousel */}
+        <div className="col-span-5 relative">
+          <div className="absolute top-2 left-2 z-10">
+            <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={48} height={48} />
+          </div>
+          <Carousel className="w-full h-full" setApi={setApi}>
+            <CarouselContent className="h-full">
+              {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
+                <CarouselItem key={index} className="h-full">
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={image.imageUrl}
+                      alt={property.name}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={image.imageHint}
                     />
-                    ))}
+                  </div>
+                </CarouselItem>
+              )) : (
+                <CarouselItem className="h-full">
+                  <div className="relative h-full w-full bg-muted flex items-center justify-center">
+                    <p className="text-muted-foreground">No Images</p>
+                  </div>
+                </CarouselItem>
+              )}
+            </CarouselContent>
+          </Carousel>
+          <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
+              <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Undo className="h-4 w-4" /></Button>
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Redo className="h-4 w-4" /></Button>
+          </div>
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+            {Array.from({ length: count }).map((_, index) => (
+              <button
+                key={index}
+                className={cn('h-1.5 rounded-full transition-all', index === current ? 'w-4 bg-white' : 'w-1.5 bg-white/50')}
+                onClick={() => api?.scrollTo(index)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Details */}
+        <div className="col-span-7 p-6 flex">
+            <div className="flex-1 space-y-4">
+                <div className="flex justify-between items-start">
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <h2 className="text-xl font-bold">{property.name}</h2>
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                                <Star className="h-3 w-3 mr-1 fill-current" /> {property.rating}
+                            </Badge>
+                        </div>
+                        <div className="flex items-center gap-2 mt-1">
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
+                            <p className="text-sm text-muted-foreground">{property.location}</p>
+                            <CheckCircle className="h-4 w-4 text-blue-500" />
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <p className="text-sm text-muted-foreground line-through">₹8,000</p>
+                        <p className="text-xl font-bold text-primary">₹6,990</p>
+                    </div>
                 </div>
-            </div>
-            <div className="col-span-1 p-4 flex flex-col justify-between relative border-l border-r">
-                <ScrollArea className='h-full -m-4'>
-                    <div className='p-4 space-y-3'>
-                        <div>
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <button onClick={() => onViewDetails(property.id)} className="text-left">
-                                        <h2 className="text-xl font-bold flex items-center gap-2 hover:underline">
-                                            {property.name}
-                                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
-                                        </h2>
-                                    </button>
-                                    <p className="text-sm text-muted-foreground flex items-center gap-1"><MapPin className="h-3 w-3" /> {property.location}</p>
-                                </div>
-                                <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                                    {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                </Badge>
-                            </div>
-                        </div>
-                        <div className="grid grid-cols-3 gap-2 text-center text-sm text-muted-foreground pt-2">
-                            <div className="flex items-center gap-2"><Building className="h-4 w-4 text-primary" /> <span>{property.type}</span></div>
-                            {/* @ts-ignore */}
-                            {property.size && <div className="flex items-center gap-2"><Square className="h-4 w-4 text-primary" /> <span>{property.size} sq.ft</span></div>}
-                            <div className="flex items-center gap-2"><Armchair className="h-4 w-4 text-primary" /> <span>Furnished</span></div>
-                        </div>
-                        
-                        <Card className="bg-card shadow-none border">
-                            <CardContent className="p-3">
-                                <div className="grid grid-cols-4 gap-2">
-                                    {propertyAmenities.map(amenity => (
-                                    <div key={amenity.name} className="flex flex-col items-center text-center gap-1">
-                                        <div className="flex items-center justify-center h-10 w-10 rounded-lg bg-muted">
-                                        <amenity.icon className="h-5 w-5 text-primary" />
-                                        </div>
-                                        <span className="text-xs font-medium leading-tight">{amenity.name}</span>
+
+                 <div className="flex items-center gap-4">
+                    <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-xs">
+                        Best price guaranteed - save up to 15% with myHQ
+                    </Badge>
+                    <div className="flex items-center gap-2">
+                        <Button variant="outline" size="icon" className="rounded-full h-9 w-9">
+                            <Phone className="h-4 w-4 text-primary" />
+                        </Button>
+                         <Button variant="outline" size="icon" className="rounded-full h-9 w-9">
+                           <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                        </Button>
+                    </div>
+                </div>
+
+                <Card className="border shadow-none">
+                    <CardContent className="p-4">
+                        <div className="grid grid-cols-4 gap-4">
+                            {amenitiesToDisplay.map(amenity => {
+                                const Icon = amenity.icon;
+                                return (
+                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                                    <Icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    ))}
+                                    <span className="text-xs font-medium">{amenity.name}</span>
                                 </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </ScrollArea>
-            </div>
-            <div className="col-span-1 p-4 flex flex-col justify-between">
-                <div className="space-y-3">
-                    <div className="grid grid-cols-3 gap-3">
-                        <Card className="bg-background text-center border">
-                            <CardContent className="p-3">
-                                <p className="text-xs text-muted-foreground">Price</p>
-                                <p className="font-bold text-sm text-primary">₹{property.pricePerSqFt} <span className="font-normal text-xs">/sq.ft</span></p>
-                            </CardContent>
-                        </Card>
-                        <Card className="bg-background text-center border">
-                            <CardContent className="p-3">
-                                <p className="text-xs text-muted-foreground">Status</p>
-                                <p className="font-bold text-sm text-foreground">{property.status}</p>
-                            </CardContent>
-                        </Card>
-                        <Card className="bg-background text-center border">
-                            <CardContent className="p-3">
-                                <p className="text-xs text-muted-foreground">Reviews</p>
-                                <p className="font-bold text-sm text-foreground">{property.reviews}</p>
-                            </CardContent>
-                        </Card>
-                    </div>
-                    <div className="flex items-center justify-between pt-2">
-                         <div className="flex items-center gap-3">
-                            <Image src="https://picsum.photos/seed/dev-logo/40/40" alt="Developer Logo" width={40} height={40} className="rounded-full object-contain" />
-                            <div>
-                                <h3 className="font-semibold">Vaishnavi Group</h3>
-                                <p className="text-xs text-muted-foreground">Developer</p>
+                                );
+                            })}
+                        </div>
+                         <div className="grid grid-cols-4 gap-4 mt-4">
+                            {amenitiesToDisplay.map(amenity => {
+                                const Icon = amenity.icon;
+                                return (
+                                <div key={amenity.name} className="flex flex-col items-center text-center gap-1.5">
+                                    <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
+                                    <Icon className="h-6 w-6 text-primary" />
+                                    </div>
+                                    <span className="text-xs font-medium text-center leading-tight">{amenity.name} <br/> {amenity.name === 'Guest' ? 'Check-in' : amenity.name === 'Delivery' ? 'Acceptance' : amenity.name === 'Package' ? 'Notification' : 'Safety'}</span>
+                                </div>
+                                );
+                            })}
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <div>
+                    <h3 className="text-sm font-semibold mb-2">ABOUT THE BRAND</h3>
+                    <div className="h-px bg-primary w-8 mb-2"></div>
+                    <div className="flex items-start gap-4">
+                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={100} height={40} className="object-contain" />
+                        <div className="text-sm text-muted-foreground">
+                            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
+                                <p className="flex items-center gap-1"><MapPin className="h-3 w-3" /> 2+ Cities</p>
+                                <p className="flex items-center gap-1"><Building className="h-3 w-3" /> 27+ Coworking Spaces</p>
+                                <p className="flex items-center gap-1"><User className="h-3 w-3" /> 1000+ Clients</p>
+                                <p className="flex items-center gap-1"><Armchair className="h-3 w-3" /> 8000+ Seats</p>
                             </div>
-                        </div>
-                         <div className="flex items-center gap-2">
-                            <Button size="icon" className="rounded-full bg-primary/10 hover:bg-primary/20 h-10 w-10"><Phone className="h-5 w-5 text-primary" /></Button>
-                            <Button size="icon" className="rounded-full bg-green-500/10 hover:bg-green-500/20 h-10 w-10">
-                                <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={24} height={24} />
-                            </Button>
+                            <p className="mt-2 text-xs">BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <button className="text-primary font-semibold">Read more</button></p>
                         </div>
                     </div>
                 </div>
-                <div className="mt-2">
-                    <Button
-                        variant="default"
-                        className="flex-1 text-base h-11 rounded-lg w-full"
-                        onClick={() => onViewDetails(property.id)}
-                    >
-                        View Details
-                    </Button>
-                </div>
+
+            </div>
+            <div className="flex items-center justify-center -mr-6">
+                 <button onClick={() => onViewDetails(property.id)} className="bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-l-lg hover:bg-primary/90 transition-colors">
+                    <span className="[writing-mode:vertical-rl] rotate-180 font-semibold tracking-wider">View Details</span>
+                </button>
             </div>
         </div>
       </Card>
-       <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
     </div>
   );
 }
