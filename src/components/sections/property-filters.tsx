@@ -2,13 +2,14 @@
 
 'use client';
 
-import { ArrowLeft, MapPin, Locate, Train, Clock } from 'lucide-react';
+import { ArrowLeft, MapPin, Locate, Train, Clock, Building, Home as HomeIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '../ui/scroll-area';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Slider } from '../ui/slider';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 interface PropertyFiltersProps {
   onBack: () => void;
@@ -69,18 +70,22 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
     const [lookingFor, setLookingFor] = useState('Full House');
     const [bhkType, setBhkType] = useState<string[]>([]);
-    const [propertyType, setPropertyType] = useState<string[]>([]);
     const [propertyStatus, setPropertyStatus] = useState('Ready');
     const [furnishing, setFurnishing] = useState('Full');
     const [parking, setParking] = useState<string[]>([]);
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 50]);
-
+    const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
+    const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('residential');
+    const [commercialBuildingTypes, setCommercialBuildingTypes] = useState<string[]>([]);
+    const [residentialBuildingTypes, setResidentialBuildingTypes] = useState<string[]>([]);
 
     const toggleBhkType = (bhk: string) => {
         setBhkType(prev => prev.includes(bhk) ? prev.filter(item => item !== bhk) : [...prev, bhk]);
     }
-     const togglePropertyType = (type: string) => {
-        setPropertyType(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
+     const toggleCommercialBuildingType = (type: string) => {
+        setCommercialBuildingTypes(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
+    }
+    const toggleResidentialBuildingType = (type: string) => {
+        setResidentialBuildingTypes(prev => prev.includes(type) ? prev.filter(item => item !== type) : [...prev, type]);
     }
      const toggleParking = (p: string) => {
         setParking(prev => prev.includes(p) ? prev.filter(item => item !== p) : [...prev, p]);
@@ -173,6 +178,31 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                 </div>
             </FilterSection>
             
+            <FilterSection title="Building Type">
+                <Tabs value={buildingType} onValueChange={(value) => setBuildingType(value as 'residential' | 'commercial')} className="w-full">
+                    <TabsList variant="pill" className="grid w-full grid-cols-2">
+                        <TabsTrigger value="residential" variant="pill"><HomeIcon className="mr-2 h-4 w-4" />Residential</TabsTrigger>
+                        <TabsTrigger value="commercial" variant="pill"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="residential" className="mt-4">
+                        <MultiSelectGrid 
+                            options={["Apartment", "Gated Community Villa", "Independent House", "Standalone Building"]}
+                            selection={residentialBuildingTypes}
+                            onToggle={toggleResidentialBuildingType}
+                            columns={1}
+                        />
+                    </TabsContent>
+                    <TabsContent value="commercial" className="mt-4">
+                        <MultiSelectGrid 
+                            options={["Independent House", "Business Park", "Mall", "Standalone building", "Independent shop"]}
+                            selection={commercialBuildingTypes}
+                            onToggle={toggleCommercialBuildingType}
+                            columns={1}
+                        />
+                    </TabsContent>
+                </Tabs>
+            </FilterSection>
+            
             <FilterSection title="BHK Type">
                 <MultiSelectGrid 
                     options={["1 RK", "1 BHK", "2 BHK", "3 BHK", "4 BHK", "4+ BHK"]}
@@ -181,27 +211,18 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                     columns={3}
                 />
             </FilterSection>
-
-            <FilterSection title="Property Type">
-                 <MultiSelectGrid 
-                    options={["Apartment", "Gated Community Villa", "Independent House", "Standalone Building"]}
-                    selection={propertyType}
-                    onToggle={togglePropertyType}
-                    columns={1}
-                />
-            </FilterSection>
             
              <FilterSection title="Price Range">
                 <div className="px-2">
                     <Slider 
                       value={priceRange} 
                       onValueChange={(value) => setPriceRange(value as [number, number])}
-                      max={50} 
+                      max={10} 
                       step={1} 
                     />
                     <div className="flex justify-between text-sm text-muted-foreground mt-2">
                         <span>₹{priceRange[0]} Cr</span>
-                        <span>₹{priceRange[1]}{priceRange[1] === 50 ? ' Cr+' : ' Cr'}</span>
+                        <span>₹{priceRange[1]}{priceRange[1] === 10 ? ' Cr+' : ' Cr'}</span>
                     </div>
                 </div>
             </FilterSection>
