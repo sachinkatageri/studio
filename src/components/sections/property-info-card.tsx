@@ -25,12 +25,14 @@ interface PropertyInfoCardProps {
   onNext: () => void;
   onPrev: () => void;
 }
+
 const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
 const BellRingIcon = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg>;
 
+
 const amenityIcons: { [key: string]: React.ElementType } = {
     'Guest Check-in': User,
-    'Delivery Acceptance': BellRingIcon,
+    'Delivery Acceptance': BellRing,
     'Package Notification': Package,
     'Fire Safety': Siren,
 };
@@ -62,7 +64,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const isRightSwipe = distance < -minSwipedistance;
 
     if (isLeftSwipe) {
       onNext();
@@ -253,7 +255,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   }
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto flex items-center">
+    <div className="relative w-full max-w-5xl mx-auto flex items-center" >
       <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '30vh' }}>
         {/* Left: Image Carousel */}
         <div className="col-span-5 relative group">
@@ -318,7 +320,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
         {/* Right: Details */}
         <div className="col-span-7 p-3 flex flex-col justify-between">
-            <div className="flex-1 space-y-1 flex flex-col">
+            <div className="space-y-1">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -343,7 +345,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-[10px] px-1 py-0.5">
                         <CheckCircle className="h-3 w-3 mr-1" />
                         Best price guaranteed
-                        <Info className="h-3 w-3 ml-1" />
                     </Badge>
                     <div className="flex items-center gap-1">
                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
@@ -354,54 +355,58 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </Button>
                     </div>
                 </div>
-
-                <Card className="border-none shadow-none bg-muted/50 -mx-3">
-                    <CardContent className="p-2">
-                        <div className="grid grid-cols-4 gap-2">
-                            {amenitiesToShow.map((amenity, index) => {
-                                const Icon = amenity.icon;
-                                return (
-                                <div key={index} className="flex flex-col items-center text-center gap-1">
-                                    <div className="flex items-center justify-center h-8 w-8 rounded-md bg-background">
-                                        <Icon className="h-4 w-4 text-primary" />
-                                    </div>
-                                    <span className="text-[10px] font-medium text-center leading-tight">{amenity.name}</span>
-                                </div>
-                                );
-                            })}
-                        </div>
-                    </CardContent>
-                </Card>
             </div>
             
-            <div className="mt-auto">
-                <div className="mb-1">
-                    <h3 className="text-xs font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
-                    <div className="w-8 h-0.5 bg-primary mt-0.5"></div>
-                </div>
-                <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 flex-1">
-                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={32} height={32} className="rounded-full object-contain border p-0.5"/>
-                        <h4 className="font-bold text-sm">BHIVE Workspace</h4>
-                    </div>
-                    <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-xs">
-                        {brandStats.map(stat => (
-                            <div key={stat.label} className="flex items-center gap-1">
-                                <stat.icon className="h-3 w-3 text-primary" />
-                                <div className='flex items-baseline gap-1'>
-                                    <span className="font-bold text-xs">{stat.value}</span>
-                                    <span className="text-muted-foreground text-[10px]">{stat.label}</span>
-                                </div>
+            <div className="grid grid-cols-2 gap-4 my-2">
+                <div>
+                     <Card className="border-none shadow-none bg-muted/50 h-full">
+                        <CardContent className="p-2">
+                            <div className="grid grid-cols-4 gap-2">
+                                {amenitiesToShow.slice(0, 8).map((amenity, index) => {
+                                    const Icon = amenity.icon;
+                                    return (
+                                    <div key={index} className="flex flex-col items-center text-center gap-1">
+                                        <div className="flex items-center justify-center h-6 w-6 rounded-md bg-background">
+                                            <Icon className="h-3.5 w-3.5 text-primary" />
+                                        </div>
+                                        <span className="text-[9px] font-medium text-center leading-tight">{amenity.name}</span>
+                                    </div>
+                                    );
+                                })}
                             </div>
-                        ))}
+                        </CardContent>
+                    </Card>
+                </div>
+                <div>
+                     <div className="flex flex-col justify-between h-full">
+                        <div>
+                            <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                            <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
+                            <h4 className="font-bold text-xs">BHIVE Workspace</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-[10px]">
+                            {brandStats.map(stat => (
+                                <div key={stat.label} className="flex items-center gap-1">
+                                    <stat.icon className="h-2.5 w-2.5 text-primary" />
+                                    <div className='flex items-baseline gap-0.5'>
+                                        <span className="font-bold text-[10px]">{stat.value}</span>
+                                        <span className="text-muted-foreground text-[8px]">{stat.label}</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
       </Card>
       <button
         onClick={() => onViewDetails(property.id)}
-        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
+        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
         style={{ writingMode: 'vertical-rl' }}
       >
         <span className="rotate-180 font-semibold tracking-wider text-sm">View Details</span>
