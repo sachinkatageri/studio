@@ -27,15 +27,6 @@ interface PropertyInfoCardProps {
 }
 
 const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
-const BellRingIcon = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg>;
-
-
-const amenityIcons: { [key: string]: React.ElementType } = {
-    'Guest Check-in': User,
-    'Delivery Acceptance': BellRing,
-    'Package Notification': Package,
-    'Fire Safety': Siren,
-};
 
 export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, onPrev }: PropertyInfoCardProps) {
   const property = properties.find(p => p.id === propertyId);
@@ -53,18 +44,18 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart(e.target.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEnd(e.target.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipedistance;
+    const isRightSwipe = distance < -minSwipeDistance;
 
     if (isLeftSwipe) {
       onNext();
@@ -86,16 +77,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   if (!property) return null;
 
-  const amenitiesToShow = [
-    { name: 'Guest Check-in', icon: User },
-    { name: 'Delivery Acceptance', icon: BellRing },
-    { name: 'Package Notification', icon: Package },
-    { name: 'Fire Safety', icon: Siren },
-    { name: 'Guest Check-in', icon: User },
-    { name: 'Delivery Acceptance', icon: BellRing },
-    { name: 'Package Notification', icon: Package },
-    { name: 'Fire Safety', icon: Siren },
-  ]
+  const amenitiesToShow = allAmenities.filter(a => ['GUEST_SERVICES', 'SECURITY', 'FOOD_BEVERAGES'].includes(a.category)).slice(0, 8);
+
 
   const brandStats = [
     { value: "2+", label: "Cities", icon: Building2},
@@ -256,71 +239,68 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   return (
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
-      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '30vh' }}>
-        {/* Left: Image Carousel */}
-        <div className="col-span-5 relative group">
-          <div 
-            className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
-            onClick={() => onViewDetails(property.id)}
-          >
-            <Button variant="secondary">View Details</Button>
-          </div>
-          <div className="absolute top-2 right-2 z-10">
-              <div className="relative w-16 h-16">
-                <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
-              </div>
-          </div>
-          <div className="absolute top-4 left-4 z-10">
-            <Image src="https://i.ibb.co/yqgwwG0/image.png" alt="Grand Mercure" width={100} height={40} />
-          </div>
+        <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '30vh' }}>
+            <div className="col-span-5 relative group h-full">
+                <div 
+                    className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer z-20"
+                    onClick={() => onViewDetails(property.id)}
+                >
+                    <Button variant="secondary">View Details</Button>
+                </div>
+                <div className="absolute top-2 right-2 z-10">
+                    <div className="relative w-16 h-16">
+                        <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" layout="fill" objectFit='contain' />
+                    </div>
+                </div>
+                <div className="absolute top-4 left-4 z-10">
+                    <Image src="https://i.ibb.co/yqgwwG0/image.png" alt="Grand Mercure" width={100} height={40} />
+                </div>
 
-          <Carousel className="w-full h-full" setApi={setApi}>
-            <CarouselContent className="h-full">
-              {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
-                <CarouselItem key={index} className="h-full">
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={image.imageUrl}
-                      alt={property.name}
-                      fill
-                      className="object-cover"
-                      data-ai-hint={image.imageHint}
+                <Carousel className="w-full h-full" setApi={setApi}>
+                    <CarouselContent className="h-full">
+                        {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
+                            <CarouselItem key={index} className="h-full">
+                                <div className="relative h-full w-full">
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={property.name}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={image.imageHint}
+                                    />
+                                </div>
+                            </CarouselItem>
+                        )) : (
+                            <CarouselItem className="h-full">
+                                <div className="relative h-full w-full bg-muted flex items-center justify-center">
+                                    <p className="text-muted-foreground">No Images</p>
+                                </div>
+                            </CarouselItem>
+                        )}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
+                </Carousel>
+                
+                <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
+                    <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><Redo className="h-4 w-4" /></Button>
+                </div>
+
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+                    {Array.from({ length: count }).map((_, index) => (
+                    <button
+                        key={index}
+                        className={cn('h-1 rounded-full transition-all', index === current ? 'w-3 bg-white' : 'w-1 bg-white/50')}
+                        onClick={() => api?.scrollTo(index)}
                     />
-                  </div>
-                </CarouselItem>
-              )) : (
-                <CarouselItem className="h-full">
-                  <div className="relative h-full w-full bg-muted flex items-center justify-center">
-                    <p className="text-muted-foreground">No Images</p>
-                  </div>
-                </CarouselItem>
-              )}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
-            <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/50 text-black hover:bg-white/80 h-6 w-6" />
-          </Carousel>
-          
-          <div className="absolute top-2 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
-              <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onPrev}><Undo className="h-4 w-4" /></Button>
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><Redo className="h-4 w-4" /></Button>
-          </div>
+                    ))}
+                </div>
+            </div>
 
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
-            {Array.from({ length: count }).map((_, index) => (
-              <button
-                key={index}
-                className={cn('h-1 rounded-full transition-all', index === current ? 'w-3 bg-white' : 'w-1 bg-white/50')}
-                onClick={() => api?.scrollTo(index)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Details */}
-        <div className="col-span-7 p-3 flex flex-col justify-between">
-            <div className="space-y-1">
+            <div className="col-span-7 p-3 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -328,11 +308,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
                                 <Star className="h-3 w-3 mr-1 fill-current" /> {property.rating}
                             </Badge>
+                             <CheckCircle className="h-4 w-4 text-blue-500" />
                         </div>
                         <div className="flex items-center gap-2 mt-1">
                             <MapPin className="h-3 w-3 text-muted-foreground" />
                             <p className="text-xs text-muted-foreground">{property.location}</p>
-                            <CheckCircle className="h-3 w-3 text-blue-500" />
                         </div>
                     </div>
                     <div className="text-right flex-shrink-0">
@@ -341,12 +321,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                 <div className="flex items-center justify-between gap-2">
+                <div className="flex justify-between items-center">
                     <Badge variant="outline" className="text-green-600 border-green-200 bg-green-50 text-[10px] px-1 py-0.5">
                         <CheckCircle className="h-3 w-3 mr-1" />
                         Best price guaranteed
                     </Badge>
-                    <div className="flex items-center gap-1">
+                     <div className="flex items-center gap-1">
                         <Button variant="outline" size="icon" className="rounded-full h-8 w-8">
                             <Phone className="h-4 w-4 text-primary" />
                         </Button>
@@ -355,14 +335,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </Button>
                     </div>
                 </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4 my-2">
-                <div>
-                     <Card className="border-none shadow-none bg-muted/50 h-full">
+                
+                 <div className="grid grid-cols-2 gap-4">
+                    <Card className="border-none shadow-none bg-muted/50 h-full">
                         <CardContent className="p-2">
                             <div className="grid grid-cols-4 gap-2">
-                                {amenitiesToShow.slice(0, 8).map((amenity, index) => {
+                                {amenitiesToShow.map((amenity, index) => {
                                     const Icon = amenity.icon;
                                     return (
                                     <div key={index} className="flex flex-col items-center text-center gap-1">
@@ -376,41 +354,40 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </div>
                         </CardContent>
                     </Card>
-                </div>
-                <div>
-                     <div className="flex flex-col justify-between h-full">
-                        <div>
+                     <div>
+                         <div className="space-y-1">
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                             <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
-                            <h4 className="font-bold text-xs">BHIVE Workspace</h4>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-[10px]">
-                            {brandStats.map(stat => (
-                                <div key={stat.label} className="flex items-center gap-1">
-                                    <stat.icon className="h-2.5 w-2.5 text-primary" />
-                                    <div className='flex items-baseline gap-0.5'>
-                                        <span className="font-bold text-[10px]">{stat.value}</span>
-                                        <span className="text-muted-foreground text-[8px]">{stat.label}</span>
+                            <div className="flex items-center gap-2 pt-1">
+                                <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={24} height={24} className="rounded-full object-contain border p-0.5"/>
+                                <h4 className="font-bold text-xs">BHIVE Workspace</h4>
+                            </div>
+                            <div className="grid grid-cols-2 gap-x-2 text-[10px]">
+                                {brandStats.map(stat => (
+                                    <div key={stat.label} className="flex items-center gap-1">
+                                        <stat.icon className="h-2.5 w-2.5 text-primary" />
+                                        <div className='flex items-baseline gap-0.5'>
+                                            <span className="font-bold text-[10px]">{stat.value}</span>
+                                            <span className="text-muted-foreground text-[8px]">{stat.label}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                 </div>
 
-        </div>
-      </Card>
-      <button
-        onClick={() => onViewDetails(property.id)}
-        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
-        style={{ writingMode: 'vertical-rl' }}
-      >
-        <span className="rotate-180 font-semibold tracking-wider text-sm">View Details</span>
-      </button>
+            </div>
+        </Card>
+        <button
+            onClick={() => onViewDetails(property.id)}
+            className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
+            style={{ writingMode: 'vertical-rl' }}
+        >
+            <span className="rotate-180 font-semibold tracking-wider text-sm">View Details</span>
+        </button>
     </div>
   );
 }
+
+    
