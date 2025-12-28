@@ -297,7 +297,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-3 pr-8 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-3 pr-16 flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -355,7 +355,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="col-span-5 space-y-1">
                         <div className="flex items-center gap-2">
-                            <Building2 className="h-3 w-3 text-muted-foreground" />
                             <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         </div>
                         <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
