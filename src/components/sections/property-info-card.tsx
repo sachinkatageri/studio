@@ -317,12 +317,12 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         </div>
 
         {/* Right: Details */}
-        <div className="col-span-7 p-4 flex flex-col justify-between">
-            <div className="flex-1 space-y-2 flex flex-col">
+        <div className="col-span-7 p-3 flex flex-col justify-between">
+            <div className="flex-1 space-y-1 flex flex-col">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
-                            <h2 className="text-lg font-bold leading-tight">{property.name}</h2>
+                            <h2 className="text-md font-bold leading-tight">{property.name}</h2>
                             <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200 text-xs">
                                 <Star className="h-3 w-3 mr-1 fill-current" /> {property.rating}
                             </Badge>
@@ -335,7 +335,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                     <div className="text-right flex-shrink-0">
                         <p className="text-xs text-muted-foreground line-through">₹8,000</p>
-                        <p className="text-lg font-bold text-primary">₹6,990</p>
+                        <p className="text-md font-bold text-primary">₹6,990</p>
                     </div>
                 </div>
 
@@ -355,7 +355,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                <Card className="border-none shadow-none bg-muted/50 -mx-4">
+                <Card className="border-none shadow-none bg-muted/50 -mx-3">
                     <CardContent className="p-2">
                         <div className="grid grid-cols-4 gap-2">
                             {amenitiesToShow.map((amenity, index) => {
@@ -374,17 +374,17 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </Card>
             </div>
             
-            <div className="mt-auto pt-2">
+            <div className="mt-auto">
                 <div className="mb-1">
                     <h3 className="text-xs font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                     <div className="w-8 h-0.5 bg-primary mt-0.5"></div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2 flex-1">
                         <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={32} height={32} className="rounded-full object-contain border p-0.5"/>
                         <h4 className="font-bold text-sm">BHIVE Workspace</h4>
                     </div>
-                    <div className="grid grid-cols-2 gap-x-2 gap-y-0.5 text-xs">
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-0 text-xs">
                         {brandStats.map(stat => (
                             <div key={stat.label} className="flex items-center gap-1">
                                 <stat.icon className="h-3 w-3 text-primary" />
@@ -399,7 +399,13 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             </div>
         </div>
       </Card>
+      <button
+        onClick={() => onViewDetails(property.id)}
+        className="absolute -right-3 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-full flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors z-10"
+        style={{ writingMode: 'vertical-rl' }}
+      >
+        <span className="rotate-180 font-semibold tracking-wider text-sm">View Details</span>
+      </button>
     </div>
   );
 }
-
