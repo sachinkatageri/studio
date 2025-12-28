@@ -366,25 +366,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                     </CardContent>
                 </Card>
-
-                <div className="flex-grow flex flex-col justify-end">
-                  <div>
-                    <h3 className="text-sm font-semibold mb-2">ABOUT THE BRAND</h3>
-                    <div className="h-px bg-primary w-8 mb-2"></div>
-                    <div className="flex items-start gap-4">
-                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={100} height={40} className="object-contain" />
-                        <div className="text-sm text-muted-foreground">
-                            <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                                <p className="flex items-center gap-1"><MapPin className="h-3 w-3" /> 2+ Cities</p>
-                                <p className="flex items-center gap-1"><Building className="h-3 w-3" /> 27+ Coworking Spaces</p>
-                                <p className="flex items-center gap-1"><User className="h-3 w-3" /> 1000+ Clients</p>
-                                <p className="flex items-center gap-1"><Armchair className="h-3 w-3" /> 8000+ Seats</p>
-                            </div>
-                            <p className="mt-2 text-xs">BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <button className="text-primary font-semibold">Read more</button></p>
-                        </div>
-                    </div>
-                  </div>
-                </div>
             </div>
             <div className="flex items-center justify-center -mr-6">
                  <button onClick={() => onViewDetails(property.id)} className="bg-primary text-primary-foreground h-full flex items-center justify-center px-3 rounded-l-lg hover:bg-primary/90 transition-colors">
@@ -396,5 +377,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
