@@ -245,30 +245,31 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Image src="https://i.ibb.co/L6vj9V5/image.png" alt="Top Rated" width={64} height={64} />
                 </div>
                  
-
-                <Carousel className="w-full h-full" setApi={setApi}>
-                    <CarouselContent className="h-full">
-                        {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
-                            <CarouselItem key={index} className="h-full basis-full">
-                                <div className="relative h-full w-full">
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={property.name}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={image.imageHint}
-                                    />
-                                </div>
-                            </CarouselItem>
-                        )) : (
-                            <CarouselItem className="h-full">
-                                <div className="relative h-full w-full bg-muted flex items-center justify-center">
-                                    <p className="text-muted-foreground">No Images</p>
-                                </div>
-                            </CarouselItem>
-                        )}
-                    </CarouselContent>
-                </Carousel>
+                <div className="w-full h-full">
+                    <Carousel className="w-full h-full" setApi={setApi}>
+                        <CarouselContent className="h-full">
+                            {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
+                                <CarouselItem key={index} className="h-full basis-full">
+                                    <div className="relative h-full w-full">
+                                        <Image
+                                            src={image.imageUrl}
+                                            alt={property.name}
+                                            fill
+                                            className="object-cover"
+                                            data-ai-hint={image.imageHint}
+                                        />
+                                    </div>
+                                </CarouselItem>
+                            )) : (
+                                <CarouselItem className="h-full">
+                                    <div className="relative h-full w-full bg-muted flex items-center justify-center">
+                                        <p className="text-muted-foreground">No Images</p>
+                                    </div>
+                                </CarouselItem>
+                            )}
+                        </CarouselContent>
+                    </Carousel>
+                </div>
                 
                 <div className="absolute top-10 left-2 z-10 flex flex-col gap-2">
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Heart className="h-4 w-4" /></Button>
@@ -288,7 +289,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-4 pr-16 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-4 pr-8 flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
