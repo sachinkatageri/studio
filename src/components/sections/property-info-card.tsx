@@ -26,11 +26,11 @@ interface PropertyInfoCardProps {
   onPrev: () => void;
 }
 const User = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>;
-
+const BellRingIcon = (props: any) => <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg>;
 
 const amenityIcons: { [key: string]: React.ElementType } = {
     'Guest Check-in': User,
-    'Delivery Acceptance': BellRing,
+    'Delivery Acceptance': BellRingIcon,
     'Package Notification': Package,
     'Fire Safety': Siren,
 };
@@ -85,10 +85,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
   if (!property) return null;
 
   const amenitiesToShow = [
-    { name: 'Guest', icon: User },
-    { name: 'Delivery', icon: BellRing },
-    { name: 'Package', icon: Package },
-    { name: 'Fire', icon: Siren },
+    { name: 'Guest Check-in', icon: User },
+    { name: 'Delivery Acceptance', icon: BellRing },
+    { name: 'Package Notification', icon: Package },
+    { name: 'Fire Safety', icon: Siren },
     { name: 'Guest Check-in', icon: User },
     { name: 'Delivery Acceptance', icon: BellRing },
     { name: 'Package Notification', icon: Package },
@@ -254,7 +254,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   return (
     <div className="relative w-full max-w-5xl mx-auto flex items-center">
-      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
+      <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12 h-[30vh]">
         {/* Left: Image Carousel */}
         <div className="col-span-5 relative group">
           <div className="absolute top-2 right-2 z-20">
@@ -353,10 +353,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <CardContent className="p-4">
                         <div className="grid grid-cols-4 gap-4">
                             {amenitiesToShow.slice(0,4).map((amenity, index) => {
+                                const Icon = amenity.icon;
                                 return (
                                 <div key={index} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                    <amenity.icon className="h-6 w-6 text-primary" />
+                                    <Icon className="h-6 w-6 text-primary" />
                                     </div>
                                     <span className="text-xs font-medium text-center leading-tight">{amenity.name}</span>
                                 </div>
@@ -365,10 +366,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                          <div className="grid grid-cols-4 gap-4 mt-4">
                             {amenitiesToShow.slice(4).map((amenity, index) => {
+                                const Icon = amenity.icon;
                                 return (
                                 <div key={index + 4} className="flex flex-col items-center text-center gap-1.5">
                                     <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-muted">
-                                        <amenity.icon className="h-6 w-6 text-primary" />
+                                        <Icon className="h-6 w-6 text-primary" />
                                     </div>
                                     <span className="text-xs font-medium text-center leading-tight">{amenity.name.replace(' ', '\n')}</span>
                                 </div>
@@ -377,31 +379,29 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </div>
                     </CardContent>
                 </Card>
-
-                <div>
+                <div className="mt-auto">
                     <div className="mb-4">
                         <h3 className="text-sm font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                         <div className="w-10 h-0.5 bg-primary mt-1"></div>
                     </div>
-
-                    <div className="flex items-center gap-4 mb-4">
-                        <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={48} height={48} className="rounded-full object-contain border p-1"/>
-                        <h4 className="font-bold text-lg">BHIVE Workspace</h4>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm mb-4">
-                        {brandStats.map(stat => (
-                            <div key={stat.label} className="flex items-center gap-2">
-                                <stat.icon className="h-4 w-4 text-primary" />
-                                <div>
-                                    <span className="font-bold">{stat.value}</span>
-                                    <span className="text-muted-foreground ml-1">{stat.label}</span>
+                    <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-4 flex-1">
+                            <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="BHIVE Workspace" width={48} height={48} className="rounded-full object-contain border p-1"/>
+                            <h4 className="font-bold text-lg">BHIVE Workspace</h4>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                            {brandStats.map(stat => (
+                                <div key={stat.label} className="flex items-center gap-2">
+                                    <stat.icon className="h-4 w-4 text-primary" />
+                                    <div>
+                                        <span className="font-bold">{stat.value}</span>
+                                        <span className="text-muted-foreground ml-1">{stat.label}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                    
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground mt-2">
                         BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Button variant="link" className="p-0 h-auto text-xs">Read more</Button>
                     </p>
                 </div>
@@ -412,8 +412,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
             onClick={() => onViewDetails(property.id)} 
             className="absolute -right-5 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground h-32 flex items-center justify-center px-2 rounded-r-lg hover:bg-primary/90 transition-colors"
         >
-            <span className="writing-mode-vertical-rl rotate-180 font-semibold tracking-wider">View Details</span>
+            <span className="[writing-mode:vertical-rl] rotate-180 font-semibold tracking-wider">View Details</span>
         </button>
     </div>
   );
 }
+
+    
