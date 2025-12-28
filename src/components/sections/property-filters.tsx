@@ -94,6 +94,38 @@ const CheckboxGroup = ({ options, selection, onToggle, columns = 2 }: { options:
     </div>
 );
 
+const SearchableCheckboxList = ({ title, options, selection, onToggle }: { title: string, options: string[], selection: string[], onToggle: (option: string) => void }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const filteredOptions = options.filter(opt => opt.toLowerCase().includes(searchTerm.toLowerCase()));
+  
+    return (
+      <FilterSection title={title}>
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input 
+            placeholder="Search" 
+            className="pl-9 h-9" 
+            value={searchTerm} 
+            onChange={(e) => setSearchTerm(e.target.value)} 
+          />
+        </div>
+        <ScrollArea className="h-40 mt-3 border rounded-md">
+          <div className="p-2 space-y-1">
+            {filteredOptions.map(option => (
+              <Label key={option} className="flex items-center gap-2 font-normal p-2 rounded-md hover:bg-muted">
+                <Checkbox
+                  checked={selection.includes(option)}
+                  onCheckedChange={() => onToggle(option)}
+                />
+                {option}
+              </Label>
+            ))}
+          </div>
+        </ScrollArea>
+      </FilterSection>
+    )
+  }
+
 
 export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters }: PropertyFiltersProps) {
     const [searchType, setSearchType] = useState<'locality' | 'metro' | 'travel'>('locality');
@@ -112,7 +144,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [amenities, setAmenities] = useState<string[]>(['24 x 7 Security', 'Power Backup', `Visitor's Parking`]);
     const [bhkType, setBhkType] = useState<string[]>([]);
     const [priceRange, setPriceRange] = useState<[number, number]>([0, 10]);
-    const [buildingType, setBuildingType] = useState<'residential' | 'commercial'>('commercial');
+    const [buildingType, setBuildingType] = useState<'commercial' | 'residential'>('commercial');
     
     // Commercial states
     const [commercialPropertyType, setCommercialPropertyType] = useState<string[]>([]);
@@ -125,10 +157,15 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [commercialAmenities, setCommercialAmenities] = useState<string[]>([]);
     const [commercialFloors, setCommercialFloors] = useState<string[]>([]);
     const [commercialPropertyAge, setCommercialPropertyAge] = useState<string[]>([]);
+    const [localities, setLocalities] = useState<string[]>([]);
+    const [societies, setSocieties] = useState<string[]>([]);
     
     const toggleMultiSelect = (setter: React.Dispatch<React.SetStateAction<string[]>>, value: string) => {
         setter(prev => prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]);
     }
+    
+    const localityOptions = ['Mysore Road', 'Sampangi Rama Nagar', 'Hebbal', 'Banashankari', 'Yeshwanthpur', 'Cunningham Road', 'Indiranagar'];
+    const societyOptions = ['Godrej Tiara', 'Sobha Infinia', 'SNN Clermont', 'LnT Raintree Boulevard', 'Brigade Citrine', 'L&T Raintree Boulevard', 'LTG Aishwarya Indraprastha'];
 
     
     const getPlaceholderText = () => {
@@ -205,7 +242,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
 
             
             <FilterSection title="Building Type">
-                <Tabs value={buildingType} onValueChange={(value) => setBuildingType(value as 'residential' | 'commercial')} className="w-full">
+                <Tabs value={buildingType} onValueChange={(value) => setBuildingType(value as 'commercial' | 'residential')} className="w-full">
                     <TabsList variant="pill" className="grid w-full grid-cols-2">
                         <TabsTrigger value="commercial" variant="pill"><Building className="mr-2 h-4 w-4" />Commercial</TabsTrigger>
                         <TabsTrigger value="residential" variant="pill"><HomeIcon className="mr-2 h-4 w-4" />Residential</TabsTrigger>
@@ -214,6 +251,8 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                         <FilterSection title="Property Type">
                             <MultiSelectGrid options={["Plot", "Villa", "Apartment", "Independent House", "Builder Floor", "Penthouse"]} selection={propertyType} onToggle={(v) => toggleMultiSelect(setPropertyType, v)} columns={2}/>
                         </FilterSection>
+                        <SearchableCheckboxList title="Localities" options={localityOptions} selection={localities} onToggle={(v) => toggleMultiSelect(setLocalities, v)} />
+                        <SearchableCheckboxList title="Societies" options={societyOptions} selection={societies} onToggle={(v) => toggleMultiSelect(setSocieties, v)} />
                         <FilterSection title="Bedrooms">
                              <MultiSelectGrid options={["1 BHK", "1 RK", "1.5 BHK", "2 BHK", "2.5 BHK", "3 BHK", "3.5 BHK", "4 BHK", "5 BHK", "6 BHK", "6+ BHK", "Studio"]} selection={bedrooms} onToggle={(v) => toggleMultiSelect(setBedrooms, v)} columns={3}/>
                         </FilterSection>
