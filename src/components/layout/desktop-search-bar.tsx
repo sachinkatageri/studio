@@ -48,7 +48,7 @@ export default function DesktopSearchBar({ areFiltersApplied, onFilterClick }: D
   }, [charIndex, isDeleting, textIndex, placeholderTexts]);
 
   return (
-    <div className="relative flex items-center h-12 text-foreground shadow-lg bg-background rounded-lg" style={{width: "400px"}}>
+    <div className="relative flex items-center h-12 text-foreground shadow-lg bg-background rounded-lg" style={{width: "420px"}}>
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
       <span className="pl-10 text-sm text-muted-foreground">Search </span>
       <Input
