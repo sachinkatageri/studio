@@ -203,7 +203,7 @@ export default function Home() {
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? 'flex h-full' : 'hidden'
             )}>
               <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
-                <div className="relative flex items-center flex-1 h-12 text-foreground shadow-lg bg-background rounded-lg" style={{width: '480px'}}>
+                <div className="relative flex items-center flex-1 h-12 text-foreground shadow-lg bg-background rounded-lg">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
                     <span className="pl-10 text-sm text-muted-foreground">Search </span>
                     <Input
