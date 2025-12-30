@@ -128,6 +128,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                                       </CarouselItem>
                                   )}
                               </CarouselContent>
+                              <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+                              <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
                           </Carousel>
                           <div className="absolute top-3 right-3 flex items-center gap-2">
                               <ShareOptions><Button variant="secondary" size="icon" className="h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60"><Share2 className="h-4 w-4" /></Button></ShareOptions>
@@ -246,13 +248,23 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
                  
                 <div className="relative w-full h-full">
-                    <Image
-                        src={propertyImageGallery[0].imageUrl}
-                        alt={property.name}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={propertyImageGallery[0].imageHint}
-                    />
+                    <Carousel className="w-full h-full" setApi={setApi}>
+                        <CarouselContent>
+                            {propertyImageGallery.map(image => (
+                                <CarouselItem key={image.id}>
+                                    <Image
+                                        src={image.imageUrl}
+                                        alt={property.name}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={image.imageHint}
+                                    />
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+                        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+                    </Carousel>
                 </div>
                 
                 <div className="absolute top-2 left-2 z-10 flex flex-row gap-2">
@@ -260,6 +272,11 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><ArrowRight className="h-4 w-4" /></Button>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={() => window.open(`/property/${propertyId}`, '_blank')}><ExternalLink className="h-4 w-4" /></Button>
+                </div>
+                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                    {Array.from({ length: count }).map((_, i) => (
+                        <button key={i} onClick={() => api?.scrollTo(i)} className={cn('h-1.5 w-1.5 rounded-full transition-all', current === i ? 'w-4 bg-white' : 'bg-white/50')}/>
+                    ))}
                 </div>
             </div>
 
