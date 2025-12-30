@@ -239,10 +239,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
         <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
             <div className="col-span-5 relative group h-full">
                 <div className="absolute top-2 left-2 z-10">
-                    <Image src="https://i.ibb.co/VvZ1gM6/image.png" alt="Grand Mercure" width={100} height={30} />
+                    <Image src="https://i.ibb.co/sJJ7pxJW/1.png" alt="Grand Mercure" width={100} height={30} />
                 </div>
                 <div className="absolute top-2 right-2 z-10">
-                    <Image src="https://i.ibb.co/Myvbrfqj/Top-rated.png" alt="Top Rated" width={64} height={64} />
+                    <Image src="https://i.ibb.co/Myvbrfq/Top-rated.png" alt="Top Rated" width={64} height={64} />
                 </div>
                  
                 <div className="w-full h-full">
@@ -382,5 +382,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
