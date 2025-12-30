@@ -54,7 +54,7 @@ export default function DesktopSearchBar({ areFiltersApplied, onFilterClick }: D
       <Input
         type="text"
         placeholder={placeholder}
-        className="w-full pr-24 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+        className="w-full pr-[200px] h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
       />
       <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
         <TooltipProvider>
