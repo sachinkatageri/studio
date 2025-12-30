@@ -245,30 +245,14 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Image src="https://i.ibb.co/Myvbrfq/Top-rated.png" alt="Top Rated" width={64} height={64} />
                 </div>
                  
-                <div className="w-full h-full">
-                    <Carousel className="w-full h-full" setApi={setApi}>
-                        <CarouselContent className="h-full">
-                            {propertyImageGallery.length > 0 ? propertyImageGallery.slice(0, 5).map((image, index) => (
-                                <CarouselItem key={index} className="h-full basis-full">
-                                    <div className="relative h-full w-full">
-                                        <Image
-                                            src={image.imageUrl}
-                                            alt={property.name}
-                                            fill
-                                            className="object-cover"
-                                            data-ai-hint={image.imageHint}
-                                        />
-                                    </div>
-                                </CarouselItem>
-                            )) : (
-                                <CarouselItem className="h-full">
-                                    <div className="relative h-full w-full bg-muted flex items-center justify-center">
-                                        <p className="text-muted-foreground">No Images</p>
-                                    </div>
-                                </CarouselItem>
-                            )}
-                        </CarouselContent>
-                    </Carousel>
+                <div className="relative w-full h-full">
+                    <Image
+                        src={propertyImageGallery[0].imageUrl}
+                        alt={property.name}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={propertyImageGallery[0].imageHint}
+                    />
                 </div>
                 
                 <div className="absolute top-2 left-2 z-10 flex flex-row gap-2">
@@ -276,16 +260,6 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <ShareOptions><Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50"><Share2 className="h-4 w-4" /></Button></ShareOptions>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={onNext}><ArrowRight className="h-4 w-4" /></Button>
                     <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/30 text-white hover:bg-black/50" onClick={() => window.open(`/property/${propertyId}`, '_blank')}><ExternalLink className="h-4 w-4" /></Button>
-                </div>
-
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
-                    {Array.from({ length: count }).map((_, index) => (
-                    <button
-                        key={index}
-                        className={cn('h-1 rounded-full transition-all', index === current ? 'w-3 bg-white' : 'w-1 bg-white/50')}
-                        onClick={() => api?.scrollTo(index)}
-                    />
-                    ))}
                 </div>
             </div>
 
