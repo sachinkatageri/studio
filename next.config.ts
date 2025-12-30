@@ -88,13 +88,15 @@ const nextConfig: NextConfig = {
         hostname: 'calista.brigade-group.org',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
 };
 
 export default nextConfig;
-
-    
-
-    
