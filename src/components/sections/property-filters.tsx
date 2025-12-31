@@ -152,7 +152,7 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
     const [commercialBuildingType, setCommercialBuildingType] = useState<string[]>([]);
     const [commercialAvailability, setCommercialAvailability] = useState('Immediate');
     const [commercialParking, setCommercialParking] = useState<string[]>([]);
-    const [commercialShowOnly, setCommercialShowOnly] = useState('With Photos');
+    const [withPhotos, setWithPhotos] = useState(true);
     const [removeSeen, setRemoveSeen] = useState(false);
     const [commercialAmenities, setCommercialAmenities] = useState<string[]>([]);
     const [commercialFloors, setCommercialFloors] = useState<string[]>([]);
@@ -375,9 +375,10 @@ export default function PropertyFilters({ onBack, onApplyFilters, onClearFilters
                         </FilterSection>
                         <FilterSection title="Show Only">
                             <div className="space-y-3">
-                                <ToggleButton selected={commercialShowOnly === 'With Photos'} onClick={() => setCommercialShowOnly('With Photos')}>
+                                <Label className="flex items-center gap-2 font-normal">
+                                    <Checkbox checked={withPhotos} onCheckedChange={(checked) => setWithPhotos(!!checked)} />
                                     With Photos
-                                </ToggleButton>
+                                </Label>
                                 <Label className="flex items-center gap-2 font-normal">
                                     <Checkbox checked={removeSeen} onCheckedChange={(checked) => setRemoveSeen(!!checked)} />
                                     Remove Seen Properties <Badge variant="destructive" className="text-white">New</Badge>
