@@ -34,7 +34,7 @@ const PropertyCard = ({ property, onSelect, isSelected }: { property: typeof pro
       )}
       onClick={() => onSelect(property.id)}
     >
-      <CardContent className="p-0.5 flex gap-2 items-start">
+      <CardContent className="p-2 flex gap-3 items-start">
           <div className="relative h-24 w-24 rounded-md overflow-hidden shrink-0">
           {propertyImage && (
             <Image
