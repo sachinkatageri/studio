@@ -200,7 +200,7 @@ export default function Home() {
             <aside className={cn(
               "flex-col border-r transition-all duration-300 relative",
               "md:flex w-[90%]",
-              isSidebarOpen ? "w-full md:w-[20%]" : "w-0",
+              isSidebarOpen ? "w-full md:w-[25%]" : "w-0",
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? "flex h-full" : 'hidden'
             )}>
               <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
@@ -216,7 +216,7 @@ export default function Home() {
             <main className={cn(
               "relative transition-all duration-300 flex-1",
               "md:block",
-              isSidebarOpen ? "md:w-[80%]" : "w-full",
+              isSidebarOpen ? "md:w-[75%]" : "w-full",
               mobileView === 'map' ? 'block w-full' : 'hidden',
               isMobile && sidebarView === 'filters' && 'hidden'
               )}>
