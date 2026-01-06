@@ -316,7 +316,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     </div>
                 </div>
 
-                <div className="grid grid-cols-12 gap-4 flex-grow items-center">
+                <div className="grid grid-cols-12 gap-4 flex-grow items-end">
                     <div className="col-span-7">
                         <Card className="border-none shadow-none bg-muted/50 h-full">
                             <CardContent className="p-2">
@@ -337,7 +337,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                         </Card>
                     </div>
                     <div className="col-span-5 flex flex-col justify-end h-full">
-                        <div className="space-y-1 mt-auto">
+                        <div className="space-y-1">
                             <div className="flex items-center gap-2">
                                 <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
                             </div>
