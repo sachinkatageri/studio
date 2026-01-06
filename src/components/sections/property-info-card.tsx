@@ -238,8 +238,8 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
 
   return (
     <div className="relative w-full max-w-5xl mx-auto flex items-center" >
-        <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12" style={{ height: '35vh' }}>
-            <div className="col-span-5 relative group h-full">
+        <Card className="w-full shadow-xl bg-card border rounded-2xl overflow-hidden grid grid-cols-12">
+            <div className="col-span-5 relative group">
                 <div className="absolute top-2 left-2 z-10">
                     <Image src="https://i.ibb.co/sJJ7pxJW/1.png" alt="Grand Mercure" width={100} height={30} />
                 </div>
@@ -247,18 +247,20 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                     <Image src="https://i.ibb.co/Myvbrfqj/Top-rated.png" alt="Top Rated" width={64} height={64} />
                 </div>
                  
-                <div className="relative w-full h-full">
+                <div className="relative w-full aspect-[16/9]">
                     <Carousel className="w-full h-full" setApi={setApi}>
                         <CarouselContent>
                             {propertyImageGallery.map(image => (
                                 <CarouselItem key={image.id}>
-                                    <Image
-                                        src={image.imageUrl}
-                                        alt={property.name}
-                                        fill
-                                        className="object-cover"
-                                        data-ai-hint={image.imageHint}
-                                    />
+                                     <div className="relative w-full h-full">
+                                        <Image
+                                            src={image.imageUrl}
+                                            alt={property.name}
+                                            fill
+                                            className="object-cover"
+                                            data-ai-hint={image.imageHint}
+                                        />
+                                    </div>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -280,7 +282,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                 </div>
             </div>
 
-            <div className="col-span-7 p-4 pr-8 flex flex-col justify-between h-full">
+            <div className="col-span-7 p-4 pr-8 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
                         <div className="flex items-center gap-2">
@@ -336,7 +338,7 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </CardContent>
                         </Card>
                     </div>
-                    <div className="col-span-5 flex flex-col justify-end h-full">
+                    <div className="col-span-5 flex flex-col justify-end">
                         <div className="space-y-1">
                             <div className="flex items-center gap-2">
                                 <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
@@ -375,3 +377,5 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
+
+    
