@@ -14,13 +14,12 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose
+  DrawerDescription
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Building, Building2, User, Users, Home, Hand, Hotel } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface CategorySelectionDialogProps {
   open: boolean;
@@ -65,10 +64,11 @@ function DialogContentBody({ city, onSelect, pageType }: { city: string, onSelec
 
 export function CategorySelectionDialog({ open, onOpenChange, city, pageType }: CategorySelectionDialogProps) {
   const isMobile = useIsMobile();
+  const router = useRouter();
 
   const handleSelect = (category: string) => {
-    console.log(`Selected category: ${category} for city: ${city}`);
     onOpenChange(false);
+    router.push(`/?city=${encodeURIComponent(city)}&category=${encodeURIComponent(category)}`);
   }
 
   if (isMobile) {
