@@ -37,7 +37,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                         )}
                     </div>
 
-                    <div className={cn("flex-1 w-full", isList ? "md:pl-4" : "p-4")}>
+                    <div className={cn("flex-1 w-full pt-2", isList ? "md:pl-4" : "p-4")}>
                         <div className="flex justify-between items-start">
                             <Badge variant={property.type === 'Commercial' ? 'secondary' : 'default'} className="capitalize mb-2">
                                 {property.type === 'Commercial' ? <Building className="h-3 w-3 mr-1" /> : <HomeIcon className="h-3 w-3 mr-1" />}
