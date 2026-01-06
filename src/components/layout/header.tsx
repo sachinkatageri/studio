@@ -262,7 +262,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isResidentialPage = pathname.startsWith('/residential');
 
 
-  const showMobileSearch = !(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage || isKnowledgeBasePage);
+  const showMobileSearch = !(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage || isKnowledgeBasePage || isCommercialPage || isResidentialPage);
 
   return (
     <>
