@@ -3,11 +3,11 @@ import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Mail, Phone } from "lucide-react"
 
 const companyLinks = {
-    "About Us": "#",
+    "About Us": "/about",
     "Contact Us": "#",
     "Our Verification Process": "#",
-    "Terms & Conditions": "#",
-    "Privacy Policy": "#",
+    "Terms & Conditions": "/terms-and-conditions",
+    "Privacy Policy": "/privacy-policy",
     "Disclaimer": "#",
 }
 
@@ -73,14 +73,14 @@ export default function SiteFooter() {
                             <a href="mailto:support@buildersinfo.in" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
                                 <Mail className="h-4 w-4" /> support@buildersinfo.in
                             </a>
-                            <a href="tel:+919876543210" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
-                                <Phone className="h-4 w-4" /> +91 987 654 3210
+                            <a href="tel:+918884886822" className="flex items-center gap-2 text-muted-foreground hover:text-primary">
+                                <Phone className="h-4 w-4" /> +918884886822
                             </a>
                         </div>
                     </div>
                 </div>
                 <div className="mt-6 border-t pt-6 text-center text-sm text-muted-foreground">
-                    <p>&copy; {new Date().getFullYear()} BuildersInfo. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Buildersinfo.in. All rights reserved.</p>
                 </div>
             </div>
         </footer>
