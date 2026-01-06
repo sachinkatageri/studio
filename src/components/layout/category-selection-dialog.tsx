@@ -41,11 +41,11 @@ function DialogContentBody({ city, onSelect }: { city: string, onSelect: (catego
                 <Button 
                     key={category.label} 
                     variant="outline" 
-                    className="h-auto py-4 flex flex-col gap-2"
+                    className="h-28 py-4 flex flex-col items-center justify-center gap-2"
                     onClick={() => onSelect(category.label)}
                 >
                     {category.icon}
-                    <span className="text-center text-wrap">{category.label}</span>
+                    <span className="text-center text-xs text-wrap">{category.label}</span>
                 </Button>
             ))}
         </div>
