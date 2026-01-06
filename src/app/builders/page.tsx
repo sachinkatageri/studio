@@ -25,9 +25,9 @@ export default function BuildersPage() {
 
     if (isMobile) {
         return (
-            <>
+            <div className="flex flex-col min-h-screen">
                 <Header />
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+                <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 flex-grow">
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-xl font-bold">Builders in {location}</h1>
                     </div>
@@ -68,16 +68,16 @@ export default function BuildersPage() {
                             <MobileBuilderCard key={builder.id} builder={builder} />
                         ))}
                     </div>
-                </div>
+                </main>
                 <Footer />
-            </>
+            </div>
         )
     }
 
     return (
-        <>
+        <div className="flex flex-col min-h-screen">
             <Header />
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24 flex-grow">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold">Builders in {location}</h1>
@@ -151,8 +151,8 @@ export default function BuildersPage() {
                         <BuilderCard key={builder.id} builder={builder} view={view} />
                     ))}
                 </div>
-            </div>
+            </main>
             <Footer />
-        </>
+        </div>
     );
 }

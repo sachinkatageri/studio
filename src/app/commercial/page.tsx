@@ -11,9 +11,9 @@ import Footer from "@/components/layout/footer";
 export default function CommercialPage() {
     const isMobile = useIsMobile();
     return (
-        <div className="bg-background">
+        <div className="bg-background flex flex-col min-h-screen">
             <Header />
-            <main className="pt-14">
+            <main className="pt-14 flex-grow">
                 <Hero />
                 <CitySelector />
             </main>
