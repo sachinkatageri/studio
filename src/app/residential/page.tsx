@@ -12,7 +12,7 @@ export default function ResidentialPage() {
     const isMobile = useIsMobile();
     return (
         <div className="bg-background">
-            {!isMobile && <Header />}
+            <Header />
             <main>
                 <Hero />
                 <CitySelector />
