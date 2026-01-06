@@ -198,38 +198,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
-  const placeholderTexts = ['"Indiranagar"', '"Koramangala"', '"HSR Layout"'];
-  const [placeholder, setPlaceholder] = useState('');
-  const [textIndex, setTextIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const type = () => {
-      const currentText = placeholderTexts[textIndex];
-      if (isDeleting) {
-        if (charIndex > 0) {
-          setPlaceholder(currentText.substring(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
-        } else {
-          setIsDeleting(false);
-          setTextIndex((prevIndex) => (prevIndex + 1) % placeholderTexts.length);
-        }
-      } else {
-        if (charIndex < currentText.length) {
-          setPlaceholder(currentText.substring(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
-        } else {
-          setTimeout(() => setIsDeleting(true), 2000); // Pause before deleting
-        }
-      }
-    };
-
-    const typingSpeed = isDeleting ? 100 : 150;
-    const timeout = setTimeout(type, typingSpeed);
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, textIndex]);
-
   const handleLayersClick = () => {
     setIsLayersDeclarationOpen(true);
   }
@@ -260,9 +228,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isKnowledgeBasePage = pathname.startsWith('/knowledge-base');
   const isCommercialPage = pathname.startsWith('/commercial');
   const isResidentialPage = pathname.startsWith('/residential');
-
-
-  const showMobileSearch = !(isBuildersPage || isAboutPage || isPrivacyPage || isTermsPage || isKnowledgeBasePage || isCommercialPage || isResidentialPage);
 
   return (
     <>
@@ -298,35 +263,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <UserMenuButton />
         </div>
       </div>
-       {showMobileSearch && (
-        <div className="md:hidden absolute top-16 left-0 right-0 px-4 z-20">
-              <div className="relative flex items-center h-12 bg-background shadow-lg rounded-lg">
-                  <Search className="absolute left-3 h-5 w-5 text-muted-foreground z-10" />
-                  <span className="pl-10 text-sm text-muted-foreground">Search </span>
-                  <Input
-                      placeholder={placeholder}
-                      className="pl-2 pr-20 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                  />
-                  <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
-                      <Button variant={areFiltersApplied ? "default" : "ghost"} size="icon" className="h-10 w-10" onClick={onFilterClick}>
-                          <SlidersHorizontal className="h-5 w-5" />
-                      </Button>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-10 w-10" onClick={handleCitySelection}>
-                               {selectedCity ? <Building className="h-5 w-5" /> : <Globe className="h-5 w-5" />}
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{selectedCity ? selectedCity : "Select City"}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                  </div>
-              </div>
-          </div>
-       )}
     </header>
     <LayersDeclarationDialog 
       open={isLayersDeclarationOpen} 
