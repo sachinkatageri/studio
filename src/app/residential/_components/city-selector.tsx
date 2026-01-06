@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CategorySelectionDialog } from "@/components/layout/category-selection-dialog";
+import { AllCitiesDialog } from "@/components/layout/all-cities-dialog";
 
 const cities = [
     { name: 'Mumbai', icon: 'https://picsum.photos/seed/mumbai-icon/100/100' },
@@ -28,12 +29,13 @@ const cities = [
 ];
 
 export default function CitySelector() {
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false);
+    const [isAllCitiesDialogOpen, setIsAllCitiesDialogOpen] = useState(false);
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
 
     const handleCityClick = (city: string) => {
         setSelectedCity(city);
-        setIsDialogOpen(true);
+        setIsCategoryDialogOpen(true);
     };
     
     return (
@@ -53,7 +55,7 @@ export default function CitySelector() {
                                         <p className="text-sm font-medium text-muted-foreground group-hover:text-accent">{city.name}</p>
                                     </div>
                                 ))}
-                                 <div className="flex flex-col items-center gap-2 text-center cursor-pointer group">
+                                 <div className="flex flex-col items-center gap-2 text-center cursor-pointer group" onClick={() => setIsAllCitiesDialogOpen(true)}>
                                     <div className="relative w-20 h-20 rounded-full overflow-hidden bg-primary flex items-center justify-center transition-all duration-300 transform group-hover:scale-110">
                                         <span className="text-white text-sm font-bold">See All</span>
                                     </div>
@@ -69,12 +71,17 @@ export default function CitySelector() {
             </section>
             {selectedCity && (
                 <CategorySelectionDialog 
-                    open={isDialogOpen} 
-                    onOpenChange={setIsDialogOpen} 
+                    open={isCategoryDialogOpen} 
+                    onOpenChange={setIsCategoryDialogOpen} 
                     city={selectedCity}
                     pageType="residential"
                 />
             )}
+            <AllCitiesDialog
+                open={isAllCitiesDialogOpen}
+                onOpenChange={setIsAllCitiesDialogOpen}
+                onCitySelect={handleCityClick}
+            />
         </>
     )
 }
