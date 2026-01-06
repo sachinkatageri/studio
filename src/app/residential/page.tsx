@@ -13,7 +13,7 @@ export default function ResidentialPage() {
     return (
         <div className="bg-background">
             <Header />
-            <main>
+            <main className="pt-14">
                 <Hero />
                 <CitySelector />
             </main>
