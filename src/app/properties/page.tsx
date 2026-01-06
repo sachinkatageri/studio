@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { properties } from "@/lib/properties";
 import { ChevronDown, ListFilter, LayoutGrid, LayoutList } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
 import PropertyCard from "./_components/property-card";
 import { cn } from "@/lib/utils";
@@ -19,8 +19,14 @@ export default function PropertiesPage() {
     const city = searchParams.get('city') || 'All Cities';
     const category = searchParams.get('category');
     
-    const [view, setView] = useState<'list' | 'grid'>('grid');
     const isMobile = useIsMobile();
+    const [view, setView] = useState<'list' | 'grid'>(isMobile ? 'list' : 'grid');
+
+    useEffect(() => {
+        if (isMobile) {
+            setView('list');
+        }
+    }, [isMobile]);
     
     const filteredProperties = properties.filter(p => {
         let matches = true;
@@ -33,6 +39,8 @@ export default function PropertiesPage() {
     });
 
     const pageTitle = category ? `${category} in ${city}` : `Properties in ${city}`;
+
+    const finalView = isMobile ? 'list' : view;
 
     return (
         <>
@@ -65,7 +73,7 @@ export default function PropertiesPage() {
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", finalView === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
                                             <LayoutList className="h-4 w-4" />
                                         </Button>
                                     </TooltipTrigger>
@@ -75,7 +83,7 @@ export default function PropertiesPage() {
                                 </Tooltip>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", finalView === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
                                             <LayoutGrid className="h-4 w-4" />
                                         </Button>
                                     </TooltipTrigger>
@@ -90,10 +98,10 @@ export default function PropertiesPage() {
 
                 <div className={cn(
                     "grid gap-6",
-                    view === 'list' ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    finalView === 'list' ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                 )}>
                     {filteredProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} view={view} />
+                        <PropertyCard key={property.id} property={property} view={finalView} />
                     ))}
                 </div>
             </div>
