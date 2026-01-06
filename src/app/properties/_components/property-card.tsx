@@ -24,7 +24,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
     return (
         <Card className={cn("overflow-hidden h-full transition-shadow duration-300 group", isList && "md:flex")}>
             <CardContent className={cn("p-0 flex w-full", isList ? "md:flex-row flex-col items-start md:items-center p-4" : "flex-col")}>
-                <Link href={`/property/${property.id}`} className="group/image block shrink-0 w-full">
+                <div className="group/image block shrink-0 w-full">
                     <div className={cn("relative shrink-0 overflow-hidden", isList ? "md:w-40 md:h-40 h-48" : "aspect-video")}>
                         {projectImage && (
                             <Image
@@ -36,7 +36,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                             />
                         )}
                     </div>
-                </Link>
+                </div>
 
                 <div className={cn("flex-1 w-full pt-2", isList ? "md:pl-4" : "p-4")}>
                     <div className="flex justify-between items-start">
@@ -66,10 +66,12 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                         <Badge variant="outline">{property.status}</Badge>
                     </div>
 
-                    {!isList && (
-                        <Button asChild className="w-full mt-4">
-                            <Link href={`/property/${property.id}`}>View Details</Link>
-                        </Button>
+                    {isList && (
+                        <div className="flex justify-end mt-4">
+                            <Button asChild size="sm">
+                                <Link href={`/property/${property.id}`}>View Details</Link>
+                            </Button>
+                        </div>
                     )}
                 </div>
             </CardContent>

@@ -21,13 +21,11 @@ export default function PropertiesPage() {
     
     const [location, setLocation] = useState(cityFromParams);
     const isMobile = useIsMobile();
-    const [view, setView] = useState<'list' | 'grid'>(isMobile ? 'list' : 'grid');
+    const [view, setView] = useState<'list' | 'grid'>('grid');
 
     useEffect(() => {
         if (isMobile) {
             setView('list');
-        } else {
-            setView('grid');
         }
     }, [isMobile]);
     
@@ -42,8 +40,6 @@ export default function PropertiesPage() {
     });
 
     const pageTitle = category ? `${category} in ${location}` : `Properties in ${location}`;
-
-    const finalView = isMobile ? 'list' : view;
     
     const locations = ['Bangalore', 'Mumbai', 'Delhi', 'Chennai', 'Hyderabad'];
 
@@ -93,7 +89,7 @@ export default function PropertiesPage() {
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", finalView === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'list' && "bg-background shadow-sm")} onClick={() => setView('list')}>
                                             <LayoutList className="h-4 w-4" />
                                         </Button>
                                     </TooltipTrigger>
@@ -103,7 +99,7 @@ export default function PropertiesPage() {
                                 </Tooltip>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
-                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", finalView === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
+                                        <Button variant="ghost" size="icon" className={cn("h-8 w-8", view === 'grid' && "bg-background shadow-sm")} onClick={() => setView('grid')}>
                                             <LayoutGrid className="h-4 w-4" />
                                         </Button>
                                     </TooltipTrigger>
@@ -118,10 +114,10 @@ export default function PropertiesPage() {
 
                 <div className={cn(
                     "grid gap-6",
-                    finalView === 'list' ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    view === 'list' ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
                 )}>
                     {filteredProperties.map(property => (
-                        <PropertyCard key={property.id} property={property} view={finalView} />
+                        <PropertyCard key={property.id} property={property} view={view} />
                     ))}
                 </div>
             </div>
