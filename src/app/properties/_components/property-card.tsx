@@ -23,9 +23,9 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
 
     return (
         <Link href={`/property/${property.id}`} className="group block h-full">
-            <Card className={cn("overflow-hidden h-full transition-shadow duration-300", isList && "flex")}>
-                <CardContent className={cn("p-0 flex w-full", isList ? "flex-row items-center gap-4" : "flex-col")}>
-                    <div className={cn("relative shrink-0 overflow-hidden", isList ? "w-32 h-32 rounded-l-lg" : "w-full aspect-video")}>
+            <Card className={cn("overflow-hidden h-full transition-shadow duration-300", isList && "md:flex")}>
+                <CardContent className={cn("p-0 flex w-full", isList ? "md:flex-row flex-col items-start md:items-center" : "flex-col")}>
+                    <div className={cn("relative shrink-0 overflow-hidden w-full", isList ? "md:w-40 md:h-40 h-48" : "aspect-video")}>
                         {projectImage && (
                             <Image
                                 src={projectImage.imageUrl}
@@ -37,7 +37,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                         )}
                     </div>
 
-                    <div className={cn("flex-1 p-4", isList ? "pr-4" : "")}>
+                    <div className="flex-1 p-4 w-full">
                         <div className="flex justify-between items-start">
                             <Badge variant={property.type === 'Commercial' ? 'secondary' : 'default'} className="capitalize mb-2">
                                 {property.type === 'Commercial' ? <Building className="h-3 w-3 mr-1" /> : <HomeIcon className="h-3 w-3 mr-1" />}
