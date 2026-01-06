@@ -283,7 +283,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <Building className="mr-2 h-4 w-4" />
             Commercial
           </Link>
-          <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isResidentialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+          <Link href="/residential" className={cn("flex items-center text-sm font-medium transition-colors", isResidentialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <HomeIcon className="mr-2 h-4 w-4" />
             Residential
           </Link>
