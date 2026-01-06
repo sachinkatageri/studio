@@ -336,28 +336,30 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
                             </CardContent>
                         </Card>
                     </div>
-                    <div className="col-span-5 space-y-1">
-                        <div className="flex items-center gap-2">
-                            <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
-                        </div>
-                        <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
-                         <div className="flex items-center gap-2 pt-1">
-                             <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-2 text-[10px]">
-                            {brandStats.map(stat => (
-                                <div key={stat.label} className="flex items-center gap-1">
-                                    <stat.icon className="h-3 w-3 text-muted-foreground" />
-                                    <div className='flex items-baseline gap-0.5'>
-                                        <span className="font-bold text-[10px]">{stat.value}</span>
-                                        <span className="text-muted-foreground text-[8px] whitespace-nowrap">{stat.label}</span>
+                    <div className="col-span-5 flex flex-col justify-end h-full">
+                        <div className="space-y-1 mt-auto">
+                            <div className="flex items-center gap-2">
+                                <h3 className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider">About the brand</h3>
+                            </div>
+                            <div className="w-6 h-0.5 bg-primary mt-0.5"></div>
+                             <div className="flex items-center gap-2 pt-1">
+                                 <h4 className="font-bold text-sm leading-tight">BHIVE<br/>Workspace</h4>
+                            </div>
+                            <div className="grid grid-cols-2 gap-x-2 text-[10px]">
+                                {brandStats.map(stat => (
+                                    <div key={stat.label} className="flex items-center gap-1">
+                                        <stat.icon className="h-3 w-3 text-muted-foreground" />
+                                        <div className='flex items-baseline gap-0.5'>
+                                            <span className="font-bold text-[10px]">{stat.value}</span>
+                                            <span className="text-muted-foreground text-[8px] whitespace-nowrap">{stat.label}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
+                            <p className="text-[10px] text-muted-foreground leading-snug pt-1">
+                                BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
+                            </p>
                         </div>
-                        <p className="text-[10px] text-muted-foreground leading-snug pt-1">
-                            BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized... <Link href="#" className="text-primary font-semibold">Read more</Link>
-                        </p>
                     </div>
                 </div>
             </div>
