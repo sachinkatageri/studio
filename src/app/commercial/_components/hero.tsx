@@ -10,17 +10,17 @@ import Image from "next/image";
 import { useState } from "react";
 
 const filterOptions = [
-    { label: "Managed Space", icon: <Building className="h-5 w-5" /> },
-    { label: "Unmanaged Space", icon: <Building2 className="h-5 w-5" /> },
-    { label: "Coworking Dedicated", icon: <Users className="h-5 w-5" /> },
-    { label: "Coworking Shared", icon: <Users className="h-5 w-5" /> },
-    { label: "Price Per Desk", icon: <Wallet className="h-5 w-5" /> },
-    { label: "Price Per Sqft", icon: <Columns className="h-5 w-5" /> },
-    { label: "No. Of Seats", icon: <LayoutGrid className="h-5 w-5" /> },
+    { label: "Managed Space", value: "managed-space", icon: <Building className="h-5 w-5" /> },
+    { label: "Unmanaged Space", value: "unmanaged-space", icon: <Building2 className="h-5 w-5" /> },
+    { label: "Coworking Dedicated", value: "coworking-dedicated", icon: <Users className="h-5 w-5" /> },
+    { label: "Coworking Shared", value: "coworking-shared", icon: <Users className="h-5 w-5" /> },
+    { label: "Price Per Desk", value: "price-per-desk", icon: <Wallet className="h-5 w-5" /> },
+    { label: "Price Per Sqft", value: "price-per-sqft", icon: <Columns className="h-5 w-5" /> },
+    { label: "No. Of Seats", value: "no-of-seats", icon: <LayoutGrid className="h-5 w-5" /> },
 ]
 
 export default function Hero() {
-    const [selectedFilter, setSelectedFilter] = useState("Managed Space");
+    const [selectedFilter, setSelectedFilter] = useState("managed-space");
 
     return (
         <section className="relative h-[550px] flex items-center justify-center text-center text-white">
@@ -39,10 +39,10 @@ export default function Hero() {
                         {filterOptions.map(option => (
                             <button 
                                 key={option.label}
-                                onClick={() => setSelectedFilter(option.label)}
+                                onClick={() => setSelectedFilter(option.value)}
                                 className={cn(
                                     "flex flex-col items-center justify-center gap-2 p-3 rounded-lg transition-colors text-white",
-                                    selectedFilter === option.label 
+                                    selectedFilter === option.value 
                                         ? "bg-primary/80" 
                                         : "bg-black/20 hover:bg-black/40"
                                 )}
@@ -57,13 +57,14 @@ export default function Hero() {
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                             <Input placeholder="Search by Location" className="pl-10 text-foreground border-none focus-visible:ring-0" />
                         </div>
-                        <Select defaultValue="managed-space">
+                        <Select value={selectedFilter} onValueChange={setSelectedFilter}>
                             <SelectTrigger className="text-foreground border-none focus:ring-0">
                                 <SelectValue placeholder="Select Space Type" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="managed-space">Managed Space</SelectItem>
-                                <SelectItem value="unmanaged-space">Unmanaged Space</SelectItem>
+                                {filterOptions.map(option => (
+                                     <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                                ))}
                             </SelectContent>
                         </Select>
                         <div className="flex items-center gap-2">
