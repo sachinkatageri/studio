@@ -199,7 +199,7 @@ export default function Home() {
         <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300 relative",
-              "md:flex w-[90%]",
+              "md:flex",
               isSidebarOpen ? "w-full md:w-[30%]" : "w-0",
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? "flex h-full" : 'hidden'
             )}>
