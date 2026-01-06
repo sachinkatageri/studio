@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Building, Building2, User, Users, Home, Hand, Hotel } from "lucide-react";
+import { Building, Building2, User, Users, Home, Tag, Hotel } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface CategorySelectionDialogProps {
@@ -39,7 +39,7 @@ const commercialCategories = [
 
 const residentialCategories = [
     { label: "Rent", icon: <Home className="h-6 w-6" /> },
-    { label: "Sale", icon: <Hand className="h-6 w-6" /> },
+    { label: "Sale", icon: <Tag className="h-6 w-6" /> },
     { label: "PG/Hostel", icon: <Hotel className="h-6 w-6" /> },
     { label: "Flatmates", icon: <Users className="h-6 w-6" /> },
 ];
