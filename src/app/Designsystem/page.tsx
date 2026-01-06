@@ -31,6 +31,16 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
 import Header from "@/components/layout/header";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Image from "next/image";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const colors = [
     { name: "background", bg: "bg-background", text: "text-foreground", code: "hsl(0 0% 100%)" },
@@ -109,7 +119,7 @@ const typography = [
   ];
 
 const AllComponents = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="space-y-8">
         <Card>
             <CardHeader>
@@ -173,6 +183,31 @@ const AllComponents = () => (
                 </Accordion>
             </CardContent>
         </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Carousel</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Carousel className="w-full max-w-xs mx-auto">
+                    <CarouselContent>
+                        {Array.from({ length: 5 }).map((_, index) => (
+                        <CarouselItem key={index}>
+                            <div className="p-1">
+                            <Card>
+                                <CardContent className="flex aspect-square items-center justify-center p-6">
+                                <span className="text-4xl font-semibold">{index + 1}</span>
+                                </CardContent>
+                            </Card>
+                            </div>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </CardContent>
+        </Card>
+
         </div>
 
         <div className="space-y-8">
@@ -182,6 +217,7 @@ const AllComponents = () => (
             </CardHeader>
             <CardContent className="space-y-6">
             <Input placeholder="Input field" />
+            <Textarea placeholder="Textarea field" />
             <div className="flex items-center space-x-2">
                 <Checkbox id="terms" />
                 <label
@@ -206,6 +242,7 @@ const AllComponents = () => (
                 <Label htmlFor="airplane-mode">Airplane Mode</Label>
             </div>
             <Slider defaultValue={[50]} max={100} step={1} />
+            <Progress value={33} />
             </CardContent>
         </Card>
 
@@ -226,6 +263,71 @@ const AllComponents = () => (
                     </TooltipProvider>
                 </CardContent>
         </Card>
+         <Card>
+            <CardHeader>
+                <CardTitle>Avatar</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+            </CardContent>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Separator</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="space-y-1">
+                    <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+                    <p className="text-sm text-muted-foreground">
+                        An open-source UI component library.
+                    </p>
+                </div>
+                <Separator className="my-4" />
+                <div className="flex h-5 items-center space-x-4 text-sm">
+                    <div>Blog</div>
+                    <Separator orientation="vertical" />
+                    <div>Docs</div>
+                    <Separator orientation="vertical" />
+                    <div>Source</div>
+                </div>
+            </CardContent>
+        </Card>
+        </div>
+        <div className="space-y-8">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Overlays</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-4">
+                    <DrawerTrigger asChild>
+                        <Button variant="outline">Drawer</Button>
+                    </DrawerTrigger>
+                    <DialogTrigger asChild>
+                        <Button variant="outline">Dialog</Button>
+                    </DialogTrigger>
+                     <SheetTrigger asChild>
+                        <Button variant="outline">Sheet</Button>
+                    </SheetTrigger>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button variant="outline">Popover</Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-80">
+                            <div className="grid gap-4">
+                                <div className="space-y-2">
+                                    <h4 className="font-medium leading-none">Dimensions</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                    Set the dimensions for the layer.
+                                    </p>
+                                </div>
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                </CardContent>
+            </Card>
         </div>
     </div>
 );
@@ -234,6 +336,9 @@ export default function DesignSystemPage() {
   return (
     <>
       <Header />
+      <Drawer>
+      <Dialog>
+      <Sheet>
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-extrabold font-headline tracking-tight mb-8">
           Design System
@@ -335,6 +440,42 @@ export default function DesignSystemPage() {
           </Card>
         </section>
       </div>
+
+       <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+            <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <Button>Submit</Button>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+        
+        <DialogContent>
+            <DialogHeader>
+                <DialogTitle>Are you sure absolutely sure?</DialogTitle>
+                <DialogDescription>
+                This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers.
+                </DialogDescription>
+            </DialogHeader>
+        </DialogContent>
+        
+        <SheetContent>
+            <SheetHeader>
+                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                <SheetDescription>
+                This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers.
+                </SheetDescription>
+            </SheetHeader>
+        </SheetContent>
+      </Sheet>
+      </Dialog>
+      </Drawer>
     </>
   );
 }
