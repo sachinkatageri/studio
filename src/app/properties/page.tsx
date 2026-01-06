@@ -16,15 +16,18 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function PropertiesPage() {
     const searchParams = useSearchParams();
-    const city = searchParams.get('city') || 'All Cities';
+    const cityFromParams = searchParams.get('city') || 'All Cities';
     const category = searchParams.get('category');
     
+    const [location, setLocation] = useState(cityFromParams);
     const isMobile = useIsMobile();
     const [view, setView] = useState<'list' | 'grid'>(isMobile ? 'list' : 'grid');
 
     useEffect(() => {
         if (isMobile) {
             setView('list');
+        } else {
+            setView('grid');
         }
     }, [isMobile]);
     
@@ -38,9 +41,11 @@ export default function PropertiesPage() {
         return matches;
     });
 
-    const pageTitle = category ? `${category} in ${city}` : `Properties in ${city}`;
+    const pageTitle = category ? `${category} in ${location}` : `Properties in ${location}`;
 
     const finalView = isMobile ? 'list' : view;
+    
+    const locations = ['Bangalore', 'Mumbai', 'Delhi', 'Chennai', 'Hyderabad'];
 
     return (
         <>
@@ -52,6 +57,21 @@ export default function PropertiesPage() {
                         <p className="text-sm text-muted-foreground mt-1">{filteredProperties.length} results found</p>
                     </div>
                      <div className="flex w-full md:w-auto items-center gap-2">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="outline" className="flex-1 md:flex-initial">
+                                    {location}
+                                    <ChevronDown className="ml-2 h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                {locations.map(loc => (
+                                    <DropdownMenuItem key={loc} onClick={() => setLocation(loc)}>
+                                        {loc}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="flex-1 md:flex-initial">
