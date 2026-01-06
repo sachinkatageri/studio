@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState } from "react";
@@ -71,6 +72,7 @@ export default function CitySelector() {
                     open={isDialogOpen} 
                     onOpenChange={setIsDialogOpen} 
                     city={selectedCity}
+                    pageType="commercial"
                 />
             )}
         </>

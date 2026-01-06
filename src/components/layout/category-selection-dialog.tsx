@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import {
@@ -19,22 +20,32 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Building, Building2, User, Users } from "lucide-react";
+import { Building, Building2, User, Users, Home, Hand, Hotel } from "lucide-react";
 
 interface CategorySelectionDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   city: string;
+  pageType: 'commercial' | 'residential';
 }
 
-const categories = [
+const commercialCategories = [
     { label: "Managed Space", icon: <Building className="h-6 w-6" /> },
     { label: "Unmanaged Space", icon: <Building2 className="h-6 w-6" /> },
     { label: "Coworking Dedicated", icon: <User className="h-6 w-6" /> },
     { label: "Coworking Shared", icon: <Users className="h-6 w-6" /> }
 ];
 
-function DialogContentBody({ city, onSelect }: { city: string, onSelect: (category: string) => void }) {
+const residentialCategories = [
+    { label: "Rent", icon: <Home className="h-6 w-6" /> },
+    { label: "Sale", icon: <Hand className="h-6 w-6" /> },
+    { label: "PG/Hostel", icon: <Hotel className="h-6 w-6" /> },
+    { label: "Flatmates", icon: <Users className="h-6 w-6" /> },
+];
+
+function DialogContentBody({ city, onSelect, pageType }: { city: string, onSelect: (category: string) => void, pageType: 'commercial' | 'residential' }) {
+    const categories = pageType === 'commercial' ? commercialCategories : residentialCategories;
+    
     return (
         <div className="p-4 md:p-6 grid grid-cols-2 gap-4">
             {categories.map(category => (
@@ -52,7 +63,7 @@ function DialogContentBody({ city, onSelect }: { city: string, onSelect: (catego
     );
 }
 
-export function CategorySelectionDialog({ open, onOpenChange, city }: CategorySelectionDialogProps) {
+export function CategorySelectionDialog({ open, onOpenChange, city, pageType }: CategorySelectionDialogProps) {
   const isMobile = useIsMobile();
 
   const handleSelect = (category: string) => {
@@ -67,7 +78,7 @@ export function CategorySelectionDialog({ open, onOpenChange, city }: CategorySe
           <DrawerHeader className="text-left">
             <DrawerTitle>Select Category for {city}</DrawerTitle>
           </DrawerHeader>
-          <DialogContentBody city={city} onSelect={handleSelect} />
+          <DialogContentBody city={city} onSelect={handleSelect} pageType={pageType} />
           <DrawerFooter className="pt-2">
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
@@ -84,7 +95,7 @@ export function CategorySelectionDialog({ open, onOpenChange, city }: CategorySe
         <DialogHeader>
           <DialogTitle>Select Category for {city}</DialogTitle>
         </DialogHeader>
-        <DialogContentBody city={city} onSelect={handleSelect} />
+        <DialogContentBody city={city} onSelect={handleSelect} pageType={pageType} />
       </DialogContent>
     </Dialog>
   );

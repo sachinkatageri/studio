@@ -72,6 +72,7 @@ export default function CitySelector() {
                     open={isDialogOpen} 
                     onOpenChange={setIsDialogOpen} 
                     city={selectedCity}
+                    pageType="residential"
                 />
             )}
         </>
