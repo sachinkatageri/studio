@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { useState } from "react";
@@ -46,20 +45,20 @@ export default function CitySelector() {
                         <div>
                             <h2 className="text-3xl font-bold font-headline mb-2">Select by City</h2>
                             <div className="w-24 h-1.5 bg-accent mb-8"></div>
-                            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-6">
+                            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-x-4 gap-y-6">
                                 {cities.map(city => (
                                     <div key={city.name} className="flex flex-col items-center gap-2 text-center cursor-pointer group" onClick={() => handleCityClick(city.name)}>
-                                        <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all duration-300 transform group-hover:scale-110">
+                                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-transparent group-hover:border-accent transition-all duration-300 transform group-hover:scale-110">
                                             <Image src={city.icon} alt={city.name} fill className="object-cover" data-ai-hint="city landmark" />
                                         </div>
-                                        <p className="text-sm font-medium text-muted-foreground group-hover:text-accent">{city.name}</p>
+                                        <p className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-accent">{city.name}</p>
                                     </div>
                                 ))}
                                  <div className="flex flex-col items-center gap-2 text-center cursor-pointer group" onClick={() => setIsAllCitiesDialogOpen(true)}>
-                                    <div className="relative w-20 h-20 rounded-full overflow-hidden bg-primary flex items-center justify-center transition-all duration-300 transform group-hover:scale-110">
-                                        <span className="text-white text-sm font-bold">See All</span>
+                                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-primary flex items-center justify-center transition-all duration-300 transform group-hover:scale-110">
+                                        <span className="text-white text-xs sm:text-sm font-bold text-center">See All</span>
                                     </div>
-                                    <p className="text-sm font-medium text-muted-foreground group-hover:text-primary">More Cities</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-primary">More Cities</p>
                                 </div>
                             </div>
                         </div>
