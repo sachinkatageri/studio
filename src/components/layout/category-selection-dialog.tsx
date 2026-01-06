@@ -14,7 +14,9 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
-  DrawerDescription
+  DrawerDescription,
+  DrawerFooter,
+  DrawerClose
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -51,7 +53,7 @@ function DialogContentBody({ city, onSelect, pageType }: { city: string, onSelec
                 <Button 
                     key={category.label} 
                     variant="outline" 
-                    className="h-28 py-4 flex flex-col items-center justify-center gap-2 text-wrap"
+                    className="h-28 text-wrap flex flex-col items-center justify-center gap-2 py-4"
                     onClick={() => onSelect(category.label)}
                 >
                     {category.icon}
@@ -68,7 +70,7 @@ export function CategorySelectionDialog({ open, onOpenChange, city, pageType }: 
 
   const handleSelect = (category: string) => {
     onOpenChange(false);
-    router.push(`/builders?city=${encodeURIComponent(city)}&category=${encodeURIComponent(category)}`);
+    router.push(`/properties?city=${encodeURIComponent(city)}&category=${encodeURIComponent(category)}`);
   }
 
   if (isMobile) {
