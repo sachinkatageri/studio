@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Building, Building2, User, Users } from "lucide-react";
 
 interface CategorySelectionDialogProps {
   open: boolean;
@@ -27,10 +28,10 @@ interface CategorySelectionDialogProps {
 }
 
 const categories = [
-    "Managed Space",
-    "Unmanaged Space",
-    "Coworking Dedicated",
-    "Coworking Shared"
+    { label: "Managed Space", icon: <Building className="h-6 w-6" /> },
+    { label: "Unmanaged Space", icon: <Building2 className="h-6 w-6" /> },
+    { label: "Coworking Dedicated", icon: <User className="h-6 w-6" /> },
+    { label: "Coworking Shared", icon: <Users className="h-6 w-6" /> }
 ];
 
 function DialogContentBody({ city, onSelect }: { city: string, onSelect: (category: string) => void }) {
@@ -38,12 +39,13 @@ function DialogContentBody({ city, onSelect }: { city: string, onSelect: (catego
         <div className="p-4 md:p-6 grid grid-cols-2 gap-4">
             {categories.map(category => (
                 <Button 
-                    key={category} 
+                    key={category.label} 
                     variant="outline" 
-                    className="h-auto py-4 text-center text-wrap"
-                    onClick={() => onSelect(category)}
+                    className="h-auto py-4 flex flex-col gap-2"
+                    onClick={() => onSelect(category.label)}
                 >
-                    {category}
+                    {category.icon}
+                    <span className="text-center text-wrap">{category.label}</span>
                 </Button>
             ))}
         </div>
