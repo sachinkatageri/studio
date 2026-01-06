@@ -11,7 +11,7 @@ export default function Footer() {
 
   const navItems = [
     { id: 'map-view', label: 'Map-View', icon: <Map className="h-5 w-5" />, href: '/' },
-    { id: 'commercial', label: 'Commercial', icon: <Building className="h-5 w-5" />, href: '#' },
+    { id: 'commercial', label: 'Commercial', icon: <Building className="h-5 w-5" />, href: '/commercial' },
     { id: 'residential', label: 'Residential', icon: <Home className="h-5 w-5" />, href: '#' },
     { id: 'builders', label: 'Builders', icon: <Crown className="h-5 w-5" />, href: '/builders' },
   ];

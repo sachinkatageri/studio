@@ -279,7 +279,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
             <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
             Map-View
           </Link>
-          <Link href="#" className={cn("flex items-center text-sm font-medium transition-colors", isCommercialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+          <Link href="/commercial" className={cn("flex items-center text-sm font-medium transition-colors", isCommercialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
             <Building className="mr-2 h-4 w-4" />
             Commercial
           </Link>
@@ -341,5 +341,3 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
     </>
   );
 }
-
-    
