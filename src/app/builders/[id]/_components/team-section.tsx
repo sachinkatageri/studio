@@ -1,6 +1,6 @@
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
 
 const teamMembers = [
@@ -21,8 +21,17 @@ const teamMembers = [
 export default function TeamSection() {
     return (
         <Card>
-            <CardContent className="p-6">
-                <Carousel>
+            <CardHeader>
+                <CardTitle>Meet the Team</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6 pt-0">
+                <Carousel
+                    opts={{
+                        align: "start",
+                        loop: true,
+                    }}
+                    className="w-full"
+                >
                     <CarouselContent>
                         {teamMembers.map((member, index) => (
                             <CarouselItem key={index}>
@@ -39,6 +48,8 @@ export default function TeamSection() {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
+                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
                 </Carousel>
             </CardContent>
         </Card>
