@@ -5,13 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Hand, Search, Users, Home, Hotel } from "lucide-react";
+import { Tag, Search, Users, Home, Hotel } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 const filterOptions = [
     { label: "Rent", value: "rent", icon: <Home className="h-5 w-5" /> },
-    { label: "Sale", value: "sale", icon: <Hand className="h-5 w-5" /> },
+    { label: "Sale", value: "sale", icon: <Tag className="h-5 w-5" /> },
     { label: "PG/Hostel", value: "pg-hostel", icon: <Hotel className="h-5 w-5" /> },
     { label: "Flatmates", value: "flatmates", icon: <Users className="h-5 w-5" /> },
 ]
