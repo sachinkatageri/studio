@@ -1,24 +1,23 @@
 
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Building, Building2, Hand, Search, Users, Wallet, Columns, LayoutGrid, Home, HomeIcon, Hotel } from "lucide-react";
+import { Hand, Search, Users, Home, Hotel } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 const filterOptions = [
-    { label: "Rent", icon: <Home className="h-5 w-5" /> },
-    { label: "Sale", icon: <Hand className="h-5 w-5" /> },
-    { label: "PG/Hostel", icon: <Hotel className="h-5 w-5" /> },
-    { label: "Flatmates", icon: <Users className="h-5 w-5" /> },
+    { label: "Rent", value: "rent", icon: <Home className="h-5 w-5" /> },
+    { label: "Sale", value: "sale", icon: <Hand className="h-5 w-5" /> },
+    { label: "PG/Hostel", value: "pg-hostel", icon: <Hotel className="h-5 w-5" /> },
+    { label: "Flatmates", value: "flatmates", icon: <Users className="h-5 w-5" /> },
 ]
 
 export default function Hero() {
-    const [selectedFilter, setSelectedFilter] = useState("Rent");
+    const [selectedFilter, setSelectedFilter] = useState("rent");
 
     return (
         <section className="relative h-[550px] flex items-center justify-center text-center text-white">
@@ -37,10 +36,10 @@ export default function Hero() {
                         {filterOptions.map(option => (
                             <button 
                                 key={option.label}
-                                onClick={() => setSelectedFilter(option.label)}
+                                onClick={() => setSelectedFilter(option.value)}
                                 className={cn(
                                     "flex flex-col items-center justify-center gap-2 p-3 rounded-lg transition-colors text-white",
-                                    selectedFilter === option.label 
+                                    selectedFilter === option.value 
                                         ? "bg-primary/80" 
                                         : "bg-black/20 hover:bg-black/40"
                                 )}
@@ -56,13 +55,14 @@ export default function Hero() {
                             <Input placeholder="Search by Location" className="pl-10 text-foreground border-none focus-visible:ring-0" />
                         </div>
                         <div className="flex items-center gap-2">
-                            <Select defaultValue="rent">
+                            <Select value={selectedFilter} onValueChange={setSelectedFilter}>
                                 <SelectTrigger className="text-foreground border-none focus:ring-0">
                                     <SelectValue placeholder="Select Type" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="rent">Rent</SelectItem>
-                                    <SelectItem value="sale">Sale</SelectItem>
+                                    {filterOptions.map(option => (
+                                        <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
                             <Button size="icon" className="bg-accent hover:bg-accent/90 shrink-0">
