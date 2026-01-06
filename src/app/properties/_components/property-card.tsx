@@ -22,23 +22,21 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
     const isList = view === 'list';
 
     return (
-        <Card className={cn("overflow-hidden h-full transition-shadow duration-300 group", isList && "md:flex")}>
-            <CardContent className={cn("p-0 flex w-full", isList ? "md:flex-row flex-col items-start md:items-center p-4" : "flex-col")}>
-                <div className="group/image block shrink-0 w-full">
-                    <div className={cn("relative shrink-0 overflow-hidden", isList ? "md:w-40 md:h-40 h-48" : "aspect-video")}>
-                        {projectImage && (
-                            <Image
-                                src={projectImage.imageUrl}
-                                alt={projectImage.description}
-                                fill
-                                className="object-cover transition-transform duration-300 group-hover/image:scale-105"
-                                data-ai-hint={projectImage.imageHint}
-                            />
-                        )}
-                    </div>
+        <Card className={cn("overflow-hidden transition-shadow duration-300 group", !isList && "h-full")}>
+            <div className={cn("flex w-full", isList ? "flex-col md:flex-row" : "flex-col h-full")}>
+                <div className={cn("relative shrink-0", isList ? "w-full h-48 md:w-48 md:h-full" : "w-full aspect-video")}>
+                    {projectImage && (
+                        <Image
+                            src={projectImage.imageUrl}
+                            alt={projectImage.description}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={projectImage.imageHint}
+                        />
+                    )}
                 </div>
 
-                <div className={cn("flex-1 w-full pt-2", isList ? "md:pl-4" : "p-4")}>
+                <div className="flex-1 flex flex-col p-4">
                     <div className="flex justify-between items-start">
                         <Badge variant={property.type === 'Commercial' ? 'secondary' : 'default'} className="capitalize mb-2">
                             {property.type === 'Commercial' ? <Building className="h-3 w-3 mr-1" /> : <HomeIcon className="h-3 w-3 mr-1" />}
@@ -49,15 +47,15 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                         </Button>
                     </div>
 
-                    <h3 className="font-bold text-base md:text-lg leading-tight truncate">
-                         <Link href={`/property/${property.id}`} className="hover:underline">
-                            {property.name}
-                        </Link>
+                    <h3 className="font-bold text-base md:text-lg leading-tight truncate group-hover:underline">
+                        {property.name}
                     </h3>
                     <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1 truncate">
                         <MapPin className="h-4 w-4 shrink-0" />
                         {property.location}
                     </p>
+                    
+                    <div className="flex-grow"></div>
 
                     <div className="flex items-center justify-between mt-3">
                         <p className="font-bold text-base md:text-lg text-primary">
@@ -66,15 +64,11 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                         <Badge variant="outline">{property.status}</Badge>
                     </div>
 
-                    {isList && (
-                        <div className="flex justify-end mt-4">
-                            <Button asChild size="sm">
-                                <Link href={`/property/${property.id}`}>View Details</Link>
-                            </Button>
-                        </div>
-                    )}
+                    <Button asChild className="w-full mt-4">
+                        <Link href={`/property/${property.id}`}>View Details</Link>
+                    </Button>
                 </div>
-            </CardContent>
+            </div>
         </Card>
     );
 }
