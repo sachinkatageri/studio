@@ -79,11 +79,6 @@ export function CategorySelectionDialog({ open, onOpenChange, city, pageType }: 
             <DrawerTitle>Select Category for {city}</DrawerTitle>
           </DrawerHeader>
           <DialogContentBody city={city} onSelect={handleSelect} pageType={pageType} />
-          <DrawerFooter className="pt-2">
-            <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     );
