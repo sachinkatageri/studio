@@ -51,8 +51,8 @@ function AllCitiesContent({ onCitySelect }: { onCitySelect: (city: string) => vo
     }
 
     return (
-        <div className="flex flex-col h-full">
-            <div className="p-4 border-b md:border-b-0">
+        <>
+            <div className="p-4 border-b shrink-0">
                 <div className="relative">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                     <Input 
@@ -63,7 +63,7 @@ function AllCitiesContent({ onCitySelect }: { onCitySelect: (city: string) => vo
                     />
                 </div>
             </div>
-            <ScrollArea className="flex-1">
+            <ScrollArea className="flex-1 min-h-0">
                 <div className="p-4">
                     <h3 className="font-semibold mb-4 text-sm">All Cities</h3>
                     <ul className="divide-y -mx-4">
@@ -79,7 +79,7 @@ function AllCitiesContent({ onCitySelect }: { onCitySelect: (city: string) => vo
                     </ul>
                 </div>
             </ScrollArea>
-        </div>
+        </>
     )
 }
 
@@ -95,7 +95,7 @@ export function AllCitiesDialog({ open, onOpenChange, onCitySelect }: AllCitiesD
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
         <DrawerContent className="h-[90vh] flex flex-col">
-          <DrawerHeader className="text-left">
+          <DrawerHeader className="text-left shrink-0">
             <DrawerTitle>Select a City</DrawerTitle>
           </DrawerHeader>
           <AllCitiesContent onCitySelect={handleSelect} />
@@ -107,7 +107,7 @@ export function AllCitiesDialog({ open, onOpenChange, onCitySelect }: AllCitiesD
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md h-[70vh] flex flex-col p-0">
-        <DialogHeader className="p-4 border-b">
+        <DialogHeader className="p-4 border-b shrink-0">
           <DialogTitle>Select a City</DialogTitle>
         </DialogHeader>
         <AllCitiesContent onCitySelect={handleSelect} />
