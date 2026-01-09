@@ -192,11 +192,10 @@ const UserMenuButton = () => {
 };
 
 
-export default function Header({ onFilterClick, areFiltersApplied, onSearchClick }: { onFilterClick?: () => void, areFiltersApplied?: boolean, onSearchClick?: () => void }) {
+export default function Header({ onFilterClick, areFiltersApplied, onSearchClick, selectedCity, onCitySelection }: { onFilterClick?: () => void, areFiltersApplied?: boolean, onSearchClick?: () => void, selectedCity?: string | null, onCitySelection?: () => void }) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
-  const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
@@ -208,21 +207,6 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
     setIsLayersDialogOpen(true);
   }
   
-  const handleCitySelection = () => {
-      setIsCitySheetOpen(true);
-  }
-
-  const handleCitySelected = (city: string) => {
-    setSelectedCity(city);
-    setIsCitySheetOpen(false);
-  }
-
-  const handleCityReset = () => {
-    setSelectedCity(null);
-    setIsCitySheetOpen(false);
-  }
-
-
   const isBuildersPage = pathname.startsWith('/builders');
   const isAboutPage = pathname.startsWith('/about');
   const isPrivacyPage = pathname.startsWith('/privacy-policy');
@@ -242,7 +226,7 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
             <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={72} height={18} />
           </Link>
           <Separator orientation="vertical" className="h-6" />
-          <Button variant="ghost" className="hidden md:flex items-center gap-2" onClick={handleCitySelection}>
+          <Button variant="ghost" className="hidden md:flex items-center gap-2" onClick={onCitySelection}>
               <Globe className="h-5 w-5" />
               <span className="font-semibold">{selectedCity || "India"}</span>
           </Button>
@@ -285,7 +269,6 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
         open={isLayersDialogOpen}
         onOpenChange={setIsLayersDialogOpen}
     />
-    <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
     </>
   );
 }

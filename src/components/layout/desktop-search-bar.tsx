@@ -12,9 +12,10 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 interface DesktopSearchBarProps {
   areFiltersApplied: boolean;
   onFilterClick: () => void;
+  onCitySelection: () => void;
 }
 
-export default function DesktopSearchBar({ areFiltersApplied, onFilterClick }: DesktopSearchBarProps) {
+export default function DesktopSearchBar({ areFiltersApplied, onFilterClick, onCitySelection }: DesktopSearchBarProps) {
   const placeholderTexts = ['"Indiranagar"', '"Koramangala"', '"HSR Layout"'];
   const [placeholder, setPlaceholder] = useState('');
   const [textIndex, setTextIndex] = useState(0);
@@ -74,30 +75,18 @@ export default function DesktopSearchBar({ areFiltersApplied, onFilterClick }: D
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-10 w-10">
-              <Globe className="h-5 w-5" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-48 p-2">
-            <div className="grid gap-1">
-              <Button variant="ghost" className="justify-start">
-                <MapIcon className="mr-2 h-4 w-4" /> Default
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                <Satellite className="mr-2 h-4 w-4" /> Satellite
-              </Button>
-              <Button variant="ghost" className="justify-start">
-                <Mountain className="mr-2 h-4 w-4" /> Terrain
-              </Button>
-              <Separator />
-              <Button variant="ghost" className="justify-start">
-                <TrafficCone className="mr-2 h-4 w-4" /> Traffic
-              </Button>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-10 w-10" onClick={onCitySelection}>
+                  <Globe className="h-5 w-5" />
+                </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Select City</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </div>
   );

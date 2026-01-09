@@ -22,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import DesktopSearchBar from '@/components/layout/desktop-search-bar';
 import MobileSearchOverlay from '@/components/layout/mobile-search-overlay';
+import { CitySelectionSheet } from '@/components/layout/city-selection-sheet';
 
 
 type SidebarView = 'list' | 'filters';
@@ -36,6 +37,8 @@ export default function Home() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
+  const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -126,13 +129,22 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, textIndex]);
 
+  const handleCitySelected = (city: string) => {
+    setSelectedCity(city);
+    setIsCitySheetOpen(false);
+  }
+
+  const handleCityReset = () => {
+    setSelectedCity(null);
+    setIsCitySheetOpen(false);
+  }
 
   if (isMobile) {
     return (
       <>
       <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
-          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} />
+          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} selectedCity={selectedCity} onCitySelection={() => setIsCitySheetOpen(true)} />
           <div className="flex-1 flex flex-col overflow-hidden pt-14">
             <main className="relative flex-1">
               <MapView 
@@ -242,7 +254,7 @@ export default function Home() {
 
   return (
       <div className="relative flex flex-col h-screen bg-background">
-        {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />}
+        {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} selectedCity={selectedCity} onCitySelection={() => setIsCitySheetOpen(true)} />}
         <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300 relative",
@@ -251,7 +263,7 @@ export default function Home() {
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? "flex h-full" : 'hidden'
             )}>
               <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
-                <DesktopSearchBar areFiltersApplied={areFiltersApplied} onFilterClick={handleFilterClick} />
+                <DesktopSearchBar areFiltersApplied={areFiltersApplied} onFilterClick={handleFilterClick} onCitySelection={() => setIsCitySheetOpen(true)} />
               </div>
               <div className="pt-20 w-full flex-1 min-h-0">
                 {sidebarView === 'list' 
@@ -281,6 +293,7 @@ export default function Home() {
             </main>
         </div>
         {showHeaderAndFooter && <Footer />}
+        <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
       </div>
   );
 }
