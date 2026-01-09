@@ -6,13 +6,17 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetClose,
 } from "@/components/ui/sheet";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, LocateFixed, Search, Building } from "lucide-react";
 import { Input } from "../ui/input";
 import { ScrollArea } from "../ui/scroll-area";
-import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 interface CitySelectionSheetProps {
@@ -48,12 +52,6 @@ const otherCities = [
 
 const CitySelectionContent = ({ onOpenChange, onCitySelect, onCityReset }: { onOpenChange: (open: boolean) => void; onCitySelect: (city: string) => void; onCityReset: () => void; }) => (
   <>
-    <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
-        <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
-            <ArrowLeft />
-        </Button>
-      <SheetTitle className="text-xl font-bold">Country/City</SheetTitle>
-    </SheetHeader>
     <div className="p-4 shrink-0">
         <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -98,13 +96,32 @@ const CitySelectionContent = ({ onOpenChange, onCitySelect, onCityReset }: { onO
 
 export function CitySelectionSheet({ open, onOpenChange, onCitySelect, onCityReset }: CitySelectionSheetProps) {
   const isMobile = useIsMobile();
-  
-  const side = isMobile ? 'bottom' : 'left';
-  const className = isMobile ? 'h-[90%] max-h-full w-full p-0 flex flex-col' : 'w-[480px] p-0 flex flex-col';
+
+  if (isMobile) {
+    return (
+      <Drawer open={open} onOpenChange={onOpenChange}>
+        <DrawerContent className="h-[90%] max-h-full flex flex-col">
+           <DrawerHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
+              <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
+                  <ArrowLeft />
+              </Button>
+            <DrawerTitle className="text-xl font-bold">Country/City</DrawerTitle>
+          </DrawerHeader>
+          <CitySelectionContent onOpenChange={onOpenChange} onCitySelect={onCitySelect} onCityReset={onCityReset} />
+        </DrawerContent>
+      </Drawer>
+    )
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side={side} className={className} hideCloseButton>
+      <SheetContent side="left" className="w-[480px] p-0 flex flex-col" hideCloseButton>
+        <SheetHeader className="p-4 flex-row items-center gap-2 border-b shrink-0 text-left">
+          <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
+              <ArrowLeft />
+          </Button>
+          <SheetTitle className="text-xl font-bold">Country/City</SheetTitle>
+        </SheetHeader>
         <CitySelectionContent onOpenChange={onOpenChange} onCitySelect={onCitySelect} onCityReset={onCityReset} />
       </SheetContent>
     </Sheet>
