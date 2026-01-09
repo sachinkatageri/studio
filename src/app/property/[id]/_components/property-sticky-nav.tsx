@@ -78,9 +78,9 @@ export function PropertyStickyNav() {
         if (targetElement) {
             if (!isMobile) {
                 const topNavHeight = 56; // main header height (h-14)
-                const tabsHeight = 65;
+                const tabsHeight = 56;
                 const totalNavHeight = topNavHeight + tabsHeight;
-                const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight + 10;
+                const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight;
                 window.scrollTo({
                     top: topOffset,
                     behavior: 'smooth'
@@ -146,13 +146,13 @@ export function PropertyStickyNav() {
     return (
         <div ref={navRef} className={cn(
                 'relative bg-background top-0 z-30', 
-                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : 'fixed top-14 left-0 right-0 shadow-md border-b h-[65px]'),
-                !isSticky && (isMobile ? 'h-[48px] border-b' : 'h-[65px]')
+                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : 'fixed top-14 left-0 right-0 shadow-md border-b h-14'),
+                !isSticky && (isMobile ? 'h-[48px] border-b' : 'h-14')
             )}>
-            <div className={cn("relative mx-auto flex items-center", isMobile ? 'container' : 'container')}>
+            <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
                  {isMobile ? (
                     <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex">
+                        <div className="flex h-full items-center">
                              {navItems.map((item) => (
                                 <a
                                     key={item.label}
@@ -160,7 +160,7 @@ export function PropertyStickyNav() {
                                     data-id={item.href.substring(1)}
                                     onClick={(e) => handleNavClick(e, item.href)}
                                     className={cn(
-                                        'inline-block px-3 py-3 text-xs font-semibold border-b-2 shrink-0',
+                                        'inline-block px-3 py-3 text-xs font-semibold border-b-2 shrink-0 h-full flex items-center',
                                         activeId === item.href.substring(1)
                                             ? 'border-primary text-primary'
                                             : 'border-transparent text-muted-foreground hover:text-primary'
@@ -183,7 +183,7 @@ export function PropertyStickyNav() {
                         </button>
                     )}
                     <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex px-8">
+                        <div className="flex px-8 h-full items-center">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
@@ -191,7 +191,7 @@ export function PropertyStickyNav() {
                                     data-id={item.href.substring(1)}
                                     onClick={(e) => handleNavClick(e, item.href)}
                                     className={cn(
-                                        'inline-block px-4 py-4 text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
+                                        'inline-flex items-center px-4 h-full text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
                                         activeId === item.href.substring(1)
                                             ? 'border-primary text-primary'
                                             : 'border-transparent text-muted-foreground hover:text-primary'
