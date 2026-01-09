@@ -241,6 +241,11 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={72} height={18} />
           </Link>
+          <Separator orientation="vertical" className="h-6" />
+          <Button variant="ghost" className="hidden md:flex items-center gap-2" onClick={handleCitySelection}>
+              <Globe className="h-5 w-5" />
+              <span className="font-semibold">{selectedCity || "India"}</span>
+          </Button>
         </div>
 
         {!isMobile && (
