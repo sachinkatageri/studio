@@ -103,7 +103,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
-    <div className="relative h-full w-full rounded-lg overflow-hidden">
+    <div className="relative h-full min-h-[200px] w-full rounded-lg overflow-hidden">
         <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
@@ -539,7 +539,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Opening Hours</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="py-4">
                         <OpeningHours />
                     </CardContent>
                 </Card>
@@ -550,8 +550,8 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <PropertyAmenities property={property} />
                 </CardContent>
             </Card>
-            
-            <Card id="layout">
+
+            <Card id="layout" className="lg:col-span-3">
                 <CardHeader>
                     <CardTitle className="text-xl">Property Layout</CardTitle>
                 </CardHeader>
@@ -565,7 +565,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Location & Landmark</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0 h-full">
+                    <CardContent className="p-0">
                         <PropertyLocation />
                     </CardContent>
                 </Card>
