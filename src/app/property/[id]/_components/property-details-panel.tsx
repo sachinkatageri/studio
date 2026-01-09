@@ -452,7 +452,7 @@ const PropertyDocument = () => (
 
 
 const OpeningHours = () => (
-    <ul className="space-y-2 text-sm h-full flex flex-col justify-center">
+    <ul className="space-y-2 text-sm h-full flex flex-col justify-center py-4">
         <li className="flex justify-between">
             <span className="text-muted-foreground">Monday - Friday</span>
             <span>9:00 AM - 6:00 PM</span>
