@@ -551,26 +551,24 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
             
+            <Card id="layout">
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Layout</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <PropertyLayout property={property} />
+                </CardContent>
+            </Card>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Card id="layout">
-                    <CardHeader>
-                        <CardTitle className="text-xl">Property Layout</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <PropertyLayout property={property} />
-                    </CardContent>
-                </Card>
                 <Card id="locality">
                     <CardHeader>
                         <CardTitle className="text-xl">Location & Landmark</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-0">
+                    <CardContent className="p-0 h-full">
                         <PropertyLocation />
                     </CardContent>
                 </Card>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <Card id="nearby">
                     <CardHeader>
                         <CardTitle className="text-xl">Nearby Places</CardTitle>
@@ -579,6 +577,9 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <NearbyPlaces />
                     </CardContent>
                 </Card>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <Card>
                     <CardHeader>
                         <CardTitle className="text-xl">Property Details</CardTitle>
@@ -587,16 +588,15 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <AdditionalPropertyDetails />
                     </CardContent>
                 </Card>
+                 <Card>
+                    <CardHeader>
+                        <CardTitle className="text-xl">Rating & Reviews</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <PropertyReviews property={property} />
+                    </CardContent>
+                </Card>
             </div>
-            
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-xl">Rating & Reviews</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                    <PropertyReviews property={property} />
-                </CardContent>
-            </Card>
 
             <div className="grid md:grid-cols-3 gap-8">
                  <Card id="video" className="lg:col-span-1 max-w-lg mx-auto w-full">
