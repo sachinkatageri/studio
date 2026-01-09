@@ -76,6 +76,9 @@
 }
 
 @layer base {
+  html {
+    font-size: 12px;
+  }
   * {
     @apply border-border;
   }
@@ -97,5 +100,3 @@
         );
     }
 }
-
-    
