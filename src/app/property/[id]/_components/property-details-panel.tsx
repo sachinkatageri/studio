@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -103,7 +102,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
-    <div className="relative aspect-[4/2] w-full rounded-lg overflow-hidden">
+    <div className="relative h-[200px] w-full rounded-lg overflow-hidden">
         <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
@@ -559,7 +558,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
 
             <Card id="locality" className="lg:col-span-3">
                 <CardHeader>
-                    <CardTitle className="text-xl">Location & Landmark</CardTitle>
+                    <CardTitle className="text-xl">Location &amp; Landmark</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                     <PropertyLocation />
@@ -588,7 +587,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <div className="grid md:grid-cols-3 gap-8">
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-xl">Rating & Reviews</CardTitle>
+                        <CardTitle className="text-xl">Rating &amp; Reviews</CardTitle>
                     </CardHeader>
                     <CardContent className="p-6">
                         <PropertyReviews property={property} />
