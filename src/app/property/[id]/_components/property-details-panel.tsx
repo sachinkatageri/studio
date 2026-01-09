@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import React, 'useState' from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -598,7 +598,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
                  <Card id="video" className="lg:col-span-1 max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Video</CardTitle>
