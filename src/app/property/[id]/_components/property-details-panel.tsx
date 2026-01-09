@@ -103,7 +103,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
-    <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden">
+    <div className="relative aspect-[4/2] w-full rounded-lg overflow-hidden">
         <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
