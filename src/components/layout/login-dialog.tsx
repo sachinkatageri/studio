@@ -29,7 +29,7 @@ interface LoginDialogProps {
 const LoginContent = () => (
   <>
       <DialogHeader className="items-center text-center pt-6">
-        <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={120} height={30} className="mb-4" />
+        <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={72} height={18} className="mb-4" />
         <DialogTitle className="text-2xl font-bold">Login</DialogTitle>
       </DialogHeader>
       <div className="grid gap-4 py-4 px-6">
