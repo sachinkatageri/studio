@@ -103,7 +103,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
-    <div className="relative h-full min-h-[300px] w-full rounded-lg overflow-hidden">
+    <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden">
         <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
@@ -528,15 +528,15 @@ const OurServices = () => {
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
         <div className="space-y-8 pb-20 md:pb-0">
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="md:col-span-2">
                     <PropertyOverview property={property} />
                 </div>
                 <Card>
                     <CardHeader>
                         <CardTitle className="text-xl">Opening Hours</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 pt-0">
                         <OpeningHours />
                     </CardContent>
                 </Card>
@@ -557,15 +557,16 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
 
+            <Card id="locality" className="lg:col-span-3">
+                <CardHeader>
+                    <CardTitle className="text-xl">Location & Landmark</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <PropertyLocation />
+                </CardContent>
+            </Card>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <Card id="locality">
-                    <CardHeader>
-                        <CardTitle className="text-xl">Location & Landmark</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <PropertyLocation />
-                    </CardContent>
-                </Card>
                  <Card id="nearby">
                     <CardHeader>
                         <CardTitle className="text-xl">Nearby Places</CardTitle>
@@ -574,9 +575,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <NearbyPlaces />
                     </CardContent>
                 </Card>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <Card>
                     <CardHeader>
                         <CardTitle className="text-xl">Property Details</CardTitle>
@@ -585,7 +583,10 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <AdditionalPropertyDetails />
                     </CardContent>
                 </Card>
-                 <Card>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+                <Card>
                     <CardHeader>
                         <CardTitle className="text-xl">Rating & Reviews</CardTitle>
                     </CardHeader>
@@ -593,10 +594,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <PropertyReviews property={property} />
                     </CardContent>
                 </Card>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-                 <Card id="video" className="max-w-lg mx-auto w-full">
+                 <Card id="video" className="max-w-lg mx-auto w-full md:col-span-2">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Video</CardTitle>
                     </CardHeader>
@@ -604,6 +602,8 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <PropertyVideo />
                     </CardContent>
                 </Card>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
                 <Card id="plan" className="max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Floor Plan</CardTitle>
@@ -612,7 +612,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <PropertyPlan />
                     </CardContent>
                 </Card>
-
                  <Card id="documents" className="max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Document</CardTitle>
