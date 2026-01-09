@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useState } from "react";
@@ -6,26 +7,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CategorySelectionDialog } from "@/components/layout/category-selection-dialog";
 import { AllCitiesDialog } from "@/components/layout/all-cities-dialog";
-
-const cities = [
-    { name: 'Mumbai', icon: 'https://picsum.photos/seed/mumbai-icon/100/100' },
-    { name: 'Hyderabad', icon: 'https://picsum.photos/seed/hyderabad-icon/100/100' },
-    { name: 'Bangalore', icon: 'https://picsum.photos/seed/bangalore-icon/100/100' },
-    { name: 'Chennai', icon: 'https://picsum.photos/seed/chennai-icon/100/100' },
-    { name: 'Pune', icon: 'https://picsum.photos/seed/pune-icon/100/100' },
-    { name: 'Noida', icon: 'https://picsum.photos/seed/noida-icon/100/100' },
-    { name: 'Delhi', icon: 'https://picsum.photos/seed/delhi-icon/100/100' },
-    { name: 'Indore', icon: 'https://picsum.photos/seed/indore-icon/100/100' },
-    { name: 'Ahmedabad', icon: 'https://picsum.photos/seed/ahmedabad-icon/100/100' },
-    { name: 'Jaipur', icon: 'https://picsum.photos/seed/jaipur-icon/100/100' },
-    { name: 'Kerala', icon: 'https://picsum.photos/seed/kerala-icon/100/100' },
-    { name: 'Chandigarh', icon: 'https://picsum.photos/seed/chandigarh-icon/100/100' },
-    { name: 'Kolkata', icon: 'https://picsum.photos/seed/kolkata-icon/100/100' },
-    { name: 'Goa', icon: 'https://picsum.photos/seed/goa-icon/100/100' },
-    { name: 'Bhubaneswar', icon: 'https://picsum.photos/seed/bhubaneswar-icon/100/100' },
-    { name: 'Uttar Pradesh', icon: 'https://picsum.photos/seed/up-icon/100/100' },
-    { name: 'Lucknow', icon: 'https://picsum.photos/seed/lucknow-icon/100/100' },
-];
+import { cities } from "@/lib/cities";
 
 export default function CitySelector() {
     const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false);

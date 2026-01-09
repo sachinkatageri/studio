@@ -25,6 +25,7 @@ import { usePathname } from 'next/navigation';
 import { ListPropertySheet } from './list-property-sheet';
 import MobileSearchOverlay from './mobile-search-overlay';
 import CitySelection from '../sections/city-selection';
+import { cities } from '@/lib/cities';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -218,6 +219,8 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
 
   const onHomePage = pathname === '/';
 
+  const selectedCityData = selectedCity ? cities.find(c => c.name === selectedCity) : null;
+
   return (
     <>
     <header className="bg-background fixed top-0 z-40 w-full border-b">
@@ -228,7 +231,11 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
           </Link>
           <Separator orientation="vertical" className="h-6" />
           <Button variant="ghost" className="flex items-center gap-2" onClick={onCitySelection}>
-              <Globe className="h-5 w-5" />
+              {selectedCityData ? (
+                <Image src={selectedCityData.icon} alt={selectedCityData.name} width={20} height={20} className="rounded-full" />
+              ) : (
+                <Globe className="h-5 w-5" />
+              )}
               <span className="font-semibold">{selectedCity || "India"}</span>
           </Button>
         </div>
