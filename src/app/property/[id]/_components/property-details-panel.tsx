@@ -584,24 +584,24 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </Card>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="text-xl">Rating &amp; Reviews</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <PropertyReviews property={property} />
-                    </CardContent>
-                </Card>
-                 <Card id="video" className="max-w-lg mx-auto w-full md:col-span-2">
-                    <CardHeader>
-                        <CardTitle className="text-xl">Property Video</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <PropertyVideo />
-                    </CardContent>
-                </Card>
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Rating &amp; Reviews</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <PropertyReviews property={property} />
+                </CardContent>
+            </Card>
+            
+            <Card id="video" className="max-w-lg mx-auto w-full md:col-span-2">
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Video</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <PropertyVideo />
+                </CardContent>
+            </Card>
+
             <div className="grid md:grid-cols-2 gap-8">
                 <Card id="plan" className="max-w-lg mx-auto w-full">
                     <CardHeader>
