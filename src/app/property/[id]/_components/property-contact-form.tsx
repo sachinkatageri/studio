@@ -78,7 +78,7 @@ export default function PropertyContactForm() {
       <CardHeader>
         <CardTitle className="text-xl font-headline">Interested in this property?</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
