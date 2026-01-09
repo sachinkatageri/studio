@@ -256,10 +256,6 @@ export default function PropertyImageGallery() {
                         className={cn(
                             'relative overflow-hidden rounded-lg group',
                             index === 0 && 'col-span-2 row-span-2',
-                            index === 1 && 'col-span-1 row-span-1',
-                            index === 2 && 'col-span-1 row-span-1',
-                            index === 3 && 'col-span-1 row-span-1',
-                            index === 4 && 'col-span-1 row-span-1',
                         )}
                     >
                         <Image
