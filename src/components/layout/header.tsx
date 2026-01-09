@@ -239,20 +239,20 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
           </Link>
         </div>
 
-        <nav className="hidden md:flex gap-6 items-center">
-          <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors", pathname === '/' ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+        <nav className="hidden md:flex gap-2 items-center">
+          <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", pathname === '/' ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
             <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
             Map-View
           </Link>
-          <Link href="/commercial" className={cn("flex items-center text-sm font-medium transition-colors", isCommercialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+          <Link href="/commercial" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isCommercialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
             <Building className="mr-2 h-4 w-4" />
             Commercial
           </Link>
-          <Link href="/residential" className={cn("flex items-center text-sm font-medium transition-colors", isResidentialPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+          <Link href="/residential" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isResidentialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
             <HomeIcon className="mr-2 h-4 w-4" />
             Residential
           </Link>
-          <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors", isBuildersPage ? "text-primary" : "text-muted-foreground hover:text-primary")}>
+          <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isBuildersPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
             <Crown className="mr-2 h-4 w-4 text-amber-500" />
             Builders
           </Link>
