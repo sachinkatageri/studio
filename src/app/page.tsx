@@ -21,6 +21,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import DesktopSearchBar from '@/components/layout/desktop-search-bar';
+import MobileSearchOverlay from '@/components/layout/mobile-search-overlay';
 
 
 type SidebarView = 'list' | 'filters';
@@ -34,6 +35,7 @@ export default function Home() {
   const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
+  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
   const isMobile = useIsMobile();
   const router = useRouter();
 
@@ -130,7 +132,7 @@ export default function Home() {
       <>
       <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
-          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} />
+          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} />
           <div className="flex-1 flex flex-col overflow-hidden pt-14">
             <main className="relative flex-1">
               <MapView 
@@ -189,6 +191,7 @@ export default function Home() {
             </Drawer.Content>
           </Drawer.Portal>
         </Drawer.Root>
+        <MobileSearchOverlay open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen} />
       </>
     )
   }

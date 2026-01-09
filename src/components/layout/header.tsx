@@ -191,7 +191,7 @@ const UserMenuButton = () => {
 };
 
 
-export default function Header({ onFilterClick, areFiltersApplied }: { onFilterClick?: () => void, areFiltersApplied?: boolean }) {
+export default function Header({ onFilterClick, areFiltersApplied, onSearchClick }: { onFilterClick?: () => void, areFiltersApplied?: boolean, onSearchClick?: () => void }) {
   const [isLayersDeclarationOpen, setIsLayersDeclarationOpen] = useState(false);
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
@@ -265,6 +265,11 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         )}
         
         <div className="flex items-center gap-2">
+            {isMobile && onHomePage && (
+                <Button variant="ghost" size="icon" onClick={onSearchClick}>
+                    <Search />
+                </Button>
+            )}
             <ThemeToggleButton />
             <UserMenuButton />
         </div>
