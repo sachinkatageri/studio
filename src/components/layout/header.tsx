@@ -22,6 +22,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { ListPropertySheet } from './list-property-sheet';
+import MobileSearchOverlay from './mobile-search-overlay';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -195,6 +196,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
@@ -229,34 +231,50 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
   const isCommercialPage = pathname.startsWith('/commercial');
   const isResidentialPage = pathname.startsWith('/residential');
 
+  const onHomePage = pathname === '/';
+
   return (
     <>
     <header className="bg-background fixed top-0 z-40 w-full border-b">
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={120} height={30} />
+            <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={120} height={30} />
           </Link>
         </div>
 
-        <nav className="hidden md:flex gap-2 items-center">
-          <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", pathname === '/' ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
-            <span className={cn("w-2 h-2 rounded-full mr-2", pathname === '/' ? "bg-primary" : "bg-muted-foreground")}></span>
-            Map-View
-          </Link>
-          <Link href="/commercial" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isCommercialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
-            <Building className="mr-2 h-4 w-4" />
-            Commercial
-          </Link>
-          <Link href="/residential" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isResidentialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
-            <HomeIcon className="mr-2 h-4 w-4" />
-            Residential
-          </Link>
-          <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isBuildersPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
-            <Crown className="mr-2 h-4 w-4 text-amber-500" />
-            Builders
-          </Link>
-        </nav>
+        {isMobile && onHomePage && (
+             <div className="flex-1 mx-4">
+                <div 
+                    className="flex items-center bg-muted rounded-lg px-3 py-2 w-full text-sm text-muted-foreground"
+                    onClick={() => setIsSearchOverlayOpen(true)}
+                >
+                    <Search className="h-5 w-5 mr-2" />
+                    <span>Search...</span>
+                </div>
+            </div>
+        )}
+
+        {!isMobile && (
+          <nav className="flex gap-2 items-center">
+            <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", onHomePage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
+              <span className={cn("w-2 h-2 rounded-full mr-2", onHomePage ? "bg-primary" : "bg-muted-foreground")}></span>
+              Map-View
+            </Link>
+            <Link href="/commercial" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isCommercialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
+              <Building className="mr-2 h-4 w-4" />
+              Commercial
+            </Link>
+            <Link href="/residential" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isResidentialPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
+              <HomeIcon className="mr-2 h-4 w-4" />
+              Residential
+            </Link>
+            <Link href="/builders" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", isBuildersPage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
+              <Crown className="mr-2 h-4 w-4 text-amber-500" />
+              Builders
+            </Link>
+          </nav>
+        )}
         
         <div className="flex items-center gap-2">
             <ThemeToggleButton />
@@ -274,6 +292,7 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
         onOpenChange={setIsLayersDialogOpen}
     />
     <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
+    {isMobile && <MobileSearchOverlay open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen} />}
     </>
   );
 }

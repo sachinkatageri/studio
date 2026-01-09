@@ -30,7 +30,7 @@ export default function SiteFooter() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
                     <div className="space-y-4 md:col-span-2">
-                        <Image src="https://www.buildersinfo.in/_next/image?url=%2Flogo.png&w=256&q=75" alt="BuildersInfo Logo" width={150} height={40} />
+                        <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={150} height={40} />
                         <p className="text-sm text-muted-foreground">
                             India's first brokerage-free real estate discovery platform.
                         </p>
