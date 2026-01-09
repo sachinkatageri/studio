@@ -595,7 +595,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card id="video">
+            <Card id="video" className="max-w-lg mx-auto">
                 <CardHeader>
                     <CardTitle className="text-xl">Property Video</CardTitle>
                 </CardHeader>
