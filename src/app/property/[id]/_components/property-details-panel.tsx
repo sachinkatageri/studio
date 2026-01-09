@@ -528,61 +528,63 @@ const OurServices = () => {
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
-        <div className="space-y-8 pb-20 md:pb-0">
+        <div className="space-y-8">
             <PropertyOverview property={property} />
 
             <Separator />
             <PropertyAmenities property={property} />
+
+            <Separator />
+            <div className="grid md:grid-cols-2 gap-8">
+                <Card id="layout">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Property Layout</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <PropertyLayout property={property} />
+                    </CardContent>
+                </Card>
+                <Card id="locality">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Location & Landmark</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <PropertyLocation />
+                    </CardContent>
+                </Card>
+            </div>
             
             <Separator />
-            <Card id="layout">
-                <CardHeader>
-                    <CardTitle className="text-xl">Property Layout</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PropertyLayout property={property} />
-                </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-2 gap-8">
+                <Card id="nearby">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Nearby Places</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <NearbyPlaces />
+                    </CardContent>
+                </Card>
 
-            <Separator />
-             <Card id="locality">
-                <CardHeader>
-                    <CardTitle className="text-xl">Location & Landmark</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PropertyLocation />
-                </CardContent>
-            </Card>
-            
-            <Separator />
-            <Card id="nearby">
-                <CardHeader>
-                    <CardTitle className="text-xl">Nearby Places</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <NearbyPlaces />
-                </CardContent>
-            </Card>
+                <div className="space-y-8">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-xl">Opening Hours</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <OpeningHours />
+                        </CardContent>
+                    </Card>
 
-            <Separator />
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-xl">Opening Hours</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <OpeningHours />
-                </CardContent>
-            </Card>
-
-            <Separator />
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-xl">Property Details</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <AdditionalPropertyDetails />
-                </CardContent>
-            </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-xl">Property Details</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <AdditionalPropertyDetails />
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
 
             <Separator />
             <Card>
@@ -595,34 +597,33 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card id="video" className="max-w-lg mx-auto">
-                <CardHeader>
-                    <CardTitle className="text-xl">Property Video</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PropertyVideo />
-                </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                 <Card id="video" className="lg:col-span-1">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Property Video</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <PropertyVideo />
+                    </CardContent>
+                </Card>
+                <Card id="plan" className="lg:col-span-1">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Floor Plan</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <PropertyPlan />
+                    </CardContent>
+                </Card>
 
-            <Separator />
-            <Card id="plan" className="max-w-lg mx-auto">
-                <CardHeader>
-                    <CardTitle className="text-xl">Floor Plan</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PropertyPlan />
-                </CardContent>
-            </Card>
-
-            <Separator />
-            <Card id="documents" className="max-w-lg mx-auto">
-                <CardHeader>
-                    <CardTitle className="text-xl">Property Document</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <PropertyDocument />
-                </CardContent>
-            </Card>
+                 <Card id="documents" className="lg:col-span-1">
+                    <CardHeader>
+                        <CardTitle className="text-xl">Property Document</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <PropertyDocument />
+                    </CardContent>
+                </Card>
+            </div>
             
             <Separator />
             <OurServices />
