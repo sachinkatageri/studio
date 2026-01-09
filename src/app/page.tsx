@@ -23,9 +23,10 @@ import { Map as MapIcon, Satellite, Mountain, TrafficCone } from 'lucide-react';
 import DesktopSearchBar from '@/components/layout/desktop-search-bar';
 import MobileSearchOverlay from '@/components/layout/mobile-search-overlay';
 import { CitySelectionSheet } from '@/components/layout/city-selection-sheet';
+import CitySelection from '@/components/sections/city-selection';
 
 
-type SidebarView = 'list' | 'filters';
+type SidebarView = 'list' | 'filters' | 'city';
 export type MobileView = 'list' | 'map';
 
 export default function Home() {
@@ -53,6 +54,17 @@ export default function Home() {
       }
     }
   };
+
+  const handleCitySelectionClick = () => {
+    if (isMobile) {
+        setIsCitySheetOpen(true);
+    } else {
+        setSidebarView('city');
+        if (!isSidebarOpen) {
+            setIsSidebarOpen(true);
+        }
+    }
+  }
 
   const handleBackToList = () => {
     if (isMobile) {
@@ -131,12 +143,20 @@ export default function Home() {
 
   const handleCitySelected = (city: string) => {
     setSelectedCity(city);
-    setIsCitySheetOpen(false);
+    if(isMobile) {
+        setIsCitySheetOpen(false);
+    } else {
+        setSidebarView('list');
+    }
   }
 
   const handleCityReset = () => {
     setSelectedCity(null);
-    setIsCitySheetOpen(false);
+    if(isMobile) {
+        setIsCitySheetOpen(false);
+    } else {
+        setSidebarView('list');
+    }
   }
 
   if (isMobile) {
@@ -144,7 +164,7 @@ export default function Home() {
       <>
       <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
         <div className="relative flex flex-col h-screen bg-background">
-          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} selectedCity={selectedCity} onCitySelection={() => setIsCitySheetOpen(true)} />
+          <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} selectedCity={selectedCity} onCitySelection={handleCitySelectionClick} />
           <div className="flex-1 flex flex-col overflow-hidden pt-14">
             <main className="relative flex-1">
               <MapView 
@@ -254,7 +274,7 @@ export default function Home() {
 
   return (
       <div className="relative flex flex-col h-screen bg-background">
-        {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} selectedCity={selectedCity} onCitySelection={() => setIsCitySheetOpen(true)} />}
+        {showHeaderAndFooter && <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} selectedCity={selectedCity} onCitySelection={handleCitySelectionClick} />}
         <div className="flex flex-1 flex-col md:flex-row overflow-hidden pt-14">
             <aside className={cn(
               "flex-col border-r transition-all duration-300 relative",
@@ -263,13 +283,12 @@ export default function Home() {
               mobileView === 'list' || (isMobile && sidebarView === 'filters') ? "flex h-full" : 'hidden'
             )}>
               <div className="absolute top-4 left-4 right-4 z-10 hidden md:flex justify-between items-center gap-2">
-                <DesktopSearchBar areFiltersApplied={areFiltersApplied} onFilterClick={handleFilterClick} onCitySelection={() => setIsCitySheetOpen(true)} />
+                <DesktopSearchBar areFiltersApplied={areFiltersApplied} onFilterClick={handleFilterClick} onCitySelection={handleCitySelectionClick} />
               </div>
               <div className="pt-20 w-full flex-1 min-h-0">
-                {sidebarView === 'list' 
-                    ? <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> 
-                    : <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} />
-                }
+                {sidebarView === 'list' && <PropertyList onSelectProperty={handleSelectProperty} selectedPropertyId={selectedPropertyId} setMobileView={setMobileView} /> }
+                {sidebarView === 'filters' && <PropertyFilters onBack={handleBackToList} onApplyFilters={handleApplyFilters} onClearFilters={handleClearFilters} /> }
+                {sidebarView === 'city' && <CitySelection onBack={handleBackToList} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />}
               </div>
             </aside>
             <main className={cn(
