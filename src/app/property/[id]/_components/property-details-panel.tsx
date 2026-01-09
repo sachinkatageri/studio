@@ -41,7 +41,7 @@ export const amenityIcons: { [key: string]: React.ReactNode } = {
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
-    <div id="overview">
+    <div id="overview" className="h-full">
         <h2 className="text-xl font-semibold mb-4">Overview</h2>
         {/* @ts-ignore */}
         <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
@@ -103,7 +103,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
-    <div className="relative h-80 w-full rounded-lg overflow-hidden">
+    <div className="relative h-full w-full rounded-lg overflow-hidden">
         <Image src="https://picsum.photos/seed/map-detail/1000/400" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
@@ -150,7 +150,7 @@ const NearbyPlaces = () => {
     ];
 
     return (
-        <div>
+        <div className="h-full flex flex-col">
             <div className="md:hidden">
                  <ScrollArea className="w-full whitespace-nowrap">
                     <div className="flex gap-2 mb-4">
@@ -182,7 +182,7 @@ const NearbyPlaces = () => {
                     </Button>
                 ))}
             </div>
-            <ul className="space-y-2">
+            <ul className="space-y-2 flex-1">
                 {nearbyData[activeCategory].map(item => (
                     <li key={item.name} className="flex justify-between p-2 rounded-md hover:bg-muted text-sm md:text-base">
                         <span className="font-medium">{item.name}</span>
@@ -234,7 +234,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     ];
 
     return (
-        <div id="ratings-reviews" className="space-y-8">
+        <div id="ratings-reviews" className="space-y-8 h-full flex flex-col">
             <div>
                 <div className="flex justify-between items-center mb-4">
                     <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
@@ -267,7 +267,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                 </Card>
             </div>
             
-            <div>
+            <div className="flex-1 flex flex-col">
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
                     <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
@@ -275,10 +275,10 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                 <Carousel className="w-full" opts={{ align: "start", loop: true }}>
                     <CarouselContent className="-ml-4">
                         {reviews.map((review, index) => (
-                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                                <div className="p-1">
-                                    <Card>
-                                        <CardContent className="p-4 space-y-3">
+                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-full">
+                                <div className="p-1 h-full">
+                                    <Card className="h-full">
+                                        <CardContent className="p-4 space-y-3 h-full flex flex-col justify-between">
                                             <div className="flex justify-between items-start">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
@@ -309,8 +309,8 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
-                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselPrevious className="absolute -left-3 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
                 </Carousel>
             </div>
             
@@ -321,12 +321,12 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 
 
 const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
-    <div className="w-full mx-auto">
-        <Carousel>
-            <CarouselContent>
+    <div className="w-full mx-auto h-full">
+        <Carousel className="h-full">
+            <CarouselContent className="h-full">
                 {images.map((image) => (
-                    <CarouselItem key={image.id}>
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+                    <CarouselItem key={image.id} className="h-full">
+                        <div className="relative aspect-[4/3] w-full h-full overflow-hidden rounded-lg">
                             <Image
                                 src={image.src}
                                 alt={image.alt}
@@ -370,19 +370,19 @@ const PropertyLayout = ({ property }: { property: Property }) => {
     };
 
     return (
-        <Tabs defaultValue="small">
+        <Tabs defaultValue="small" className="h-full flex flex-col">
             <TabsList variant="pill" className="grid w-full grid-cols-3 mb-4">
                 <TabsTrigger variant="pill" value="small" className="text-xs md:text-sm">6-15 Seats</TabsTrigger>
                 <TabsTrigger variant="pill" value="medium" className="text-xs md:text-sm">16-30 Seats</TabsTrigger>
                 <TabsTrigger variant="pill" value="large" className="text-xs md:text-sm">31-60 Seats</TabsTrigger>
             </TabsList>
-            <TabsContent value="small">
+            <TabsContent value="small" className="flex-1">
                 <LayoutImageGallery images={layouts.small} />
             </TabsContent>
-            <TabsContent value="medium">
+            <TabsContent value="medium" className="flex-1">
                 <LayoutImageGallery images={layouts.medium} />
             </TabsContent>
-            <TabsContent value="large">
+            <TabsContent value="large" className="flex-1">
                 <LayoutImageGallery images={layouts.large} />
             </TabsContent>
         </Tabs>
@@ -452,7 +452,7 @@ const PropertyDocument = () => (
 
 
 const OpeningHours = () => (
-    <ul className="space-y-2 text-sm">
+    <ul className="space-y-2 text-sm h-full flex flex-col justify-center">
         <li className="flex justify-between">
             <span className="text-muted-foreground">Monday - Friday</span>
             <span>9:00 AM - 6:00 PM</span>
@@ -506,15 +506,15 @@ const OurServices = () => {
     ];
   
     return (
-      <div>
+      <div className="h-full">
         <h2 className="text-xl font-semibold mb-4">Our Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
           {services.map(service => (
-            <Card key={service.title}>
+            <Card key={service.title} className="flex flex-col">
               <CardHeader className="p-4 md:p-6">
                 <CardTitle className="text-base md:text-lg">{service.title}</CardTitle>
               </CardHeader>
-              <CardContent className="p-4 md:p-6 pt-0">
+              <CardContent className="p-4 md:p-6 pt-0 flex-1">
                 <p className="text-xs md:text-sm text-muted-foreground">{service.description}</p>
               </CardContent>
             </Card>
@@ -528,14 +528,30 @@ const OurServices = () => {
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
-        <div className="space-y-8">
-            <PropertyOverview property={property} />
-
-            <Separator />
-            <PropertyAmenities property={property} />
-
-            <Separator />
-            <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-8 pb-20 md:pb-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <Card className="lg:col-span-2">
+                    <CardContent className="p-6">
+                        <PropertyOverview property={property} />
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-xl">Opening Hours</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <OpeningHours />
+                    </CardContent>
+                </Card>
+            </div>
+            
+            <Card>
+                <CardContent className="p-6">
+                    <PropertyAmenities property={property} />
+                </CardContent>
+            </Card>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Card id="layout">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Layout</CardTitle>
@@ -548,15 +564,14 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Location & Landmark</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="h-full min-h-[300px]">
                         <PropertyLocation />
                     </CardContent>
                 </Card>
             </div>
             
-            <Separator />
-            <div className="grid md:grid-cols-2 gap-8">
-                <Card id="nearby">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <Card id="nearby">
                     <CardHeader>
                         <CardTitle className="text-xl">Nearby Places</CardTitle>
                     </CardHeader>
@@ -564,41 +579,27 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <NearbyPlaces />
                     </CardContent>
                 </Card>
-
-                <div className="space-y-8">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-xl">Opening Hours</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <OpeningHours />
-                        </CardContent>
-                    </Card>
-
-                    <Card>
-                        <CardHeader>
-                            <CardTitle className="text-xl">Property Details</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <AdditionalPropertyDetails />
-                        </CardContent>
-                    </Card>
-                </div>
+                 <Card>
+                    <CardHeader>
+                        <CardTitle className="text-xl">Property Details</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <AdditionalPropertyDetails />
+                    </CardContent>
+                </Card>
             </div>
-
-            <Separator />
+            
             <Card>
                 <CardHeader>
                     <CardTitle className="text-xl">Rating & Reviews</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="p-6">
                     <PropertyReviews property={property} />
                 </CardContent>
             </Card>
 
-            <Separator />
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 <Card id="video" className="lg:col-span-1">
+                 <Card id="video" className="lg:col-span-1 max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Video</CardTitle>
                     </CardHeader>
@@ -606,7 +607,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <PropertyVideo />
                     </CardContent>
                 </Card>
-                <Card id="plan" className="lg:col-span-1">
+                <Card id="plan" className="lg:col-span-1 max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Floor Plan</CardTitle>
                     </CardHeader>
@@ -615,7 +616,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     </CardContent>
                 </Card>
 
-                 <Card id="documents" className="lg:col-span-1">
+                 <Card id="documents" className="lg:col-span-1 max-w-lg mx-auto w-full">
                     <CardHeader>
                         <CardTitle className="text-xl">Property Document</CardTitle>
                     </CardHeader>
@@ -625,8 +626,13 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </Card>
             </div>
             
-            <Separator />
-            <OurServices />
+            <Card>
+                <CardContent className="p-6">
+                    <OurServices />
+                </CardContent>
+            </Card>
         </div>
     )
 }
+
+    
