@@ -605,7 +605,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Separator />
-            <Card id="plan">
+            <Card id="plan" className="max-w-lg mx-auto">
                 <CardHeader>
                     <CardTitle className="text-xl">Floor Plan</CardTitle>
                 </CardHeader>
