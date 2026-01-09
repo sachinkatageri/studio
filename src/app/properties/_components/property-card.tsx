@@ -24,7 +24,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
             <Card className="overflow-hidden transition-shadow duration-300 group h-full">
                 <div className="flex flex-col h-full">
                     <Link href={`/property/${property.id}`} className="block">
-                        <div className="relative shrink-0 w-full aspect-video">
+                        <div className="relative shrink-0 w-full aspect-[4/3]">
                             {projectImage && (
                                 <Image
                                     src={projectImage.imageUrl}
@@ -38,27 +38,27 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                     </Link>
 
                     <div className="flex-1 flex flex-col p-4">
-                        <div className="flex justify-between items-start">
-                            <Badge variant={property.type === 'Commercial' ? 'secondary' : 'default'} className="capitalize mb-2">
-                                {property.type === 'Commercial' ? <Building className="h-3 w-3 mr-1" /> : <HomeIcon className="h-3 w-3 mr-1" />}
-                                {property.type}
-                            </Badge>
-                            <Button variant="ghost" size="icon" className="h-8 w-8 -mt-1 -mr-1">
-                                <Heart className="h-4 w-4" />
-                            </Button>
+                         <div className="flex-grow">
+                            <div className="flex justify-between items-start">
+                                <Badge variant={property.type === 'Commercial' ? 'secondary' : 'default'} className="capitalize mb-2">
+                                    {property.type === 'Commercial' ? <Building className="h-3 w-3 mr-1" /> : <HomeIcon className="h-3 w-3 mr-1" />}
+                                    {property.type}
+                                </Badge>
+                                <Button variant="ghost" size="icon" className="h-8 w-8 -mt-1 -mr-1">
+                                    <Heart className="h-4 w-4" />
+                                </Button>
+                            </div>
+                            <Link href={`/property/${property.id}`}>
+                                <h3 className="font-bold text-base md:text-lg leading-tight truncate group-hover:underline">
+                                    {property.name}
+                                </h3>
+                            </Link>
+                            <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1 truncate">
+                                <MapPin className="h-4 w-4 shrink-0" />
+                                {property.location}
+                            </p>
                         </div>
-                        <Link href={`/property/${property.id}`}>
-                            <h3 className="font-bold text-base md:text-lg leading-tight truncate group-hover:underline">
-                                {property.name}
-                            </h3>
-                        </Link>
-                        <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1 truncate">
-                            <MapPin className="h-4 w-4 shrink-0" />
-                            {property.location}
-                        </p>
                         
-                        <div className="flex-grow"></div>
-
                         <div className="flex items-center justify-between mt-3">
                             <p className="font-bold text-base md:text-lg text-primary">
                                 {property.price || `₹${property.pricePerSqFt}/sqft`}
@@ -66,7 +66,7 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
                             <Badge variant="outline">{property.status}</Badge>
                         </div>
 
-                        <Button asChild className="w-full mt-4">
+                         <Button asChild className="w-full mt-4 hidden md:inline-flex">
                            <Link href={`/property/${property.id}`}>View Details</Link>
                         </Button>
                     </div>
@@ -78,8 +78,8 @@ export default function PropertyCard({ property, view }: PropertyCardProps) {
     // List View
     return (
         <Card className="overflow-hidden transition-shadow duration-300 group">
-            <div className="flex flex-col md:flex-row">
-                <Link href={`/property/${property.id}`} className="block relative shrink-0 w-full md:w-72 h-48 md:h-auto">
+            <div className="flex flex-col sm:flex-row">
+                <Link href={`/property/${property.id}`} className="block relative shrink-0 w-full sm:w-1/3 md:w-1/4 h-48 sm:h-auto">
                     {projectImage && (
                         <Image
                             src={projectImage.imageUrl}
