@@ -536,7 +536,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Opening Hours</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <OpeningHours />
                     </CardContent>
                 </Card>
@@ -562,7 +562,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Location & Landmark</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <PropertyLocation />
                     </CardContent>
                 </Card>
@@ -570,7 +570,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Nearby Places</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <NearbyPlaces />
                     </CardContent>
                 </Card>
@@ -581,7 +581,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Property Details</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <AdditionalPropertyDetails />
                     </CardContent>
                 </Card>
@@ -589,7 +589,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Rating & Reviews</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <PropertyReviews property={property} />
                     </CardContent>
                 </Card>
@@ -600,7 +600,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Property Video</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <PropertyVideo />
                     </CardContent>
                 </Card>
@@ -608,7 +608,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Floor Plan</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <PropertyPlan />
                     </CardContent>
                 </Card>
@@ -617,7 +617,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardHeader>
                         <CardTitle className="text-xl">Property Document</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="p-6">
                         <PropertyDocument />
                     </CardContent>
                 </Card>
