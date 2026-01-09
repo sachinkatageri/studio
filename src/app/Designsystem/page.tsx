@@ -66,17 +66,17 @@ const colors = [
 
 const spacing = [
   { name: "p-0", size: "0px" },
-  { name: "p-1", size: "0.25rem" },
-  { name: "p-2", size: "0.5rem" },
-  { name: "p-3", size: "0.75rem" },
-  { name: "p-4", size: "1rem" },
-  { name: "p-5", size: "1.25rem" },
-  { name: "p-6", size: "1.5rem" },
-  { name: "p-8", size: "2rem" },
-  { name: "p-10", size: "2.5rem" },
-  { name: "p-12", size: "3rem" },
-  { name: "p-16", size: "4rem" },
-  { name: "p-20", size: "5rem" },
+  { name: "p-1", size: "3px" },
+  { name: "p-2", size: "6px" },
+  { name: "p-3", size: "9px" },
+  { name: "p-4", size: "12px" },
+  { name: "p-5", size: "15px" },
+  { name: "p-6", size: "18px" },
+  { name: "p-8", size: "24px" },
+  { name: "p-10", size: "30px" },
+  { name: "p-12", size: "36px" },
+  { name: "p-16", size: "48px" },
+  { name: "p-20", size: "60px" },
 ];
 
 const typography = [
@@ -84,37 +84,37 @@ const typography = [
       style: "Headline Extra Bold (h1)",
       class: "text-4xl font-extrabold font-headline tracking-tight",
       font: "Plus Jakarta Sans",
-      size: "36px",
+      size: "27px",
     },
     {
       style: "Headline Bold (h2)",
       class: "text-3xl font-bold font-headline",
       font: "Plus Jakarta Sans",
-      size: "30px",
+      size: "22.5px",
     },
     {
       style: "Headline Semibold (h3)",
       class: "text-2xl font-semibold font-headline",
       font: "Plus Jakarta Sans",
-      size: "24px",
+      size: "18px",
     },
     {
       style: "Body Large",
       class: "text-lg",
       font: "Plus Jakarta Sans",
-      size: "18px",
+      size: "13.5px",
     },
     {
       style: "Body Regular",
       class: "",
       font: "Plus Jakarta Sans",
-      size: "16px",
+      size: "12px",
     },
     {
       style: "Body Small (muted)",
       class: "text-sm text-muted-foreground",
       font: "Plus Jakarta Sans",
-      size: "14px",
+      size: "10.5px",
     },
   ];
 
