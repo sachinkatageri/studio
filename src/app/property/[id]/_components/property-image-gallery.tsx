@@ -248,8 +248,8 @@ export default function PropertyImageGallery() {
     const remainingImages = propertyImageGallery.length - 5;
 
     return (
-        <div className="relative container mx-auto cursor-pointer" onClick={openGallery}>
-            <div className="grid grid-cols-4 grid-rows-2 gap-2 h-[450px]">
+        <div className="relative container mx-auto cursor-pointer p-4" onClick={openGallery}>
+            <div className="grid grid-cols-4 grid-rows-2 gap-2 h-[400px]">
                 {propertyImageGallery.slice(0, 5).map((image, index) => (
                     <div
                         key={image.id}
