@@ -193,30 +193,9 @@ export default function Home() {
                           >
                             <SlidersHorizontal />
                           </Button>
-                           <Popover>
-                              <PopoverTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-10 w-10" onClick={(e) => e.stopPropagation()}>
-                                  <Globe className="h-5 w-5" />
-                                </Button>
-                              </PopoverTrigger>
-                              <PopoverContent className="w-48 p-2">
-                                <div className="grid gap-1">
-                                  <Button variant="ghost" className="justify-start">
-                                    <MapIcon className="mr-2 h-4 w-4" /> Default
-                                  </Button>
-                                  <Button variant="ghost" className="justify-start">
-                                    <Satellite className="mr-2 h-4 w-4" /> Satellite
-                                  </Button>
-                                  <Button variant="ghost" className="justify-start">
-                                    <Mountain className="mr-2 h-4 w-4" /> Terrain
-                                  </Button>
-                                  <Separator />
-                                  <Button variant="ghost" className="justify-start">
-                                    <TrafficCone className="mr-2 h-4 w-4" /> Traffic
-                                  </Button>
-                                </div>
-                              </PopoverContent>
-                            </Popover>
+                           <Button variant="ghost" size="icon" className="h-10 w-10" onClick={(e) => { e.stopPropagation(); handleCitySelectionClick(); }}>
+                              <Globe className="h-5 w-5" />
+                           </Button>
                       </div>
                     </div>
                   </div>
@@ -268,6 +247,7 @@ export default function Home() {
           </Drawer.Portal>
         </Drawer.Root>
         <MobileSearchOverlay open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen} />
+         <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
       </>
     )
   }
