@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import Link from 'next/link';
@@ -265,11 +266,7 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
         )}
         
         <div className="flex items-center gap-2">
-            {isMobile && onHomePage && (
-                <Button variant="ghost" size="icon" onClick={onSearchClick}>
-                    <Search />
-                </Button>
-            )}
+            
             <ThemeToggleButton />
             <UserMenuButton />
         </div>

@@ -145,6 +145,28 @@ export default function Home() {
                 onMarkerClick={handleMarkerClick}
                 onViewDetails={handleViewDetails}
               >
+                  <div className="absolute top-4 left-4 right-4 z-20">
+                    <div className="relative flex items-center h-12 text-foreground shadow-lg bg-background rounded-lg">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+                      <span className="pl-10 text-sm text-muted-foreground">Search </span>
+                      <Input
+                        type="text"
+                        placeholder={placeholder}
+                        className="w-full pr-12 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      />
+                      <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
+                          <Button
+                            variant={areFiltersApplied ? "default" : "ghost"}
+                            size="icon"
+                            className="h-10 w-10"
+                            onClick={handleFilterClick}
+                          >
+                            <SlidersHorizontal />
+                          </Button>
+                      </div>
+                    </div>
+                  </div>
+
                  <Drawer.Trigger asChild>
                     <div className={cn(
                         "absolute left-4 z-10 transition-all duration-300",
