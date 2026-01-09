@@ -243,18 +243,6 @@ export default function Header({ onFilterClick, areFiltersApplied }: { onFilterC
           </Link>
         </div>
 
-        {isMobile && onHomePage && (
-             <div className="flex-1 mx-4">
-                <div 
-                    className="flex items-center bg-muted rounded-lg px-3 py-2 w-full text-sm text-muted-foreground"
-                    onClick={() => setIsSearchOverlayOpen(true)}
-                >
-                    <Search className="h-5 w-5 mr-2" />
-                    <span>Search...</span>
-                </div>
-            </div>
-        )}
-
         {!isMobile && (
           <nav className="flex gap-2 items-center">
             <Link href="/" className={cn("flex items-center text-sm font-medium transition-colors px-3 py-2 rounded-lg", onHomePage ? "text-primary bg-primary/10" : "text-muted-foreground hover:text-primary hover:bg-accent/20")}>
