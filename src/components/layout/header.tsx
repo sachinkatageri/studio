@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { ListPropertySheet } from './list-property-sheet';
 import MobileSearchOverlay from './mobile-search-overlay';
+import CitySelection from '../sections/city-selection';
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block">
@@ -223,7 +224,7 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
       <div className="px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2 shrink-0">
-            <Image src="https://i.ibb.co/gMsT7BM/buildersinfologo3x.png" alt="BuildersInfo Logo" width={72} height={18} />
+            <Image src="https://i.ibb.co/gMsT7BMs/buildersinfologo3x.png" alt="BuildersInfo Logo" width={72} height={18} />
           </Link>
           <Separator orientation="vertical" className="h-6" />
           <Button variant="ghost" className="flex items-center gap-2" onClick={onCitySelection}>
