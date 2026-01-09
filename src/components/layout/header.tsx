@@ -197,7 +197,6 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
   const [isLayersDialogOpen, setIsLayersDialogOpen] = useState(false);
   const [isCitySheetOpen, setIsCitySheetOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
-  const [isSearchOverlayOpen, setIsSearchOverlayOpen] = useState(false);
   const isMobile = useIsMobile();
   const pathname = usePathname();
 
@@ -282,7 +281,6 @@ export default function Header({ onFilterClick, areFiltersApplied, onSearchClick
         onOpenChange={setIsLayersDialogOpen}
     />
     <CitySelectionSheet open={isCitySheetOpen} onOpenChange={setIsCitySheetOpen} onCitySelect={handleCitySelected} onCityReset={handleCityReset} />
-    {isMobile && <MobileSearchOverlay open={isSearchOverlayOpen} onOpenChange={setIsSearchOverlayOpen} />}
     </>
   );
 }

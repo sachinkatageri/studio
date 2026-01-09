@@ -146,26 +146,24 @@ export default function Home() {
                 onViewDetails={handleViewDetails}
               >
                   <div className="absolute top-4 left-4 right-4 z-20">
-                    <div className="relative flex items-center h-12 text-foreground shadow-lg bg-background rounded-lg">
+                    <div onClick={() => setIsSearchOverlayOpen(true)} className="relative flex items-center h-12 text-foreground shadow-lg bg-background rounded-lg cursor-pointer">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
-                      <span className="pl-10 text-sm text-muted-foreground">Search </span>
-                      <Input
-                        type="text"
-                        placeholder={placeholder}
-                        className="w-full pr-24 h-full bg-transparent border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-                      />
+                      <span className="pl-10 text-sm text-muted-foreground">Search {placeholder}</span>
                       <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center">
                           <Button
-                            variant={areFiltersApplied ? "default" : "ghost"}
+                            variant="ghost"
                             size="icon"
                             className="h-10 w-10"
-                            onClick={handleFilterClick}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleFilterClick();
+                            }}
                           >
                             <SlidersHorizontal />
                           </Button>
                            <Popover>
                               <PopoverTrigger asChild>
-                                <Button variant="ghost" size="icon" className="h-10 w-10">
+                                <Button variant="ghost" size="icon" className="h-10 w-10" onClick={(e) => e.stopPropagation()}>
                                   <Globe className="h-5 w-5" />
                                 </Button>
                               </PopoverTrigger>
