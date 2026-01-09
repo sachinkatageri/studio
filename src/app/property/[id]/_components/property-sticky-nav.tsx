@@ -13,6 +13,7 @@ const navItems = [
     { label: 'Layout', href: '#layout' },
     { label: 'Location', href: '#locality' },
     { label: 'Nearby', href: '#nearby' },
+    { label: 'Developer', href: '#developer' },
     { label: 'Ratings & Reviews', href: '#ratings-reviews' },
     { label: 'Video', href: '#video' },
     { label: 'Floor Plan', href: '#plan' },
