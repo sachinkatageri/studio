@@ -2,10 +2,10 @@
 
 "use client";
 
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '@/components/layout/header';
 import MapView from '@/components/sections/map-view';
 import PropertyList from '@/components/sections/property-list';
-import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import PropertyFilters from '@/components/sections/property-filters';
 import Footer from '@/components/layout/footer';
@@ -42,7 +42,8 @@ export default function Home() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const isMobile = useIsMobile();
   const router = useRouter();
-
+  const drawerSnapPoint = 0.5; // Start at 50%
+  const [snap, setSnap] = React.useState<number | string | null>(drawerSnapPoint)
 
   const handleFilterClick = () => {
     if (isMobile) {
@@ -162,7 +163,14 @@ export default function Home() {
   if (isMobile) {
     return (
       <>
-      <Drawer.Root open={isDrawerOpen} onOpenChange={setIsDrawerOpen} shouldScaleBackground>
+      <Drawer.Root 
+        open={isDrawerOpen} 
+        onOpenChange={setIsDrawerOpen} 
+        shouldScaleBackground 
+        snapPoints={[drawerSnapPoint, 0.96]}
+        activeSnapPoint={snap}
+        setActiveSnapPoint={setSnap}
+      >
         <div className="relative flex flex-col h-screen bg-background">
           <Header onFilterClick={handleFilterClick} areFiltersApplied={areFiltersApplied} onSearchClick={() => setIsSearchOverlayOpen(true)} selectedCity={selectedCity} onCitySelection={handleCitySelectionClick} />
           <div className="flex-1 flex flex-col overflow-hidden pt-14">
@@ -219,7 +227,7 @@ export default function Home() {
         </div>
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40 z-50" />
-          <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] h-[96%] mt-24 fixed bottom-0 left-0 right-0 z-50">
+          <Drawer.Content className="bg-background flex flex-col rounded-t-[10px] fixed bottom-0 left-0 right-0 z-50">
             <Drawer.Title className="sr-only">Property List</Drawer.Title>
             <div className="p-0 bg-background rounded-t-[10px] flex-1 flex flex-col">
               <div className="p-4 flex items-center justify-between mb-0 border-b">
