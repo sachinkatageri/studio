@@ -112,6 +112,7 @@ const PricingDetails = ({ property }: { property: Property}) => (
 )
 
 const PropertyLocation = () => (
+  <CardContent className="p-6">
     <div className="relative h-80 w-full rounded-lg overflow-hidden">
         <Image src="https://images.unsplash.com/photo-1577086664693-894d8405334a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8bWFwfGVufDB8fHx8MTc2Nzk2NzI4NHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -121,6 +122,7 @@ const PropertyLocation = () => (
             </Button>
         </div>
     </div>
+  </CardContent>
 )
 
 const nearbyData = {
@@ -571,9 +573,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardTitle>Location &amp; Landmark</CardTitle>
                 </CardHeader>
                 <Separator />
-                <CardContent className="p-0">
-                    <PropertyLocation />
-                </CardContent>
+                <PropertyLocation />
             </Card>
 
              <Card id="nearby" className="lg:col-span-3">
@@ -632,5 +632,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
-
-    
