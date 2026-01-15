@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -480,14 +479,14 @@ const AdditionalPropertyDetails = () => {
 
     return (
         <div id="developer">
-            <ul className="space-y-3 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 text-sm">
                 {details.map(detail => (
-                    <li key={detail.label} className="flex justify-between">
-                        <span className="text-muted-foreground">{detail.label}</span>
-                        <span className="font-medium">{detail.value}</span>
-                    </li>
+                    <div key={detail.label}>
+                        <p className="text-muted-foreground">{detail.label}</p>
+                        <p className="font-semibold text-base">{detail.value}</p>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
@@ -566,7 +565,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
 
-             <Card id="nearby">
+             <Card id="nearby" className="lg:col-span-3">
                 <CardHeader>
                     <CardTitle className="text-xl">Nearby Places</CardTitle>
                 </CardHeader>
@@ -628,3 +627,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
