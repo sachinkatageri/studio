@@ -108,7 +108,7 @@ const PropertyLocation = () => (
         <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <Button variant="secondary">
                 <MapPin className="mr-2 h-4 w-4" />
-                View on Map
+                Click to view the location
             </Button>
         </div>
     </div>
