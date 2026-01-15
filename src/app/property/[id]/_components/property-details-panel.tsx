@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -285,7 +284,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                     <Carousel className="w-full" opts={{ align: "start", loop: true }}>
                         <CarouselContent className="-ml-4">
                             {reviews.map((review, index) => (
-                                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-[40%]">
                                     <div className="p-1">
                                         <Card>
                                             <CardContent className="p-4 space-y-3">
