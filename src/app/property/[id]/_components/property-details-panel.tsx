@@ -566,24 +566,22 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <Card id="nearby">
-                    <CardHeader>
-                        <CardTitle className="text-xl">Nearby Places</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <NearbyPlaces />
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader>
-                        <CardTitle className="text-xl">Property Details</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                        <AdditionalPropertyDetails />
-                    </CardContent>
-                </Card>
-            </div>
+             <Card id="nearby">
+                <CardHeader>
+                    <CardTitle className="text-xl">Nearby Places</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <NearbyPlaces />
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Property Details</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                    <AdditionalPropertyDetails />
+                </CardContent>
+            </Card>
             
             <Card>
                 <CardHeader>
