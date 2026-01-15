@@ -45,7 +45,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
             <CardTitle>Overview</CardTitle>
         </CardHeader>
         <Separator />
-        <CardContent className="p-6">
+        <CardContent className="pt-4">
             {/* @ts-ignore */}
             <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
         </CardContent>
@@ -59,31 +59,36 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
     const remainingCount = allAmenities.length - amenitiesToShow.length;
 
     return (
-        <div id="amenities">
-            <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-            <div className="grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
-                {amenitiesToShow.map(amenity => (
-                    <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
-                        <div className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted">
-                            {amenity.icon ? <amenity.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" /> : <Check className="h-5 w-5 md:h-6 md:w-6 text-primary" />}
+        <Card id="amenities">
+            <CardHeader>
+                <CardTitle>Amenities</CardTitle>
+            </CardHeader>
+            <Separator />
+            <CardContent className="pt-4">
+                <div className="grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
+                    {amenitiesToShow.map(amenity => (
+                        <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
+                            <div className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted">
+                                {amenity.icon ? <amenity.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" /> : <Check className="h-5 w-5 md:h-6 md:w-6 text-primary" />}
+                            </div>
+                            <span className="text-xs md:text-sm font-medium">{amenity.name}</span>
                         </div>
-                        <span className="text-xs md:text-sm font-medium">{amenity.name}</span>
-                    </div>
-                ))}
-                 {remainingCount > 0 && (
-                    <div className="flex flex-col items-center text-center gap-2">
-                        <button 
-                            onClick={() => setIsAmenitiesDialogOpen(true)}
-                            className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
-                        >
-                            <PlusCircle className="h-5 w-5 md:h-6 md:w-6 text-primary" />
-                        </button>
-                        <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-xs md:text-sm font-medium hover:underline">+{remainingCount} More</button>
-                    </div>
-                 )}
-            </div>
+                    ))}
+                    {remainingCount > 0 && (
+                        <div className="flex flex-col items-center text-center gap-2">
+                            <button 
+                                onClick={() => setIsAmenitiesDialogOpen(true)}
+                                className="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-full bg-muted hover:bg-muted/80 transition-colors"
+                            >
+                                <PlusCircle className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+                            </button>
+                            <button onClick={() => setIsAmenitiesDialogOpen(true)} className="text-xs md:text-sm font-medium hover:underline">+{remainingCount} More</button>
+                        </div>
+                    )}
+                </div>
+            </CardContent>
             <AmenitiesDialog open={isAmenitiesDialogOpen} onOpenChange={setIsAmenitiesDialogOpen} />
-        </div>
+        </Card>
     )
 }
 
@@ -238,89 +243,88 @@ const PropertyReviews = ({ property }: { property: Property }) => {
     ];
 
     return (
-        <div id="ratings-reviews" className="space-y-8">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold">Rating &amp; Reviews</h2>
-                <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
-            </div>
-            <Card>
-                <CardContent className="p-4 md:p-6">
-                    <div className="flex justify-between items-center mb-4">
-                        <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="flex flex-col items-center justify-center md:border-r">
-                            <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
-                            <div className="flex items-center">
-                                {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
-                                {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
-                            </div>
-                            <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
-                        </div>
-                        <div className="md:col-span-2">
-                        {ratings.map(r => (
-                                <div key={r.star} className="flex items-center gap-2">
-                                    <span className="text-xs md:text-sm w-12">{r.star} star</span>
-                                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                        <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
-                                    </div>
-                                    <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
-                                </div>
-                        ))}
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-            
-            <div>
-                <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
-                    <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
+        <Card id="ratings-reviews">
+            <CardHeader>
+                <div className="flex justify-between items-center">
+                    <CardTitle>Rating &amp; Reviews</CardTitle>
+                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
                 </div>
-                <Carousel className="w-full" opts={{ align: "start", loop: true }}>
-                    <CarouselContent className="-ml-4">
-                        {reviews.map((review, index) => (
-                            <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                                <div className="p-1">
-                                    <Card>
-                                        <CardContent className="p-4 space-y-3">
-                                            <div className="flex justify-between items-start">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                        <UserCheck className="w-6 h-6 text-primary" />
+            </CardHeader>
+            <Separator/>
+            <CardContent className="pt-4 space-y-8">
+                <div className="flex justify-between items-center">
+                    <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex flex-col items-center justify-center md:border-r">
+                        <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
+                        <div className="flex items-center">
+                            {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
+                            {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
+                        </div>
+                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
+                    </div>
+                    <div className="md:col-span-2">
+                    {ratings.map(r => (
+                            <div key={r.star} className="flex items-center gap-2">
+                                <span className="text-xs md:text-sm w-12">{r.star} star</span>
+                                <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                    <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                </div>
+                                <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
+                            </div>
+                    ))}
+                    </div>
+                </div>
+                <div>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
+                        <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
+                    </div>
+                    <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+                        <CarouselContent className="-ml-4">
+                            {reviews.map((review, index) => (
+                                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                                    <div className="p-1">
+                                        <Card>
+                                            <CardContent className="p-4 space-y-3">
+                                                <div className="flex justify-between items-start">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                                                            <UserCheck className="w-6 h-6 text-primary" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="font-semibold text-sm md:text-base">{review.name}</p>
+                                                            <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                        </div>
+                                                    </div>
+                                                    <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
+                                                        {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                                                    </Badge>
+                                                </div>
+                                                <div className="space-y-3">
+                                                    <div>
+                                                        <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
+                                                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                     </div>
                                                     <div>
-                                                        <p className="font-semibold text-sm md:text-base">{review.name}</p>
-                                                        <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
+                                                        <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                     </div>
                                                 </div>
-                                                <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
-                                                    {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                                </Badge>
-                                            </div>
-                                            <div className="space-y-3">
-                                                <div>
-                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                                    <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
-                    <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
-                </Carousel>
-            </div>
-            
+                                            </CardContent>
+                                        </Card>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
+                        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
+                    </Carousel>
+                </div>
+            </CardContent>
             <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
-        </div>
+        </Card>
     )
 }
 
@@ -510,21 +514,26 @@ const OurServices = () => {
     ];
   
     return (
-      <div>
-        <h2 className="text-xl font-semibold mb-4">Our Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {services.map(service => (
-            <Card key={service.title}>
-              <CardHeader className="p-4 md:p-6">
-                <CardTitle className="text-base md:text-lg">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 md:p-6 pt-0">
-                <p className="text-xs md:text-sm text-muted-foreground">{service.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+      <Card>
+        <CardHeader>
+            <CardTitle>Our Services</CardTitle>
+        </CardHeader>
+        <Separator />
+        <CardContent className="pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {services.map(service => (
+                    <Card key={service.title}>
+                    <CardHeader className="p-4 md:p-6">
+                        <CardTitle className="text-base md:text-lg">{service.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-4 md:p-6 pt-0">
+                        <p className="text-xs md:text-sm text-muted-foreground">{service.description}</p>
+                    </CardContent>
+                    </Card>
+                ))}
+            </div>
+        </CardContent>
+      </Card>
     );
   };
   
@@ -537,32 +546,31 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
 
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-xl">Opening Hours</CardTitle>
+                    <CardTitle>Opening Hours</CardTitle>
                 </CardHeader>
-                <CardContent className="p-6 pt-0">
+                <Separator />
+                <CardContent className="pt-4">
                     <OpeningHours />
                 </CardContent>
             </Card>
             
-            <Card>
-                <CardContent className="p-6">
-                    <PropertyAmenities property={property} />
-                </CardContent>
-            </Card>
+            <PropertyAmenities property={property} />
             
             <Card id="layout" className="lg:col-span-3">
                 <CardHeader>
-                    <CardTitle className="text-xl">Property Layout</CardTitle>
+                    <CardTitle>Property Layout</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <Separator />
+                <CardContent className="pt-4">
                     <PropertyLayout property={property} />
                 </CardContent>
             </Card>
 
             <Card id="locality" className="lg:col-span-3">
                 <CardHeader>
-                    <CardTitle className="text-xl">Location &amp; Landmark</CardTitle>
+                    <CardTitle>Location &amp; Landmark</CardTitle>
                 </CardHeader>
+                <Separator />
                 <CardContent className="p-0">
                     <PropertyLocation />
                 </CardContent>
@@ -570,17 +578,19 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
 
              <Card id="nearby" className="lg:col-span-3">
                 <CardHeader>
-                    <CardTitle className="text-xl">Nearby Places</CardTitle>
+                    <CardTitle>Nearby Places</CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
+                <Separator />
+                <CardContent className="pt-4">
                     <NearbyPlaces />
                 </CardContent>
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle className="text-xl">Property Details</CardTitle>
+                    <CardTitle>Property Details</CardTitle>
                 </CardHeader>
-                <CardContent className="p-6">
+                <Separator />
+                <CardContent className="pt-4">
                     <AdditionalPropertyDetails />
                 </CardContent>
             </Card>
@@ -590,40 +600,37 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <div className="grid md:grid-cols-3 gap-8">
                 <Card id="video" className="max-w-lg mx-auto w-full">
                     <CardHeader>
-                        <CardTitle className="text-xl">Property Video</CardTitle>
+                        <CardTitle>Property Video</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6">
+                    <Separator />
+                    <CardContent className="pt-4">
                         <PropertyVideo />
                     </CardContent>
                 </Card>
 
                 <Card id="plan" className="max-w-lg mx-auto w-full">
                     <CardHeader>
-                        <CardTitle className="text-xl">Floor Plan</CardTitle>
+                        <CardTitle>Floor Plan</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6">
+                    <Separator />
+                    <CardContent className="pt-4">
                         <PropertyPlan />
                     </CardContent>
                 </Card>
                  <Card id="documents" className="max-w-lg mx-auto w-full">
                     <CardHeader>
-                        <CardTitle className="text-xl">Property Document</CardTitle>
+                        <CardTitle>Property Document</CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6">
+                    <Separator />
+                    <CardContent className="pt-4">
                         <PropertyDocument />
                     </CardContent>
                 </Card>
             </div>
             
-            <Card>
-                <CardContent className="p-6">
-                    <OurServices />
-                </CardContent>
-            </Card>
+            <OurServices />
         </div>
     )
 }
-
-    
 
     
