@@ -600,8 +600,8 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             
             <PropertyReviews property={property} />
             
-            <div className="grid md:grid-cols-1 gap-8">
-                <Card id="video" className="max-w-lg mx-auto w-full">
+            <div className="grid md:grid-cols-3 gap-8">
+                <Card id="video">
                     <CardHeader className='p-4'>
                         <CardTitle>Property Video</CardTitle>
                     </CardHeader>
@@ -611,7 +611,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     </CardContent>
                 </Card>
 
-                <Card id="plan" className="max-w-lg mx-auto w-full">
+                <Card id="plan">
                     <CardHeader className='p-4'>
                         <CardTitle>Floor Plan</CardTitle>
                     </CardHeader>
@@ -620,7 +620,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <PropertyPlan />
                     </CardContent>
                 </Card>
-                 <Card id="documents" className="max-w-lg mx-auto w-full">
+                 <Card id="documents">
                     <CardHeader className='p-4'>
                         <CardTitle>Property Document</CardTitle>
                     </CardHeader>
