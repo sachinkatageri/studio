@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -45,7 +46,7 @@ const PropertyOverview = ({ property }: { property: Property}) => (
             <CardTitle>Overview</CardTitle>
         </CardHeader>
         <Separator />
-        <CardContent className="pt-4">
+        <CardContent className="p-6">
             {/* @ts-ignore */}
             <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
         </CardContent>
@@ -64,7 +65,7 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
                 <CardTitle>Amenities</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent className="pt-4">
+            <CardContent className="p-6">
                 <div className="grid grid-cols-4 md:grid-cols-6 gap-4 md:gap-6">
                     {amenitiesToShow.map(amenity => (
                         <div key={amenity.name} className="flex flex-col items-center text-center gap-2">
@@ -251,7 +252,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                 </div>
             </CardHeader>
             <Separator/>
-            <CardContent className="pt-4 space-y-8">
+            <CardContent className="p-6 space-y-8">
                 <div className="flex justify-between items-center">
                     <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
                 </div>
@@ -519,7 +520,7 @@ const OurServices = () => {
             <CardTitle>Our Services</CardTitle>
         </CardHeader>
         <Separator />
-        <CardContent className="pt-4">
+        <CardContent className="p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {services.map(service => (
                     <Card key={service.title}>
@@ -549,7 +550,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardTitle>Opening Hours</CardTitle>
                 </CardHeader>
                 <Separator />
-                <CardContent className="pt-4">
+                <CardContent className="p-6">
                     <OpeningHours />
                 </CardContent>
             </Card>
@@ -561,7 +562,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardTitle>Property Layout</CardTitle>
                 </CardHeader>
                 <Separator />
-                <CardContent className="pt-4">
+                <CardContent className="p-6">
                     <PropertyLayout property={property} />
                 </CardContent>
             </Card>
@@ -581,7 +582,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardTitle>Nearby Places</CardTitle>
                 </CardHeader>
                 <Separator />
-                <CardContent className="pt-4">
+                <CardContent className="p-6">
                     <NearbyPlaces />
                 </CardContent>
             </Card>
@@ -590,7 +591,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <CardTitle>Property Details</CardTitle>
                 </CardHeader>
                 <Separator />
-                <CardContent className="pt-4">
+                <CardContent className="p-6">
                     <AdditionalPropertyDetails />
                 </CardContent>
             </Card>
@@ -603,7 +604,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <CardTitle>Property Video</CardTitle>
                     </CardHeader>
                     <Separator />
-                    <CardContent className="pt-4">
+                    <CardContent className="p-6">
                         <PropertyVideo />
                     </CardContent>
                 </Card>
@@ -613,7 +614,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <CardTitle>Floor Plan</CardTitle>
                     </CardHeader>
                     <Separator />
-                    <CardContent className="pt-4">
+                    <CardContent className="p-6">
                         <PropertyPlan />
                     </CardContent>
                 </Card>
@@ -622,7 +623,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                         <CardTitle>Property Document</CardTitle>
                     </CardHeader>
                     <Separator />
-                    <CardContent className="pt-4">
+                    <CardContent className="p-6">
                         <PropertyDocument />
                     </CardContent>
                 </Card>
