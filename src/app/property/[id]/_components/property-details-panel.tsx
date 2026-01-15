@@ -452,18 +452,18 @@ const PropertyDocument = () => (
 
 
 const OpeningHours = () => (
-    <ul className="space-y-3 text-sm py-2">
-        <li className="flex justify-between">
-            <span className="text-muted-foreground">Monday - Friday</span>
-            <span>9:00 AM - 6:00 PM</span>
+    <ul className="space-y-3 text-sm">
+        <li className="flex justify-between items-center">
+            <span className="font-semibold">Monday - Friday</span>
+            <Badge variant="outline">9:00 AM - 6:00 PM</Badge>
         </li>
-        <li className="flex justify-between">
-            <span className="text-muted-foreground">Saturday</span>
-            <span>Closed</span>
+        <li className="flex justify-between items-center">
+            <span className="font-semibold">Saturday</span>
+            <Badge variant="destructive">Closed</Badge>
         </li>
-        <li className="flex justify-between">
-            <span className="text-muted-foreground">Sunday</span>
-            <span>Closed</span>
+        <li className="flex justify-between items-center">
+            <span className="font-semibold">Sunday</span>
+            <Badge variant="destructive">Closed</Badge>
         </li>
     </ul>
 );
@@ -529,19 +529,16 @@ const OurServices = () => {
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
     return (
         <div className="space-y-8 pb-20 md:pb-0">
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="md:col-span-2">
-                    <PropertyOverview property={property} />
-                </div>
-                <Card>
-                    <CardHeader>
-                        <CardTitle className="text-xl">Opening Hours</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6 pt-0">
-                        <OpeningHours />
-                    </CardContent>
-                </Card>
-            </div>
+            <PropertyOverview property={property} />
+
+            <Card>
+                <CardHeader>
+                    <CardTitle className="text-xl">Opening Hours</CardTitle>
+                </CardHeader>
+                <CardContent className="p-6 pt-0">
+                    <OpeningHours />
+                </CardContent>
+            </Card>
             
             <Card>
                 <CardContent className="p-6">
@@ -622,3 +619,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
