@@ -44,7 +44,8 @@ const PropertyOverview = ({ property }: { property: Property}) => (
         <CardHeader>
             <CardTitle>Overview</CardTitle>
         </CardHeader>
-        <CardContent className="p-6 pt-0">
+        <Separator />
+        <CardContent className="p-6">
             {/* @ts-ignore */}
             <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
         </CardContent>
@@ -622,5 +623,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
 
     
