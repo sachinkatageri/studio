@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -41,11 +40,15 @@ export const amenityIcons: { [key: string]: React.ReactNode } = {
   };
   
 const PropertyOverview = ({ property }: { property: Property}) => (
-    <div id="overview">
-        <h2 className="text-xl font-semibold mb-4">Overview</h2>
-        {/* @ts-ignore */}
-        <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
-    </div>
+    <Card id="overview">
+        <CardHeader>
+            <CardTitle>Overview</CardTitle>
+        </CardHeader>
+        <CardContent>
+            {/* @ts-ignore */}
+            <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
+        </CardContent>
+    </Card>
 )
 
 
@@ -619,5 +622,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
 
     
