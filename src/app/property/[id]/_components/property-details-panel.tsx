@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -19,6 +20,7 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
 import { allAmenities } from '@/lib/amenities';
 import { RatingDialog } from '@/components/layout/rating-dialog';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type Property = typeof properties[0];
 
@@ -41,7 +43,7 @@ export const amenityIcons: { [key: string]: React.ReactNode } = {
   
 const PropertyOverview = ({ property }: { property: Property}) => (
     <Card id="overview">
-        <CardHeader>
+        <CardHeader className='p-4'>
             <CardTitle>Overview</CardTitle>
         </CardHeader>
         <Separator />
@@ -60,7 +62,7 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
 
     return (
         <Card id="amenities">
-            <CardHeader>
+            <CardHeader className='p-4'>
                 <CardTitle>Amenities</CardTitle>
             </CardHeader>
             <Separator />
@@ -246,7 +248,7 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 
     return (
         <Card id="ratings-reviews">
-            <CardHeader>
+            <CardHeader className='p-4'>
                 <div className="flex justify-between items-center">
                     <CardTitle>Rating &amp; Reviews</CardTitle>
                     <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
@@ -283,13 +285,13 @@ const PropertyReviews = ({ property }: { property: Property }) => {
                         <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
                         <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
                     </div>
-                    <Carousel className="w-full" opts={{ align: "start", loop: true }}>
+                    <Carousel className="w-full" opts={{ align: "start", loop: true, slidesToScroll: 'auto', }}>
                         <CarouselContent className="-ml-4">
                             {reviews.map((review, index) => (
                                 <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-[40%]">
                                     <div className="p-1">
                                         <Card>
-                                            <CardContent className="p-4 space-y-3">
+                                            <CardContent className="p-6 space-y-3">
                                                 <div className="flex justify-between items-start">
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
@@ -517,7 +519,7 @@ const OurServices = () => {
   
     return (
       <Card>
-        <CardHeader>
+        <CardHeader className='p-4'>
             <CardTitle>Our Services</CardTitle>
         </CardHeader>
         <Separator />
@@ -542,12 +544,13 @@ const OurServices = () => {
 
 
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
+    const isMobile = useIsMobile();
     return (
         <div className="space-y-8 pb-20 md:pb-0">
             <PropertyOverview property={property} />
 
             <Card>
-                <CardHeader>
+                <CardHeader className='p-4'>
                     <CardTitle>Opening Hours</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -559,7 +562,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <PropertyAmenities property={property} />
             
             <Card id="layout" className="lg:col-span-3">
-                <CardHeader>
+                <CardHeader className='p-4'>
                     <CardTitle>Property Layout</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -569,7 +572,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
             <Card id="locality" className="lg:col-span-3">
-                <CardHeader>
+                <CardHeader className='p-4'>
                     <CardTitle>Location &amp; Landmark</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -577,7 +580,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
              <Card id="nearby" className="lg:col-span-3">
-                <CardHeader>
+                <CardHeader className='p-4'>
                     <CardTitle>Nearby Places</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -586,7 +589,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
             <Card>
-                <CardHeader>
+                <CardHeader className='p-4'>
                     <CardTitle>Property Details</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -597,9 +600,9 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             
             <PropertyReviews property={property} />
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-1 gap-8">
                 <Card id="video" className="max-w-lg mx-auto w-full">
-                    <CardHeader>
+                    <CardHeader className='p-4'>
                         <CardTitle>Property Video</CardTitle>
                     </CardHeader>
                     <Separator />
@@ -609,7 +612,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </Card>
 
                 <Card id="plan" className="max-w-lg mx-auto w-full">
-                    <CardHeader>
+                    <CardHeader className='p-4'>
                         <CardTitle>Floor Plan</CardTitle>
                     </CardHeader>
                     <Separator />
@@ -618,7 +621,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     </CardContent>
                 </Card>
                  <Card id="documents" className="max-w-lg mx-auto w-full">
-                    <CardHeader>
+                    <CardHeader className='p-4'>
                         <CardTitle>Property Document</CardTitle>
                     </CardHeader>
                     <Separator />
