@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -234,37 +235,38 @@ const PropertyReviews = ({ property }: { property: Property }) => {
 
     return (
         <div id="ratings-reviews" className="space-y-8">
-            <div>
-                <div className="flex justify-between items-center mb-4">
-                    <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
-                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
-                </div>
-                <Card>
-                    <CardContent className="p-4 md:p-6">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div className="flex flex-col items-center justify-center md:border-r">
-                                <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
-                                <div className="flex items-center">
-                                    {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
-                                    {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
-                                </div>
-                                <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
-                            </div>
-                            <div className="md:col-span-2">
-                            {ratings.map(r => (
-                                    <div key={r.star} className="flex items-center gap-2">
-                                        <span className="text-xs md:text-sm w-12">{r.star} star</span>
-                                        <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                            <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
-                                        </div>
-                                        <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
-                                    </div>
-                            ))}
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">Rating &amp; Reviews</h2>
+                <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
             </div>
+            <Card>
+                <CardContent className="p-4 md:p-6">
+                    <div className="flex justify-between items-center mb-4">
+                        <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="flex flex-col items-center justify-center md:border-r">
+                            <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
+                            <div className="flex items-center">
+                                {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
+                                {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
+                            </div>
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
+                        </div>
+                        <div className="md:col-span-2">
+                        {ratings.map(r => (
+                                <div key={r.star} className="flex items-center gap-2">
+                                    <span className="text-xs md:text-sm w-12">{r.star} star</span>
+                                    <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+                                        <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                    </div>
+                                    <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
+                                </div>
+                        ))}
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
             
             <div>
                 <div className="flex justify-between items-center mb-4">
@@ -582,14 +584,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </CardContent>
             </Card>
             
-            <Card>
-                <CardHeader>
-                    <CardTitle className="text-xl">Rating &amp; Reviews</CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                    <PropertyReviews property={property} />
-                </CardContent>
-            </Card>
+            <PropertyReviews property={property} />
             
             <div className="grid md:grid-cols-3 gap-8">
                 <Card id="video" className="max-w-lg mx-auto w-full">
@@ -627,5 +622,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
-
-    
