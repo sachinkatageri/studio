@@ -74,22 +74,6 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                     <Badge variant="secondary" className="text-xs">{property.status}</Badge>
                 </div>
 
-                <div className="mt-6 grid grid-cols-3 gap-4 text-sm md:text-base">
-                    <div className="flex flex-col">
-                        <span className="text-xs md:text-sm text-muted-foreground">Area</span>
-                        {/* @ts-ignore */}
-                        <span className="font-semibold text-sm">{property.size} sq.ft</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs md:text-sm text-muted-foreground">Developer</span>
-                        <span className="font-semibold text-sm">Vaishnavi</span>
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="text-xs md:text-sm text-muted-foreground">Furnishing</span>
-                        <span className="font-semibold text-sm">Furnished</span>
-                    </div>
-                </div>
-
                  <div className="mt-6 text-sm text-muted-foreground space-y-2 p-3 md:p-4 border rounded-lg">
                     <div className="flex items-start gap-2">
                         <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
