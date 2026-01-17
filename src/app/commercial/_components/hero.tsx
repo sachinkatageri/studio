@@ -58,7 +58,7 @@ export default function Hero() {
                             <Input placeholder="Search by Location" className="pl-10 text-foreground border-none focus-visible:ring-0" />
                         </div>
                         <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                            <SelectTrigger className="text-foreground border-none focus:ring-0">
+                            <SelectTrigger className="text-foreground focus:ring-0">
                                 <SelectValue placeholder="Select Space Type" />
                             </SelectTrigger>
                             <SelectContent>
