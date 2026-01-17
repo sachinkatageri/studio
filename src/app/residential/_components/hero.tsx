@@ -56,7 +56,7 @@ export default function Hero() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                                <SelectTrigger className="text-foreground border-none focus:ring-0">
+                                <SelectTrigger className="text-foreground focus:ring-0">
                                     <SelectValue placeholder="Select Type" />
                                 </SelectTrigger>
                                 <SelectContent>
