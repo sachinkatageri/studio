@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -72,25 +71,6 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                         )}
                     </div>
                     <Badge variant="secondary" className="text-xs">{property.status}</Badge>
-                </div>
-
-                 <div className="mt-6 text-sm text-muted-foreground space-y-2 p-3 md:p-4 border rounded-lg">
-                    <div className="flex items-start gap-2">
-                        <CheckCircle className="h-5 w-5 text-blue-500 mt-0.5 shrink-0" />
-                        <div>
-                        <p className="text-foreground font-semibold text-sm">Preliminary verification done.</p>
-                        <Button variant="link" className="text-xs p-0 h-auto" onClick={() => setIsVerificationDialogOpen(true)}>
-                            Know the Process
-                        </Button>
-                        </div>
-                    </div>
-                    <div className="text-center border-t pt-3 mt-3">
-                        <p className="text-xs text-red-600 mb-2">The land location with survey number could not be verified due to unavailability of cadastral maps.</p>
-                        <Button variant="link" className="text-xs p-0 h-auto text-foreground font-normal underline">
-                            <AlertTriangle className="h-4 w-4 mr-1" />
-                            Report this listing
-                        </Button>
-                    </div>
                 </div>
             </div>
             <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
