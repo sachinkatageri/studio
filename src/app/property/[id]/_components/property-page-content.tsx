@@ -1,3 +1,4 @@
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -140,31 +141,37 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {isMobile && <PropertyContactForm />}
 
             {!isMobile && (
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            className={cn(
-                                "fixed bottom-8 right-8 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
-                                isFabExpanded ? "h-14 px-6" : "h-16 w-16"
-                            )}
-                        >
-                            <div className="flex items-center justify-center overflow-hidden">
-                                <MessageSquare className="h-6 w-6 shrink-0" />
-                                <div className={cn(
-                                    "transition-all duration-300 ease-in-out",
-                                    isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
-                                )}>
-                                    <span className="whitespace-nowrap">
-                                        Interested? Send Enquiry
-                                    </span>
+                <div
+                    onMouseEnter={() => setIsFabExpanded(true)}
+                    onMouseLeave={() => setIsFabExpanded(false)}
+                    className="fixed bottom-8 right-8 z-50"
+                >
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className={cn(
+                                    "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
+                                    isFabExpanded ? "h-14 px-6" : "h-16 w-16"
+                                )}
+                            >
+                                <div className="flex items-center justify-center overflow-hidden">
+                                    <MessageSquare className="h-6 w-6 shrink-0" />
+                                    <div className={cn(
+                                        "transition-all duration-300 ease-in-out",
+                                        isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
+                                    )}>
+                                        <span className="whitespace-nowrap">
+                                            Interested? Send Enquiry
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
-                        <PropertyContactForm />
-                    </PopoverContent>
-                </Popover>
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
+                            <PropertyContactForm />
+                        </PopoverContent>
+                    </Popover>
+                </div>
             )}
             
             <BrokerageBanner />
