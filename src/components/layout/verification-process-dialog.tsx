@@ -60,9 +60,9 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
         </DialogHeader>
         <div className="p-6 pt-2">
             <Tabs defaultValue="plot">
-                <TabsList className="bg-muted p-1 rounded-full">
-                    <TabsTrigger value="land" className="rounded-full px-6">Land</TabsTrigger>
-                    <TabsTrigger value="plot" className="rounded-full px-6">Plot</TabsTrigger>
+                <TabsList variant="pill" className="grid w-full grid-cols-2">
+                    <TabsTrigger value="land" variant="pill">Land</TabsTrigger>
+                    <TabsTrigger value="plot" variant="pill">Plot</TabsTrigger>
                 </TabsList>
                 <TabsContent value="plot" className="mt-6">
                     <div className="space-y-6">
