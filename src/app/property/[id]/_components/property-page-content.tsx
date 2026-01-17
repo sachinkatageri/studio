@@ -10,7 +10,7 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Share2 } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share2, MessageSquare } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -22,6 +22,7 @@ import { ShareOptions } from '@/components/layout/share-options';
 import { useState, useEffect } from 'react';
 import PropertyStickyHeader from './property-sticky-header';
 import VerificationCard from './verification-card';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -120,7 +121,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                         </div>
                         <div className="lg:col-span-4">
                             <div className="sticky top-48">
-                                <PropertyContactForm />
+                                 {/* On desktop, the contact form is now a popover */}
                                 <VerificationCard />
                             </div>
                         </div>
@@ -131,6 +132,21 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                 </div>
             </main>
+            
+            {isMobile && <PropertyContactForm />}
+
+            {!isMobile && (
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90" size="icon">
+                            <MessageSquare className="h-8 w-8" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
+                        <PropertyContactForm />
+                    </PopoverContent>
+                </Popover>
+            )}
             
             <BrokerageBanner />
             <SiteFooter />
