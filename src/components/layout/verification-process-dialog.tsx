@@ -47,7 +47,7 @@ export function VerificationProcessDialog({ open, onOpenChange }: VerificationPr
           <DialogTitle className="text-xl font-bold">Verification Process</DialogTitle>
           <div className="flex items-center gap-2">
             <Select defaultValue="karnataka">
-                <SelectTrigger className="w-auto border-none focus:ring-0 gap-2">
+                <SelectTrigger className="w-auto focus:ring-0 gap-2">
                     <SelectValue placeholder="Select State" />
                 </SelectTrigger>
                 <SelectContent>
