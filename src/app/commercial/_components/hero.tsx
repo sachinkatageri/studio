@@ -24,13 +24,13 @@ const filterOptions = [
 
 const PreferencesPopoverContent = () => (
     <div className="p-4 space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 items-center gap-4">
             <div className="space-y-1">
                 <Label htmlFor="price-per-desk" className="font-bold">Price per Desk</Label>
                 <p className="text-xs text-muted-foreground">Select your budget</p>
             </div>
             <Select>
-                <SelectTrigger id="price-per-desk" className="w-[150px]">
+                <SelectTrigger id="price-per-desk" className="w-full">
                     <SelectValue placeholder="₹2000-4000" />
                 </SelectTrigger>
                 <SelectContent>
@@ -41,13 +41,13 @@ const PreferencesPopoverContent = () => (
             </Select>
         </div>
         <Separator />
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 items-center gap-4">
             <div className="space-y-1">
                 <Label htmlFor="price-per-sqft" className="font-bold">Price per Sqft</Label>
                 <p className="text-xs text-muted-foreground">Select your budget</p>
             </div>
             <Select>
-                <SelectTrigger id="price-per-sqft" className="w-[150px]">
+                <SelectTrigger id="price-per-sqft" className="w-full">
                     <SelectValue placeholder="N/A" />
                 </SelectTrigger>
                 <SelectContent>
@@ -58,13 +58,13 @@ const PreferencesPopoverContent = () => (
             </Select>
         </div>
         <Separator />
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-2 items-center gap-4">
              <div className="space-y-1">
                 <Label htmlFor="no-of-seats" className="font-bold">No. of Seats</Label>
                 <p className="text-xs text-muted-foreground">How many people?</p>
             </div>
             <Select>
-                <SelectTrigger id="no-of-seats" className="w-[150px]">
+                <SelectTrigger id="no-of-seats" className="w-full">
                     <SelectValue placeholder="less than 10" />
                 </SelectTrigger>
                 <SelectContent>
