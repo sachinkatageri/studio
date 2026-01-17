@@ -10,13 +10,32 @@ import RightColumn from "./right-column";
 import MobileStickyFooter from "./mobile-sticky-footer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MobileStickyHeader from "./mobile-sticky-header";
+import { useState, useEffect } from "react";
+import DesktopStickyHeader from "./desktop-sticky-header";
 
 export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
     const isMobile = useIsMobile();
+    const [showStickyHeader, setShowStickyHeader] = useState(false);
+
+    useEffect(() => {
+        if (isMobile) return;
+
+        const handleScroll = () => {
+            if (window.scrollY > 400) {
+                setShowStickyHeader(true);
+            } else {
+                setShowStickyHeader(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isMobile]);
     
     return (
         <>
             {isMobile ? <MobileStickyHeader builder={builder} /> : <Header />}
+            {showStickyHeader && !isMobile && <DesktopStickyHeader builder={builder} />}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 pt-20 md:pt-14 pb-40 md:pb-10">
                 <div className="hidden md:block">
                     <Breadcrumbs builderName={builder.name} />
