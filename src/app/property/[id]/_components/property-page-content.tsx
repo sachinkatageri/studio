@@ -118,7 +118,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-8">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:pt-8 pb-4">
                     <PropertyInfoSection property={property} />
                 </div>
             
@@ -129,15 +129,9 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <PropertyStickyNav />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                    <div className="grid grid-cols-1">
                         <div className="lg:col-span-8">
                             <PropertyDetailsPanel property={property} />
-                        </div>
-                        <div className="hidden lg:block lg:col-span-4">
-                            <div className="sticky top-32 space-y-8">
-                                <PropertyContactForm />
-                                <VerificationCard />
-                            </div>
                         </div>
                     </div>
 
@@ -147,55 +141,52 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 </div>
             </main>
             
-            {isMobile && (
-                <Drawer>
-                    <DrawerTrigger asChild>
-                         <Button
-                            className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
-                            size="icon"
-                        >
-                            <MessageSquare className="h-8 w-8" />
-                        </Button>
-                    </DrawerTrigger>
-                    <DrawerContent>
-                        <PropertyContactForm />
-                    </DrawerContent>
-                </Drawer>
-            )}
+            <Drawer>
+                <DrawerTrigger asChild>
+                    <Button
+                        className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90 lg:hidden"
+                        size="icon"
+                    >
+                        <MessageSquare className="h-8 w-8" />
+                    </Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                    <PropertyContactForm />
+                </DrawerContent>
+            </Drawer>
 
-            {!isMobile && (
-                <div
-                    onMouseEnter={() => setIsFabExpanded(true)}
-                    onMouseLeave={() => setIsFabExpanded(false)}
-                    className="fixed bottom-8 right-8 z-50"
-                >
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                className={cn(
-                                    "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
-                                    isFabExpanded ? "h-14 px-6" : "h-16 w-16"
-                                )}
-                            >
-                                <div className="flex items-center justify-center overflow-hidden">
-                                    <MessageSquare className="h-6 w-6 shrink-0" />
-                                    <div className={cn(
-                                        "transition-all duration-300 ease-in-out",
-                                        isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
-                                    )}>
-                                        <span className="whitespace-nowrap">
-                                            Interested? Send Enquiry
-                                        </span>
-                                    </div>
+            
+            <div
+                onMouseEnter={() => setIsFabExpanded(true)}
+                onMouseLeave={() => setIsFabExpanded(false)}
+                className="fixed bottom-8 right-8 z-50 hidden lg:block"
+            >
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button
+                            className={cn(
+                                "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
+                                isFabExpanded ? "h-14 px-6" : "h-16 w-16"
+                            )}
+                        >
+                            <div className="flex items-center justify-center overflow-hidden">
+                                <MessageSquare className="h-6 w-6 shrink-0" />
+                                <div className={cn(
+                                    "transition-all duration-300 ease-in-out",
+                                    isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
+                                )}>
+                                    <span className="whitespace-nowrap">
+                                        Interested? Send Enquiry
+                                    </span>
                                 </div>
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
-                            <PropertyContactForm />
-                        </PopoverContent>
-                    </Popover>
-                </div>
-            )}
+                            </div>
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
+                        <PropertyContactForm />
+                    </PopoverContent>
+                </Popover>
+            </div>
             
             <BrokerageBanner />
             <SiteFooter />
