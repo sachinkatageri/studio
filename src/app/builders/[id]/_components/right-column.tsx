@@ -1,7 +1,6 @@
 
 import { Builder } from "@/lib/builders";
 import FeaturedProjectCard from "./featured-project-card";
-import GetInTouchForm from "./get-in-touch-form";
 import KeyProjects from "./key-projects";
 import OperationalSegments from "./operational-segments";
 import TeamSection from "./team-section";
@@ -13,7 +12,6 @@ export default function RightColumn({ builder }: { builder: Builder }) {
             <KeyProjects projects={builder.completedProjects.slice(1, 4)} />
             <TeamSection />
             <OperationalSegments />
-            <GetInTouchForm className="lg:hidden" />
         </div>
     );
 }

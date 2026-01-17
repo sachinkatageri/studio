@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { MessageSquare } from "lucide-react";
 import GetInTouchForm from "./get-in-touch-form";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
     const isMobile = useIsMobile();
@@ -102,6 +103,22 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
                         </PopoverContent>
                     </Popover>
                 </div>
+            )}
+
+            {isMobile && (
+                <Drawer>
+                    <DrawerTrigger asChild>
+                         <Button
+                            className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
+                            size="icon"
+                        >
+                            <MessageSquare className="h-8 w-8" />
+                        </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                        <GetInTouchForm className="border-none shadow-none" />
+                    </DrawerContent>
+                </Drawer>
             )}
             
             {isMobile ? <MobileStickyFooter builder={builder} /> : <Footer />}
