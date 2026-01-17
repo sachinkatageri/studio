@@ -28,48 +28,39 @@ export function PropertyStickyNav() {
     const [showRightArrow, setShowRightArrow] = useState(true);
     const navRef = useRef<HTMLDivElement>(null);
     const isMobile = useIsMobile();
+    const [isPropertyHeaderVisible, setIsPropertyHeaderVisible] = useState(false);
 
     const handleScroll = () => {
-        if (!isMobile) {
-            const sections = navItems.map(item => document.querySelector(item.href));
-            const scrollPosition = window.scrollY + 180; // Adjusted for both headers
+        const propertyHeaderVisible = !isMobile && window.scrollY > 350;
+        setIsPropertyHeaderVisible(propertyHeaderVisible);
 
-            let currentSectionId = '';
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
-                if (section && (section as HTMLElement).offsetTop <= scrollPosition) {
-                    currentSectionId = section.id;
-                    break;
-                }
-            }
-            setActiveId(currentSectionId || 'overview');
+        const sections = navItems.map(item => document.querySelector(item.href));
+        let scrollPosition = window.scrollY;
 
-            const topNavHeight = 56; // main header height (h-14)
-            
-            if (navRef.current && window.scrollY > navRef.current.offsetTop - topNavHeight) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
+        if (isMobile) {
+            scrollPosition += 120; // mobile header + nav
         } else {
-             const sections = navItems.map(item => document.querySelector(item.href));
-            const scrollPosition = window.scrollY + 120; // Adjusted for mobile header and nav
+            let offset = 180;
+            if(!propertyHeaderVisible) offset -= 64; // aporox height of property sticky header
+            scrollPosition += offset;
+        }
 
-            let currentSectionId = '';
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
-                if (section && (section as HTMLElement).offsetTop <= scrollPosition) {
-                    currentSectionId = section.id;
-                    break;
-                }
+        let currentSectionId = '';
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            if (section && (section as HTMLElement).offsetTop <= scrollPosition) {
+                currentSectionId = section.id;
+                break;
             }
-            setActiveId(currentSectionId || 'overview');
+        }
+        setActiveId(currentSectionId || 'overview');
 
-            if (navRef.current && window.scrollY > navRef.current.offsetTop - 56) {
-                setIsSticky(true);
-            } else {
-                setIsSticky(false);
-            }
+        const topNavHeight = 56; // main header height (h-14)
+        
+        if (navRef.current && window.scrollY > navRef.current.offsetTop - topNavHeight) {
+            setIsSticky(true);
+        } else {
+            setIsSticky(false);
         }
     };
 
@@ -77,23 +68,24 @@ export function PropertyStickyNav() {
         e.preventDefault();
         const targetElement = document.querySelector(href);
         if (targetElement) {
+            let totalNavHeight = 0;
             if (!isMobile) {
-                const topNavHeight = 56; // main header height (h-14)
+                const mainHeaderHeight = 56;
+                const propertyStickyHeaderHeight = 64;
                 const tabsHeight = 56;
-                const totalNavHeight = topNavHeight + tabsHeight;
-                const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight;
-                window.scrollTo({
-                    top: topOffset,
-                    behavior: 'smooth'
-                });
+                totalNavHeight = mainHeaderHeight + tabsHeight;
+                if (window.scrollY > 350) {
+                    totalNavHeight += propertyStickyHeaderHeight;
+                }
             } else {
-                const mobileNavHeight = 56 + 48; // Mobile header + sticky nav height
-                const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - mobileNavHeight;
-                window.scrollTo({
-                    top: topOffset,
-                    behavior: 'smooth'
-                });
+                totalNavHeight = 56 + 48; // Mobile header + sticky nav height
             }
+            
+            const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight;
+            window.scrollTo({
+                top: topOffset,
+                behavior: 'smooth'
+            });
         }
     };
 
@@ -147,7 +139,7 @@ export function PropertyStickyNav() {
     return (
         <div ref={navRef} className={cn(
                 'relative bg-background top-0 z-30', 
-                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : 'fixed top-14 left-0 right-0 shadow-md border-b h-14'),
+                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : cn('fixed left-0 right-0 shadow-md border-b h-14', isPropertyHeaderVisible ? 'top-[120px]' : 'top-14')),
                 !isSticky && (isMobile ? 'h-[48px] border-b' : 'h-14')
             )}>
             <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
