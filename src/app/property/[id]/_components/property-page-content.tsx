@@ -10,17 +10,17 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Search, Phone, MoreVertical, Share2, Heart, Check, Building2 } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
 import Header from '@/components/layout/header';
 import { PropertyInfoSection } from './property-info-section';
-import { Separator } from '@/components/ui/separator';
 import { ShareOptions } from '@/components/layout/share-options';
+import { useState, useEffect } from 'react';
+import PropertyStickyHeader from './property-sticky-header';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -65,11 +65,29 @@ const MobileFooter = () => (
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
     const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : 'N/A';
+    const [showStickyHeader, setShowStickyHeader] = useState(false);
+
+    useEffect(() => {
+        if (isMobile) return;
+
+        const handleScroll = () => {
+            if (window.scrollY > 350) {
+                setShowStickyHeader(true);
+            } else {
+                setShowStickyHeader(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isMobile]);
 
     return (
         <div className="bg-background">
             {isMobile ? <MobileHeader property={property} /> : <Header />}
             
+            {showStickyHeader && !isMobile && <PropertyStickyHeader property={property} />}
+
             <main className="pt-14">
                 <div className="hidden md:block container mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex justify-between items-center text-sm">
@@ -95,11 +113,13 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <PropertyStickyNav />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <PropertyDetailsPanel property={property} />
-                    
-                    <div className='mt-12'>
-                        <div className="max-w-3xl mx-auto">
-                            <PropertyContactForm />
+                    <div className="max-w-4xl mx-auto">
+                        <PropertyDetailsPanel property={property} />
+                        
+                        <div className='mt-12'>
+                            <div className="max-w-3xl mx-auto">
+                                <PropertyContactForm />
+                            </div>
                         </div>
                     </div>
 
