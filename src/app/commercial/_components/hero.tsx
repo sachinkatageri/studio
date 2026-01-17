@@ -5,9 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Building, Building2, Hand, Search, Users, Wallet, Columns, LayoutGrid } from "lucide-react";
+import { Building, Building2, Hand, Search, Users, Wallet, Columns, LayoutGrid, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
 const filterOptions = [
     { label: "Managed Space", value: "managed-space", icon: <Building className="h-5 w-5" /> },
@@ -18,6 +21,62 @@ const filterOptions = [
     { label: "Price Per Sqft", value: "price-per-sqft", icon: <Columns className="h-5 w-5" /> },
     { label: "No. Of Seats", value: "no-of-seats", icon: <LayoutGrid className="h-5 w-5" /> },
 ]
+
+const PreferencesPopoverContent = () => (
+    <div className="p-4 space-y-4">
+        <div className="flex items-center justify-between">
+            <div className="space-y-1">
+                <Label htmlFor="price-per-desk" className="font-bold">Price per Desk</Label>
+                <p className="text-xs text-muted-foreground">Select your budget</p>
+            </div>
+            <Select>
+                <SelectTrigger id="price-per-desk" className="w-[150px]">
+                    <SelectValue placeholder="₹2000-4000" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="2000-4000">₹2000-4000</SelectItem>
+                    <SelectItem value="4000-6000">₹4000-6000</SelectItem>
+                    <SelectItem value="6000-8000">₹6000-8000</SelectItem>
+                </SelectContent>
+            </Select>
+        </div>
+        <Separator />
+        <div className="flex items-center justify-between">
+            <div className="space-y-1">
+                <Label htmlFor="price-per-sqft" className="font-bold">Price per Sqft</Label>
+                <p className="text-xs text-muted-foreground">Select your budget</p>
+            </div>
+            <Select>
+                <SelectTrigger id="price-per-sqft" className="w-[150px]">
+                    <SelectValue placeholder="N/A" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="na">N/A</SelectItem>
+                    <SelectItem value="50-100">₹50-100</SelectItem>
+                    <SelectItem value="100-150">₹100-150</SelectItem>
+                </SelectContent>
+            </Select>
+        </div>
+        <Separator />
+        <div className="flex items-center justify-between">
+             <div className="space-y-1">
+                <Label htmlFor="no-of-seats" className="font-bold">No. of Seats</Label>
+                <p className="text-xs text-muted-foreground">How many people?</p>
+            </div>
+            <Select>
+                <SelectTrigger id="no-of-seats" className="w-[150px]">
+                    <SelectValue placeholder="less than 10" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="lt10">less than 10</SelectItem>
+                    <SelectItem value="10-20">10-20</SelectItem>
+                    <SelectItem value="20-50">20-50</SelectItem>
+                    <SelectItem value="gt50">50+</SelectItem>
+                </SelectContent>
+            </Select>
+        </div>
+    </div>
+);
 
 export default function Hero() {
     const [selectedFilter, setSelectedFilter] = useState("managed-space");
@@ -58,7 +117,7 @@ export default function Hero() {
                             <Input placeholder="Search by Location" className="pl-10 text-foreground border-none focus-visible:ring-0" />
                         </div>
                         <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                            <SelectTrigger className="text-foreground focus:ring-0">
+                            <SelectTrigger className="text-foreground border focus:ring-0">
                                 <SelectValue placeholder="Select Space Type" />
                             </SelectTrigger>
                             <SelectContent>
@@ -68,7 +127,17 @@ export default function Hero() {
                             </SelectContent>
                         </Select>
                         <div className="flex items-center gap-2">
-                            <Input placeholder="Preferences" className="text-foreground border-none focus-visible:ring-0" />
+                            <Popover>
+                                <PopoverTrigger asChild>
+                                    <Button variant="outline" className="w-full justify-start text-left font-normal text-muted-foreground">
+                                        <SlidersHorizontal className="mr-2 h-4 w-4" />
+                                        Preferences
+                                    </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-80 p-0" align="end">
+                                    <PreferencesPopoverContent />
+                                </PopoverContent>
+                            </Popover>
                             <Button size="icon" className="bg-accent hover:bg-accent/90 shrink-0">
                                 <Search className="h-5 w-5 text-accent-foreground" />
                             </Button>
