@@ -1,10 +1,11 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Building, Building2, Search, Users, Wallet, Columns, LayoutGrid, SlidersHorizontal } from "lucide-react";
+import { Building, Building2, Search, Users, Wallet, Columns, LayoutGrid, SlidersHorizontal, User } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -16,7 +17,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const filterOptions = [
     { label: "Managed Space", value: "managed-space", icon: <Building className="h-5 w-5" /> },
     { label: "Unmanaged Space", value: "unmanaged-space", icon: <Building2 className="h-5 w-5" /> },
-    { label: "Coworking Dedicated", value: "coworking-dedicated", icon: <Users className="h-5 w-5" /> },
+    { label: "Coworking Dedicated", value: "coworking-dedicated", icon: <User className="h-5 w-5" /> },
     { label: "Coworking Shared", value: "coworking-shared", icon: <Users className="h-5 w-5" /> },
     { label: "Price Per Desk", value: "price-per-desk", icon: <Wallet className="h-5 w-5" /> },
     { label: "Price Per Sqft", value: "price-per-sqft", icon: <Columns className="h-5 w-5" /> },
