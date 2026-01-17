@@ -88,40 +88,25 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     <PropertyImageGallery />
                 </div>
             
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-                    <div className="lg:col-span-8">
-                        <PropertyInfoSection property={property} />
-                    </div>
-                    <div className="hidden lg:block lg:col-span-4">
-                        <div className="sticky top-28">
-                          <PropertyContactForm />
-                        </div>
-                    </div>
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
+                    <PropertyInfoSection property={property} />
                 </div>
-            </div>
 
-            <PropertyStickyNav />
+                <PropertyStickyNav />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
-                    <div className="lg:col-span-8">
-                        <PropertyDetailsPanel property={property} />
-                    </div>
-                    <div className="lg:col-span-4">
-                        <div className="hidden lg:block space-y-8 sticky top-28">
-                            {/* Additional widgets can be placed here in the future */}
-                        </div>
-                         <div className="lg:hidden">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <PropertyDetailsPanel property={property} />
+                    
+                    <div className='mt-12'>
+                        <div className="max-w-3xl mx-auto">
                             <PropertyContactForm />
                         </div>
                     </div>
-                </div>
 
-                <div className="mt-16">
-                    <SimilarProperties />
+                    <div className="mt-16">
+                        <SimilarProperties />
+                    </div>
                 </div>
-            </div>
             </main>
             
             <BrokerageBanner />

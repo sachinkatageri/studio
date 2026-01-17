@@ -73,7 +73,7 @@ export default function PropertyContactForm() {
   return (
     <Card className={cn(
       "w-full bg-muted/50 border",
-      isMobile ? "sticky bottom-[60px] z-30 rounded-t-lg shadow-lg" : "sticky top-28"
+      isMobile ? "sticky bottom-[60px] z-30 rounded-t-lg shadow-lg" : ""
     )}>
       <CardHeader>
         <CardTitle className="text-xl font-headline">Interested in this property?</CardTitle>
