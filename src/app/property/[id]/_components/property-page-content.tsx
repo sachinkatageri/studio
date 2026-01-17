@@ -1,4 +1,3 @@
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -23,6 +22,7 @@ import { useState, useEffect } from 'react';
 import PropertyStickyHeader from './property-sticky-header';
 import VerificationCard from './verification-card';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -68,9 +68,13 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
     const isMobile = useIsMobile();
     const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : 'N/A';
     const [showStickyHeader, setShowStickyHeader] = useState(false);
+    const [isFabExpanded, setIsFabExpanded] = useState(true);
 
     useEffect(() => {
-        if (isMobile) return;
+        if (isMobile) {
+            setIsFabExpanded(false);
+            return;
+        }
 
         const handleScroll = () => {
             if (window.scrollY > 350) {
@@ -81,7 +85,15 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        
+        const timer = setTimeout(() => {
+            setIsFabExpanded(false);
+        }, 3000);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
     }, [isMobile]);
 
     return (
@@ -130,9 +142,23 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {!isMobile && (
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button className="fixed bottom-8 right-8 h-14 px-6 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90" size="lg">
-                            <MessageSquare className="h-6 w-6 mr-2" />
-                            <span>Interested? Send Enquiry</span>
+                        <Button
+                            className={cn(
+                                "fixed bottom-8 right-8 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
+                                isFabExpanded ? "h-14 px-6" : "h-16 w-16"
+                            )}
+                        >
+                            <div className="flex items-center justify-center overflow-hidden">
+                                <MessageSquare className="h-6 w-6 shrink-0" />
+                                <div className={cn(
+                                    "transition-all duration-300 ease-in-out",
+                                    isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
+                                )}>
+                                    <span className="whitespace-nowrap">
+                                        Interested? Send Enquiry
+                                    </span>
+                                </div>
+                            </div>
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
