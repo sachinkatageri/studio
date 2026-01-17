@@ -139,7 +139,7 @@ export function PropertyStickyNav() {
     return (
         <div ref={navRef} className={cn(
                 'relative bg-background top-0 z-30', 
-                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : cn('fixed left-0 right-0 shadow-md border-b h-14', isPropertyHeaderVisible ? 'top-[120px]' : 'top-14')),
+                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : cn('fixed left-0 right-0 shadow-md border-b h-14', isPropertyHeaderVisible ? 'top-[90px]' : 'top-14')),
                 !isSticky && (isMobile ? 'h-[48px] border-b' : 'h-14')
             )}>
             <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
