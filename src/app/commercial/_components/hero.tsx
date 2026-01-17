@@ -1,16 +1,17 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Building, Building2, Hand, Search, Users, Wallet, Columns, LayoutGrid, SlidersHorizontal } from "lucide-react";
+import { Building, Building2, Search, Users, Wallet, Columns, LayoutGrid, SlidersHorizontal } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerTrigger } from "@/components/ui/drawer";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const filterOptions = [
     { label: "Managed Space", value: "managed-space", icon: <Building className="h-5 w-5" /> },
@@ -22,8 +23,8 @@ const filterOptions = [
     { label: "No. Of Seats", value: "no-of-seats", icon: <LayoutGrid className="h-5 w-5" /> },
 ]
 
-const PreferencesPopoverContent = () => (
-    <div className="p-4 space-y-4">
+const PreferencesContent = () => (
+    <div className="space-y-4">
         <div className="grid grid-cols-2 items-center gap-4">
             <div className="space-y-1">
                 <Label htmlFor="price-per-desk" className="font-bold">Price per Desk</Label>
@@ -78,6 +79,51 @@ const PreferencesPopoverContent = () => (
     </div>
 );
 
+const ResponsivePreferences = () => {
+    const isMobile = useIsMobile();
+    const [open, setOpen] = useState(false);
+
+    const trigger = (
+        <Button variant="outline" className="w-full justify-start text-left font-normal text-muted-foreground">
+            <SlidersHorizontal className="mr-2 h-4 w-4" />
+            Preferences
+        </Button>
+    );
+    
+    if (isMobile === undefined) {
+        return trigger; // Or a skeleton loader
+    }
+
+    if (isMobile) {
+        return (
+            <Drawer open={open} onOpenChange={setOpen}>
+                <DrawerTrigger asChild>{trigger}</DrawerTrigger>
+                <DrawerContent>
+                    <DrawerHeader>
+                        <DrawerTitle>Preferences</DrawerTitle>
+                        <DrawerDescription>
+                            Set your preferences to filter properties.
+                        </DrawerDescription>
+                    </DrawerHeader>
+                    <div className="p-4">
+                        <PreferencesContent />
+                    </div>
+                </DrawerContent>
+            </Drawer>
+        );
+    }
+
+    return (
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>{trigger}</PopoverTrigger>
+            <PopoverContent className="w-80 p-4" align="end">
+                <PreferencesContent />
+            </PopoverContent>
+        </Popover>
+    );
+};
+
+
 export default function Hero() {
     const [selectedFilter, setSelectedFilter] = useState("managed-space");
 
@@ -127,17 +173,7 @@ export default function Hero() {
                             </SelectContent>
                         </Select>
                         <div className="flex items-center gap-2">
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <Button variant="outline" className="w-full justify-start text-left font-normal text-muted-foreground">
-                                        <SlidersHorizontal className="mr-2 h-4 w-4" />
-                                        Preferences
-                                    </Button>
-                                </PopoverTrigger>
-                                <PopoverContent className="w-80 p-0" align="end">
-                                    <PreferencesPopoverContent />
-                                </PopoverContent>
-                            </Popover>
+                           <ResponsivePreferences />
                             <Button size="icon" className="bg-accent hover:bg-accent/90 shrink-0">
                                 <Search className="h-5 w-5 text-accent-foreground" />
                             </Button>
