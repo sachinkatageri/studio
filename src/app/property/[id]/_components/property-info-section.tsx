@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -59,7 +60,7 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                 </div>
             
             
-                <div className="mt-4 flex flex-wrap gap-2 md:gap-4 items-center">
+                <div className="mt-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
                     <div className="flex items-end gap-2">
                         <p className="text-xl md:text-2xl font-bold text-primary">
                             {property.price && !property.price.startsWith('Starting') ? `₹${property.price}` : property.price}
@@ -69,8 +70,15 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                                 ₹{beforePrice.toLocaleString('en-IN')}
                             </p>
                         )}
+                        <Badge variant="secondary" className="text-xs">{property.status}</Badge>
                     </div>
-                    <Badge variant="secondary" className="text-xs">{property.status}</Badge>
+                    <div className="hidden md:flex items-center gap-2">
+                        <Button variant="outline" className="h-11 rounded-lg">Contact</Button>
+                        <Button className="h-11 rounded-lg">
+                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
+                            <span className="ml-2">WhatsApp</span>
+                        </Button>
+                    </div>
                 </div>
             </div>
             <VerificationProcessDialog open={isVerificationDialogOpen} onOpenChange={setIsVerificationDialogOpen} />
