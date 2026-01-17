@@ -130,8 +130,9 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {!isMobile && (
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button className="fixed bottom-8 right-8 h-16 w-16 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90" size="icon">
-                            <MessageSquare className="h-8 w-8" />
+                        <Button className="fixed bottom-8 right-8 h-14 px-6 rounded-full shadow-lg z-50 bg-primary hover:bg-primary/90" size="lg">
+                            <MessageSquare className="h-6 w-6 mr-2" />
+                            <span>Interested? Send Enquiry</span>
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
