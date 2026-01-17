@@ -12,13 +12,22 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import MobileStickyHeader from "./mobile-sticky-header";
 import { useState, useEffect } from "react";
 import DesktopStickyHeader from "./desktop-sticky-header";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { MessageSquare } from "lucide-react";
+import GetInTouchForm from "./get-in-touch-form";
 
 export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
     const isMobile = useIsMobile();
     const [showStickyHeader, setShowStickyHeader] = useState(false);
+    const [isFabExpanded, setIsFabExpanded] = useState(true);
 
     useEffect(() => {
-        if (isMobile) return;
+        if (isMobile) {
+            setIsFabExpanded(false);
+            return;
+        }
 
         const handleScroll = () => {
             if (window.scrollY > 400) {
@@ -29,7 +38,15 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        
+        const timer = setTimeout(() => {
+            setIsFabExpanded(false);
+        }, 3000);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
     }, [isMobile]);
     
     return (
@@ -52,6 +69,41 @@ export default function BuilderDetailsPage({ builder }: { builder: Builder }) {
                     </div>
                 </div>
             </div>
+
+            {!isMobile && (
+                <div
+                    onMouseEnter={() => setIsFabExpanded(true)}
+                    onMouseLeave={() => setIsFabExpanded(false)}
+                    className="fixed bottom-8 right-8 z-50"
+                >
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className={cn(
+                                    "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
+                                    isFabExpanded ? "h-14 px-6" : "h-16 w-16"
+                                )}
+                            >
+                                <div className="flex items-center justify-center overflow-hidden">
+                                    <MessageSquare className="h-6 w-6 shrink-0" />
+                                    <div className={cn(
+                                        "transition-all duration-300 ease-in-out",
+                                        isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
+                                    )}>
+                                        <span className="whitespace-nowrap">
+                                            Get in Touch
+                                        </span>
+                                    </div>
+                                </div>
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
+                            <GetInTouchForm />
+                        </PopoverContent>
+                    </Popover>
+                </div>
+            )}
+            
             {isMobile ? <MobileStickyFooter builder={builder} /> : <Footer />}
         </>
     );

@@ -5,10 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export default function GetInTouchForm() {
+export default function GetInTouchForm({ className }: { className?: string }) {
     return (
-        <Card>
+        <Card className={cn(className)}>
             <CardHeader>
                 <CardTitle>Get in Touch</CardTitle>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mt-2">

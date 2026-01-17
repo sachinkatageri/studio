@@ -13,7 +13,7 @@ export default function RightColumn({ builder }: { builder: Builder }) {
             <KeyProjects projects={builder.completedProjects.slice(1, 4)} />
             <TeamSection />
             <OperationalSegments />
-            <GetInTouchForm />
+            <GetInTouchForm className="lg:hidden" />
         </div>
     );
 }
