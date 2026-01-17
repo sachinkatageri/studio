@@ -24,6 +24,7 @@ import PropertyStickyHeader from './property-sticky-header';
 import VerificationCard from './verification-card';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -128,8 +129,16 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <PropertyStickyNav />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div>
-                        <PropertyDetailsPanel property={property} />
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                        <div className="lg:col-span-8">
+                            <PropertyDetailsPanel property={property} />
+                        </div>
+                        <div className="hidden lg:block lg:col-span-4">
+                            <div className="sticky top-32 space-y-8">
+                                <PropertyContactForm />
+                                <VerificationCard />
+                            </div>
+                        </div>
                     </div>
 
                     <div className="mt-16">
@@ -138,7 +147,21 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 </div>
             </main>
             
-            {isMobile && <PropertyContactForm />}
+            {isMobile && (
+                <Drawer>
+                    <DrawerTrigger asChild>
+                         <Button
+                            className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
+                            size="icon"
+                        >
+                            <MessageSquare className="h-8 w-8" />
+                        </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                        <PropertyContactForm />
+                    </DrawerContent>
+                </Drawer>
+            )}
 
             {!isMobile && (
                 <div

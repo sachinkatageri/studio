@@ -72,13 +72,13 @@ export default function PropertyContactForm() {
 
   return (
     <Card className={cn(
-      "w-full bg-muted/50 border",
-      isMobile ? "sticky bottom-[60px] z-30 rounded-t-lg shadow-lg" : ""
+      "w-full",
+      isMobile ? "border-none shadow-none" : "bg-muted/50 border"
     )}>
       <CardHeader>
         <CardTitle className="text-xl font-headline">Interested in this property?</CardTitle>
       </CardHeader>
-      <CardContent className="p-6">
+      <CardContent className={cn("p-6", isMobile && "pt-0")}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
