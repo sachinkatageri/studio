@@ -21,6 +21,7 @@ import { PropertyInfoSection } from './property-info-section';
 import { ShareOptions } from '@/components/layout/share-options';
 import { useState, useEffect } from 'react';
 import PropertyStickyHeader from './property-sticky-header';
+import VerificationCard from './verification-card';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -89,8 +90,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {showStickyHeader && !isMobile && <PropertyStickyHeader property={property} />}
 
             <main className="pt-14">
-                <div className="hidden md:block container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex justify-between items-center text-sm">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div className="hidden md:flex justify-between items-center text-sm">
                         <div className="flex items-center text-muted-foreground">
                             <Link href="/" className="hover:text-primary">Home</Link>
                             <ChevronRight className="h-4 w-4 mx-1" />
@@ -120,6 +121,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                         <div className="lg:col-span-4">
                             <div className="sticky top-48">
                                 <PropertyContactForm />
+                                <VerificationCard />
                             </div>
                         </div>
                     </div>
