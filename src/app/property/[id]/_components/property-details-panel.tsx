@@ -21,6 +21,7 @@ import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
 import { allAmenities } from '@/lib/amenities';
 import { RatingDialog } from '@/components/layout/rating-dialog';
 import { useIsMobile } from '@/hooks/use-mobile';
+import VerificationCard from './verification-card';
 
 type Property = typeof properties[0];
 
@@ -631,6 +632,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                 </Card>
             </div>
             
+            <VerificationCard />
             <OurServices />
         </div>
     )

@@ -122,7 +122,6 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                         <div className="lg:col-span-4">
                             <div className="sticky top-48">
                                  {/* On desktop, the contact form is now a popover */}
-                                <VerificationCard />
                             </div>
                         </div>
                     </div>
