@@ -113,11 +113,12 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <PropertyStickyNav />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="max-w-4xl mx-auto">
-                        <PropertyDetailsPanel property={property} />
-                        
-                        <div className='mt-12'>
-                            <div className="max-w-3xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                        <div className="lg:col-span-8">
+                            <PropertyDetailsPanel property={property} />
+                        </div>
+                        <div className="lg:col-span-4">
+                            <div className="sticky top-48">
                                 <PropertyContactForm />
                             </div>
                         </div>
