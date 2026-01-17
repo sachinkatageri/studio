@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -84,12 +83,13 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                         <p className="text-muted-foreground">Date Added: <span className="font-medium text-foreground">{postedDate}</span></p>
                     </div>
                 </div>
-                <div>
-                    <PropertyImageGallery />
+
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 md:pt-8">
+                    <PropertyInfoSection property={property} />
                 </div>
             
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-16 md:py-8">
-                    <PropertyInfoSection property={property} />
+                <div className="md:mt-8">
+                    <PropertyImageGallery />
                 </div>
 
                 <PropertyStickyNav />
