@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -20,6 +21,8 @@ import { PropertyInfoSection } from './property-info-section';
 import { useState, useEffect } from 'react';
 import PropertyStickyHeader from './property-sticky-header';
 import RightColumn from './right-column';
+import PropertySpecsCard from './property-specs-card';
+import CustomInfrastructureCard from './custom-infrastructure-card';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -93,15 +96,16 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                         <p className="text-muted-foreground">Date Added: <span className="font-medium text-foreground">{postedDate}</span></p>
                     </div>
                 </div>
-
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                     <PropertyInfoSection property={property} />
-                </div>
             
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <div className="lg:col-span-8">
-                           <PropertyImageGallery />
+                            <div className="space-y-8">
+                                <PropertyInfoSection property={property} />
+                                <PropertyImageGallery />
+                                <PropertySpecsCard property={property} />
+                                <CustomInfrastructureCard />
+                            </div>
                         </div>
                         <div className="hidden lg:block lg:col-span-4">
                           <RightColumn property={property} />
