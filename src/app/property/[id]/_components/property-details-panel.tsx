@@ -24,7 +24,7 @@ type Property = typeof properties[0];
 
 const PropertyOverview = ({ property }: { property: Property}) => (
     <Card id="overview">
-        <CardHeader className='p-4'>
+        <CardHeader>
             <CardTitle>Overview</CardTitle>
         </CardHeader>
         <Separator />
@@ -42,7 +42,7 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
 
     return (
         <Card id="amenities">
-            <CardHeader className='p-4'>
+            <CardHeader>
                 <CardTitle>Amenities</CardTitle>
             </CardHeader>
             <Separator />
@@ -182,7 +182,7 @@ const OurServices = () => {
   
     return (
       <Card>
-        <CardHeader className='p-4'>
+        <CardHeader>
             <CardTitle>Our Services</CardTitle>
         </CardHeader>
         <Separator />
@@ -211,7 +211,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             <PropertyAmenities property={property} />
             
             <Card id="locality" className="lg:col-span-3">
-                <CardHeader className='p-4'>
+                <CardHeader>
                     <CardTitle>Location &amp; Landmark</CardTitle>
                 </CardHeader>
                 <Separator />
@@ -219,7 +219,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
             </Card>
 
              <Card id="nearby" className="lg:col-span-3">
-                <CardHeader className='p-4'>
+                <CardHeader>
                     <CardTitle>Nearby Places</CardTitle>
                 </CardHeader>
                 <Separator />

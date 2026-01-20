@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -206,7 +207,7 @@ export default function PropertyImageGallery() {
     const remainingImages = propertyImageGallery.length - 5;
 
     return (
-        <div className="relative container mx-auto p-0" onClick={openGallery}>
+        <div className="relative container mx-auto px-0" onClick={openGallery}>
             <div className="grid grid-cols-4 grid-rows-2 gap-2 h-[450px]">
                 {/* Main Image */}
                 <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden group cursor-pointer">

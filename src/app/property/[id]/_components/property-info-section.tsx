@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -5,7 +6,7 @@ import Image from 'next/image';
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Heart, Share2, AlertTriangle, CheckCircle, MapPin } from 'lucide-react';
+import { Heart, Share2, AlertTriangle, CheckCircle, MapPin, Star } from 'lucide-react';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ShareOptions } from '@/components/layout/share-options';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -21,11 +22,14 @@ export function PropertyInfoSection({ property }: { property: Property }) {
 
     return (
         <>
-            <div id="info" className="md:pt-0 pt-4">
+            <div id="info" className="md:pt-0">
                 <div className="flex justify-between items-start">
                     <div className="flex-1">
                         <div className="flex items-center gap-2">
                            <h1 className="text-xl md:text-3xl font-bold">{property.name}</h1>
+                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                                {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                            </Badge>
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} className="md:w-7 md:h-7" />
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground mt-1 text-sm md:text-base">

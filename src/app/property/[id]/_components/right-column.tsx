@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar } from "@/components/ui/calendar";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Phone, CheckCircle, Mail, MessageSquare, Star, Wrench, UserCheck, Download } from "lucide-react";
+import { Phone, CheckCircle, Mail, MessageSquare, Star, Wrench, UserCheck, User, Coffee, PlusCircle } from "lucide-react";
 import Image from "next/image";
 import { properties } from "@/lib/properties";
 import { Separator } from "@/components/ui/separator";
@@ -146,7 +146,7 @@ const RatingSummaryCard = ({ property }: { property: any }) => {
                         <div key={r.star} className="flex items-center gap-2">
                             <span className="text-xs w-12">{r.star} star</span>
                             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                <div className="h-full bg-yellow-400" style={{ width: `${'${r.percentage}'}%`}}></div>
+                                <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
                             </div>
                             <span className="text-xs w-8 text-right">{r.percentage}%</span>
                         </div>

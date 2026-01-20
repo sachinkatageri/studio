@@ -1,3 +1,4 @@
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -93,7 +94,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:pt-8 pb-4">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-4">
                     <PropertyInfoSection property={property} />
                 </div>
             
