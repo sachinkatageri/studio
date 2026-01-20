@@ -1,13 +1,14 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
+import { Building2, Factory, Store, Briefcase, Globe } from 'lucide-react';
+import React from 'react';
 
-const clientLogos = [
-    { name: "Pepsi", logoUrl: "https://i.ibb.co/9hbdjVq/pepsi-logo.png" },
-    { name: "GE", logoUrl: "https://i.ibb.co/kXyVkq4/ge-logo.png" },
-    { name: "P&G", logoUrl: "https://i.ibb.co/1MjYdMM/pg-logo.png" },
-    { name: "HP", logoUrl: "https://i.ibb.co/zVv7TqF/hp-logo.png" },
-    { name: "Dell", logoUrl: "https://i.ibb.co/P9tPqZL/dell-logo.png" },
+const clientIcons = [
+    { name: "Client 1", icon: <Building2 className="h-8 w-8 text-muted-foreground" /> },
+    { name: "Client 2", icon: <Factory className="h-8 w-8 text-muted-foreground" /> },
+    { name: "Client 3", icon: <Store className="h-8 w-8 text-muted-foreground" /> },
+    { name: "Client 4", icon: <Briefcase className="h-8 w-8 text-muted-foreground" /> },
+    { name: "Client 5", icon: <Globe className="h-8 w-8 text-muted-foreground" /> },
 ]
 
 export default function AssistedClientsCard() {
@@ -21,14 +22,9 @@ export default function AssistedClientsCard() {
                     Rohit's team assisted 500+ corporates in Bangalore to move into their new office.
                 </p>
                 <div className="flex justify-around items-center flex-wrap gap-4">
-                    {clientLogos.map((client) => (
-                        <div key={client.name} className="relative h-6 w-10">
-                            <Image
-                                src={client.logoUrl}
-                                alt={client.name}
-                                fill
-                                className="object-contain"
-                            />
+                    {clientIcons.map((client) => (
+                        <div key={client.name} className="relative h-8 w-8">
+                            {client.icon}
                         </div>
                     ))}
                 </div>

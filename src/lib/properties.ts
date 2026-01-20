@@ -102,25 +102,25 @@ export const properties = [
     {
       "id": "gallery-2",
       "description": "Modern kitchen and bar area in a coworking space.",
-      "imageUrl": "https://picsum.photos/seed/gallery-2/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvZmZpY2UlMjBraXRjaGVufGVufDB8fHx8MTc2ODkyNjQyNXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office kitchen"
     },
     {
       "id": "gallery-3",
       "description": "Private office booth with a view of the city skyline.",
-      "imageUrl": "https://picsum.photos/seed/gallery-3/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1690264240477-e7a5b2352ee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvZmZpY2UlMjBib290aHxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office booth"
     },
     {
       "id": "gallery-4",
       "description": "Collaborative meeting area with a whiteboard and casual seating.",
-      "imageUrl": "https://picsum.photos/seed/gallery-4/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1768796370123-9829a5b9c37c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "meeting area"
     },
     {
       "id": "gallery-5",
       "description": "Cozy nook with hanging chairs for relaxation.",
-      "imageUrl": "https://picsum.photos/seed/gallery-5/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1759038086769-a958e95d5fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2ODg4MTk0NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "lounge area"
     },
     {
