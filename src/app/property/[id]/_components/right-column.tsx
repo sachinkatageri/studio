@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -15,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { RatingDialog } from "@/components/layout/rating-dialog";
 import Link from "next/link";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Badge } from "@/components/ui/badge";
 
 const ContactAgentCard = () => (
     <Card>
@@ -144,7 +146,7 @@ const RatingSummaryCard = ({ property }: { property: any }) => {
                         <div key={r.star} className="flex items-center gap-2">
                             <span className="text-xs w-12">{r.star} star</span>
                             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                <div className="h-full bg-yellow-400" style={{ width: `${'${r.percentage}'}%`}}></div>
                             </div>
                             <span className="text-xs w-8 text-right">{r.percentage}%</span>
                         </div>
