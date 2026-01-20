@@ -3,7 +3,7 @@
 
 import { properties } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
-import { Check, School, Hotel, Hospital, Briefcase, MapPin, PlusCircle, Star, Wrench, UserCheck, User } from 'lucide-react';
+import { Check, School, Hotel, Hospital, Briefcase, MapPin, PlusCircle, Star, Wrench, UserCheck, User, CheckCircle } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -317,7 +317,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                                                             <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                         </div>
                                                         <div>
-                                                            <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
+                                                            <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need to improve</h4>
                                                             <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
                                                         </div>
                                                     </div>
