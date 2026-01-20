@@ -4,19 +4,19 @@ import { BadgePercent, TrendingDown, LifeBuoy } from "lucide-react";
 
 const consultationPoints = [
     {
-        icon: <BadgePercent className="h-6 w-6 text-primary" />,
+        icon: <BadgePercent className="h-5 w-5 text-primary" />,
         title: "Zero Brokerage",
         description: "100% Service, 0% Brokerage"
     },
     {
-        icon: <TrendingDown className="h-6 w-6 text-primary" />,
+        icon: <TrendingDown className="h-5 w-5 text-primary" />,
         title: "Lowest Price Guaranteed",
-        description: "Highly unlikely, but if you find a lower price anywhere, tell us and we will match it."
+        description: "If you find a lower price, we will match it."
     },
     {
-        icon: <LifeBuoy className="h-6 w-6 text-primary" />,
+        icon: <LifeBuoy className="h-5 w-5 text-primary" />,
         title: "Full Service Support",
-        description: "Our sales personnel are accountable for every step"
+        description: "Our team is accountable for every step."
     }
 ]
 
@@ -24,18 +24,18 @@ export default function WhyChooseUsCard() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle className="text-base">Why Clients Choose Us for Consultation</CardTitle>
+                <CardTitle className="text-base">Why Clients Choose Us</CardTitle>
             </CardHeader>
             <CardContent>
-                <ul className="space-y-6">
+                <ul className="space-y-4">
                     {consultationPoints.map(point => (
-                        <li key={point.title} className="flex items-start gap-4">
-                            <div className="p-2 bg-muted rounded-lg">
+                        <li key={point.title} className="flex items-start gap-3">
+                            <div className="p-2 bg-primary/10 rounded-lg">
                                 {point.icon}
                             </div>
                             <div>
                                 <h4 className="font-semibold text-sm">{point.title}</h4>
-                                <p className="text-xs text-muted-foreground mt-1">{point.description}</p>
+                                <p className="text-xs text-muted-foreground mt-0.5">{point.description}</p>
                             </div>
                         </li>
                     ))}

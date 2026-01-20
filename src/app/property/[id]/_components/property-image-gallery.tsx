@@ -207,9 +207,9 @@ export default function PropertyImageGallery() {
     
     return (
         <div className="space-y-2">
-            <div className="grid grid-cols-3 grid-rows-2 gap-2 h-[400px] md:h-[500px]">
+            <div className="grid grid-cols-2 gap-2 h-[400px] md:h-[500px]">
                 {/* Main Image */}
-                <div className="col-span-2 row-span-2 relative rounded-lg overflow-hidden group cursor-pointer" onClick={openGallery}>
+                <div className="col-span-1 row-span-2 relative rounded-lg overflow-hidden group cursor-pointer" onClick={openGallery}>
                     <Image
                         src={propertyImageGallery[0].imageUrl}
                         alt={propertyImageGallery[0].description}
@@ -219,59 +219,21 @@ export default function PropertyImageGallery() {
                         priority
                     />
                 </div>
-                {/* Top Right */}
-                <div className="col-span-1 row-span-1 relative rounded-lg overflow-hidden group cursor-pointer" onClick={openGallery}>
-                    <Image
-                        src={propertyImageGallery[1].imageUrl}
-                        alt={propertyImageGallery[1].description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={propertyImageGallery[1].imageHint}
-                    />
-                </div>
-                {/* Bottom Right with Video */}
-                 <div className="col-span-1 row-span-1 relative rounded-lg overflow-hidden group cursor-pointer" onClick={openGallery}>
-                    <Image
-                        src={propertyImageGallery[2].imageUrl}
-                        alt={propertyImageGallery[2].description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={propertyImageGallery[2].imageHint}
-                    />
-                     <div className="absolute inset-0 bg-black/30 flex items-end justify-end p-2">
-                        <Button variant="secondary" size="sm" className="text-white bg-black/50 hover:bg-black/70">
-                            Watch Video
-                        </Button>
-                    </div>
+                {/* Other Images */}
+                 <div className="col-span-1 row-span-2 grid grid-cols-2 grid-rows-2 gap-2">
+                     {propertyImageGallery.slice(1, 5).map(image => (
+                        <div key={image.id} className="relative rounded-lg overflow-hidden group cursor-pointer" onClick={openGallery}>
+                            <Image
+                                src={image.imageUrl}
+                                alt={image.description}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={image.imageHint}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
-            
-            {/* Thumbnails */}
-            <Carousel
-              opts={{
-                align: "start",
-                dragFree: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-2">
-                {propertyImageGallery.map((image, index) => (
-                  <CarouselItem key={index} className="basis-1/4 md:basis-1/6 pl-2">
-                    <div className="relative aspect-video rounded-md overflow-hidden cursor-pointer" onClick={openGallery}>
-                      <Image
-                        src={image.imageUrl}
-                        alt={image.description}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute -left-4 top-1/2 -translate-y-1/2 z-10" />
-              <CarouselNext className="absolute -right-4 top-1/2 -translate-y-1/2 z-10" />
-            </Carousel>
-
             <ImageGalleryModal open={!isMobile && isModalOpen} onOpenChange={setIsModalOpen} />
         </div>
     )

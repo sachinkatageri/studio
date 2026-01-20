@@ -1,5 +1,5 @@
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 
 const clientLogos = [
@@ -12,14 +12,17 @@ const clientLogos = [
 
 export default function AssistedClientsCard() {
     return (
-        <Card className="bg-muted/50 border">
-            <CardContent className="p-4 text-center">
-                <p className="text-sm text-muted-foreground mb-4">
+        <Card>
+            <CardHeader>
+                <CardTitle className="text-base">We have assisted</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-xs text-muted-foreground mb-4">
                     Rohit's team assisted 500+ corporates in Bangalore to move into their new office.
                 </p>
-                <div className="flex justify-around items-center">
+                <div className="flex justify-around items-center flex-wrap gap-4">
                     {clientLogos.map((client) => (
-                        <div key={client.name} className="relative h-8 w-12">
+                        <div key={client.name} className="relative h-6 w-10">
                             <Image
                                 src={client.logoUrl}
                                 alt={client.name}
