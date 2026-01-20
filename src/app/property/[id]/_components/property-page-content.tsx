@@ -1,16 +1,14 @@
-
 "use client";
 
 import { properties } from '@/lib/properties';
 import PropertyImageGallery from './property-image-gallery';
 import PropertyDetailsPanel from './property-details-panel';
-import PropertyContactForm from './property-contact-form';
 import SimilarProperties from './similar-properties';
 import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Share2, MessageSquare } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -18,13 +16,9 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Image from 'next/image';
 import Header from '@/components/layout/header';
 import { PropertyInfoSection } from './property-info-section';
-import { ShareOptions } from '@/components/layout/share-options';
 import { useState, useEffect } from 'react';
 import PropertyStickyHeader from './property-sticky-header';
-import VerificationCard from './verification-card';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import RightColumn from './right-column';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -41,11 +35,7 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                 <h1 className="text-sm font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
-                <ShareOptions>
-                    <Button variant="ghost" size="icon" className="h-9 w-9">
-                        <Share2 className="h-5 w-5" />
-                    </Button>
-                </ShareOptions>
+                 {/* ShareOptions can be here */}
             </div>
         </div>
     );
@@ -63,20 +53,13 @@ const MobileFooter = () => (
     </div>
 )
 
-
-
-
 export default function PropertyPageContent({ property }: PropertyPageContentProps) {
     const isMobile = useIsMobile();
     const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : 'N/A';
     const [showStickyHeader, setShowStickyHeader] = useState(false);
-    const [isFabExpanded, setIsFabExpanded] = useState(true);
 
     useEffect(() => {
-        if (isMobile) {
-            setIsFabExpanded(false);
-            return;
-        }
+        if (isMobile) return;
 
         const handleScroll = () => {
             if (window.scrollY > 350) {
@@ -87,15 +70,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         };
 
         window.addEventListener('scroll', handleScroll);
-        
-        const timer = setTimeout(() => {
-            setIsFabExpanded(false);
-        }, 3000);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            clearTimeout(timer);
-        };
+        return () => window.removeEventListener('scroll', handleScroll);
     }, [isMobile]);
 
     return (
@@ -129,9 +104,12 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                 <PropertyStickyNav />
 
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-1">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <div className="lg:col-span-8">
                             <PropertyDetailsPanel property={property} />
+                        </div>
+                         <div className="hidden lg:block lg:col-span-4">
+                            <RightColumn property={property} />
                         </div>
                     </div>
 
@@ -140,53 +118,6 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                 </div>
             </main>
-            
-            <Drawer>
-                <DrawerTrigger asChild>
-                    <Button
-                        className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90 lg:hidden"
-                        size="icon"
-                    >
-                        <MessageSquare className="h-8 w-8" />
-                    </Button>
-                </DrawerTrigger>
-                <DrawerContent>
-                    <PropertyContactForm />
-                </DrawerContent>
-            </Drawer>
-
-            
-            <div
-                onMouseEnter={() => setIsFabExpanded(true)}
-                onMouseLeave={() => setIsFabExpanded(false)}
-                className="fixed bottom-8 right-8 z-50 hidden lg:block"
-            >
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button
-                            className={cn(
-                                "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
-                                isFabExpanded ? "h-14 px-6" : "h-16 w-16"
-                            )}
-                        >
-                            <div className="flex items-center justify-center overflow-hidden">
-                                <MessageSquare className="h-6 w-6 shrink-0" />
-                                <div className={cn(
-                                    "transition-all duration-300 ease-in-out",
-                                    isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
-                                )}>
-                                    <span className="whitespace-nowrap">
-                                        Interested? Send Enquiry
-                                    </span>
-                                </div>
-                            </div>
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
-                        <PropertyContactForm />
-                    </PopoverContent>
-                </Popover>
-            </div>
             
             <BrokerageBanner />
             <SiteFooter />

@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -10,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, 'useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -19,29 +17,10 @@ import { VerificationProcessDialog } from '@/components/layout/verification-proc
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { AmenitiesDialog } from '@/components/layout/amenities-dialog';
 import { allAmenities } from '@/lib/amenities';
-import { RatingDialog } from '@/components/layout/rating-dialog';
-import { useIsMobile } from '@/hooks/use-mobile';
 import VerificationCard from './verification-card';
 
 type Property = typeof properties[0];
 
-export const amenityIcons: { [key: string]: React.ReactNode } = {
-    'High-Speed WiFi': <Wifi className="h-6 w-6 text-primary" />,
-    'Meeting Rooms': <Users className="h-6 w-6 text-primary" />,
-    'Power Backup': <Zap className="h-6 w-6 text-primary" />,
-    '24/7 Security': <ShieldCheck className="h-6 w-6 text-primary" />,
-    'Loading Dock': <Warehouse className="h-6 w-6 text-primary" />,
-    'Printing': <Check className="h-6 w-6 text-primary" />,
-    'Coffee Bar': <Coffee className="h-6 w-6 text-primary" />,
-    'Swimming Pool': <Check className="h-6 w-6 text-primary" />,
-    'Gym': <Check className="h-6 w-6 text-primary" />,
-    'Clubhouse': <Check className="h-6 w-6 text-primary" />,
-    'Private Garden': <Check className="h-6 w-6 text-primary" />,
-    'Community Park': <Check className="h-6 w-6 text-primary" />,
-    'Jogging Track': <Check className="h-6 w-6 text-primary" />,
-    'Gated Community': <ShieldCheck className="h-6 w-6 text-primary" />,
-  };
-  
 const PropertyOverview = ({ property }: { property: Property}) => (
     <Card id="overview">
         <CardHeader className='p-4'>
@@ -54,7 +33,6 @@ const PropertyOverview = ({ property }: { property: Property}) => (
         </CardContent>
     </Card>
 )
-
 
 const PropertyAmenities = ({ property }: { property: Property}) => {
     const [isAmenitiesDialogOpen, setIsAmenitiesDialogOpen] = useState(false);
@@ -94,25 +72,6 @@ const PropertyAmenities = ({ property }: { property: Property}) => {
         </Card>
     )
 }
-
-const PricingDetails = ({ property }: { property: Property}) => (
-    // @ts-ignore
-    property.priceBreakdown && (
-        <ul className="space-y-2 text-sm">
-            {/* @ts-ignore */}
-            {property.priceBreakdown.map(item => (
-            <li key={item.item} className="flex justify-between">
-                <span className="text-muted-foreground">{item.item}</span>
-                <div className="flex items-center gap-2">
-                {/* @ts-ignore */}
-                {item.included && <Badge variant="secondary">Included</Badge>}
-                <span>{item.value}</span>
-                </div>
-            </li>
-            ))}
-        </ul>
-    )
-)
 
 const PropertyLocation = () => (
   <CardContent className="p-6">
@@ -208,304 +167,6 @@ const NearbyPlaces = () => {
     );
 };
 
-
-const PropertyReviews = ({ property }: { property: Property }) => {
-    const [isRatingDialogOpen, setIsRatingDialogOpen] = useState(false);
-    const totalReviews = 50;
-    const ratings = [
-        { star: 5, percentage: 80 },
-        { star: 4, percentage: 12 },
-        { star: 3, percentage: 5 },
-        { star: 2, percentage: 2 },
-        { star: 1, percentage: 1 },
-    ];
-    
-     const reviews = [
-        {
-            name: 'Vedant Gupta',
-            role: 'Owner',
-            time: '11 months ago',
-            rating: 4.8,
-            good: 'The area has plenty of trees and this locality has so many garden park at wakable distance...',
-            bad: 'The metro station is away from our area and the problem is getting buses are not frequen...'
-        },
-        {
-            name: 'Kundan Singh',
-            role: 'Other',
-            time: '1 year ago',
-            rating: 4.5,
-            good: 'This is top notch locality with all the services and amenities available. Good place to live...',
-            bad: 'Some Challenges like water scarcity increase in summer season. A bit far from the city center...'
-        },
-        {
-            name: 'Priya Sharma',
-            role: 'Tenant',
-            time: '8 months ago',
-            rating: 5.0,
-            good: 'Absolutely love living here! The community is friendly and the management is very responsive.',
-            bad: 'Guest parking can be a bit challenging on weekends.'
-        }
-    ];
-
-    return (
-        <Card id="ratings-reviews">
-            <CardHeader className='p-4'>
-                <div className="flex justify-between items-center">
-                    <CardTitle>Rating &amp; Reviews</CardTitle>
-                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
-                </div>
-            </CardHeader>
-            <Separator/>
-            <CardContent className="p-6 space-y-8">
-                <div className="flex justify-between items-center">
-                    <p className="text-sm md:text-base">Overall rating based on {totalReviews} reviews.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="flex flex-col items-center justify-center md:border-r">
-                        <p className="text-3xl md:text-4xl font-bold">{property.rating}</p>
-                        <div className="flex items-center">
-                            {[...Array(Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-yellow-400 fill-yellow-400" />)}
-                            {[...Array(5 - Math.floor(property.rating))].map((_, i) => <Star key={i} className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />)}
-                        </div>
-                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{totalReviews} ratings</p>
-                    </div>
-                    <div className="md:col-span-2">
-                    {ratings.map(r => (
-                            <div key={r.star} className="flex items-center gap-2">
-                                <span className="text-xs md:text-sm w-12">{r.star} star</span>
-                                <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                    <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
-                                </div>
-                                <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
-                            </div>
-                    ))}
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg md:text-xl font-semibold">All resident reviews ({reviews.length} reviews)</h3>
-                        <Button variant="link" className="text-primary p-0 h-auto text-sm md:text-base">View All</Button>
-                    </div>
-                    <Carousel className="w-full" opts={{ align: "start", loop: true, slidesToScroll: 'auto', }}>
-                        <CarouselContent className="-ml-4">
-                            {reviews.map((review, index) => (
-                                <CarouselItem key={index} className="pl-4 basis-full md:basis-1/2 lg:basis-[40%]">
-                                    <div className="p-1">
-                                        <Card>
-                                            <CardContent className="p-6 space-y-3">
-                                                <div className="flex justify-between items-start">
-                                                    <div className="flex items-center gap-3">
-                                                        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                                                            <UserCheck className="w-6 h-6 text-primary" />
-                                                        </div>
-                                                        <div>
-                                                            <p className="font-semibold text-sm md:text-base">{review.name}</p>
-                                                            <p className="text-xs text-muted-foreground">{review.role} | {review.time}</p>
-                                                        </div>
-                                                    </div>
-                                                    <Badge className="bg-green-100 text-green-800 border-green-200 text-xs md:text-sm">
-                                                        {review.rating} <Star className="h-3 w-3 ml-1 fill-current" />
-                                                    </Badge>
-                                                </div>
-                                                <div className="space-y-3">
-                                                    <div>
-                                                        <h4 className="font-semibold text-sm flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500" /> Good things here</h4>
-                                                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.good} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                                    </div>
-                                                    <div>
-                                                        <h4 className="font-semibold text-sm flex items-center gap-2"><Wrench className="h-4 w-4 text-orange-500" /> Things need improvement</h4>
-                                                        <p className="text-xs md:text-sm text-muted-foreground mt-1">{review.bad} <Link href="#" className="text-primary font-medium">read more</Link></p>
-                                                    </div>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10" />
-                        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10" />
-                    </Carousel>
-                </div>
-            </CardContent>
-            <RatingDialog open={isRatingDialogOpen} onOpenChange={setIsRatingDialogOpen} />
-        </Card>
-    )
-}
-
-
-const LayoutImageGallery = ({ images }: { images: { id: number, src: string, alt: string, hint: string }[] }) => (
-    <div className="w-full mx-auto">
-        <Carousel>
-            <CarouselContent>
-                {images.map((image) => (
-                    <CarouselItem key={image.id}>
-                        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
-                            <Image
-                                src={image.src}
-                                alt={image.alt}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={image.hint}
-                            />
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
-        </Carousel>
-    </div>
-);
-
-const PropertyLayout = ({ property }: { property: Property }) => {
-    const layouts = {
-        small: [
-            { id: 1, src: "https://picsum.photos/seed/layout-small-1/800/600", alt: "Small office layout", hint: "small office" },
-            { id: 2, src: "https://picsum.photos/seed/layout-small-2/800/600", alt: "Small meeting room", hint: "small meeting room" },
-            { id: 3, src: "https://picsum.photos/seed/layout-small-3/800/600", alt: "Compact workspace", hint: "compact workspace" },
-            { id: 4, src: "https://picsum.photos/seed/layout-small-4/800/600", alt: "Focused work area", hint: "work area" },
-            { id: 5, src: "https://picsum.photos/seed/layout-small-5/800/600", alt: "Focused work area 2", hint: "work area" },
-        ],
-        medium: [
-            { id: 1, src: "https://picsum.photos/seed/layout-medium-1/800/600", alt: "Medium office layout", hint: "medium office" },
-            { id: 2, src: "https://picsum.photos/seed/layout-medium-2/800/600", alt: "Team collaboration space", hint: "team space" },
-            { id: 3, src: "https://picsum.photos/seed/layout-medium-3/800/600", alt: "Open plan office", hint: "open office" },
-            { id: 4, src: "https://picsum.photos/seed/layout-medium-4/800/600", alt: "Brainstorming room", hint: "brainstorming room" },
-             { id: 5, src: "https://picsum.photos/seed/layout-medium-5/800/600", alt: "Brainstorming room 2", hint: "brainstorming room" },
-        ],
-        large: [
-            { id: 1, src: "https://picsum.photos/seed/layout-large-1/800/600", alt: "Large office layout", hint: "large office" },
-            { id: 2, src: "https://picsum.photos/seed/layout-large-2/800/600", alt: "Corporate office space", hint: "corporate office" },
-            { id: 3, src: "https://picsum.photos/seed/layout-large-3/800/600", alt: "Expansive workspace", hint: "expansive workspace" },
-            { id: 4, src: "https://picsum.photos/seed/layout-large-4/800/600", alt: "Executive suite", hint: "executive suite" },
-             { id: 5, src: "https://picsum.photos/seed/layout-large-5/800/600", alt: "Executive suite 2", hint: "executive suite" },
-        ],
-    };
-
-    return (
-        <Tabs defaultValue="small">
-            <TabsList variant="pill" className="grid w-full grid-cols-3 mb-4">
-                <TabsTrigger variant="pill" value="small" className="text-xs md:text-sm">6-15 Seats</TabsTrigger>
-                <TabsTrigger variant="pill" value="medium" className="text-xs md:text-sm">16-30 Seats</TabsTrigger>
-                <TabsTrigger variant="pill" value="large" className="text-xs md:text-sm">31-60 Seats</TabsTrigger>
-            </TabsList>
-            <TabsContent value="small">
-                <LayoutImageGallery images={layouts.small} />
-            </TabsContent>
-            <TabsContent value="medium">
-                <LayoutImageGallery images={layouts.medium} />
-            </TabsContent>
-            <TabsContent value="large">
-                <LayoutImageGallery images={layouts.large} />
-            </TabsContent>
-        </Tabs>
-    );
-};
-  
-
-const PropertyVideo = () => (
-    <div className="aspect-video w-full rounded-lg overflow-hidden">
-        <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-        ></iframe>
-    </div>
-);
-
-const PropertyPlan = () => (
-    <div className="relative aspect-video w-full rounded-lg overflow-hidden border">
-        <Image src="https://picsum.photos/seed/floor-plan/1000/600" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
-    </div>
-);
-
-const brochureImages = [
-    { id: 1, src: "https://picsum.photos/seed/brochure-1/800/600", alt: "Brochure page 1", hint: "brochure page" },
-    { id: 2, src: "https://picsum.photos/seed/brochure-2/800/600", alt: "Brochure page 2", hint: "brochure interior" },
-    { id: 3, src: "https://picsum.photos/seed/brochure-3/800/600", alt: "Brochure page 3", hint: "brochure layout" },
-];
-
-const PropertyDocument = () => (
-    <div>
-        <Carousel className="w-full">
-            <CarouselContent>
-                {brochureImages.map((image) => (
-                    <CarouselItem key={image.id}>
-                        <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                            <Image
-                                src={image.src}
-                                alt={image.alt}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={image.hint}
-                            />
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                 <Button asChild variant="secondary" size="lg">
-                    <Link href="/sample.pdf" target="_blank">View Brochure</Link>
-                </Button>
-            </div>
-             <Button asChild size="icon" className="absolute top-2 right-2 z-10 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full h-10 w-10">
-                <Link href="/sample.pdf" target="_blank" download>
-                    <Download className="h-5 w-5" />
-                </Link>
-            </Button>
-            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10" />
-            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10" />
-        </Carousel>
-    </div>
-);
-
-
-const OpeningHours = () => (
-    <ul className="space-y-3 text-sm">
-        <li className="flex justify-between items-center">
-            <span className="font-semibold">Monday - Friday</span>
-            <Badge variant="outline">9:00 AM - 6:00 PM</Badge>
-        </li>
-        <li className="flex justify-between items-center">
-            <span className="font-semibold">Saturday</span>
-            <Badge variant="destructive">Closed</Badge>
-        </li>
-        <li className="flex justify-between items-center">
-            <span className="font-semibold">Sunday</span>
-            <Badge variant="destructive">Closed</Badge>
-        </li>
-    </ul>
-);
-
-const AdditionalPropertyDetails = () => {
-    const details = [
-        { label: 'Category', value: 'Commercial' },
-        { label: 'Property Type', value: 'Techpark' },
-        { label: 'Under Management', value: 'Yes' },
-        { label: 'Available Floors', value: '10th' },
-        { label: 'Office Space Solutions', value: 'Floor 10th' },
-        { label: 'Facilities', value: '4W PARKING, 2W PARKING' },
-        { label: 'Builder Name', value: 'A' },
-    ];
-
-    return (
-        <div id="developer">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6 text-sm">
-                {details.map(detail => (
-                    <div key={detail.label}>
-                        <p className="text-muted-foreground">{detail.label}</p>
-                        <p className="font-semibold text-base">{detail.value}</p>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
 const OurServices = () => {
     const services = [
       {
@@ -542,36 +203,12 @@ const OurServices = () => {
     );
   };
   
-
-
 export default function PropertyDetailsPanel({ property }: { property: Property }) {
-    const isMobile = useIsMobile();
     return (
         <div className="space-y-8 pb-20 md:pb-0">
             <PropertyOverview property={property} />
-
-            <Card>
-                <CardHeader className='p-4'>
-                    <CardTitle>Opening Hours</CardTitle>
-                </CardHeader>
-                <Separator />
-                <CardContent className="p-6">
-                    <OpeningHours />
-                </CardContent>
-            </Card>
-            
             <PropertyAmenities property={property} />
             
-            <Card id="layout" className="lg:col-span-3">
-                <CardHeader className='p-4'>
-                    <CardTitle>Property Layout</CardTitle>
-                </CardHeader>
-                <Separator />
-                <CardContent className="p-6">
-                    <PropertyLayout property={property} />
-                </CardContent>
-            </Card>
-
             <Card id="locality" className="lg:col-span-3">
                 <CardHeader className='p-4'>
                     <CardTitle>Location &amp; Landmark</CardTitle>
@@ -589,49 +226,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                     <NearbyPlaces />
                 </CardContent>
             </Card>
-            <Card>
-                <CardHeader className='p-4'>
-                    <CardTitle>Property Details</CardTitle>
-                </CardHeader>
-                <Separator />
-                <CardContent className="p-6">
-                    <AdditionalPropertyDetails />
-                </CardContent>
-            </Card>
-            
-            <PropertyReviews property={property} />
-            
-            <div className="grid md:grid-cols-3 gap-8">
-                <Card id="video">
-                    <CardHeader className='p-4'>
-                        <CardTitle>Property Video</CardTitle>
-                    </CardHeader>
-                    <Separator />
-                    <CardContent className="p-6">
-                        <PropertyVideo />
-                    </CardContent>
-                </Card>
 
-                <Card id="plan">
-                    <CardHeader className='p-4'>
-                        <CardTitle>Floor Plan</CardTitle>
-                    </CardHeader>
-                    <Separator />
-                    <CardContent className="p-6">
-                        <PropertyPlan />
-                    </CardContent>
-                </Card>
-                 <Card id="documents">
-                    <CardHeader className='p-4'>
-                        <CardTitle>Property Document</CardTitle>
-                    </CardHeader>
-                    <Separator />
-                    <CardContent className="p-6">
-                        <PropertyDocument />
-                    </CardContent>
-                </Card>
-            </div>
-            
             <VerificationCard />
             <OurServices />
         </div>

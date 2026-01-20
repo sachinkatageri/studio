@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -6,7 +5,7 @@ import Image from 'next/image';
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Heart, Share2, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Heart, Share2, AlertTriangle, CheckCircle, MapPin } from 'lucide-react';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ShareOptions } from '@/components/layout/share-options';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -29,7 +28,11 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                            <h1 className="text-xl md:text-3xl font-bold">{property.name}</h1>
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} className="md:w-7 md:h-7" />
                         </div>
-                        <p className="text-muted-foreground mt-1 text-sm md:text-base">{property.location}</p>
+                        <div className="flex items-center gap-2 text-muted-foreground mt-1 text-sm md:text-base">
+                            <MapPin className="h-4 w-4" />
+                            <span>{property.location}</span>
+                            <Button variant="link" className="p-0 h-auto text-primary">View on map</Button>
+                        </div>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
                          <TooltipProvider>
@@ -56,28 +59,6 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                                 </Tooltip>
                             </ShareOptions>
                          </TooltipProvider>
-                    </div>
-                </div>
-            
-            
-                <div className="mt-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-                    <div className="flex items-end gap-2">
-                        <p className="text-xl md:text-2xl font-bold text-primary">
-                            {property.price && !property.price.startsWith('Starting') ? `₹${property.price}` : property.price}
-                        </p>
-                        {property.price && !property.price.startsWith('Starting') && offerPrice > 0 && (
-                            <p className="text-sm md:text-base text-muted-foreground line-through">
-                                ₹{beforePrice.toLocaleString('en-IN')}
-                            </p>
-                        )}
-                        <Badge variant="secondary" className="text-xs">{property.status}</Badge>
-                    </div>
-                    <div className="hidden md:flex items-center gap-2">
-                        <Button variant="outline" className="h-11 rounded-lg">Contact</Button>
-                        <Button className="h-11 rounded-lg">
-                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={20} height={20} />
-                            <span className="ml-2">WhatsApp</span>
-                        </Button>
                     </div>
                 </div>
             </div>
