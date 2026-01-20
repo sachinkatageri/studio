@@ -1,5 +1,4 @@
 
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -16,5 +15,3 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
-
-    
