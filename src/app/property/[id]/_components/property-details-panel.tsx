@@ -1,3 +1,4 @@
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -8,7 +9,7 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-import React, 'useState } from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
