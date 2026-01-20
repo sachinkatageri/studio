@@ -133,17 +133,6 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
 
     return (
         <div className="space-y-8 pb-20 md:pb-0">
-            <Card id="overview">
-                <CardHeader>
-                    <CardTitle>Overview</CardTitle>
-                </CardHeader>
-                <Separator />
-                <CardContent className="p-6">
-                    {/* @ts-ignore */}
-                    <p className="text-muted-foreground text-sm md:text-base">{property.about}</p>
-                </CardContent>
-            </Card>
-
             <Card id="amenities">
                 <CardHeader>
                     <CardTitle>Amenities</CardTitle>
@@ -274,7 +263,7 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
                                             <div key={r.star} className="flex items-center gap-2">
                                                 <span className="text-xs md:text-sm w-12">{r.star} star</span>
                                                 <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                                    <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
+                                                    <div className="h-full bg-yellow-400" style={{ width: `${'r.percentage'}%`}}></div>
                                                 </div>
                                                 <span className="text-xs md:text-sm w-8 text-right">{r.percentage}%</span>
                                             </div>
@@ -338,3 +327,5 @@ export default function PropertyDetailsPanel({ property }: { property: Property 
         </div>
     )
 }
+
+    
