@@ -94,12 +94,19 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </div>
                 </div>
 
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-                    <PropertyInfoSection property={property} />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                     <PropertyInfoSection property={property} />
                 </div>
             
-                <div className="md:mt-8">
-                    <PropertyImageGallery />
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <div className="lg:col-span-8">
+                           <PropertyImageGallery />
+                        </div>
+                        <div className="hidden lg:block lg:col-span-4">
+                          <RightColumn property={property} />
+                        </div>
+                    </div>
                 </div>
 
                 <PropertyStickyNav />
@@ -108,9 +115,9 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                         <div className="lg:col-span-8">
                             <PropertyDetailsPanel property={property} />
-                        </div>
-                         <div className="hidden lg:block lg:col-span-4">
-                            <RightColumn property={property} />
+                             <div className="lg:hidden mt-8">
+                                <RightColumn property={property} />
+                            </div>
                         </div>
                     </div>
 
