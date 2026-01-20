@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -22,6 +23,8 @@ import PropertyStickyHeader from './property-sticky-header';
 import RightColumn from './right-column';
 import PropertySpecsCard from './property-specs-card';
 import CustomInfrastructureCard from './custom-infrastructure-card';
+import AmenitiesCard from './amenities-card';
+import WhyBuildersinfoCard from './why-buildersinfo-card';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -104,6 +107,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertyImageGallery />
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
+                                <AmenitiesCard />
+                                <WhyBuildersinfoCard />
                             </div>
                         </div>
                         <div className="hidden lg:block lg:col-span-4">
