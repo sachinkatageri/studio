@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import PropertyContactForm from "./property-contact-form";
@@ -11,9 +12,9 @@ export default function RightColumn({ property }: { property: any }) {
     return (
         <div className="sticky top-24 space-y-6">
             <PropertyContactForm />
-            <AboutBrandCard />
             <WhyChooseUsCard />
             <AssistedClientsCard />
+            <AboutBrandCard />
             <ScheduleTourCard />
         </div>
     );
