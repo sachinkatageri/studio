@@ -1,4 +1,3 @@
-
 "use client";
 
 import { properties } from '@/lib/properties';
