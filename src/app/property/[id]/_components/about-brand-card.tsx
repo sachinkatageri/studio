@@ -21,13 +21,12 @@ export default function AboutBrandCard() {
             </CardHeader>
             <CardContent>
                 <div className="flex items-center gap-4 mb-4">
-                    <Image src="https://i.ibb.co/L5hYfCq/bhive-logo.png" alt="BHIVE Workspace" width={60} height={60} />
                     <div>
                         <h3 className="text-xl font-bold">BHIVE</h3>
                         <p className="text-sm font-semibold text-muted-foreground">WORKSPACE</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                <div className="grid grid-cols-4 gap-4 text-sm mb-4">
                     {brandStats.map(stat => (
                         <div key={stat.label} className="flex items-center gap-2">
                             <stat.icon className="h-4 w-4 text-muted-foreground" />
