@@ -1,7 +1,8 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { BadgePercent, TrendingDown, Cog } from "lucide-react";
+import { BadgePercent, TrendingDown, Cog, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const consultationPoints = [
     {
@@ -28,7 +29,7 @@ export default function WhyChooseUsCard() {
                 <CardTitle className="text-base">Why Clients Choose Us for Consultation</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent className="pt-6">
+            <CardContent className="pt-6 space-y-6">
                 <ul className="space-y-4">
                     {consultationPoints.map((point, index) => (
                         <li key={point.title} className={`flex items-start gap-4 ${index < consultationPoints.length - 1 ? 'pb-4 border-b' : ''}`}>
@@ -40,6 +41,10 @@ export default function WhyChooseUsCard() {
                         </li>
                     ))}
                 </ul>
+                <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold h-14 text-base">
+                    <Phone className="mr-2 h-5 w-5" />
+                    Request More Information or a Callback
+                </Button>
             </CardContent>
         </Card>
     )
