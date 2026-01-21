@@ -109,10 +109,13 @@ export default function SimilarProperties() {
         <section id="similar-properties" className="py-12 bg-muted/30">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
-                    <div>
+                    <div className="flex-1">
                         <h2 className="text-2xl md:text-3xl font-bold font-headline">Similar Properties</h2>
                         <p className="mt-1 text-muted-foreground">Handpicked properties for you.</p>
                     </div>
+                     <Button variant="ghost" asChild className="md:hidden px-3 py-1 h-auto text-sm text-primary">
+                        <Link href="#">View all <ChevronRight className="h-4 w-4" /></Link>
+                    </Button>
                     <div className="w-full md:w-auto">
                         <div className="md:hidden">
                             <ScrollArea className="w-full whitespace-nowrap">
@@ -127,9 +130,6 @@ export default function SimilarProperties() {
                                             {loc}
                                         </Button>
                                     ))}
-                                    <Button variant="ghost" asChild className="px-3 py-1 h-auto text-sm text-primary">
-                                        <Link href="#">View all <ChevronRight className="h-4 w-4" /></Link>
-                                    </Button>
                                 </div>
                                 <ScrollBar orientation="horizontal" className="invisible" />
                             </ScrollArea>
