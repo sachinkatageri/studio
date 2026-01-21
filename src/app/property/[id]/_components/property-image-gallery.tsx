@@ -23,7 +23,7 @@ export default function PropertyImageGallery() {
     // Mobile view with Carousel
     if (isMobile) {
         return (
-            <div className="relative">
+            <div className="space-y-2">
                 <Carousel>
                     <CarouselContent>
                         {propertyImageGallery.slice(0, 5).map(image => (
@@ -37,18 +37,18 @@ export default function PropertyImageGallery() {
                     <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
                     <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
                 </Carousel>
-                 <div className="absolute bottom-4 right-4 flex gap-2">
-                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
+                <div className="grid grid-cols-3 gap-2">
+                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
+                        <Camera className="mr-1.5 h-4 w-4" />
+                        All Photos
+                    </Button>
+                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
                         <PlayCircle className="mr-1.5 h-4 w-4" />
                         Video
                     </Button>
-                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
+                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
                         <Download className="mr-1.5 h-4 w-4" />
-                        PDF
-                    </Button>
-                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
-                        <Camera className="mr-1.5 h-4 w-4" />
-                        All Photos
+                        Brochure
                     </Button>
                 </div>
             </div>
