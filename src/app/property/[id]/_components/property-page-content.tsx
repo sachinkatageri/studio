@@ -1,4 +1,3 @@
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -24,7 +23,6 @@ import PropertySpecsCard from './property-specs-card';
 import CustomInfrastructureCard from './custom-infrastructure-card';
 import AmenitiesCard from './amenities-card';
 import WhyBuildersinfoCard from './why-buildersinfo-card';
-import ExploreLocations from './explore-locations';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import ScheduleTourCard from './schedule-tour-card';
@@ -119,12 +117,15 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        <div className="lg:col-span-8 space-y-6">
+                        <div className="lg:col-span-8">
+                            <div className="space-y-6">
                                 <PropertyInfoSection property={property} />
                                 <PropertyImageGallery />
-                                
-                                {isMobile && <PropertyStickyNav />}
+                            </div>
+                            
+                            <PropertyStickyNav />
 
+                            <div className="space-y-6 mt-6">
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
                                 <AmenitiesCard />
@@ -133,6 +134,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 </div>
                                 <WhyBuildersinfoCard />
                                 <PropertyDetailsPanel property={property} />
+                            </div>
                         </div>
                         <div className="hidden lg:block lg:col-span-4">
                           <RightColumn property={property} />

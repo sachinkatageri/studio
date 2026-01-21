@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
@@ -30,33 +29,42 @@ export function PropertyStickyNav() {
     const [isPropertyHeaderVisible, setIsPropertyHeaderVisible] = useState(false);
 
     const handleScroll = () => {
+        if (!navRef.current) return;
+
         const propertyHeaderVisible = !isMobile && window.scrollY > 350;
         setIsPropertyHeaderVisible(propertyHeaderVisible);
 
-        const sections = navItems.map(item => document.querySelector(item.href));
+        const sections = navItems.map(item => document.querySelector(item.href) as HTMLElement).filter(Boolean);
+        
         let scrollPosition = window.scrollY;
-
+        let stickyHeaderHeight = 0;
         if (isMobile) {
-            scrollPosition += 120; // mobile header + nav
+            stickyHeaderHeight = 56 + 48; // mobile header + nav
         } else {
-            let offset = 180;
-            if(!propertyHeaderVisible) offset -= 64; // aporox height of property sticky header
-            scrollPosition += offset;
+            stickyHeaderHeight = 56 + 56; // main header + nav
+            if(propertyHeaderVisible) {
+                stickyHeaderHeight += 64; // property sticky header
+            }
         }
+        
+        // Add a small offset to make the active state trigger a bit earlier
+        const activationOffset = 5;
+        scrollPosition += stickyHeaderHeight + activationOffset;
 
         let currentSectionId = '';
-        for (let i = sections.length - 1; i >= 0; i--) {
-            const section = sections[i];
-            if (section && (section as HTMLElement).offsetTop <= scrollPosition) {
+        for (const section of sections) {
+            if (section.offsetTop <= scrollPosition) {
                 currentSectionId = section.id;
+            } else {
                 break;
             }
         }
-        setActiveId(currentSectionId || 'info');
+        setActiveId(currentSectionId || (sections.length > 0 ? sections[0].id : ''));
 
         const topNavHeight = 56; // main header height (h-14)
+        const galleryElement = document.getElementById('info')?.parentElement;
         
-        if (navRef.current && window.scrollY > navRef.current.offsetTop - topNavHeight) {
+        if (galleryElement && window.scrollY > (galleryElement.offsetTop + galleryElement.offsetHeight) - topNavHeight) {
             setIsSticky(true);
         } else {
             setIsSticky(false);
@@ -65,22 +73,23 @@ export function PropertyStickyNav() {
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
-        const targetElement = document.querySelector(href);
+        const targetElement = document.querySelector(href) as HTMLElement;
         if (targetElement) {
+            const propertyHeaderVisible = !isMobile && window.scrollY > 350;
             let totalNavHeight = 0;
             if (!isMobile) {
                 const mainHeaderHeight = 56;
                 const propertyStickyHeaderHeight = 64;
                 const tabsHeight = 56;
                 totalNavHeight = mainHeaderHeight + tabsHeight;
-                if (window.scrollY > 350) {
+                if (propertyHeaderVisible) {
                     totalNavHeight += propertyStickyHeaderHeight;
                 }
             } else {
                 totalNavHeight = 56 + 48; // Mobile header + sticky nav height
             }
             
-            const topOffset = targetElement.getBoundingClientRect().top + window.scrollY - totalNavHeight;
+            const topOffset = targetElement.offsetTop - totalNavHeight;
             window.scrollTo({
                 top: topOffset,
                 behavior: 'smooth'
@@ -97,16 +106,13 @@ export function PropertyStickyNav() {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         const scrollArea = scrollViewportRef.current;
         if (scrollArea) {
-            scrollArea.addEventListener('scroll', handleHorizontalScroll);
+            scrollArea.addEventListener('scroll', handleHorizontalScroll, { passive: true });
         }
-
-        // Set initial activeId and scroll state
         handleScroll();
         handleHorizontalScroll();
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
              if (scrollArea) {
@@ -117,9 +123,7 @@ export function PropertyStickyNav() {
 
     useEffect(() => {
         if (!scrollViewportRef.current || !activeId) return;
-
         const activeTab = scrollViewportRef.current.querySelector(`[data-id="${activeId}"]`);
-        
         if (activeTab) {
             activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
@@ -133,79 +137,82 @@ export function PropertyStickyNav() {
         }
     };
 
-    if (isMobile === undefined) return null; // Avoid rendering on server or during hydration
+    if (isMobile === undefined) return <div className={cn('h-14', isMobile && 'h-0')} />;
 
     return (
         <div ref={navRef} className={cn(
-                'relative bg-background top-0 z-30', 
-                isSticky && (isMobile ? 'fixed top-14 left-0 right-0 shadow-md border-b h-[48px]' : cn('fixed left-0 right-0 shadow-md border-b h-14', isPropertyHeaderVisible ? 'top-[90px]' : 'top-14')),
-                !isSticky && (isMobile ? 'h-0 overflow-hidden' : 'h-14')
+                'bg-background z-30 transition-all duration-200', 
+                isSticky 
+                    ? cn('fixed left-0 right-0 shadow-md border-b', isMobile ? 'top-14 h-[48px]' : 'h-14', isPropertyHeaderVisible ? 'top-[90px]' : 'top-14')
+                    : cn('relative mt-6', isMobile && 'mt-0 h-0 invisible')
             )}>
-            <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
-                 {isMobile ? (
-                    <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex h-full items-center">
-                             {navItems.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    data-id={item.href.substring(1)}
-                                    onClick={(e) => handleNavClick(e, item.href)}
-                                    className={cn(
-                                        'inline-block px-3 py-3 text-xs font-semibold border-b-2 shrink-0 h-full flex items-center',
-                                        activeId === item.href.substring(1)
-                                            ? 'border-primary text-primary'
-                                            : 'border-transparent text-muted-foreground hover:text-primary'
-                                    )}
-                                >
-                                    {item.label}
-                                </a>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" className="invisible" />
-                    </ScrollArea>
-                 ) : (
-                    <>
-                    {showLeftArrow && (
-                        <button 
-                            onClick={() => scroll('left')}
-                            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
-                        >
-                            <ChevronLeft className="h-6 w-6 text-foreground" />
-                        </button>
+             {(!isMobile || isSticky) && (
+                <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
+                    {isMobile ? (
+                        <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
+                            <div className="flex h-full items-center">
+                                {navItems.map((item) => (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        data-id={item.href.substring(1)}
+                                        onClick={(e) => handleNavClick(e, item.href)}
+                                        className={cn(
+                                            'inline-block px-3 py-3 text-xs font-semibold border-b-2 shrink-0 h-full flex items-center',
+                                            activeId === item.href.substring(1)
+                                                ? 'border-primary text-primary'
+                                                : 'border-transparent text-muted-foreground hover:text-primary'
+                                        )}
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))}
+                            </div>
+                            <ScrollBar orientation="horizontal" className="invisible" />
+                        </ScrollArea>
+                    ) : (
+                        <>
+                        {showLeftArrow && (
+                            <button 
+                                onClick={() => scroll('left')}
+                                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            >
+                                <ChevronLeft className="h-6 w-6 text-foreground" />
+                            </button>
+                        )}
+                        <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
+                            <div className="flex px-8 h-full items-center">
+                                {navItems.map((item) => (
+                                    <a
+                                        key={item.label}
+                                        href={item.href}
+                                        data-id={item.href.substring(1)}
+                                        onClick={(e) => handleNavClick(e, item.href)}
+                                        className={cn(
+                                            'inline-flex items-center px-4 h-full text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
+                                            activeId === item.href.substring(1)
+                                                ? 'border-primary text-primary'
+                                                : 'border-transparent text-muted-foreground hover:text-primary'
+                                        )}
+                                    >
+                                        {item.label}
+                                    </a>
+                                ))}
+                            </div>
+                            <ScrollBar orientation="horizontal" className="invisible" />
+                        </ScrollArea>
+                        {showRightArrow && (
+                            <button 
+                                onClick={() => scroll('right')}
+                                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
+                            >
+                                <ChevronRight className="h-6 w-6 text-foreground" />
+                            </button>
+                        )}
+                        </>
                     )}
-                    <ScrollArea className="w-full whitespace-nowrap" viewportRef={scrollViewportRef}>
-                        <div className="flex px-8 h-full items-center">
-                            {navItems.map((item) => (
-                                <a
-                                    key={item.label}
-                                    href={item.href}
-                                    data-id={item.href.substring(1)}
-                                    onClick={(e) => handleNavClick(e, item.href)}
-                                    className={cn(
-                                        'inline-flex items-center px-4 h-full text-sm font-semibold uppercase tracking-wider border-b-2 shrink-0',
-                                        activeId === item.href.substring(1)
-                                            ? 'border-primary text-primary'
-                                            : 'border-transparent text-muted-foreground hover:text-primary'
-                                    )}
-                                >
-                                    {item.label}
-                                </a>
-                            ))}
-                        </div>
-                        <ScrollBar orientation="horizontal" className="invisible" />
-                    </ScrollArea>
-                    {showRightArrow && (
-                        <button 
-                            onClick={() => scroll('right')}
-                            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full shadow-md hover:bg-muted"
-                        >
-                            <ChevronRight className="h-6 w-6 text-foreground" />
-                        </button>
-                    )}
-                    </>
-                 )}
-            </div>
+                </div>
+             )}
         </div>
     );
 }
