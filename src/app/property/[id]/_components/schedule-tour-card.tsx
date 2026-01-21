@@ -32,7 +32,7 @@ export default function ScheduleTourCard() {
             </CardHeader>
             <Separator />
             <CardContent className="p-4 space-y-4">
-                <div className="relative px-8">
+                <div className="relative">
                     <Carousel opts={{ align: "start" }}>
                         <CarouselContent className="-ml-2">
                             {dates.map((d, index) => (
@@ -48,8 +48,8 @@ export default function ScheduleTourCard() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2" />
-                        <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2" />
+                        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2" />
+                        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2" />
                     </Carousel>
                 </div>
                 <div>
