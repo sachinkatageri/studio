@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -37,9 +38,17 @@ export default function PropertyImageGallery() {
                     <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
                 </Carousel>
                  <div className="absolute bottom-4 right-4 flex gap-2">
-                    <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
-                        <Camera className="mr-2 h-4 w-4" />
-                        {remainingImages > 0 ? `Show all ${remainingImages} photos` : 'View All'}
+                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
+                        <PlayCircle className="mr-1.5 h-4 w-4" />
+                        Video
+                    </Button>
+                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
+                        <Download className="mr-1.5 h-4 w-4" />
+                        PDF
+                    </Button>
+                    <Button variant="secondary" size="sm" className="h-auto px-3 py-1.5 text-xs bg-black/50 text-white hover:bg-black/70">
+                        <Camera className="mr-1.5 h-4 w-4" />
+                        All Photos
                     </Button>
                 </div>
             </div>
