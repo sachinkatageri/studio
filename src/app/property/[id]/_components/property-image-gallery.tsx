@@ -11,7 +11,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 export default function PropertyImageGallery() {
     const isMobile = useIsMobile();
-    const remainingImages = propertyImageGallery.length;
+    const totalImages = propertyImageGallery.length;
 
     // Fallback for SSR or if isMobile is undefined to prevent layout shift
     if (isMobile === undefined) {
@@ -133,7 +133,7 @@ export default function PropertyImageGallery() {
                 <div className="absolute bottom-4 right-4 flex gap-2">
                     <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
                         <Camera className="mr-2 h-4 w-4" />
-                        {remainingImages > 0 ? `Show all ${remainingImages} photos` : 'View All'}
+                        {totalImages > 0 ? `Show all ${totalImages} photos` : 'View All'}
                     </Button>
                 </div>
             </div>
