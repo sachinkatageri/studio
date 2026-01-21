@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -106,27 +104,20 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                             <div className="space-y-8">
                                 <PropertyInfoSection property={property} />
                                 <PropertyImageGallery />
+                                
+                                <PropertyStickyNav />
+
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
-                                <AmenitiesCard />
                                 <WhyBuildersinfoCard />
+                                <PropertyDetailsPanel property={property} />
                             </div>
                         </div>
                         <div className="hidden lg:block lg:col-span-4">
                           <RightColumn property={property} />
                         </div>
-                    </div>
-                </div>
-
-                <PropertyStickyNav />
-
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        <div className="lg:col-span-8">
-                            <PropertyDetailsPanel property={property} />
-                             <div className="lg:hidden mt-8">
-                                <RightColumn property={property} />
-                            </div>
+                         <div className="lg:hidden mt-8">
+                            <RightColumn property={property} />
                         </div>
                     </div>
                 </div>
