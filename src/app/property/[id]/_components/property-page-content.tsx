@@ -105,7 +105,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertyInfoSection property={property} />
                                 <PropertyImageGallery />
                                 
-                                <PropertyStickyNav />
+                                {isMobile && <PropertyStickyNav />}
 
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
