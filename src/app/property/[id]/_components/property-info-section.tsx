@@ -16,10 +16,6 @@ type Property = typeof properties[0];
 export function PropertyInfoSection({ property }: { property: Property }) {
     const [isVerificationDialogOpen, setIsVerificationDialogOpen] = useState(false);
     
-    const offerPriceString = property.price ? String(property.price).replace(/[^0-9.]/g, '') : '0';
-    const offerPrice = parseInt(offerPriceString, 10);
-    const beforePrice = Math.round(offerPrice * 1.15);
-
     return (
         <>
             <div id="info" className="md:pt-0">
@@ -33,13 +29,9 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} className="md:w-7 md:h-7" />
                         </div>
                         <div className="flex items-center gap-2 text-muted-foreground mt-2 text-sm md:text-base">
-                            <div className="bg-muted p-2 rounded-lg">
-                                <MapPin className="h-5 w-5 text-primary" />
-                            </div>
-                            <div>
-                                <p className="text-sm">{property.location}</p>
-                                <Button variant="link" className="p-0 h-auto text-primary text-sm">View on Map</Button>
-                            </div>
+                            <MapPin className="h-4 w-4 text-muted-foreground" />
+                            <p className="text-sm">{property.location}</p>
+                            <Button variant="link" className="p-0 h-auto text-primary text-sm">(View on Map)</Button>
                         </div>
                     </div>
                     <div className="hidden md:flex items-center gap-2">

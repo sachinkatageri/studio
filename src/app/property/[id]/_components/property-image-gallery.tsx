@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -18,7 +17,7 @@ export default function PropertyImageGallery() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {/* Main Image */}
                 <div 
-                    className="relative aspect-[4/3] md:aspect-auto rounded-lg overflow-hidden group cursor-pointer"
+                    className="relative aspect-square md:aspect-auto rounded-lg overflow-hidden group cursor-pointer"
                 >
                     <Image
                         src={mainImage.imageUrl}
