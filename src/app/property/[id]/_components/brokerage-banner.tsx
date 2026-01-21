@@ -1,6 +1,5 @@
-
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image"
+import Link from "next/link"
 
 const AppStoreButton = () => (
     <Link href="#" className="inline-block transition-transform hover:scale-105">
@@ -17,9 +16,9 @@ export default function BrokerageBanner() {
     return (
         <section className="bg-primary/10 py-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="relative bg-primary/90 text-primary-foreground rounded-2xl shadow-lg p-8 md:p-12 overflow-hidden">
-                    <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary rounded-full opacity-50"></div>
-                    <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-primary rounded-full opacity-50"></div>
+                <div className="relative bg-primary text-primary-foreground rounded-2xl shadow-lg p-8 md:p-12 overflow-hidden">
+                    <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary-foreground/10 rounded-full"></div>
+                    <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-primary-foreground/10 rounded-full"></div>
                     <div className="grid md:grid-cols-2 items-center gap-8 relative z-10">
                         <div className="text-center md:text-left">
                             <h2 className="text-2xl md:text-4xl font-bold mb-4">Brokerage - Free Real Estate at Your Fingertips</h2>
