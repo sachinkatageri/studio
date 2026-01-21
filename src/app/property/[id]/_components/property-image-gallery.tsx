@@ -55,56 +55,66 @@ export default function PropertyImageGallery() {
     }
 
     // Desktop view
-    const mainImage = propertyImageGallery[0];
-    const sideImage1 = propertyImageGallery[1];
-    const videoThumbnail = propertyImageGallery[2];
-    const bottomThumbnails = propertyImageGallery.slice(3);
+    const mainImage = propertyImageGallery.length > 0 ? propertyImageGallery[0] : null;
+    const sideImage1 = propertyImageGallery.length > 1 ? propertyImageGallery[1] : null;
+    const videoThumbnail = propertyImageGallery.length > 2 ? propertyImageGallery[2] : null;
+    const bottomThumbnails = propertyImageGallery.length > 3 ? propertyImageGallery.slice(3) : [];
 
     return (
         <div className="space-y-2">
             <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2 md:h-[450px]">
                 {/* Main Image */}
                 <div className="relative md:col-span-2 md:row-span-2 rounded-lg overflow-hidden group cursor-pointer aspect-[4/3] md:aspect-auto">
-                    <Image
-                        src={mainImage.imageUrl}
-                        alt={mainImage.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={mainImage.imageHint}
-                        priority
-                    />
+                    {mainImage && (
+                        <Image
+                            src={mainImage.imageUrl}
+                            alt={mainImage.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={mainImage.imageHint}
+                            priority
+                        />
+                    )}
                 </div>
                 {/* Side Image 1 */}
                 <div className="relative md:col-span-1 md:row-span-1 rounded-lg overflow-hidden group cursor-pointer aspect-[4/3] md:aspect-auto">
-                    <Image
-                        src={sideImage1.imageUrl}
-                        alt={sideImage1.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={sideImage1.imageHint}
-                    />
-                    <div className="absolute top-2 right-2">
-                        <Button variant="secondary" size="sm" className="h-auto px-2 py-1 text-xs bg-black/50 text-white hover:bg-black/70">
-                            <Download className="h-3 w-3 mr-1" />
-                            PDF FILE
-                        </Button>
-                    </div>
+                    {sideImage1 && (
+                        <>
+                            <Image
+                                src={sideImage1.imageUrl}
+                                alt={sideImage1.description}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={sideImage1.imageHint}
+                            />
+                            <div className="absolute top-2 right-2">
+                                <Button variant="secondary" size="sm" className="h-auto px-2 py-1 text-xs bg-black/50 text-white hover:bg-black/70">
+                                    <Download className="h-3 w-3 mr-1" />
+                                    PDF FILE
+                                </Button>
+                            </div>
+                        </>
+                    )}
                 </div>
                 {/* Video Thumbnail */}
                 <div className="relative md:col-span-1 md:row-span-1 rounded-lg overflow-hidden group cursor-pointer aspect-[4/3] md:aspect-auto">
-                    <Image
-                        src={videoThumbnail.imageUrl}
-                        alt={videoThumbnail.description}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={videoThumbnail.imageHint}
-                    />
-                    <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-                        <PlayCircle className="h-12 w-12 text-white/80" />
-                        <Button variant="link" className="text-white text-xs mt-2">
-                            WATCH VIDEO
-                        </Button>
-                    </div>
+                    {videoThumbnail && (
+                        <>
+                            <Image
+                                src={videoThumbnail.imageUrl}
+                                alt={videoThumbnail.description}
+                                fill
+                                className="object-cover"
+                                data-ai-hint={videoThumbnail.imageHint}
+                            />
+                            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                                <PlayCircle className="h-12 w-12 text-white/80" />
+                                <Button variant="link" className="text-white text-xs mt-2">
+                                    WATCH VIDEO
+                                </Button>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
             {/* Bottom Thumbnails */}
