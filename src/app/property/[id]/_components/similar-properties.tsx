@@ -134,17 +134,19 @@ export default function SimilarProperties() {
                                 <ScrollBar orientation="horizontal" className="invisible" />
                             </ScrollArea>
                         </div>
-                        <div className="hidden md:flex items-center gap-1 border rounded-lg p-1 bg-background">
-                            {locations.map(loc => (
-                                <Button 
-                                    key={loc} 
-                                    variant={activeLocation === loc ? "default" : "ghost"}
-                                    onClick={() => setActiveLocation(loc)}
-                                    className={cn("px-3 py-1 h-auto text-sm", activeLocation === loc && "shadow")}
-                                >
-                                    {loc}
-                                </Button>
-                            ))}
+                        <div className="hidden md:flex items-center gap-2">
+                            <div className="flex items-center gap-1 border rounded-lg p-1 bg-background">
+                                {locations.map(loc => (
+                                    <Button 
+                                        key={loc} 
+                                        variant={activeLocation === loc ? "default" : "ghost"}
+                                        onClick={() => setActiveLocation(loc)}
+                                        className={cn("px-3 py-1 h-auto text-sm", activeLocation === loc && "shadow")}
+                                    >
+                                        {loc}
+                                    </Button>
+                                ))}
+                            </div>
                             <Button variant="ghost" asChild className="px-3 py-1 h-auto text-sm text-primary">
                                 <Link href="#">View all <ChevronRight className="h-4 w-4" /></Link>
                             </Button>
