@@ -152,6 +152,36 @@ export const properties = [
       "description": "Outdoor terrace with seating and city views.",
       "imageUrl": "https://images.unsplash.com/photo-1500130695625-8aa9b575c62a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvZmZpY2UlMjB0ZXJyYWNlfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office terrace"
+    },
+    {
+      "id": "gallery-11",
+      "description": "Game room with pool table.",
+      "imageUrl": "https://images.unsplash.com/photo-1585828976860-14932c28a8d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnYW1lJTIwcm9vbXxlbnwwfHx8fDE3MjE4MzY3MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "game room"
+    },
+    {
+      "id": "gallery-12",
+      "description": "Library and quiet reading area.",
+      "imageUrl": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWJyYXJ5fGVufDB8fHx8fDE3MjE4MzY3MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "library"
+    },
+    {
+      "id": "gallery-13",
+      "description": "Gym and fitness center.",
+      "imageUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxneW18ZW58MHx8fHwxNzIxODM2NzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "fitness center"
+    },
+    {
+      "id": "gallery-14",
+      "description": "Yoga and meditation room.",
+      "imageUrl": "https://images.unsplash.com/photo-1591291621061-1f963c62a87c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx5b2dhJTIwcm9vbXxlbnwwfHx8fDE3MjE4MzY3ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "yoga room"
+    },
+    {
+      "id": "gallery-15",
+      "description": "Rooftop pool with city view.",
+      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyb29mdG9wJTIwcG9vbHxlbnwwfHx8fDE3MjE4MzY4MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rooftop pool"
     }
   ]
   
