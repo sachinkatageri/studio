@@ -1,9 +1,10 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { properties } from "@/lib/properties";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import { Star } from "lucide-react";
 
 type Property = typeof properties[0];
 
@@ -16,7 +17,13 @@ export default function PropertyStickyHeader({ property }: { property: Property 
         <div className="hidden md:block fixed top-14 left-0 right-0 z-30 bg-background/95 backdrop-blur-sm border-b shadow-sm">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
                 <div className="flex-1 min-w-0">
-                    <h1 className="text-lg font-bold truncate">{property.name}</h1>
+                    <div className="flex items-center gap-2">
+                        <h1 className="text-lg font-bold truncate">{property.name}</h1>
+                        <Badge variant="secondary" className="bg-amber-100 text-amber-700 border-amber-200">
+                            {property.rating} <Star className="h-3 w-3 ml-1 fill-current" />
+                        </Badge>
+                        <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={20} height={20} />
+                    </div>
                 </div>
                 <div className="flex items-center gap-4 pl-8">
                      <div className="flex items-end gap-2">
