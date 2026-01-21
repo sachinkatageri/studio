@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -112,7 +111,7 @@ export default function PropertyImageGallery() {
             <div className="relative">
                 <ScrollArea className="w-full whitespace-nowrap">
                     <div className="flex gap-2 pb-2">
-                        {bottomThumbnails.map((image) => (
+                        {bottomThumbnails.map((image, index) => (
                             <div
                                 key={image.id}
                                 className="relative h-20 w-28 rounded-md overflow-hidden shrink-0 cursor-pointer group"
@@ -124,18 +123,19 @@ export default function PropertyImageGallery() {
                                     className="object-cover"
                                     data-ai-hint={image.imageHint}
                                 />
-                                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
+                               {index === bottomThumbnails.length - 1 ? (
+                                    <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white text-center p-1">
+                                        <Camera className="h-6 w-6 mb-1" />
+                                        <p className="text-xs font-semibold leading-tight">Show all {totalImages} photos</p>
+                                    </div>
+                                ) : (
+                                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                )}
                             </div>
                         ))}
                     </div>
                     <ScrollBar orientation="horizontal" />
                 </ScrollArea>
-                <div className="absolute bottom-4 right-4 flex gap-2">
-                    <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
-                        <Camera className="mr-2 h-4 w-4" />
-                        {totalImages > 0 ? `Show all ${totalImages} photos` : 'View All'}
-                    </Button>
-                </div>
             </div>
         </div>
     )
