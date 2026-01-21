@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Phone, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
+const randomImages = [
+    { id: 1, src: "https://picsum.photos/seed/client1/100/100", alt: "Random client image 1", hint: "abstract pattern" },
+    { id: 2, src: "https://picsum.photos/seed/client2/100/100", alt: "Random client image 2", hint: "office building" },
+    { id: 3, src: "https://picsum.photos/seed/client3/100/100", alt: "Random client image 3", hint: "modern architecture" },
+    { id: 4, src: "https://picsum.photos/seed/client4/100/100", alt: "Random client image 4", hint: "cityscape" },
+    { id: 5, src: "https://picsum.photos/seed/client5/100/100", alt: "Random client image 5", hint: "nature" },
+];
+
 export default function ContactAgentCard({ propertyName }: { propertyName: string }) {
     return (
         <Card>
@@ -37,6 +45,19 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
                         </Button>
                     </div>
                     <Button variant="outline">Contact Rohit</Button>
+                </div>
+                <Separator />
+                 <div className="bg-muted/50 p-4 rounded-lg -m-2">
+                    <p className="text-sm text-center text-muted-foreground mb-4">
+                        Rohit's team assisted 500+ corporates in Bangalore to move into their new office.
+                    </p>
+                    <div className="flex justify-around items-center flex-wrap gap-4">
+                        {randomImages.map((image) => (
+                            <div key={image.id} className="relative h-12 w-12 rounded-full overflow-hidden">
+                               <Image src={image.src} alt={image.alt} fill className="object-cover" data-ai-hint={image.hint} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </CardContent>
         </Card>
