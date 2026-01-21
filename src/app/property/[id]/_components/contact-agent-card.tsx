@@ -23,7 +23,7 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
             <Separator />
             <CardContent className="space-y-4 pt-6">
                 <div className="flex items-center gap-4">
-                    <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden">
                         <Image src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm9maWxlJTIwcGhvdG98ZW58MHx8fHwxNzY5MDE4MDkxfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rohit" fill className="object-cover" data-ai-hint="male agent" />
                     </div>
                     <div>
