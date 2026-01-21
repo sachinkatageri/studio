@@ -14,8 +14,8 @@ export default function CheckTravelTimeCard() {
             </CardHeader>
             <Separator />
             <CardContent className="space-y-4 pt-6">
-                <div className="flex items-center justify-between gap-4 p-4 border rounded-lg">
-                    <div className="flex-1">
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 p-4 border rounded-lg">
+                    <div>
                         <Select>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Choose Starting Point (like office or kid's school)" />
@@ -57,3 +57,4 @@ export default function CheckTravelTimeCard() {
         </Card>
     );
 }
+
