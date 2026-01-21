@@ -20,7 +20,7 @@ const similarPropertiesData = [
         ratingText: "Excellent",
         price: "7,999",
         discount: "44% off",
-        imageUrl: "https://picsum.photos/seed/workshaala/400/300",
+        imageUrl: "https://images.unsplash.com/photo-1600210492493-0946911123ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxpbnRlcmlvcnxlbnwwfHx8fDE3Njg5ODA4NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
         imageHint: "office interior"
     },
     {
