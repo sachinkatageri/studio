@@ -9,7 +9,7 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Share2 } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share2, Calendar } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,10 @@ import CustomInfrastructureCard from './custom-infrastructure-card';
 import AmenitiesCard from './amenities-card';
 import WhyBuildersinfoCard from './why-buildersinfo-card';
 import ExploreLocations from './explore-locations';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import ScheduleTourCard from './schedule-tour-card';
+import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -105,7 +109,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertyInfoSection property={property} />
                                 <PropertyImageGallery />
                                 
-                                {isMobile && <PropertyStickyNav />}
+                                <PropertyStickyNav />
 
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
@@ -129,6 +133,48 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             
             <BrokerageBanner />
             <SiteFooter />
+
+            {isMobile ? (
+                <Drawer>
+                    <DrawerTrigger asChild>
+                        <Button
+                            className="fixed bottom-20 right-4 z-30 h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
+                            size="icon"
+                        >
+                            <Calendar className="h-8 w-8" />
+                        </Button>
+                    </DrawerTrigger>
+                    <DrawerContent>
+                        <ScheduleTourCard />
+                    </DrawerContent>
+                </Drawer>
+            ) : (
+                <div className="fixed bottom-8 right-8 z-50">
+                    <Popover>
+                        <PopoverTrigger asChild>
+                             <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <Button
+                                            size="icon"
+                                            className="h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
+                                        >
+                                            <Calendar className="h-8 w-8" />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="left">
+                                        <p>Schedule a Tour</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
+                            <ScheduleTourCard />
+                        </PopoverContent>
+                    </Popover>
+                </div>
+            )}
+            
             {isMobile && <MobileFooter />}
         </div>
     )

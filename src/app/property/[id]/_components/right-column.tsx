@@ -1,3 +1,4 @@
+
 "use client";
 
 import ContactAgentCard from "./contact-agent-card";
@@ -6,7 +7,6 @@ import WhyChooseUsCard from "./why-choose-us-card";
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
 import AboutBrandCard from "./about-brand-card";
-import ScheduleTourCard from "./schedule-tour-card";
 import FloorPlanCard from "./floor-plan-card";
 import OpeningHoursCard from "./opening-hours-card";
 import RatingsReviewsCard from "./ratings-reviews-card";
@@ -22,7 +22,6 @@ export default function RightColumn({ property }: { property: any }) {
                 Request More Information or a Callback
             </Button>
             <AboutBrandCard />
-            <ScheduleTourCard />
             <FloorPlanCard />
             <OpeningHoursCard />
             <RatingsReviewsCard />
