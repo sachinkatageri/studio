@@ -163,7 +163,7 @@ export default function SimilarProperties() {
                 >
                     <CarouselContent className="-ml-4">
                         {similarPropertiesData.map((property) => (
-                            <CarouselItem key={property.id} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                            <CarouselItem key={property.id} className="pl-4 basis-4/5 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                                 <Link href={`/property/${property.id}`} className="block h-full">
                                     <SimilarPropertyCard property={property} />
                                 </Link>
