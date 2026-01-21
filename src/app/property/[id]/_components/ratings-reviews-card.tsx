@@ -8,6 +8,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext
 import { useState } from "react";
 import { RatingDialog } from "@/components/layout/rating-dialog";
 import { properties } from "@/lib/properties";
+import { Separator } from "@/components/ui/separator";
 
 export default function RatingsReviewsCard() {
     const property = properties[0]; // dummy data
@@ -43,14 +44,14 @@ export default function RatingsReviewsCard() {
     return (
         <Card id="ratings-reviews">
             <CardHeader>
-                <CardTitle>Rating &amp; Reviews</CardTitle>
+                <div className="flex justify-between items-center">
+                    <CardTitle>Rating &amp; Reviews</CardTitle>
+                    <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
+                </div>
             </CardHeader>
             <CardContent className="space-y-8">
                  <div>
-                    <div className="flex justify-between items-center mb-4">
-                        <p className="text-sm">Overall rating based on {totalReviews} reviews.</p>
-                        <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
-                    </div>
+                    <p className="text-sm mb-4">Overall rating based on {totalReviews} reviews.</p>
                     <div className="grid grid-cols-1 gap-6">
                         <div className="flex flex-col items-center justify-center">
                             <p className="text-4xl font-bold">{property.rating}</p>
@@ -65,7 +66,7 @@ export default function RatingsReviewsCard() {
                                 <div key={r.star} className="flex items-center gap-2">
                                     <span className="text-sm w-12">{r.star} star</span>
                                     <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
-                                        <div className="h-full bg-yellow-400" style={{ width: `${'r.percentage'}%`}}></div>
+                                        <div className="h-full bg-yellow-400" style={{ width: `${r.percentage}%`}}></div>
                                     </div>
                                     <span className="text-sm w-8 text-right">{r.percentage}%</span>
                                 </div>
@@ -74,6 +75,8 @@ export default function RatingsReviewsCard() {
                     </div>
                 </div>
                 
+                <Separator />
+
                 <div>
                     <div className="flex justify-between items-center mb-4">
                         <h3 className="text-lg font-semibold">All resident reviews ({reviews.length} reviews)</h3>
