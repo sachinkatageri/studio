@@ -31,8 +31,8 @@ const similarPropertiesData = [
         ratingText: "Very Good",
         price: "5,999",
         guarantee: "Best Price Guarantee",
-        imageUrl: "https://picsum.photos/seed/incubex/400/300",
-        imageHint: "building exterior"
+        imageUrl: "https://picsum.photos/seed/modern-workspace/400/300",
+        imageHint: "modern workspace"
     },
     {
         id: "smart-space",
@@ -42,8 +42,8 @@ const similarPropertiesData = [
         ratingText: "Good",
         price: "4,999",
         discount: "34% off",
-        imageUrl: "https://picsum.photos/seed/smart-space/400/300",
-        imageHint: "modern building"
+        imageUrl: "https://picsum.photos/seed/collaborative-office/400/300",
+        imageHint: "collaborative office"
     },
     {
         id: "urban-vault",
@@ -53,8 +53,8 @@ const similarPropertiesData = [
         ratingText: "Very Good",
         price: "5,999",
         guarantee: "Best Price Guarantee",
-        imageUrl: "https://picsum.photos/seed/urban-vault/400/300",
-        imageHint: "office building"
+        imageUrl: "https://picsum.photos/seed/creative-workspace/400/300",
+        imageHint: "creative workspace"
     },
     {
         id: "indiqube",
@@ -64,8 +64,8 @@ const similarPropertiesData = [
         ratingText: "Very Good",
         price: "5,999",
         guarantee: "Best Price Guarantee",
-        imageUrl: "https://picsum.photos/seed/indiqube/400/300",
-        imageHint: "night building"
+        imageUrl: "https://picsum.photos/seed/corporate-office-space/400/300",
+        imageHint: "corporate office"
     }
 ];
 
