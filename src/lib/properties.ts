@@ -96,61 +96,61 @@ export const properties = [
     {
       "id": "gallery-1",
       "description": "Bright and airy open-plan office with comfortable lounge seating.",
-      "imageUrl": "https://images.unsplash.com/photo-1577412647305-991150c7d163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8b2ZmaWNlfGVufDB8fHx8MTc2ODk4MTExMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1604328727766-a151d1045ab4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjBsb3VuZ2V8ZW58MHx8fHwxNzY4OTgyNzg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office lounge"
     },
     {
       "id": "gallery-2",
       "description": "Modern kitchen and bar area in a coworking space.",
-      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvZmZpY2UlMjBraXRjaGVufGVufDB8fHx8MTc2ODkyNjQyNXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1618506425498-93e6a45e3af0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZmZpY2UlMjBraXRjaGVufGVufDB8fHx8MTc2ODkyNjQyNXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office kitchen"
     },
     {
       "id": "gallery-3",
       "description": "Private office booth with a view of the city skyline.",
-      "imageUrl": "https://images.unsplash.com/photo-1690264240477-e7a5b2352ee4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvZmZpY2UlMjBib290aHxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1690264241248-227bb899c83f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxvZmZpY2UlMjBib290aHxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office booth"
     },
     {
       "id": "gallery-4",
       "description": "Collaborative meeting area with a whiteboard and casual seating.",
-      "imageUrl": "https://images.unsplash.com/photo-1768796370123-9829a5b9c37c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1567297642193-b771fa3adcce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "meeting area"
     },
     {
       "id": "gallery-5",
       "description": "Cozy nook with hanging chairs for relaxation.",
-      "imageUrl": "https://images.unsplash.com/photo-1759038086769-a958e95d5fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2ODg4MTk0NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1732291321029-fcf65e0d7b48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "lounge area"
     },
     {
       "id": "gallery-6",
       "description": "Reception desk in a modern office lobby.",
-      "imageUrl": "https://picsum.photos/seed/gallery-6/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvZmZpY2UlMjByZWNlcHRpb258ZW58MHx8fHwxNzY4OTA2OTk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office reception"
     },
     {
       "id": "gallery-7",
       "description": "Dedicated desks in a quiet zone of the coworking space.",
-      "imageUrl": "https://picsum.photos/seed/gallery-7/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1762341118523-38c54d621bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkZWRpY2F0ZWQlMjBkZXNrc3xlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dedicated desks"
     },
     {
       "id": "gallery-8",
       "description": "Phone booths for private calls.",
-      "imageUrl": "https://picsum.photos/seed/gallery-8/600/800",
+      "imageUrl": "https://images.unsplash.com/photo-1605644590903-6591336f609a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwaG9uZSUyMGJvb3RofGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "phone booth"
     },
     {
       "id": "gallery-9",
       "description": "Large conference room with video conferencing setup.",
-      "imageUrl": "https://picsum.photos/seed/gallery-9/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb25mZXJlbmNlJTIwcm9vbXxlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "conference room"
     },
     {
       "id": "gallery-10",
       "description": "Outdoor terrace with seating and city views.",
-      "imageUrl": "https://picsum.photos/seed/gallery-10/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1500130695625-8aa9b575c62a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvZmZpY2UlMjB0ZXJyYWNlfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office terrace"
     }
   ]
