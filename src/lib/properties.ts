@@ -96,7 +96,7 @@ export const properties = [
     {
       "id": "gallery-1",
       "description": "Bright and airy open-plan office with comfortable lounge seating.",
-      "imageUrl": "https://picsum.photos/seed/gallery-1/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1577412647305-991150c7d163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8b2ZmaWNlfGVufDB8fHx8MTc2ODk4MTExMXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office lounge"
     },
     {
