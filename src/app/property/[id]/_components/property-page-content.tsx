@@ -1,3 +1,4 @@
+
 "use client";
 
 import { properties } from '@/lib/properties';
@@ -8,7 +9,7 @@ import BrokerageBanner from './brokerage-banner';
 import SiteFooter from './site-footer';
 import { PropertyStickyNav } from './property-sticky-nav';
 import Link from 'next/link';
-import { ChevronRight, ArrowLeft, Share2, Calendar } from 'lucide-react';
+import { ChevronRight, ArrowLeft, Share2, Calendar, Heart } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -30,6 +31,7 @@ import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/comp
 import PropertyAdditionalDetailsCard from './property-additional-details-card';
 import { cn } from '@/lib/utils';
 import ExploreLocations from './explore-locations';
+import { ShareOptions } from '@/components/layout/share-options';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -46,7 +48,14 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                 <h1 className="text-sm font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
-                 {/* ShareOptions can be here */}
+                <ShareOptions>
+                    <Button variant="ghost" size="icon" className="shrink-0 h-9 w-9">
+                        <Share2 className="h-5 w-5" />
+                    </Button>
+                </ShareOptions>
+                <Button variant="ghost" size="icon" className="shrink-0 h-9 w-9">
+                    <Heart className="h-5 w-5" />
+                </Button>
             </div>
         </div>
     );
