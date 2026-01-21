@@ -44,7 +44,7 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
                            <Image src="https://www.buildersinfo.in/property-details/whatsapp.png" alt="WhatsApp" width={16} height={16} />
                         </Button>
                     </div>
-                    <Button variant="outline">Contact Rohit</Button>
+                    <Button>Contact Rohit</Button>
                 </div>
                 <Separator />
                  <div className="bg-muted/50 p-4 rounded-lg -m-2">
