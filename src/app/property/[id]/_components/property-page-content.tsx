@@ -48,14 +48,14 @@ const MobileHeader = ({ property }: { property: typeof properties[0] }) => {
                 <h1 className="text-sm font-semibold truncate">{property.name}</h1>
             </div>
             <div className='flex items-center'>
+                <Button variant="ghost" size="icon" className="shrink-0 h-9 w-9">
+                    <Heart className="h-5 w-5" />
+                </Button>
                 <ShareOptions>
                     <Button variant="ghost" size="icon" className="shrink-0 h-9 w-9">
                         <Share2 className="h-5 w-5" />
                     </Button>
                 </ShareOptions>
-                <Button variant="ghost" size="icon" className="shrink-0 h-9 w-9">
-                    <Heart className="h-5 w-5" />
-                </Button>
             </div>
         </div>
     );
