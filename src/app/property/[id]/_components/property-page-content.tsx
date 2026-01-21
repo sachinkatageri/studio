@@ -30,6 +30,7 @@ import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import ScheduleTourCard from './schedule-tour-card';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import PropertyAdditionalDetailsCard from './property-additional-details-card';
+import { cn } from '@/lib/utils';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -68,9 +69,13 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
     const isMobile = useIsMobile();
     const postedDate = property.postedOn ? format(new Date(property.postedOn), "dd MMMM yyyy") : 'N/A';
     const [showStickyHeader, setShowStickyHeader] = useState(false);
+    const [isFabExpanded, setIsFabExpanded] = useState(true);
 
     useEffect(() => {
-        if (isMobile) return;
+        if (isMobile) {
+            setIsFabExpanded(false);
+            return;
+        }
 
         const handleScroll = () => {
             if (window.scrollY > 350) {
@@ -81,7 +86,15 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        const timer = setTimeout(() => {
+            setIsFabExpanded(false);
+        }, 3000);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
     }, [isMobile]);
 
     return (
@@ -151,25 +164,32 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                     </DrawerContent>
                 </Drawer>
             ) : (
-                <div className="fixed bottom-8 right-8 z-50">
+                <div
+                    className="fixed bottom-8 right-8 z-50"
+                    onMouseEnter={() => setIsFabExpanded(true)}
+                    onMouseLeave={() => setIsFabExpanded(false)}
+                >
                     <Popover>
-                        <TooltipProvider>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            size="icon"
-                                            className="h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
-                                        >
-                                            <Calendar className="h-8 w-8" />
-                                        </Button>
-                                    </PopoverTrigger>
-                                </TooltipTrigger>
-                                <TooltipContent side="left">
-                                    <p>Schedule a Tour</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
+                        <PopoverTrigger asChild>
+                            <Button
+                                className={cn(
+                                    "rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all duration-300 ease-in-out",
+                                    isFabExpanded ? "h-14 px-6" : "h-16 w-16"
+                                )}
+                            >
+                                <div className="flex items-center justify-center overflow-hidden">
+                                    <Calendar className="h-6 w-6 shrink-0" />
+                                    <div className={cn(
+                                        "transition-all duration-300 ease-in-out",
+                                        isFabExpanded ? "w-auto ml-2" : "w-0 ml-0"
+                                    )}>
+                                        <span className="whitespace-nowrap">
+                                            Schedule a Tour
+                                        </span>
+                                    </div>
+                                </div>
+                            </Button>
+                        </PopoverTrigger>
                         <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
                             <ScheduleTourCard />
                         </PopoverContent>
