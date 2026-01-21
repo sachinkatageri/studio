@@ -89,6 +89,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'qhstatic-us-s3.coohom.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
