@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Car } from "lucide-react";
+import { PlusCircle, Car, ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
@@ -14,7 +14,7 @@ export default function CheckTravelTimeCard() {
             </CardHeader>
             <Separator />
             <CardContent className="space-y-4 pt-6">
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 p-4 border rounded-lg">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4 p-4 border rounded-lg">
                     <div>
                         <Select>
                             <SelectTrigger className="w-full">
@@ -28,17 +28,24 @@ export default function CheckTravelTimeCard() {
                             </SelectContent>
                         </Select>
                     </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <div className="w-4 h-4 rounded-full border-2 border-primary"></div>
-                        <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <Car className="h-6 w-6 text-primary" />
-                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <div className="w-4 h-4 rounded-full border-2 border-primary"></div>
+
+                    <div className="flex items-center justify-center my-2 md:my-0">
+                        <div className="hidden md:flex items-center gap-2 text-muted-foreground">
+                            <div className="w-4 h-4 rounded-full border-2 border-primary"></div>
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <Car className="h-6 w-6 text-primary" />
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
+                            <div className="w-4 h-4 rounded-full border-2 border-primary"></div>
+                        </div>
+                        <div className="md:hidden">
+                            <ArrowDown className="h-6 w-6 text-muted-foreground" />
+                        </div>
                     </div>
+                    
                     <div className="flex items-center gap-2 p-2 border rounded-lg">
                          <div className="relative w-12 h-12 rounded-md overflow-hidden">
                             <Image src="https://images.unsplash.com/photo-1556761175-b413da4baf72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y293b3JraW5nJTIwc3BhY2V8ZW58MHx8fHwxNzY1NzM3NDU2fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="WeWork" fill className="object-cover" />
