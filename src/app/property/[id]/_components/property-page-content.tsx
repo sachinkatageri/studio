@@ -29,6 +29,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import ScheduleTourCard from './schedule-tour-card';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import PropertyAdditionalDetailsCard from './property-additional-details-card';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -114,6 +115,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
                                 <AmenitiesCard />
+                                <PropertyAdditionalDetailsCard />
                                 <WhyBuildersinfoCard />
                                 <PropertyDetailsPanel property={property} />
                         </div>
