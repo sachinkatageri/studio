@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -6,13 +5,52 @@ import { propertyImageGallery } from '@/lib/properties';
 import { Button } from '@/components/ui/button';
 import { PlayCircle, Download, Camera } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 export default function PropertyImageGallery() {
+    const isMobile = useIsMobile();
+    const remainingImages = propertyImageGallery.length;
+
+    // Fallback for SSR or if isMobile is undefined to prevent layout shift
+    if (isMobile === undefined) {
+        return (
+            <div className="relative aspect-video w-full animate-pulse bg-muted rounded-lg" />
+        )
+    }
+
+    // Mobile view with Carousel
+    if (isMobile) {
+        return (
+            <div className="relative">
+                <Carousel>
+                    <CarouselContent>
+                        {propertyImageGallery.slice(0, 5).map(image => (
+                            <CarouselItem key={image.id}>
+                                <div className="aspect-[16/9] relative rounded-lg overflow-hidden">
+                                    <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+                </Carousel>
+                 <div className="absolute bottom-4 right-4 flex gap-2">
+                    <Button variant="secondary" className="bg-black/50 text-white hover:bg-black/70">
+                        <Camera className="mr-2 h-4 w-4" />
+                        {remainingImages > 0 ? `Show all ${remainingImages} photos` : 'View All'}
+                    </Button>
+                </div>
+            </div>
+        );
+    }
+
+    // Desktop view
     const mainImage = propertyImageGallery[0];
     const sideImage1 = propertyImageGallery[1];
     const videoThumbnail = propertyImageGallery[2];
     const bottomThumbnails = propertyImageGallery.slice(3);
-    const remainingImages = propertyImageGallery.length;
 
     return (
         <div className="space-y-2">
