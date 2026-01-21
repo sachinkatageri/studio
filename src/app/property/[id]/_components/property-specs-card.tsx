@@ -36,7 +36,7 @@ export default function PropertySpecsCard({ property }: { property: any }) {
                                 {spec.icon}
                             </div>
                             <div>
-                                <p className="text-sm text-muted-foreground flex items-center">{spec.label} <Info className="h-3 w-3 ml-1 cursor-pointer" /></p>
+                                <p className="text-sm text-muted-foreground flex items-center">{spec.label} <Info className="h-3 w-3 ml-1" /></p>
                                 <p className="font-bold">{spec.value}</p>
                             </div>
                         </div>
