@@ -26,7 +26,7 @@ export default function PropertySpecsCard({ property }: { property: any }) {
                     </div>
                     <Badge variant="secondary" className="bg-green-100 border-green-200 text-green-700 text-sm py-2 px-4">
                         <span className="font-bold text-lg mr-2">%</span> Best price guaranteed - save up to 15% with Buildersinfo
-                        <Info className="h-4 w-4 ml-2 cursor-pointer" />
+                        <Info className="h-4 w-4 ml-2" />
                     </Badge>
                 </div>
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
