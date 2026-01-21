@@ -9,10 +9,12 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 
 export default function PropertyImageGallery() {
     const isMobile = useIsMobile();
     const totalImages = propertyImageGallery.length;
+    const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
 
     // Fallback for SSR or if isMobile is undefined to prevent layout shift
     if (isMobile === undefined) {
@@ -142,25 +144,41 @@ export default function PropertyImageGallery() {
                     )}
                 </div>
                 {/* Video Thumbnail */}
-                <div className="relative md:col-span-1 md:row-span-1 rounded-lg overflow-hidden group cursor-pointer aspect-[4/3] md:aspect-auto">
-                    {videoThumbnail && (
-                        <>
-                            <Image
-                                src={videoThumbnail.imageUrl}
-                                alt={videoThumbnail.description}
-                                fill
-                                className="object-cover"
-                                data-ai-hint={videoThumbnail.imageHint}
-                            />
-                            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-                                <PlayCircle className="h-12 w-12 text-white/80" />
-                                <Button variant="link" className="text-white text-xs mt-2">
-                                    WATCH VIDEO
-                                </Button>
-                            </div>
-                        </>
-                    )}
-                </div>
+                <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
+                    <DialogTrigger asChild>
+                        <div className="relative md:col-span-1 md:row-span-1 rounded-lg overflow-hidden group cursor-pointer aspect-[4/3] md:aspect-auto">
+                            {videoThumbnail && (
+                                <>
+                                    <Image
+                                        src={videoThumbnail.imageUrl}
+                                        alt={videoThumbnail.description}
+                                        fill
+                                        className="object-cover"
+                                        data-ai-hint={videoThumbnail.imageHint}
+                                    />
+                                    <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                                        <PlayCircle className="h-12 w-12 text-white/80" />
+                                        <Button variant="link" className="text-white text-xs mt-2">
+                                            WATCH VIDEO
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-3xl p-0">
+                        <div className="aspect-video">
+                            <iframe
+                                className="w-full h-full"
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                                title="YouTube video player"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    </DialogContent>
+                </Dialog>
             </div>
             {/* Bottom Thumbnails */}
             <div className="relative">
