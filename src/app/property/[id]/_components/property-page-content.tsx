@@ -151,23 +151,23 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             ) : (
                 <div className="fixed bottom-8 right-8 z-50">
                     <Popover>
-                        <PopoverTrigger asChild>
-                             <TooltipProvider>
-                                <Tooltip>
-                                    <TooltipTrigger asChild>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <PopoverTrigger asChild>
                                         <Button
                                             size="icon"
                                             className="h-16 w-16 rounded-full shadow-lg bg-primary hover:bg-primary/90"
                                         >
                                             <Calendar className="h-8 w-8" />
                                         </Button>
-                                    </TooltipTrigger>
-                                    <TooltipContent side="left">
-                                        <p>Schedule a Tour</p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                        </PopoverTrigger>
+                                    </PopoverTrigger>
+                                </TooltipTrigger>
+                                <TooltipContent side="left">
+                                    <p>Schedule a Tour</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
                         <PopoverContent className="w-96 mr-4 mb-2 p-0" side="top" align="end">
                             <ScheduleTourCard />
                         </PopoverContent>
