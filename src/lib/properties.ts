@@ -114,73 +114,73 @@ export const properties = [
     {
       "id": "gallery-4",
       "description": "Collaborative meeting area with a whiteboard and casual seating.",
-      "imageUrl": "https://images.unsplash.com/photo-1567297642193-b771fa3adcce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1748261500463-d15e624baf8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZWV0aW5nJTIwYXJlYXxlbnwwfHx8fDE3Njg5MjY0MjV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "meeting area"
     },
     {
       "id": "gallery-5",
       "description": "Cozy nook with hanging chairs for relaxation.",
-      "imageUrl": "https://images.unsplash.com/photo-1732291321029-fcf65e0d7b48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1759038086769-a958e95d5fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsb3VuZ2UlMjBhcmVhfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "lounge area"
     },
     {
       "id": "gallery-6",
       "description": "Reception desk in a modern office lobby.",
-      "imageUrl": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvZmZpY2UlMjByZWNlcHRpb258ZW58MHx8fHwxNzY4OTA2OTk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1677272292936-8d9d6e714c2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvZmZpY2UlMjByZWNlcHRpb258ZW58MHx8fHwxNzY5MDE1MzMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office reception"
     },
     {
       "id": "gallery-7",
       "description": "Dedicated desks in a quiet zone of the coworking space.",
-      "imageUrl": "https://images.unsplash.com/photo-1762341118523-38c54d621bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkZWRpY2F0ZWQlMjBkZXNrc3xlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1758762641372-e3b52bf061d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZWRpY2F0ZWQlMjBkZXNrc3xlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dedicated desks"
     },
     {
       "id": "gallery-8",
       "description": "Phone booths for private calls.",
-      "imageUrl": "https://images.unsplash.com/photo-1605644590903-6591336f609a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwaG9uZSUyMGJvb3RofGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1599557041284-7e2a15610388?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwaG9uZSUyMGJvb3RofGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "phone booth"
     },
     {
       "id": "gallery-9",
       "description": "Large conference room with video conferencing setup.",
-      "imageUrl": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb25mZXJlbmNlJTIwcm9vbXxlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1571624436279-b272aff752b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb25mZXJlbmNlJTIwcm9vbXxlbnwwfHx8fDE3Njg5ODI3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "conference room"
     },
     {
       "id": "gallery-10",
       "description": "Outdoor terrace with seating and city views.",
-      "imageUrl": "https://images.unsplash.com/photo-1500130695625-8aa9b575c62a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvZmZpY2UlMjB0ZXJyYWNlfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1531815288026-1946892d24df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvZmZpY2UlMjB0ZXJyYWNlfGVufDB8fHx8MTc2ODk4Mjc4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "office terrace"
     },
     {
       "id": "gallery-11",
       "description": "Game room with pool table.",
-      "imageUrl": "https://images.unsplash.com/photo-1585828976860-14932c28a8d1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxnYW1lJTIwcm9vbXxlbnwwfHx8fDE3MjE4MzY3MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1636488363495-a06805603784?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxnYW1lJTIwcm9vbXxlbnwwfHx8fDE3NjkwMTUzMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "game room"
     },
     {
       "id": "gallery-12",
       "description": "Library and quiet reading area.",
-      "imageUrl": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsaWJyYXJ5fGVufDB8fHx8fDE3MjE4MzY3MzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1544640808-32ca72ac7f37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsaWJyYXJ5fGVufDB8fHx8MTc2OTAxNTMzMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "library"
     },
     {
       "id": "gallery-13",
       "description": "Gym and fitness center.",
-      "imageUrl": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxneW18ZW58MHx8fHwxNzIxODM2NzU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwY2VudGVyfGVufDB8fHx8MTc2OTAwNTg2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "fitness center"
     },
     {
       "id": "gallery-14",
       "description": "Yoga and meditation room.",
-      "imageUrl": "https://images.unsplash.com/photo-1591291621061-1f963c62a87c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx5b2dhJTIwcm9vbXxlbnwwfHx8fDE3MjE4MzY3ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1579016749257-3f5205b5e5ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx5b2dhJTIwcm9vbXxlbnwwfHx8fDE3NjkwMTUzMzR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "yoga room"
     },
     {
       "id": "gallery-15",
       "description": "Rooftop pool with city view.",
-      "imageUrl": "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxyb29mdG9wJTIwcG9vbHxlbnwwfHx8fDE3MjE4MzY4MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1533377437229-5ca96ecbcd78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyb29mdG9wJTIwcG9vbHxlbnwwfHx8fDE3Njg5Mjg5MDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "rooftop pool"
     }
   ]
