@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { PlusCircle, Car } from "lucide-react";
 import Image from "next/image";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 
 export default function CheckTravelTimeCard() {
     return (
@@ -11,6 +12,7 @@ export default function CheckTravelTimeCard() {
             <CardHeader>
                 <CardTitle>Check Travel Time</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent className="space-y-4">
                 <div className="flex items-center justify-between gap-4 p-4 border rounded-lg">
                     <div className="flex-1">

@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { allAmenities } from "@/lib/amenities";
+import { Separator } from "@/components/ui/separator";
 
 export default function AmenitiesCard() {
     // Select a subset of amenities to display, trying to match the image categories
@@ -15,6 +16,7 @@ export default function AmenitiesCard() {
             <CardHeader>
                 <CardTitle>Amenities</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent>
                 <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-x-4 gap-y-6">
                     {amenitiesToShow.map((amenity, index) => (

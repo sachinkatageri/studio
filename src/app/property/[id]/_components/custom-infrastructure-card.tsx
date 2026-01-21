@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, DoorClosed, ConciergeBell, Coffee, Gamepad2 } from 'lucide-react';
+import { Separator } from "@/components/ui/separator";
 
 const infrastructure = [
     { label: "Meeting Rooms", icon: <Users className="h-8 w-8 text-primary" /> },
@@ -18,6 +19,7 @@ export default function CustomInfrastructureCard() {
                     Custom infrastructure possible in your Managed Office ✨
                 </CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent>
                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
                     {infrastructure.map(item => (

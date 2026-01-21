@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Building2, Users, Briefcase, Armchair, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const brandStats = [
     { value: "2+", label: "Cities", icon: Building2 },
@@ -19,6 +20,7 @@ export default function AboutBrandCard() {
                 <CardTitle className="text-sm uppercase tracking-wider text-muted-foreground">About the brand</CardTitle>
                 <div className="w-10 h-1 bg-primary"></div>
             </CardHeader>
+            <Separator />
             <CardContent>
                 <div className="flex items-center gap-4 mb-4">
                     <div>

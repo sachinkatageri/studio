@@ -49,6 +49,7 @@ export default function RatingsReviewsCard() {
                     <Button variant="outline" size="sm" onClick={() => setIsRatingDialogOpen(true)}>Rate property</Button>
                 </div>
             </CardHeader>
+            <Separator />
             <CardContent className="space-y-8">
                  <div>
                     <p className="text-sm mb-4">Overall rating based on {totalReviews} reviews.</p>
@@ -87,7 +88,7 @@ export default function RatingsReviewsCard() {
                             {reviews.map((review, index) => (
                                 <CarouselItem key={index} className="pl-4">
                                     <div className="p-1">
-                                        <Card>
+                                        <Card className="border">
                                             <CardContent className="p-4 space-y-3">
                                                 <div className="flex justify-between items-start">
                                                     <div className="flex items-center gap-3">

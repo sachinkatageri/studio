@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 export default function OpeningHoursCard() {
     return (
@@ -8,6 +9,7 @@ export default function OpeningHoursCard() {
             <CardHeader>
                 <CardTitle>Opening Hours</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent>
                 <ul className="space-y-3 text-sm">
                     <li className="flex justify-between items-center">

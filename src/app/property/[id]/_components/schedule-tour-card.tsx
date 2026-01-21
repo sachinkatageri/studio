@@ -1,4 +1,3 @@
-
 "use client"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState, useEffect } from "react";
 import { format, addDays, eachDayOfInterval } from "date-fns";
+import { Separator } from "@/components/ui/separator";
 
 export default function ScheduleTourCard() {
     const [dates, setDates] = useState<{ day: string, date: string, month: string }[]>([]);
@@ -30,6 +30,7 @@ export default function ScheduleTourCard() {
             <CardHeader className="text-center p-0">
                 <CardTitle className="text-sm font-semibold uppercase tracking-wider bg-primary/10 text-primary py-3">Schedule a Tour</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent className="p-4 space-y-4">
                 <div className="relative px-8">
                     <Carousel opts={{ align: "start" }}>

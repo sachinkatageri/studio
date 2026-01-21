@@ -1,5 +1,6 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { BadgePercent, TrendingDown, Cog } from "lucide-react";
 
 const consultationPoints = [
@@ -26,6 +27,7 @@ export default function WhyChooseUsCard() {
             <CardHeader>
                 <CardTitle className="text-base">Why Clients Choose Us for Consultation</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent>
                 <ul className="space-y-4">
                     {consultationPoints.map((point, index) => (

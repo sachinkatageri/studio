@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default function ContactAgentCard({ propertyName }: { propertyName: string }) {
     return (
@@ -11,6 +12,7 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
             <CardHeader>
                 <CardTitle className="text-base">Interested in {propertyName}?</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent className="space-y-4">
                 <div className="flex items-center gap-4">
                     <div className="relative w-16 h-16 rounded-full overflow-hidden">

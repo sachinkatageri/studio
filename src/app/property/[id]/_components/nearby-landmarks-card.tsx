@@ -6,6 +6,7 @@ import Image from "next/image";
 import { MapPin, School, Hospital, Hotel, Briefcase, Building, Train, Utensils, Banknote, Building2 } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 const nearbyData = {
     schools: [
@@ -49,6 +50,7 @@ export default function NearbyLandmarksCard({ propertyName }: { propertyName: st
             <CardHeader>
                 <CardTitle>Nearby Landmarks - {propertyName}</CardTitle>
             </CardHeader>
+            <Separator />
             <CardContent>
                 <div className="relative h-60 w-full rounded-lg overflow-hidden mb-4">
                     <Image src="https://images.unsplash.com/photo-1577086664693-894d8405334a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNHx8bWFwfGVufDB8fHx8MTc2Nzk2NzI4NHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Map location" fill className="object-cover" data-ai-hint="map location" />
