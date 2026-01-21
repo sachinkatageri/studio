@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Car } from "lucide-react";
 import Image from "next/image";
 
 export default function CheckTravelTimeCard() {
@@ -21,7 +21,7 @@ export default function CheckTravelTimeCard() {
                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
-                        <Image src="https://picsum.photos/seed/car/40/40" alt="car" width={24} height={24} />
+                        <Car className="h-6 w-6 text-primary" />
                          <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
                         <div className="w-1 h-1 rounded-full bg-muted-foreground"></div>
