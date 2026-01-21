@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -10,11 +11,23 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export default function PropertyImageGallery() {
     const isMobile = useIsMobile();
     const totalImages = propertyImageGallery.length;
     const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
+    const [isBrochureDialogOpen, setIsBrochureDialogOpen] = useState(false);
 
     // Fallback for SSR or if isMobile is undefined to prevent layout shift
     if (isMobile === undefined) {
@@ -91,10 +104,28 @@ export default function PropertyImageGallery() {
                             </DrawerContent>
                         </Drawer>
 
-                        <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
-                            <Download className="mr-1.5 h-4 w-4" />
-                            Brochure
-                        </Button>
+                        <AlertDialog open={isBrochureDialogOpen} onOpenChange={setIsBrochureDialogOpen}>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
+                                    <Download className="mr-1.5 h-4 w-4" />
+                                    Brochure
+                                </Button>
+                            </AlertDialogTrigger>
+                             <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>Download Brochure</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        Do you want to download the property brochure?
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogAction asChild>
+                                        <a href="/sample.pdf" download="brochure.pdf">Download</a>
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </div>
                 </div>
             </>
@@ -135,10 +166,28 @@ export default function PropertyImageGallery() {
                                 data-ai-hint={sideImage1.imageHint}
                             />
                             <div className="absolute top-2 right-2">
-                                <Button variant="secondary" size="sm" className="h-auto px-2 py-1 text-xs bg-black/50 text-white hover:bg-black/70">
-                                    <Download className="h-3 w-3 mr-1" />
-                                    PDF FILE
-                                </Button>
+                                <AlertDialog open={isBrochureDialogOpen} onOpenChange={setIsBrochureDialogOpen}>
+                                    <AlertDialogTrigger asChild>
+                                        <Button variant="secondary" size="sm" className="h-auto px-2 py-1 text-xs bg-black/50 text-white hover:bg-black/70">
+                                            <Download className="h-3 w-3 mr-1" />
+                                            PDF FILE
+                                        </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle>Download Brochure</AlertDialogTitle>
+                                            <AlertDialogDescription>
+                                                Do you want to download the property brochure?
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                            <AlertDialogAction asChild>
+                                                <a href="/sample.pdf" download="brochure.pdf">Download</a>
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </div>
                         </>
                     )}
