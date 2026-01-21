@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -10,7 +9,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import { useState } from 'react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -216,6 +215,9 @@ export default function PropertyImageGallery() {
                         </div>
                     </DialogTrigger>
                     <DialogContent className="max-w-3xl p-0">
+                        <DialogHeader className="sr-only">
+                            <DialogTitle>Property Video</DialogTitle>
+                        </DialogHeader>
                         <div className="aspect-video">
                             <iframe
                                 className="w-full h-full"
