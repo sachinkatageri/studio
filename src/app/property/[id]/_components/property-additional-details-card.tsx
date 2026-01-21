@@ -19,14 +19,14 @@ export default function PropertyAdditionalDetailsCard() {
             </CardHeader>
             <Separator />
             <CardContent className="pt-6">
-                <ul className="space-y-3 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4 text-sm">
                     {details.map(detail => (
-                        <li key={detail.label} className="flex justify-between">
-                            <span className="text-muted-foreground">{detail.label}</span>
-                            <span className="font-medium text-right">{detail.value}</span>
-                        </li>
+                        <div key={detail.label}>
+                            <p className="text-muted-foreground">{detail.label}</p>
+                            <p className="font-semibold">{detail.value}</p>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </CardContent>
         </Card>
     );
