@@ -13,7 +13,7 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
                 <CardTitle className="text-base">Interested in {propertyName}?</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pt-6">
                 <div className="flex items-center gap-4">
                     <div className="relative w-16 h-16 rounded-full overflow-hidden">
                         <Image src="https://picsum.photos/seed/rohit/200/200" alt="Rohit" fill className="object-cover" data-ai-hint="male agent" />
