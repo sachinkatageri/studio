@@ -31,7 +31,7 @@ const similarPropertiesData = [
         ratingText: "Very Good",
         price: "5,999",
         guarantee: "Best Price Guarantee",
-        imageUrl: "https://picsum.photos/seed/modern-workspace/400/300",
+        imageUrl: "https://images.unsplash.com/photo-1556761175-4b46a572b786?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMnx8d29ya3NwYWNlfGVufDB8fHx8MTc2ODk4MTA3OXww&ixlib=rb-4.1.0&q=80&w=1080",
         imageHint: "modern workspace"
     },
     {
@@ -42,7 +42,7 @@ const similarPropertiesData = [
         ratingText: "Good",
         price: "4,999",
         discount: "34% off",
-        imageUrl: "https://picsum.photos/seed/collaborative-office/400/300",
+        imageUrl: "https://images.unsplash.com/photo-1579487785973-74d2ca7abdd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvZmZpY2V8ZW58MHx8fHwxNzY4OTgxMTExfDA&ixlib=rb-4.1.0&q=80&w=1080",
         imageHint: "collaborative office"
     },
     {
@@ -53,7 +53,7 @@ const similarPropertiesData = [
         ratingText: "Very Good",
         price: "5,999",
         guarantee: "Best Price Guarantee",
-        imageUrl: "https://picsum.photos/seed/creative-workspace/400/300",
+        imageUrl: "https://images.unsplash.com/photo-1577412647305-991150c7d163?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8b2ZmaWNlfGVufDB8fHx8MTc2ODk4MTExMXww&ixlib=rb-4.1.0&q=80&w=1080",
         imageHint: "creative workspace"
     },
     {

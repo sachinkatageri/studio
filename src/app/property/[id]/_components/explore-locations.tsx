@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const locations = [
-    { name: "HSR Layout", imageUrl: "https://picsum.photos/seed/loc-hsr/400/300", imageHint: "office space" },
+    { name: "HSR Layout", imageUrl: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjbyUyMHdvcmtpbmd8ZW58MHx8fHwxNzY4OTgxMTUzfDA&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "office space" },
     { name: "Koramangala", imageUrl: "https://picsum.photos/seed/loc-kora/400/300", imageHint: "modern workspace" },
     { name: "MG Road", imageUrl: "https://picsum.photos/seed/loc-mgroad/400/300", imageHint: "office building" },
     { name: "Indiranagar", imageUrl: "https://picsum.photos/seed/loc-indira/400/300", imageHint: "creative office" },
