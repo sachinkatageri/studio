@@ -9,13 +9,13 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const navItems = [
     { label: 'Overview', href: '#info' },
     { label: 'Specs', href: '#specs' },
-    { label: 'Infrastructure', href: '#custom-infra' },
     { label: 'Amenities', href: '#amenities' },
-    { label: 'Details', href: '#details' },
-    { label: 'Nearby', href: '#nearby' },
-    { label: 'Brand', href: '#brand' },
     { label: 'Floor Plan', href: '#floor-plan' },
+    { label: 'Nearby', href: '#nearby' },
     { label: 'Ratings', href: '#ratings-reviews' },
+    { label: 'Brand', href: '#brand' },
+    { label: 'Details', href: '#details' },
+    { label: 'Infrastructure', href: '#custom-infra' },
 ];
 
 export function PropertyStickyNav() {
@@ -144,7 +144,7 @@ export function PropertyStickyNav() {
                 'bg-background z-30 transition-all duration-200', 
                 isSticky 
                     ? cn('fixed left-0 right-0 shadow-md border-b', isMobile ? 'top-14 h-[48px]' : 'h-14', isPropertyHeaderVisible ? 'top-[90px]' : 'top-14')
-                    : cn('relative mt-6', isMobile && 'mt-0 h-0 invisible')
+                    : cn('relative', isMobile ? 'h-0 invisible' : 'mt-6')
             )}>
              {(!isMobile || isSticky) && (
                 <div className={cn("relative mx-auto flex items-center h-full", isMobile ? 'container' : 'container')}>
