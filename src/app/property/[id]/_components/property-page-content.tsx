@@ -29,6 +29,7 @@ import ScheduleTourCard from './schedule-tour-card';
 import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import PropertyAdditionalDetailsCard from './property-additional-details-card';
 import { cn } from '@/lib/utils';
+import ExploreLocations from './explore-locations';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -76,7 +77,8 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
         }
 
         const handleScroll = () => {
-            if (window.scrollY > 350) {
+            const propertyHeaderVisible = !isMobile && window.scrollY > 350;
+             if (window.scrollY > 350) {
                 setShowStickyHeader(true);
             } else {
                 setShowStickyHeader(false);
@@ -102,7 +104,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
             {showStickyHeader && !isMobile && <PropertyStickyHeader property={property} />}
 
             <main className="pt-14">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div className={cn("container mx-auto px-4 sm:px-6 lg:px-8", !isMobile && "py-4")}>
                     <div className="hidden md:flex justify-between items-center text-sm">
                         <div className="flex items-center text-muted-foreground">
                             <Link href="/" className="hover:text-primary">Home</Link>
