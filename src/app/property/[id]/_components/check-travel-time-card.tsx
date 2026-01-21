@@ -15,7 +15,7 @@ export default function CheckTravelTimeCard() {
                 <div className="flex items-center justify-between gap-4 p-4 border rounded-lg">
                     <div className="flex-1">
                         <Select>
-                            <SelectTrigger className="w-full border-none focus:ring-0 p-0 h-auto text-muted-foreground text-left font-normal justify-start">
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Choose Starting Point (like office or kid's school)" />
                             </SelectTrigger>
                             <SelectContent>
