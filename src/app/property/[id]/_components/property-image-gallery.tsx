@@ -7,6 +7,8 @@ import { PlayCircle, Download, Camera } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
+import { useState } from 'react';
 
 export default function PropertyImageGallery() {
     const isMobile = useIsMobile();
@@ -22,35 +24,78 @@ export default function PropertyImageGallery() {
     // Mobile view with Carousel
     if (isMobile) {
         return (
-            <div className="space-y-2">
-                <Carousel>
-                    <CarouselContent>
-                        {propertyImageGallery.slice(0, 5).map(image => (
-                            <CarouselItem key={image.id}>
-                                <div className="aspect-[16/9] relative rounded-lg overflow-hidden">
-                                    <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+            <>
+                <div className="space-y-2">
+                    <Carousel>
+                        <CarouselContent>
+                            {propertyImageGallery.slice(0, 5).map(image => (
+                                <CarouselItem key={image.id}>
+                                    <div className="aspect-[16/9] relative rounded-lg overflow-hidden">
+                                        <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
+                        <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
+                    </Carousel>
+                    <div className="grid grid-cols-3 gap-2">
+                        <Drawer>
+                            <DrawerTrigger asChild>
+                                 <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
+                                    <Camera className="mr-1.5 h-4 w-4" />
+                                    All Photos
+                                </Button>
+                            </DrawerTrigger>
+                            <DrawerContent className="h-[90vh]">
+                                <DrawerHeader>
+                                    <DrawerTitle>All Photos</DrawerTitle>
+                                </DrawerHeader>
+                                <ScrollArea className="flex-1">
+                                    <div className="grid grid-cols-2 gap-2 p-4">
+                                        {propertyImageGallery.map(image => (
+                                            <div key={image.id} className="aspect-square relative rounded-lg overflow-hidden">
+                                                <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </ScrollArea>
+                            </DrawerContent>
+                        </Drawer>
+                        
+                        <Drawer>
+                            <DrawerTrigger asChild>
+                                <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
+                                    <PlayCircle className="mr-1.5 h-4 w-4" />
+                                    Video
+                                </Button>
+                            </DrawerTrigger>
+                            <DrawerContent>
+                                <DrawerHeader>
+                                    <DrawerTitle>Property Video</DrawerTitle>
+                                </DrawerHeader>
+                                <div className="p-4">
+                                    <div className="aspect-video w-full rounded-lg overflow-hidden">
+                                        <iframe
+                                            className="w-full h-full"
+                                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                            title="YouTube video player"
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
                                 </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10" />
-                    <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10" />
-                </Carousel>
-                <div className="grid grid-cols-3 gap-2">
-                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
-                        <Camera className="mr-1.5 h-4 w-4" />
-                        All Photos
-                    </Button>
-                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
-                        <PlayCircle className="mr-1.5 h-4 w-4" />
-                        Video
-                    </Button>
-                    <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
-                        <Download className="mr-1.5 h-4 w-4" />
-                        Brochure
-                    </Button>
+                            </DrawerContent>
+                        </Drawer>
+
+                        <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
+                            <Download className="mr-1.5 h-4 w-4" />
+                            Brochure
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </>
         );
     }
 
@@ -58,7 +103,7 @@ export default function PropertyImageGallery() {
     const mainImage = propertyImageGallery.length > 0 ? propertyImageGallery[0] : null;
     const sideImage1 = propertyImageGallery.length > 1 ? propertyImageGallery[1] : null;
     const videoThumbnail = propertyImageGallery.length > 2 ? propertyImageGallery[2] : null;
-    const bottomThumbnails = propertyImageGallery.length > 3 ? propertyImageGallery.slice(3) : [];
+    const bottomThumbnails = propertyImageGallery.slice(3);
 
     return (
         <div className="space-y-2">
