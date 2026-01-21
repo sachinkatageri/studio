@@ -1,34 +1,30 @@
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Building2, Factory, Store, Briefcase, Globe } from 'lucide-react';
-import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
-const clientIcons = [
-    { name: "Client 1", icon: <Building2 className="h-8 w-8 text-muted-foreground" /> },
-    { name: "Client 2", icon: <Factory className="h-8 w-8 text-muted-foreground" /> },
-    { name: "Client 3", icon: <Store className="h-8 w-8 text-muted-foreground" /> },
-    { name: "Client 4", icon: <Briefcase className="h-8 w-8 text-muted-foreground" /> },
-    { name: "Client 5", icon: <Globe className="h-8 w-8 text-muted-foreground" /> },
-]
+const clientLogos = [
+    { name: "Pepsi", logoUrl: "https://i.ibb.co/hZqgVJv/pepsi.png", hint: "pepsi logo" },
+    { name: "GE", logoUrl: "https://i.ibb.co/6yZztR1/ge.png", hint: "ge logo" },
+    { name: "P&G", logoUrl: "https://i.ibb.co/7Qr0B4Y/pg.png", hint: "p&g logo" },
+    { name: "HP", logoUrl: "https://i.ibb.co/VvZf3Xp/hp.png", hint: "hp logo" },
+    { name: "Dell", logoUrl: "https://i.ibb.co/jGGbT3B/dell.png", hint: "dell logo" },
+];
 
 export default function AssistedClientsCard() {
     return (
-        <Card>
-            <CardHeader>
-                <CardTitle className="text-base">We have assisted</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-xs text-muted-foreground mb-4">
+        <Card className="bg-muted/50">
+            <CardContent className="p-4">
+                <p className="text-sm text-center text-muted-foreground mb-4">
                     Rohit's team assisted 500+ corporates in Bangalore to move into their new office.
                 </p>
                 <div className="flex justify-around items-center flex-wrap gap-4">
-                    {clientIcons.map((client) => (
-                        <div key={client.name} className="relative h-8 w-8">
-                            {client.icon}
+                    {clientLogos.map((client) => (
+                        <div key={client.name} className="relative h-10 w-16">
+                           <Image src={client.logoUrl} alt={client.name} fill className="object-contain" data-ai-hint={client.hint} />
                         </div>
                     ))}
                 </div>
             </CardContent>
         </Card>
-    )
+    );
 }
