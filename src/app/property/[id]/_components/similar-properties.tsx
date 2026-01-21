@@ -106,7 +106,7 @@ export default function SimilarProperties() {
     const [activeLocation, setActiveLocation] = useState("Koramangala");
 
     return (
-        <section id="similar-properties" className="py-12 bg-muted/30">
+        <section id="similar-properties" className="py-12 bg-muted/30 mt-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
                     <div className="flex-1">
