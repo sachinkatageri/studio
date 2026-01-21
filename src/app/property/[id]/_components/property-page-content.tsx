@@ -25,6 +25,7 @@ import PropertySpecsCard from './property-specs-card';
 import CustomInfrastructureCard from './custom-infrastructure-card';
 import AmenitiesCard from './amenities-card';
 import WhyBuildersinfoCard from './why-buildersinfo-card';
+import ExploreLocations from './explore-locations';
 
 type PropertyPageContentProps = {
     property: typeof properties[0];
@@ -128,11 +129,11 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                             </div>
                         </div>
                     </div>
-
-                    <div className="mt-16">
-                        <SimilarProperties />
-                    </div>
                 </div>
+                
+                <SimilarProperties />
+                <ExploreLocations />
+
             </main>
             
             <BrokerageBanner />
