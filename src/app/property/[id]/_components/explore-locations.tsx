@@ -18,7 +18,7 @@ const locations = [
 
 export default function ExploreLocations() {
     return (
-        <section className="py-12 bg-muted/30">
+        <section className="py-12 bg-yellow-50 dark:bg-yellow-900/30">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-2xl md:text-3xl font-bold font-headline mb-8">Explore Top Coworking Locations in Bangalore</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
