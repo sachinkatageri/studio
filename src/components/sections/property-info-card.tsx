@@ -96,10 +96,10 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
           <div
              className="relative"
           >
-            <Button onClick={onPrev} size="icon" className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+            <Button onClick={onPrev} size="icon" className="absolute left-2 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
                 <ChevronLeft className="h-5 w-5" />
             </Button>
-            <Button onClick={onNext} size="icon" className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
+            <Button onClick={onNext} size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-black/40 text-white border-none hover:bg-black/60">
                 <ChevronRight className="h-5 w-5" />
             </Button>
             <div 
@@ -377,5 +377,3 @@ export function PropertyInfoCard({ propertyId, onClose, onViewDetails, onNext, o
     </div>
   );
 }
-
-    
