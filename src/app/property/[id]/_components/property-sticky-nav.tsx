@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, useRef } from 'react';
@@ -8,21 +7,20 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const navItems = [
-    { label: 'Overview', href: '#overview' },
+    { label: 'Overview', href: '#info' },
+    { label: 'Specs', href: '#specs' },
+    { label: 'Infrastructure', href: '#custom-infra' },
     { label: 'Amenities', href: '#amenities' },
-    { label: 'Layout', href: '#layout' },
-    { label: 'Location', href: '#locality' },
+    { label: 'Details', href: '#details' },
     { label: 'Nearby', href: '#nearby' },
-    { label: 'Developer', href: '#developer' },
-    { label: 'Ratings & Reviews', href: '#ratings-reviews' },
-    { label: 'Video', href: '#video' },
-    { label: 'Floor Plan', href: '#plan' },
-    { label: 'Documents', href: '#documents' },
+    { label: 'Brand', href: '#brand' },
+    { label: 'Floor Plan', href: '#floor-plan' },
+    { label: 'Ratings', href: '#ratings-reviews' },
 ];
 
 export function PropertyStickyNav() {
     const [isSticky, setIsSticky] = useState(false);
-    const [activeId, setActiveId] = useState('overview');
+    const [activeId, setActiveId] = useState('info');
     const scrollViewportRef = useRef<HTMLDivElement>(null);
     const [showLeftArrow, setShowLeftArrow] = useState(false);
     const [showRightArrow, setShowRightArrow] = useState(true);
@@ -53,7 +51,7 @@ export function PropertyStickyNav() {
                 break;
             }
         }
-        setActiveId(currentSectionId || 'overview');
+        setActiveId(currentSectionId || 'info');
 
         const topNavHeight = 56; // main header height (h-14)
         

@@ -128,7 +128,9 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertySpecsCard property={property} />
                                 <CustomInfrastructureCard />
                                 <AmenitiesCard />
-                                <PropertyAdditionalDetailsCard />
+                                <div id="details">
+                                    <PropertyAdditionalDetailsCard />
+                                </div>
                                 <WhyBuildersinfoCard />
                                 <PropertyDetailsPanel property={property} />
                         </div>

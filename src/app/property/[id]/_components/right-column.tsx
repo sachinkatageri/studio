@@ -12,8 +12,12 @@ export default function RightColumn({ property }: { property: any }) {
         <div className="sticky top-24 space-y-6">
             <ContactAgentCard propertyName={property.name} />
             <WhyChooseUsCard />
-            <AboutBrandCard />
-            <FloorPlanCard />
+            <div id="brand">
+                <AboutBrandCard />
+            </div>
+            <div id="floor-plan">
+                <FloorPlanCard />
+            </div>
             <OpeningHoursCard />
             <RatingsReviewsCard />
         </div>
