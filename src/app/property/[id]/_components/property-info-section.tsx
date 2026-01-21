@@ -32,10 +32,14 @@ export function PropertyInfoSection({ property }: { property: Property }) {
                             </Badge>
                            <Image src="https://cdn-icons-png.flaticon.com/512/5253/5253968.png" alt="Verified" width={24} height={24} className="md:w-7 md:h-7" />
                         </div>
-                        <div className="flex items-center gap-2 text-muted-foreground mt-1 text-sm md:text-base">
-                            <MapPin className="h-4 w-4" />
-                            <span>{property.location}</span>
-                            <Button variant="link" className="p-0 h-auto text-primary">View on map</Button>
+                        <div className="flex items-center gap-2 text-muted-foreground mt-2 text-sm md:text-base">
+                            <div className="bg-muted p-2 rounded-lg">
+                                <MapPin className="h-5 w-5 text-primary" />
+                            </div>
+                            <div>
+                                <p className="text-sm">{property.location}</p>
+                                <Button variant="link" className="p-0 h-auto text-primary text-sm">View on Map</Button>
+                            </div>
                         </div>
                     </div>
                     <div className="hidden md:flex items-center gap-2">
