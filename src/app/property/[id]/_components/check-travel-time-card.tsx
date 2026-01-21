@@ -1,9 +1,9 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { PlusCircle, Car } from "lucide-react";
 import Image from "next/image";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function CheckTravelTimeCard() {
     return (
@@ -14,7 +14,17 @@ export default function CheckTravelTimeCard() {
             <CardContent className="space-y-4">
                 <div className="flex items-center justify-between gap-4 p-4 border rounded-lg">
                     <div className="flex-1">
-                        <Input placeholder="Choose Starting Point (like office or kid's school)" className="border-none focus-visible:ring-0 p-0"/>
+                        <Select>
+                            <SelectTrigger className="w-full border-none focus:ring-0 p-0 h-auto text-muted-foreground text-left font-normal justify-start">
+                                <SelectValue placeholder="Choose Starting Point (like office or kid's school)" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="office-1">Prestige Tech Park</SelectItem>
+                                <SelectItem value="office-2">Manyata Tech Park</SelectItem>
+                                <SelectItem value="school-1">Greenwood High School</SelectItem>
+                                <SelectItem value="home">My Home Location</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <div className="w-4 h-4 rounded-full border-2 border-primary"></div>
