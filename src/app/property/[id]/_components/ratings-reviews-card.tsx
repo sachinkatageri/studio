@@ -87,8 +87,8 @@ export default function RatingsReviewsCard() {
                             {reviews.map((review, index) => (
                                 <CarouselItem key={index} className="pl-4">
                                     <div className="p-1">
-                                        <Card className="border-none shadow-none">
-                                            <CardContent className="p-0 space-y-3">
+                                        <Card>
+                                            <CardContent className="p-4 space-y-3">
                                                 <div className="flex justify-between items-start">
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
