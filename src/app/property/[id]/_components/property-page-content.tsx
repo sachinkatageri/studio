@@ -134,7 +134,7 @@ export default function PropertyPageContent({ property }: PropertyPageContentPro
                                 <PropertyImageGallery />
                             </div>
                             
-                            <PropertyStickyNav />
+                            {isMobile && <PropertyStickyNav />}
 
                             <div className="space-y-6 mt-6">
                                 <PropertySpecsCard property={property} />
