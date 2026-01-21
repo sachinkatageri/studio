@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { properties } from '@/lib/properties';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Heart, Share2, AlertTriangle, CheckCircle, MapPin, Star } from 'lucide-react';
+import { Heart, Share2, MapPin, Star } from 'lucide-react';
 import { VerificationProcessDialog } from '@/components/layout/verification-process-dialog';
 import { ShareOptions } from '@/components/layout/share-options';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
