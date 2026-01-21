@@ -5,15 +5,15 @@ import Link from "next/link";
 
 const locations = [
     { name: "HSR Layout", imageUrl: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjbyUyMHdvcmtpbmd8ZW58MHx8fHwxNzY4OTgxMTUzfDA&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "office space" },
-    { name: "Koramangala", imageUrl: "https://picsum.photos/seed/loc-kora/400/300", imageHint: "modern workspace" },
-    { name: "MG Road", imageUrl: "https://picsum.photos/seed/loc-mgroad/400/300", imageHint: "office building" },
-    { name: "Indiranagar", imageUrl: "https://picsum.photos/seed/loc-indira/400/300", imageHint: "creative office" },
-    { name: "Whitefield", imageUrl: "https://picsum.photos/seed/loc-white/400/300", imageHint: "tech park" },
-    { name: "Sanjay Nagar", imageUrl: "https://picsum.photos/seed/loc-sanjay/400/300", imageHint: "coworking area" },
-    { name: "Electronic city", imageUrl: "https://picsum.photos/seed/loc-ecity/400/300", imageHint: "corporate building" },
-    { name: "JP Nagar", imageUrl: "https://picsum.photos/seed/loc-jpnagar/400/300", imageHint: "startup office" },
-    { name: "Jayanagar", imageUrl: "https://picsum.photos/seed/loc-jaya/400/300", imageHint: "shared office" },
-    { name: "Hebbal", imageUrl: "https://picsum.photos/seed/loc-hebbal/400/300", imageHint: "business center" }
+    { name: "Koramangala", imageUrl: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxvZmZpY2V8ZW58MHx8fHwxNzY4OTgxMTExfDA&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "modern workspace" },
+    { name: "MG Road", imageUrl: "https://images.unsplash.com/photo-1605797491749-0c6989a44356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8Y28lMjB3b3JrfGVufDB8fHx8MTc2ODk4MTIyN3ww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "office building" },
+    { name: "Indiranagar", imageUrl: "https://images.unsplash.com/photo-1601762429744-46fe92ccd903?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8Y293b3JraW5nfGVufDB8fHx8MTc2ODk4MTI0N3ww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "creative office" },
+    { name: "Whitefield", imageUrl: "https://images.unsplash.com/photo-1614070776241-fb47cec38278?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxN3x8Y293b3JraW5nfGVufDB8fHx8MTc2ODk4MTI0N3ww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "tech park" },
+    { name: "Sanjay Nagar", imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxN3x8Y28lMjB3b3JraW5nfGVufDB8fHx8MTc2ODk4MTE1M3ww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "coworking area" },
+    { name: "Electronic city", imageUrl: "https://images.unsplash.com/photo-1589834390005-5d4fb9bf3d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxOHx8aW50ZXJpb3J8ZW58MHx8fHwxNzY4OTgwODUyfDA&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "corporate building" },
+    { name: "JP Nagar", imageUrl: "https://images.unsplash.com/photo-1559209537-dafe2fe2886b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvZmZpY2UlMjBhcGNlfGVufDB8fHx8MTc2ODk4MTMwNXww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "startup office" },
+    { name: "Jayanagar", imageUrl: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8b2ZmaWNlJTIwfGVufDB8fHx8MTc2ODk4MTMxOHww&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "shared office" },
+    { name: "Hebbal", imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvZmZpY2V8ZW58MHx8fHwxNzY4OTgxMTExfDA&ixlib=rb-4.1.0&q=80&w=1080", imageHint: "business center" }
 ];
 
 export default function ExploreLocations() {
