@@ -28,7 +28,7 @@ export default function AboutBrandCard() {
                         <p className="text-sm font-semibold text-muted-foreground">WORKSPACE</p>
                     </div>
                 </div>
-                <div className="grid grid-cols-4 gap-4 text-sm mb-4">
+                <div className="grid grid-cols-2 gap-4 text-sm mb-4">
                     {brandStats.map(stat => (
                         <div key={stat.label} className="flex items-center gap-2">
                             <stat.icon className="h-4 w-4 text-muted-foreground" />
