@@ -10,7 +10,7 @@ export default function FloorPlanCard() {
             </CardHeader>
             <CardContent>
                 <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden border">
-                    <Image src="https://picsum.photos/seed/floor-plan/1000/600" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
+                    <Image src="https://qhstatic-us-s3.coohom.com/image/png/1722395916045/fd1.png" alt="Property floor plan" fill className="object-contain p-4" data-ai-hint="floor plan" />
                 </div>
             </CardContent>
         </Card>
