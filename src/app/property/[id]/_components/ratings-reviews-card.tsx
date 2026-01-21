@@ -1,3 +1,4 @@
+
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -50,7 +51,7 @@ export default function RatingsReviewsCard() {
                 </div>
             </CardHeader>
             <Separator />
-            <CardContent className="space-y-8">
+            <CardContent className="space-y-8 pt-6">
                  <div>
                     <p className="text-sm mb-4">Overall rating based on {totalReviews} reviews.</p>
                     <div className="grid grid-cols-1 gap-6">

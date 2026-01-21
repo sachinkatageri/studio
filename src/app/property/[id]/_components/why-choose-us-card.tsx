@@ -28,7 +28,7 @@ export default function WhyChooseUsCard() {
                 <CardTitle className="text-base">Why Clients Choose Us for Consultation</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-6">
                 <ul className="space-y-4">
                     {consultationPoints.map((point, index) => (
                         <li key={point.title} className={`flex items-start gap-4 ${index < consultationPoints.length - 1 ? 'pb-4 border-b' : ''}`}>

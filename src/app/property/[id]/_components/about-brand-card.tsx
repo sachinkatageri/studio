@@ -21,7 +21,7 @@ export default function AboutBrandCard() {
                 <div className="w-10 h-1 bg-primary"></div>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-6">
                 <div className="flex items-center gap-4 mb-4">
                     <div>
                         <h3 className="text-xl font-bold">BHIVE</h3>

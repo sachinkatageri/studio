@@ -10,7 +10,7 @@ export default function OpeningHoursCard() {
                 <CardTitle>Opening Hours</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-6">
                 <ul className="space-y-3 text-sm">
                     <li className="flex justify-between items-center">
                         <span className="text-muted-foreground">Monday - Friday</span>

@@ -13,7 +13,7 @@ export default function CheckTravelTimeCard() {
                 <CardTitle>Check Travel Time</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 pt-6">
                 <div className="flex items-center justify-between gap-4 p-4 border rounded-lg">
                     <div className="flex-1">
                         <Select>

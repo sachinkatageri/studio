@@ -20,7 +20,7 @@ export default function CustomInfrastructureCard() {
                 </CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-6">
                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
                     {infrastructure.map(item => (
                         <div key={item.label} className="flex flex-col items-center gap-2 p-4 rounded-lg bg-muted">

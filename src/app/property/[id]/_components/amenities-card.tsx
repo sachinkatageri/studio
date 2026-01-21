@@ -17,7 +17,7 @@ export default function AmenitiesCard() {
                 <CardTitle>Amenities</CardTitle>
             </CardHeader>
             <Separator />
-            <CardContent>
+            <CardContent className="pt-6">
                 <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-x-4 gap-y-6">
                     {amenitiesToShow.map((amenity, index) => (
                         <div key={index} className="flex flex-col items-center text-center gap-2">
