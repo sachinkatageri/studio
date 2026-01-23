@@ -7,7 +7,7 @@ import { PlayCircle, Download, Camera } from 'lucide-react';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, DrawerDescription, DrawerFooter, DrawerClose } from '@/components/ui/drawer';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import {
@@ -103,28 +103,30 @@ export default function PropertyImageGallery() {
                             </DrawerContent>
                         </Drawer>
 
-                        <AlertDialog open={isBrochureDialogOpen} onOpenChange={setIsBrochureDialogOpen}>
-                            <AlertDialogTrigger asChild>
+                        <Drawer open={isBrochureDialogOpen} onOpenChange={setIsBrochureDialogOpen}>
+                            <DrawerTrigger asChild>
                                 <Button variant="outline" size="sm" className="h-auto p-2 text-xs">
                                     <Download className="mr-1.5 h-4 w-4" />
                                     Brochure
                                 </Button>
-                            </AlertDialogTrigger>
-                             <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>Download Brochure</AlertDialogTitle>
-                                    <AlertDialogDescription>
+                            </DrawerTrigger>
+                            <DrawerContent>
+                                <DrawerHeader className="text-left">
+                                    <DrawerTitle>Download Brochure</DrawerTitle>
+                                    <DrawerDescription>
                                         Do you want to download the property brochure?
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction asChild>
+                                    </DrawerDescription>
+                                </DrawerHeader>
+                                <DrawerFooter>
+                                    <Button asChild onClick={() => setIsBrochureDialogOpen(false)}>
                                         <a href="/sample.pdf" download="brochure.pdf">Download</a>
-                                    </AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
+                                    </Button>
+                                    <DrawerClose asChild>
+                                        <Button variant="outline">Cancel</Button>
+                                    </DrawerClose>
+                                </DrawerFooter>
+                            </DrawerContent>
+                        </Drawer>
                     </div>
                 </div>
             </>
