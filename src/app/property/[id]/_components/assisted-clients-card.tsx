@@ -7,7 +7,7 @@ const clientLogos = [
     { id: 2, src: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7", alt: "Facebook logo", hint: "social media" },
     { id: 3, src: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb", alt: "Netflix logo", hint: "streaming service" },
     { id: 4, src: "https://images.unsplash.com/photo-1529612700005-e35377bf1415", alt: "Amazon logo", hint: "ecommerce logo" },
-    { id: 5, src: "https://images.unsplash.com/photo-1611262588024-d12430b98925", alt: "Instagram logo", hint: "photo sharing" },
+    { id: 5, src: "https://images.unsplash.com/photo-1563694983011-6f4d90358083?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxsb2dvfGVufDB8fHx8MTc2OTE0OTIyMXww&ixlib=rb-4.1.0&q=80&w=1080", alt: "Company logo", hint: "photo sharing" },
 ];
 
 export default function AssistedClientsCard() {
