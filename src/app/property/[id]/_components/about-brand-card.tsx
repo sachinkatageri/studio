@@ -23,6 +23,7 @@ export default function AboutBrandCard() {
             <Separator />
             <CardContent className="pt-6">
                 <div className="flex items-center gap-4 mb-4">
+                    <Image src="https://cdn-icons-png.flaticon.com/512/90/90830.png" alt="BHIVE Logo" width={40} height={40} />
                     <div>
                         <h3 className="text-xl font-bold">BHIVE</h3>
                         <p className="text-sm font-semibold text-muted-foreground">WORKSPACE</p>
@@ -52,3 +53,4 @@ export default function AboutBrandCard() {
         </Card>
     );
 }
+
