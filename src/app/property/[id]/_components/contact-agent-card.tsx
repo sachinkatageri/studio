@@ -27,10 +27,10 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
                 <div className="flex justify-between items-center gap-4">
                     <div className="flex items-center gap-4">
                         <div className="relative w-24 h-24 rounded-lg overflow-hidden">
-                            <Image src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8cHJvZmlsZXxlbnwwfHx8fDE3NjkwMTkwNTV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rohit" fill className="object-cover" data-ai-hint="male agent" />
+                            <Image src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxOXx8cHJvZmlsZXxlbnwwfHx8fDE3NjkxNDg5MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Riya" fill className="object-cover" data-ai-hint="female agent" />
                         </div>
                         <div>
-                            <h3 className="font-semibold">Say Hi To Rohit</h3>
+                            <h3 className="font-semibold">Say Hi To Riya</h3>
                             <p className="text-sm text-muted-foreground">+91 89*****896</p>
                             <Badge variant="outline" className="mt-1 font-medium">Buildersinfo Expert</Badge>
                         </div>
@@ -47,11 +47,11 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
                         </Button>
                     </div>
                 </div>
-                <Button className="w-full">Contact Rohit</Button>
+                <Button className="w-full">Contact Riya</Button>
                 <Separator />
                  <div className="bg-muted/50 p-4 rounded-lg -m-2">
                     <p className="text-sm text-center text-muted-foreground mb-4">
-                        Rohit's team assisted 500+ corporates in Bangalore to move into their new office.
+                        Riya's team assisted 500+ corporates in Bangalore to move into their new office.
                     </p>
                     <div className="flex justify-around items-center flex-wrap gap-4">
                         {randomImages.map((image) => (
