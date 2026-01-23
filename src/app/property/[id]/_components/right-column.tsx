@@ -6,6 +6,7 @@ import AboutBrandCard from "./about-brand-card";
 import FloorPlanCard from "./floor-plan-card";
 import OpeningHoursCard from "./opening-hours-card";
 import RatingsReviewsCard from "./ratings-reviews-card";
+import ScheduleTourCard from "./schedule-tour-card";
 
 export default function RightColumn({ property }: { property: any }) {
     return (
@@ -19,6 +20,7 @@ export default function RightColumn({ property }: { property: any }) {
                 <FloorPlanCard />
             </div>
             <OpeningHoursCard />
+            <ScheduleTourCard />
             <RatingsReviewsCard />
         </div>
     );
