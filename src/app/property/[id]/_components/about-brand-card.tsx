@@ -44,7 +44,7 @@ export default function AboutBrandCard() {
                     BHIVE Workspace, established in 2014, specializes in providing Zero CapEx, Enterprise Grade, Customized managed office spaces. With 26+ locations in Bangalore and an expansion to Mumbai, BHIVE's flagship HSR campus is the largest in India, offering over 8,000 seats...
                     <Button variant="link" className="p-0 h-auto text-primary text-sm">Read less</Button>
                 </p>
-                <Button variant="outline" className="w-full">
+                <Button className="w-full">
                     Interested in BHIVE Workspace? Connect with us <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
             </CardContent>
