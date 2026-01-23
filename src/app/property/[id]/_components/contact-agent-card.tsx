@@ -1,4 +1,6 @@
 
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -24,7 +26,7 @@ export default function ContactAgentCard({ propertyName }: { propertyName: strin
             <CardContent className="space-y-4 pt-6">
                 <div className="flex justify-between items-center gap-4">
                     <div className="flex items-center gap-4">
-                        <div className="relative w-16 h-16 rounded-lg overflow-hidden">
+                        <div className="relative w-24 h-24 rounded-lg overflow-hidden">
                             <Image src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyMHx8cHJvZmlsZXxlbnwwfHx8fDE3NjkwMTkwNTV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Rohit" fill className="object-cover" data-ai-hint="male agent" />
                         </div>
                         <div>
