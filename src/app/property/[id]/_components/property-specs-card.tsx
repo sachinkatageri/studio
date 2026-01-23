@@ -21,6 +21,7 @@ export default function PropertySpecsCard({ property }: { property: any }) {
                         <h2 className="text-xl font-bold">{property.name}</h2>
                         <div className="flex items-end gap-2 mt-2">
                              <p className="text-2xl font-bold text-primary">₹9,000 <span className="text-sm font-normal text-muted-foreground">/ seat / month</span></p>
+                             <p className="text-md text-muted-foreground line-through">₹10,500</p>
                              <p className="text-sm text-muted-foreground">(negotiable)</p>
                         </div>
                     </div>
